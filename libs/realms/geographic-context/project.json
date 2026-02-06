@@ -1,0 +1,19 @@
+{
+  "name": "geographic-context",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/geographic-context/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:realms"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/geographic-context",
+        "main": "libs/realms/geographic-context/src/index.ts",
+        "tsConfig": "libs/realms/geographic-context/tsconfig.lib.json",
+        "assets": ["libs/realms/geographic-context/*.md"]
+      }
+    }
+  }
+}

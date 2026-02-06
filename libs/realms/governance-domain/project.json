@@ -1,0 +1,19 @@
+{
+  "name": "governance-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/governance-domain/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:governance"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/governance-domain",
+        "main": "libs/realms/governance-domain/src/index.ts",
+        "tsConfig": "libs/realms/governance-domain/tsconfig.lib.json",
+        "assets": ["libs/realms/governance-domain/*.md"]
+      }
+    }
+  }
+}

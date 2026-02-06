@@ -1,0 +1,6 @@
+{
+  "SovereignLogger": {
+    "systemPulse": "Pulso do sistema registrado com sucesso.",
+    "criticalFailure": "Falha crítica detectada no aparato {apparatus}."
+  }
+}

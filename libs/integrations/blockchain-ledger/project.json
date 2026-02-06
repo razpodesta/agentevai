@@ -1,0 +1,19 @@
+{
+  "name": "blockchain-ledger",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/blockchain-ledger/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/blockchain-ledger",
+        "main": "libs/integrations/blockchain-ledger/src/index.ts",
+        "tsConfig": "libs/integrations/blockchain-ledger/tsconfig.lib.json",
+        "assets": ["libs/integrations/blockchain-ledger/*.md"]
+      }
+    }
+  }
+}

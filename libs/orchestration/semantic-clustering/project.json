@@ -1,0 +1,19 @@
+{
+  "name": "semantic-clustering",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/semantic-clustering/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/semantic-clustering",
+        "main": "libs/orchestration/semantic-clustering/src/index.ts",
+        "tsConfig": "libs/orchestration/semantic-clustering/tsconfig.lib.json",
+        "assets": ["libs/orchestration/semantic-clustering/*.md"]
+      }
+    }
+  }
+}

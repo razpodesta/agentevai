@@ -1,12 +1,17 @@
 onlyBuiltDependencies:
   - '@apollo/protobufjs'
+  - '@firebase/util'
   - '@nestjs/core'
   - '@parcel/watcher'
   - '@prisma/engines'
+  - '@scarf/scarf'
   - '@swc/core'
   - esbuild
+  - keccak
   - less
+  - msw
   - nx
   - prisma
+  - protobufjs
   - sharp
   - unrs-resolver

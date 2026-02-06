@@ -1,0 +1,19 @@
+{
+  "name": "geography-infrastructure",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/geography-infrastructure/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:realms"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/geography-infrastructure",
+        "main": "libs/realms/geography-infrastructure/src/index.ts",
+        "tsConfig": "libs/realms/geography-infrastructure/tsconfig.lib.json",
+        "assets": ["libs/realms/geography-infrastructure/*.md"]
+      }
+    }
+  }
+}

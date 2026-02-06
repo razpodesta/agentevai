@@ -1,0 +1,19 @@
+{
+  "name": "security-auditor",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/security-auditor/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/security-auditor",
+        "main": "libs/orchestration/security-auditor/src/index.ts",
+        "tsConfig": "libs/orchestration/security-auditor/tsconfig.lib.json",
+        "assets": ["libs/orchestration/security-auditor/*.md"]
+      }
+    }
+  }
+}

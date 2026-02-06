@@ -1,0 +1,19 @@
+{
+  "name": "notification-nexus",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/notification-nexus/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/notification-nexus",
+        "main": "libs/orchestration/notification-nexus/src/index.ts",
+        "tsConfig": "libs/orchestration/notification-nexus/tsconfig.lib.json",
+        "assets": ["libs/orchestration/notification-nexus/*.md"]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ai-model-orchestrator",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/ai-model-orchestrator/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/ai-model-orchestrator",
+        "main": "libs/integrations/ai-model-orchestrator/src/index.ts",
+        "tsConfig": "libs/integrations/ai-model-orchestrator/tsconfig.lib.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

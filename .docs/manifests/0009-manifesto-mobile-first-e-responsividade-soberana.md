@@ -72,3 +72,6 @@ export const NewsCard: React.FC<NewsCardProperties> = ({ title, excerpt, imageUr
     </article>
   );
 };
+
+---
+

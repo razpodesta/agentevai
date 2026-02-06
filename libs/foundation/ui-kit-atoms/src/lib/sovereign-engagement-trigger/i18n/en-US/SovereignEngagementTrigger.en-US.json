@@ -1,0 +1,8 @@
+{
+  "SovereignEngagementTrigger": {
+    "loadingState": "Processing Intent...",
+    "successState": "Action Recorded",
+    "disabledState": "Action Unavailable",
+    "ariaActionDescription": "Public action trigger for:"
+  }
+}

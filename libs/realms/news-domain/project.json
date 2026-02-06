@@ -1,0 +1,29 @@
+{
+  "name": "news-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/news-domain/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:news", "logic:pure-business"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/news-domain",
+        "main": "libs/realms/news-domain/src/index.ts",
+        "tsConfig": "libs/realms/news-domain/tsconfig.lib.json",
+        "assets": ["libs/realms/news-domain/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/realms/news-domain/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

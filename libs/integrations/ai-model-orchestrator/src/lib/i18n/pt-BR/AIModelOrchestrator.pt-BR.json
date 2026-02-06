@@ -1,0 +1,8 @@
+{
+  "AIModelOrchestrator": {
+    "providerSelected": "Motor de diagnóstico selecionado: {provider}",
+    "handshakeError": "Incapacidade de conectar com o cluster de IA de saúde.",
+    "repairSuggestion": "A IA sugere a seguinte refatoração: {suggestion}",
+    "budgetWarning": "Alerta: O diagnóstico consumiu uma densidade de tokens acima do limite de manutenção."
+  }
+}

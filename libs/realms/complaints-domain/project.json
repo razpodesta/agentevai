@@ -1,0 +1,19 @@
+{
+  "name": "complaints-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/complaints-domain/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:complaints"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/complaints-domain",
+        "main": "libs/realms/complaints-domain/src/index.ts",
+        "tsConfig": "libs/realms/complaints-domain/tsconfig.lib.json",
+        "assets": ["libs/realms/complaints-domain/*.md"]
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "internationalization-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/internationalization-engine/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "domain:global-i18n"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/internationalization-engine",
+        "main": "libs/foundation/internationalization-engine/src/index.ts",
+        "tsConfig": "libs/foundation/internationalization-engine/tsconfig.lib.json",
+        "assets": ["libs/foundation/internationalization-engine/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/foundation/internationalization-engine/jest.config.cts"
+      }
+    },
+    "compile-dictionaries": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node libs/foundation/internationalization-engine/src/lib/compiler.ts"
+      },
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

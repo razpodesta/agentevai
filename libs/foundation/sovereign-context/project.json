@@ -1,0 +1,25 @@
+{
+  "name": "foundation-sovereign-context",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/sovereign-context/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "role:system-consciousness"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/sovereign-context",
+        "main": "libs/foundation/sovereign-context/src/index.ts",
+        "tsConfig": "libs/foundation/sovereign-context/tsconfig.lib.json",
+        "assets": [
+          "libs/foundation/sovereign-context/*.md",
+          "libs/foundation/sovereign-context/src/lib/i18n/**/*.json"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

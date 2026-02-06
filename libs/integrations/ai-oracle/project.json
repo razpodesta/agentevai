@@ -1,0 +1,19 @@
+{
+  "name": "ai-oracle",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/ai-oracle/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/ai-oracle",
+        "main": "libs/integrations/ai-oracle/src/index.ts",
+        "tsConfig": "libs/integrations/ai-oracle/tsconfig.lib.json",
+        "assets": ["libs/integrations/ai-oracle/*.md"]
+      }
+    }
+  }
+}

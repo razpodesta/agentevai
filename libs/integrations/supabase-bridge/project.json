@@ -1,0 +1,19 @@
+{
+  "name": "supabase-bridge",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/supabase-bridge/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/supabase-bridge",
+        "main": "libs/integrations/supabase-bridge/src/index.ts",
+        "tsConfig": "libs/integrations/supabase-bridge/tsconfig.lib.json",
+        "assets": ["libs/integrations/supabase-bridge/*.md"]
+      }
+    }
+  }
+}

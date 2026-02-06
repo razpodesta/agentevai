@@ -1,0 +1,10 @@
+{
+  "SovereignError": {
+    "title": "Erro do Sistema Soberano",
+    "diagnosing": "A IA está diagnosticando esta falha no aparato {apparatus}...",
+    "criticalAlert": "ALERTA CRÍTICO: Integridade do sistema comprometida em {location}.",
+    "recoveryAttempt": "Tentativa de auto-saneamento iniciada pelo Auditor Neural...",
+    "actionRequired": "Ação manual requerida: Consulte o rastro forense com ID {traceId}.",
+    "validationBreach": "Violação de ADN detectada: Os dados de entrada não correspondem ao esquema soberano."
+  }
+}

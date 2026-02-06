@@ -1,0 +1,7 @@
+{
+  "SovereignContext": {
+    "initializationError": "Erro ao tentar estabelecer a consciência do sistema.",
+    "regionActive": "Sistema operando sob a soberania de {region}.",
+    "degradedAlert": "Atenção: Sistema operando em modo de resiliência."
+  }
+}

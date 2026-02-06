@@ -1,0 +1,19 @@
+{
+  "name": "ai-neural-auditor",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/ai-neural-auditor/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/ai-neural-auditor",
+        "main": "libs/orchestration/ai-neural-auditor/src/index.ts",
+        "tsConfig": "libs/orchestration/ai-neural-auditor/tsconfig.lib.json",
+        "assets": ["libs/orchestration/ai-neural-auditor/*.md"]
+      }
+    }
+  }
+}

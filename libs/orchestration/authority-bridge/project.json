@@ -1,0 +1,19 @@
+{
+  "name": "authority-bridge",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/authority-bridge/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/authority-bridge",
+        "main": "libs/orchestration/authority-bridge/src/index.ts",
+        "tsConfig": "libs/orchestration/authority-bridge/tsconfig.lib.json",
+        "assets": ["libs/orchestration/authority-bridge/*.md"]
+      }
+    }
+  }
+}

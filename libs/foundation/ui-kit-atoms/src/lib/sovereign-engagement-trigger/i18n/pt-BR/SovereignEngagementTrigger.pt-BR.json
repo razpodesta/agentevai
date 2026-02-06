@@ -1,0 +1,8 @@
+{
+  "SovereignEngagementTrigger": {
+    "loadingState": "Processando Intenção...",
+    "successState": "Ação Registrada",
+    "disabledState": "Ação Indisponível",
+    "ariaActionDescription": "Gatilho de ação pública para:"
+  }
+}

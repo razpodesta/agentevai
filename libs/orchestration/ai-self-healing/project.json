@@ -1,0 +1,19 @@
+{
+  "name": "ai-self-healing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/ai-self-healing/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/ai-self-healing",
+        "main": "libs/orchestration/ai-self-healing/src/index.ts",
+        "tsConfig": "libs/orchestration/ai-self-healing/tsconfig.lib.json",
+        "assets": ["libs/orchestration/ai-self-healing/*.md"]
+      }
+    }
+  }
+}

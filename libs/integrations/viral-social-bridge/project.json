@@ -1,0 +1,19 @@
+{
+  "name": "viral-social-bridge",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/viral-social-bridge/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/viral-social-bridge",
+        "main": "libs/integrations/viral-social-bridge/src/index.ts",
+        "tsConfig": "libs/integrations/viral-social-bridge/tsconfig.lib.json",
+        "assets": ["libs/integrations/viral-social-bridge/*.md"]
+      }
+    }
+  }
+}

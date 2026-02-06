@@ -1,0 +1,19 @@
+{
+  "name": "apparatus-factory",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tools/apparatus-factory/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:tools"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/tools/apparatus-factory",
+        "main": "libs/tools/apparatus-factory/src/index.ts",
+        "tsConfig": "libs/tools/apparatus-factory/tsconfig.lib.json",
+        "assets": ["libs/tools/apparatus-factory/*.md"]
+      }
+    }
+  }
+}

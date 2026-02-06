@@ -1,0 +1,19 @@
+{
+  "name": "whatsapp-gateway",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/whatsapp-gateway/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/whatsapp-gateway",
+        "main": "libs/integrations/whatsapp-gateway/src/index.ts",
+        "tsConfig": "libs/integrations/whatsapp-gateway/tsconfig.lib.json",
+        "assets": ["libs/integrations/whatsapp-gateway/*.md"]
+      }
+    }
+  }
+}

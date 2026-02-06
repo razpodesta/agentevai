@@ -4,17 +4,67 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      /* Foundation: Alicerces e Design System */
+      "@agentevai/ui-kit-atoms": ["libs/foundation/ui-kit-atoms/src/index.ts"],
+      "@agentevai/ui-kit-molecules": ["libs/foundation/ui-kit-molecules/src/index.ts"],
+      "@agentevai/ui-kit-organisms": ["libs/foundation/ui-kit-organisms/src/index.ts"],
+      "@agentevai/internationalization-engine": ["libs/foundation/internationalization-engine/src/index.ts"],
+      "@agentevai/design-tokens": ["libs/foundation/design-tokens/src/index.ts"],
+      "@agentevai/types-common": ["libs/foundation/types-common/src/index.ts"],
+      "@agentevai/apparatus-metadata-registry": ["libs/foundation/apparatus-metadata-registry/src/index.ts"],
+      "@agentevai/sovereign-context": ["libs/foundation/sovereign-context/src/index.ts"],
+
+      /* Realms: Domínios de Negócio (DDD) */
+      "@agentevai/news-domain": ["libs/realms/news-domain/src/index.ts"],
+      "@agentevai/news-ui": ["libs/realms/news-ui/src/index.ts"],
+      "@agentevai/complaints-domain": ["libs/realms/complaints-domain/src/index.ts"],
+      "@agentevai/complaints-ui": ["libs/realms/complaints-ui/src/index.ts"],
+      "@agentevai/governance-domain": ["libs/realms/governance-domain/src/index.ts"],
+      "@agentevai/community-ui": ["libs/realms/community-ui/src/index.ts"],
+      "@agentevai/geographic-context": ["libs/realms/geographic-context/src/index.ts"],
+      "@agentevai/geography-infrastructure": ["libs/realms/geography-infrastructure/src/index.ts"],
+
+      /* Integrations: Adaptadores de Infraestrutura */
+      "@agentevai/supabase-bridge": ["libs/integrations/supabase-bridge/src/index.ts"],
+      "@agentevai/blockchain-ledger": ["libs/integrations/blockchain-ledger/src/index.ts"],
+      "@agentevai/ai-oracle": ["libs/integrations/ai-oracle/src/index.ts"],
+      "@agentevai/search-engine": ["libs/integrations/search-engine/src/index.ts"],
+      "@agentevai/whatsapp-gateway": ["libs/integrations/whatsapp-gateway/src/index.ts"],
+      "@agentevai/viral-social-bridge": ["libs/integrations/viral-social-bridge/src/index.ts"],
+      "@agentevai/ai-model-orchestrator": ["libs/integrations/ai-model-orchestrator/src/index.ts"],
+
+      /* Orchestration: Lógica Transversal e Autocura */
+      "@agentevai/viral-engine": ["libs/orchestration/viral-engine/src/index.ts"],
+      "@agentevai/security-auditor": ["libs/orchestration/security-auditor/src/index.ts"],
+      "@agentevai/sovereign-logger": ["libs/orchestration/sovereign-logger/src/index.ts"],
+      "@agentevai/ai-self-healing": ["libs/orchestration/ai-self-healing/src/index.ts"],
+      "@agentevai/ai-neural-auditor": ["libs/orchestration/ai-neural-auditor/src/index.ts"],
+      "@agentevai/semantic-clustering": ["libs/orchestration/semantic-clustering/src/index.ts"],
+      "@agentevai/authority-bridge": ["libs/orchestration/authority-bridge/src/index.ts"],
+      "@agentevai/notification-nexus": ["libs/orchestration/notification-nexus/src/index.ts"],
+      "@agentevai/sovereign-error-observability": ["libs/orchestration/sovereign-error-observability/src/index.ts"],
+
+      /* Tools: Automação */
+      "@agentevai/apparatus-factory": ["libs/tools/apparatus-factory/src/index.ts"]
+    }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp", "dist"]
 }

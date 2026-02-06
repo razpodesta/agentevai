@@ -1,0 +1,29 @@
+{
+  "name": "apparatus-metadata-registry",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/apparatus-metadata-registry/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "role:forensic-tracking"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/apparatus-metadata-registry",
+        "main": "libs/foundation/apparatus-metadata-registry/src/index.ts",
+        "tsConfig": "libs/foundation/apparatus-metadata-registry/tsconfig.lib.json",
+        "assets": ["libs/foundation/apparatus-metadata-registry/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/foundation/apparatus-metadata-registry/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

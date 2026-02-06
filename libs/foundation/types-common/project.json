@@ -1,0 +1,22 @@
+{
+  "name": "types-common",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/types-common/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:foundation", "role:branded-types"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/types-common",
+        "main": "libs/foundation/types-common/src/index.ts",
+        "tsConfig": "libs/foundation/types-common/tsconfig.lib.json",
+        "assets": ["libs/foundation/types-common/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

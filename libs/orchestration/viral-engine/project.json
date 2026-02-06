@@ -1,0 +1,19 @@
+{
+  "name": "viral-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/viral-engine/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/viral-engine",
+        "main": "libs/orchestration/viral-engine/src/index.ts",
+        "tsConfig": "libs/orchestration/viral-engine/tsconfig.lib.json",
+        "assets": ["libs/orchestration/viral-engine/*.md"]
+      }
+    }
+  }
+}

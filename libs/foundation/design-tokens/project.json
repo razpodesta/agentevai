@@ -1,0 +1,25 @@
+{
+  "name": "design-tokens",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/design-tokens/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "standard:sovereign-branding"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/design-tokens",
+        "main": "libs/foundation/design-tokens/src/index.ts",
+        "tsConfig": "libs/foundation/design-tokens/tsconfig.lib.json",
+        "assets": [
+          "libs/foundation/design-tokens/*.md",
+          "libs/foundation/design-tokens/src/lib/themes/**/*.json"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
