@@ -1,11 +1,23 @@
 {
   "name": "@agentevai/sovereign-context",
-  "version": "0.0.1",
-  "type": "commonjs",
+  "version": "2.1.0",
+  "description": "Provedor de Realidade: Gerencia o ADN geográfico, linguístico e a saúde sistêmica em runtime.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_CORE",
+    "protocol": "OEDP-V5.5",
+    "role": "SYSTEM_CONSCIOUSNESS"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
-    "zod": "^3.22.0"
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/sovereign-error-observability": "*"
   }
 }

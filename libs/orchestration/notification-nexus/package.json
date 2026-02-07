@@ -1,11 +1,27 @@
 {
   "name": "@agentevai/notification-nexus",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Nexus de Notificação: Hub central para despacho de Push, E-mail e Alertas In-App baseados em eventos de domínio.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "OMNICHANNEL_HUB",
+    "delivery": "REAL_TIME"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@novu/node": "^2.6.6"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*"
   }
 }

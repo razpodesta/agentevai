@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/orchestration/semantic-clustering/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:orchestration"],
+  "tags": ["type:util", "scope:orchestration", "role:data-unification"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/orchestration/semantic-clustering/tsconfig.lib.json",
         "assets": ["libs/orchestration/semantic-clustering/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/semantic-clustering/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

@@ -1,0 +1,37 @@
+{
+  "name": "sovereign-logger",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/sovereign-logger/src",
+  "projectType": "library",
+  "tags": [
+    "type:util",
+    "scope:foundation",
+    "role:telemetry-core",
+    "tier:infrastructure"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/sovereign-logger",
+        "main": "libs/foundation/sovereign-logger/src/index.ts",
+        "tsConfig": "libs/foundation/sovereign-logger/tsconfig.lib.json",
+        "assets": [
+          "libs/foundation/sovereign-logger/*.md",
+          "libs/foundation/sovereign-logger/src/lib/i18n/**/*.json"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/foundation/sovereign-logger/jest.config.ts"
+      }
+    }
+  }
+}

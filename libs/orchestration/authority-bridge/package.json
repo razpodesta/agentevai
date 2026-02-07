@@ -1,11 +1,28 @@
 {
   "name": "@agentevai/authority-bridge",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Braço Institucional: Orquestra o envio de documentos eletrônicos e notificações para autoridades públicas.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "LEGAL_DISPATCHER",
+    "governance": "INSTITUTIONAL_CONNECT"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/governance-domain": "*",
+    "@agentevai/whatsapp-gateway": "*"
   }
 }

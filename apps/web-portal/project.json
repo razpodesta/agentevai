@@ -3,7 +3,76 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/web-portal",
   "projectType": "application",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project web-portal --web",
-  "targets": {}
+  "tags": [
+    "type:app",
+    "platform:web",
+    "stack:nextjs-16",
+    "scope:web-portal",
+    "tier:frontend"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/web-portal"
+      },
+      "configurations": {
+        "development": {
+          "debug": true
+        },
+        "production": {
+          "outputPath": "dist/apps/web-portal",
+          "fileReplacements": [
+            {
+              "replace": "apps/web-portal/src/environments/environment.ts",
+              "with": "apps/web-portal/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "web-portal:build",
+        "dev": true,
+        "turbo": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "web-portal:build:development"
+        },
+        "production": {
+          "buildTarget": "web-portal:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "web-portal:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/web-portal"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "analyze": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ANALYZE=true npx nx build web-portal"
+      },
+      "description": "Realiza a auditoria de tamanho de bundle para conformidade com o Manifesto 0013."
+    }
+  }
 }

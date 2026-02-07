@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/integrations/whatsapp-gateway/src",
   "projectType": "library",
-  "tags": ["type:infrastructure", "scope:integrations"],
+  "tags": ["type:infrastructure", "scope:integrations", "role:messaging-bridge"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/integrations/whatsapp-gateway/tsconfig.lib.json",
         "assets": ["libs/integrations/whatsapp-gateway/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/integrations/whatsapp-gateway/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

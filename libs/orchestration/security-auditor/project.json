@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/orchestration/security-auditor/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:orchestration"],
+  "tags": ["type:util", "scope:orchestration", "role:compliance-guard"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,21 @@
         "tsConfig": "libs/orchestration/security-auditor/tsconfig.lib.json",
         "assets": ["libs/orchestration/security-auditor/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/security-auditor/jest.config.cts"
+      }
+    },
+    "encrypt-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node libs/orchestration/security-auditor/src/lib/audit-crypto-standards.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

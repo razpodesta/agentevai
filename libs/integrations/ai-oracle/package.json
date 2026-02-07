@@ -1,11 +1,30 @@
 {
   "name": "@agentevai/ai-oracle",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Oráculo Cognitivo: Motor primário de IA para análise de sentimento, moderação de ódio e resumos jornalísticos.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "COGNITIVE_INFERENCE",
+    "engine": "MULTI_MODEL_LLM"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@google/generative-ai": "^0.24.1",
+    "langchain": "^1.2.18",
+    "openai": "^6.18.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/sovereign-error-observability": "*"
   }
 }

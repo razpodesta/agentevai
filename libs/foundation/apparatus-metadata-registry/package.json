@@ -1,11 +1,25 @@
 {
   "name": "@agentevai/apparatus-metadata-registry",
-  "version": "0.0.1",
+  "version": "1.1.0",
+  "description": "Cartório de Registros de Legos: Mantém a ficha técnica, autoria e metadados de performance de cada aparato.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "FOUNDATION_UTIL",
+    "role": "FORENSIC_TRACKING",
+    "governance": "APPARATUS_INVENTORY"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
   }
 }

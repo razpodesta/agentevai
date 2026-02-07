@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/orchestration/authority-bridge/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:orchestration"],
+  "tags": ["type:util", "scope:orchestration", "role:legal-dispatch"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/orchestration/authority-bridge/tsconfig.lib.json",
         "assets": ["libs/orchestration/authority-bridge/*.md"]
       }
+    },
+    "dispatch-document": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node libs/orchestration/authority-bridge/src/lib/dispatch-cli.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

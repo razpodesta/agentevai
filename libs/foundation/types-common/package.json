@@ -1,11 +1,21 @@
 {
   "name": "@agentevai/types-common",
-  "version": "0.0.1",
+  "version": "1.2.0",
+  "description": "Bóveda de Contratos: Interfaces TypeScript globais e Branded Types para erradicação de 'any'.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_TYPES",
+    "protocol": "OEDP-V5.5",
+    "role": "TYPE_AUTHORITY"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
   }
 }

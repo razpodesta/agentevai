@@ -1,11 +1,27 @@
 {
   "name": "@agentevai/ai-self-healing",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Sistema Imunológico: Atuador de autocura que aplica patches lógicos sugeridos pelo AI-Neural-Auditor.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "IMMUNE_SYSTEM",
+    "autonomy": "SELF_REPAIR"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/ai-model-orchestrator": "*"
   }
 }

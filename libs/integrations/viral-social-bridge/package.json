@@ -1,11 +1,28 @@
 {
   "name": "@agentevai/viral-social-bridge",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Ponte Social: Adaptadores para APIs de difusão massiva (X/Twitter, Meta, TikTok) com selo de veracidade Agentevai.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "SOCIAL_AUTOMATION",
+    "realm": "VIRALITY"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "twitter-api-v2": "^1.29.0",
+    "facebook-nodejs-business-sdk": "^24.0.1"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*"
   }
 }

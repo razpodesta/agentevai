@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/realms/complaints-domain/src",
   "projectType": "library",
-  "tags": ["type:domain", "scope:complaints"],
+  "tags": ["type:domain", "scope:complaints", "role:validation-rules"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,16 @@
         "tsConfig": "libs/realms/complaints-domain/tsconfig.lib.json",
         "assets": ["libs/realms/complaints-domain/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/realms/complaints-domain/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

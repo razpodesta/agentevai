@@ -1,0 +1,33 @@
+{
+  "name": "admin-cms",
+  "version": "1.0.0",
+  "description": "Cockpit de Soberania: Interface administrativa para moderação de IA, auditoria de rastro e gestão regional.",
+  "private": true,
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "platform": "WEB",
+    "stack": "NEXTJS_16",
+    "tier": "ADMIN_TIER"
+  },
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.3.6",
+    "lucide-react": "^0.563.0",
+    "@tanstack/react-query": "^5.90.20",
+    "framer-motion": "^12.31.3",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@agentevai/ui-kit-atoms": "workspace:*",
+    "@agentevai/ui-kit-molecules": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/ai-neural-auditor": "workspace:*",
+    "@agentevai/identity-domain": "workspace:*"
+  }
+}

@@ -1,11 +1,27 @@
 {
   "name": "@agentevai/viral-engine",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Motor de Viralização: Inteligência transversal que decide o timing e o canal de difusão de denúncias críticas.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "DISTRIBUTION_STRATEGY",
+    "realm": "COMMUNICATION"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/viral-social-bridge": "*"
   }
 }

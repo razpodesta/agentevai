@@ -1,11 +1,29 @@
 {
   "name": "@agentevai/blockchain-ledger",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Âncora de Imutabilidade: Gera Merkle Roots para selagem de assinaturas eletrônicas em redes descentralizadas.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "IMMUTABILITY_ANCHOR",
+    "security": "CRYPTOGRAPHIC_PROOF"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "merkletreejs": "^0.6.0",
+    "keccak256": "^1.0.6",
+    "@noble/hashes": "^2.0.1"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*"
   }
 }

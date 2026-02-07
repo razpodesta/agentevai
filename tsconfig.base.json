@@ -1,3 +1,12 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus SovereignTSConfigBase
+ * @version 2.5.0
+ * @protocol OEDP-V5.5 - High Performance & Zero-Any
+ * @description Única Fonte de Verdade para resolução de módulos e mapeamento de caminhos.
+ * Configurado para suporte estrito a ESM, Next.js 16 e NestJS 11.
+ * @route /tsconfig.base.json
+ */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -22,7 +31,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      /* Foundation: Alicerces e Design System */
+      /* --- FOUNDATION: Alicerces e Design System --- */
       "@agentevai/ui-kit-atoms": ["libs/foundation/ui-kit-atoms/src/index.ts"],
       "@agentevai/ui-kit-molecules": ["libs/foundation/ui-kit-molecules/src/index.ts"],
       "@agentevai/ui-kit-organisms": ["libs/foundation/ui-kit-organisms/src/index.ts"],
@@ -30,9 +39,13 @@
       "@agentevai/design-tokens": ["libs/foundation/design-tokens/src/index.ts"],
       "@agentevai/types-common": ["libs/foundation/types-common/src/index.ts"],
       "@agentevai/apparatus-metadata-registry": ["libs/foundation/apparatus-metadata-registry/src/index.ts"],
+      "@agentevai/sovereign-logger": ["libs/foundation/sovereign-logger/src/index.ts"],
+      "@agentevai/sovereign-error-observability": ["libs/foundation/sovereign-error-observability/src/index.ts"],
       "@agentevai/sovereign-context": ["libs/foundation/sovereign-context/src/index.ts"],
+      "@agentevai/sovereign-data-vault": ["libs/foundation/sovereign-data-vault/src/index.ts"],
 
-      /* Realms: Domínios de Negócio (DDD) */
+      /* --- REALMS: Domínios de Negócio (DDD) --- */
+      "@agentevai/identity-domain": ["libs/realms/identity-domain/src/index.ts"],
       "@agentevai/news-domain": ["libs/realms/news-domain/src/index.ts"],
       "@agentevai/news-ui": ["libs/realms/news-ui/src/index.ts"],
       "@agentevai/complaints-domain": ["libs/realms/complaints-domain/src/index.ts"],
@@ -42,7 +55,7 @@
       "@agentevai/geographic-context": ["libs/realms/geographic-context/src/index.ts"],
       "@agentevai/geography-infrastructure": ["libs/realms/geography-infrastructure/src/index.ts"],
 
-      /* Integrations: Adaptadores de Infraestrutura */
+      /* --- INTEGRATIONS: Adaptadores de Infraestrutura --- */
       "@agentevai/supabase-bridge": ["libs/integrations/supabase-bridge/src/index.ts"],
       "@agentevai/blockchain-ledger": ["libs/integrations/blockchain-ledger/src/index.ts"],
       "@agentevai/ai-oracle": ["libs/integrations/ai-oracle/src/index.ts"],
@@ -51,18 +64,16 @@
       "@agentevai/viral-social-bridge": ["libs/integrations/viral-social-bridge/src/index.ts"],
       "@agentevai/ai-model-orchestrator": ["libs/integrations/ai-model-orchestrator/src/index.ts"],
 
-      /* Orchestration: Lógica Transversal e Autocura */
+      /* --- ORCHESTRATION: Lógica Transversal e Autocura --- */
       "@agentevai/viral-engine": ["libs/orchestration/viral-engine/src/index.ts"],
       "@agentevai/security-auditor": ["libs/orchestration/security-auditor/src/index.ts"],
-      "@agentevai/sovereign-logger": ["libs/orchestration/sovereign-logger/src/index.ts"],
       "@agentevai/ai-self-healing": ["libs/orchestration/ai-self-healing/src/index.ts"],
       "@agentevai/ai-neural-auditor": ["libs/orchestration/ai-neural-auditor/src/index.ts"],
       "@agentevai/semantic-clustering": ["libs/orchestration/semantic-clustering/src/index.ts"],
       "@agentevai/authority-bridge": ["libs/orchestration/authority-bridge/src/index.ts"],
       "@agentevai/notification-nexus": ["libs/orchestration/notification-nexus/src/index.ts"],
-      "@agentevai/sovereign-error-observability": ["libs/orchestration/sovereign-error-observability/src/index.ts"],
 
-      /* Tools: Automação */
+      /* --- TOOLS: Automação e Engenharia --- */
       "@agentevai/apparatus-factory": ["libs/tools/apparatus-factory/src/index.ts"]
     }
   },

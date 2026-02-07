@@ -1,12 +1,30 @@
 {
   "name": "@agentevai/community-ui",
-  "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
-    }
+  "version": "1.0.0",
+  "description": "Interface Comunitária: Hilos de discussão, perfis de cidadão e sistema de badges sociais.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "REALM_UI",
+    "role": "SOCIAL_ENGAGEMENT",
+    "realm": "COMMUNITY"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.3.6",
+    "framer-motion": "^12.31.3",
+    "@agentevai/ui-kit-atoms": "*",
+    "@agentevai/sovereign-logger": "*"
   }
 }

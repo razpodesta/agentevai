@@ -1,0 +1,19 @@
+{
+  "name": "@agentevai/identity-domain",
+  "version": "1.3.0",
+  "private": true,
+  "type": "module",
+  "metadata": {
+    "protocol": "OEDP-V5.5",
+    "tier": "CORE_LOGIC"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/sovereign-context": "workspace:*"
+  }
+}

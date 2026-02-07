@@ -1,11 +1,23 @@
 {
   "name": "@agentevai/internationalization-engine",
-  "version": "0.0.1",
+  "version": "2.5.0",
+  "description": "Motor de Soberania Linguística: Orquestrador de dicionários granulares e resolução semântica trilingue.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_UTIL",
+    "protocol": "OEDP-V5.5",
+    "role": "I18N_ENGINE"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/sovereign-error-observability": "*"
   }
 }

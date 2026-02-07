@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/orchestration/viral-engine/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:orchestration"],
+  "tags": ["type:util", "scope:orchestration", "role:distribution-strategy"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/orchestration/viral-engine/tsconfig.lib.json",
         "assets": ["libs/orchestration/viral-engine/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/viral-engine/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

@@ -1,11 +1,27 @@
 {
   "name": "@agentevai/search-engine",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Motor de Busca: Interface de alta performance com Meilisearch para descoberta instantânea de notícias e denúncias.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "SEARCH_PROVIDER",
+    "technology": "MEILISEARCH"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "meilisearch": "^0.55.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*"
   }
 }

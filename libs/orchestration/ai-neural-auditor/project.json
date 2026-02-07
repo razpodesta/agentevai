@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/orchestration/ai-neural-auditor/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:orchestration"],
+  "tags": ["type:util", "scope:orchestration", "role:code-auditor"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/orchestration/ai-neural-auditor/tsconfig.lib.json",
         "assets": ["libs/orchestration/ai-neural-auditor/*.md"]
       }
+    },
+    "analyze-logs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node libs/orchestration/ai-neural-auditor/src/lib/log-analyzer.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

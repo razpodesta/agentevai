@@ -1,0 +1,36 @@
+{
+  "name": "web-portal",
+  "version": "1.0.0",
+  "description": "Portal A Gente Vai: Ecossistema soberano de jornalismo, governança e denúncia pública.",
+  "private": true,
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "platform": "WEB",
+    "stack": "NEXTJS_16_REACT_19",
+    "tier": "FRONTEND_SOVEREIGN"
+  },
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "framer-motion": "^12.31.3",
+    "lucide-react": "^0.563.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.11",
+    "@tanstack/react-query": "^5.90.20",
+    "next-themes": "^0.4.6",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@agentevai/ui-kit-atoms": "workspace:*",
+    "@agentevai/ui-kit-molecules": "workspace:*",
+    "@agentevai/ui-kit-organisms": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-context": "workspace:*",
+    "@agentevai/identity-domain": "workspace:*"
+  }
+}

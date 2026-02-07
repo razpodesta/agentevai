@@ -1,0 +1,25 @@
+{
+  "name": "@agentevai/sovereign-data-vault",
+  "version": "2.2.0",
+  "description": "Câmara de Blindagem PII: Implementa criptografia AES-GCM-256 e SHA-256 para conformidade soberana com LGPD.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_SECURITY",
+    "protocol": "OEDP-V5.5",
+    "role": "CRYPTOGRAPHIC_VAULT"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@noble/ciphers": "^2.1.1",
+    "@noble/hashes": "^2.0.1",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/sovereign-error-observability": "*"
+  }
+}

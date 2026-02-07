@@ -1,11 +1,29 @@
 {
   "name": "@agentevai/geography-infrastructure",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Infraestrutura Geográfica: Adaptador de baixo nível para persistência espacial e cálculos de proximidade.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INFRASTRUCTURE",
+    "role": "SPATIAL_ADAPTER",
+    "realm": "GEOGRAPHY"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "geolib": "^3.3.4",
+    "@turf/turf": "^7.3.3"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/geographic-context": "*"
   }
 }

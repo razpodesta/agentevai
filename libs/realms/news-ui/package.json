@@ -1,12 +1,31 @@
 {
   "name": "@agentevai/news-ui",
-  "version": "0.0.1",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
-    }
+  "version": "1.0.0",
+  "description": "Interface Editorial: Componentes de visualização de notícias e feeds granulares.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "REALM_UI",
+    "role": "EDITORIAL_PRESENTATION",
+    "realm": "NEWS"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.3.6",
+    "framer-motion": "^12.31.3",
+    "@agentevai/ui-kit-atoms": "*",
+    "@agentevai/news-domain": "*",
+    "@agentevai/sovereign-logger": "*"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "name": "sovereign-error-observability",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/sovereign-error-observability/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "role:error-contracts"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/sovereign-error-observability",
+        "main": "libs/foundation/sovereign-error-observability/src/index.ts",
+        "tsConfig": "libs/foundation/sovereign-error-observability/tsconfig.lib.json",
+        "assets": [
+          "libs/foundation/sovereign-error-observability/*.md",
+          "libs/foundation/sovereign-error-observability/src/lib/i18n/**/*.json"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

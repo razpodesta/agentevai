@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/realms/geographic-context/src",
   "projectType": "library",
-  "tags": ["type:domain", "scope:realms"],
+  "tags": ["type:domain", "scope:geography", "role:territorial-intelligence"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -11,8 +11,16 @@
       "options": {
         "outputPath": "dist/libs/realms/geographic-context",
         "main": "libs/realms/geographic-context/src/index.ts",
-        "tsConfig": "libs/realms/geographic-context/tsconfig.lib.json",
-        "assets": ["libs/realms/geographic-context/*.md"]
+        "tsConfig": "libs/realms/geographic-context/tsconfig.lib.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/realms/geographic-context/jest.config.ts"
       }
     }
   }

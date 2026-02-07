@@ -1,11 +1,28 @@
 {
   "name": "@agentevai/complaints-domain",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Domínio de Denúncia Pública: Coração do ecossistema, gerencia validação e severidade de denúncias.",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "REALM_LOGIC",
+    "role": "COMPLAINT_VALIDATION",
+    "realm": "COMPLAINTS"
+  },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/identity-domain": "*",
+    "@agentevai/geographic-context": "*"
   }
 }

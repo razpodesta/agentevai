@@ -1,0 +1,7 @@
+{
+  "SovereignLogger": {
+    "systemPulse": "System pulse successfully recorded.",
+    "criticalFailure": "Critical failure detected in apparatus {apparatus}.",
+    "invalidAduana": "Log integrity violation detected."
+  }
+}

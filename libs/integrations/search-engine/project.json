@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/integrations/search-engine/src",
   "projectType": "library",
-  "tags": ["type:infrastructure", "scope:integrations"],
+  "tags": ["type:infrastructure", "scope:integrations", "role:indexed-search"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,15 @@
         "tsConfig": "libs/integrations/search-engine/tsconfig.lib.json",
         "assets": ["libs/integrations/search-engine/*.md"]
       }
+    },
+    "sync-indexes": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node libs/integrations/search-engine/src/lib/sync-cli.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

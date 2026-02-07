@@ -1,0 +1,18 @@
+{
+  "UserIdentity": {
+    "roleLabel_ANONYMOUS_CITIZEN": "Observador Anónimo",
+    "roleLabel_ACTIVE_CITIZEN": "Ciudadano Activo",
+    "roleLabel_VERIFIED_CITIZEN": "Ciudadano Verificado",
+    "roleLabel_INDEPENDENT_JOURNALIST": "Periodista Independiente",
+    "roleLabel_REGIONAL_MODERATOR": "Moderador Regional",
+    "roleLabel_GOVERNANCE_AUDITOR": "Auditor de Gobernanza",
+    "roleLabel_PLATFORM_ENGINEER": "Ingeniero de Soberanía",
+
+    "errorInsufficientReputation": "Acción denegada: Tu reputación actual ({currentScore}) no es suficiente para esta operación.",
+    "errorRegionalMismatch": "Violación de Frontera: Tu autoridad está restringida a la región de {region}.",
+    "errorIdentitySuspended": "Tu identidad ha sido suspendida por el Auditor Neural por sospecha de entropía.",
+
+    "statusAura_REPUTATION_ZENITH": "Tu voz tiene el máximo peso en la comunidad.",
+    "statusAura_REPUTATION_ABYSSAL": "Atención: Tu perfil está bajo vigilancia estricta por baja credibilidad."
+  }
+}

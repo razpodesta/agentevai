@@ -1,0 +1,18 @@
+{
+  "UserIdentity": {
+    "roleLabel_ANONYMOUS_CITIZEN": "Anonymous Observer",
+    "roleLabel_ACTIVE_CITIZEN": "Active Citizen",
+    "roleLabel_VERIFIED_CITIZEN": "Verified Citizen",
+    "roleLabel_INDEPENDENT_JOURNALIST": "Independent Journalist",
+    "roleLabel_REGIONAL_MODERATOR": "Regional Moderator",
+    "roleLabel_GOVERNANCE_AUDITOR": "Governance Auditor",
+    "roleLabel_PLATFORM_ENGINEER": "Sovereignty Engineer",
+
+    "errorInsufficientReputation": "Action Denied: Your current reputation ({currentScore}) is insufficient for this operation.",
+    "errorRegionalMismatch": "Boundary Violation: Your authority is restricted to the {region} region.",
+    "errorIdentitySuspended": "Your identity has been suspended by the Neural Auditor due to suspected entropy.",
+
+    "statusAura_REPUTATION_ZENITH": "Your voice carries maximum weight in the community.",
+    "statusAura_REPUTATION_ABYSSAL": "Warning: Your profile is under strict surveillance due to low credibility."
+  }
+}

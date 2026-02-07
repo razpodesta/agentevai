@@ -1,11 +1,25 @@
 {
   "name": "@agentevai/apparatus-factory",
-  "version": "0.0.1",
+  "version": "1.1.0",
+  "description": "Fábrica de Legos: Nx Generators especializados na criação de aparatos seguindo o padrão Elite (Schema, i18n, Logger).",
   "private": true,
-  "type": "commonjs",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "ENGINEERING_TOOL",
+    "role": "LEGO_GENERATOR",
+    "automation": "NX_PLUGINS"
+  },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "@nx/devkit": "^22.4.5",
+    "tslib": "^2.3.0",
+    "ts-morph": "^27.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
   }
 }

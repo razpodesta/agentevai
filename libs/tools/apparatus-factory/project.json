@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/tools/apparatus-factory/src",
   "projectType": "library",
-  "tags": ["type:util", "scope:tools"],
+  "tags": ["type:util", "scope:tools", "role:lego-factory"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -11,9 +11,17 @@
       "options": {
         "outputPath": "dist/libs/tools/apparatus-factory",
         "main": "libs/tools/apparatus-factory/src/index.ts",
-        "tsConfig": "libs/tools/apparatus-factory/tsconfig.lib.json",
-        "assets": ["libs/tools/apparatus-factory/*.md"]
+        "tsConfig": "libs/tools/apparatus-factory/tsconfig.lib.json"
       }
+    },
+    "generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx g @agentevai/apparatus-factory:new-apparatus"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

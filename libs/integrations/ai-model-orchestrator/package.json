@@ -1,0 +1,29 @@
+{
+  "name": "@agentevai/ai-model-orchestrator",
+  "version": "2.0.0",
+  "description": "Hub Neural de Saúde: Orquestrador agnóstico para diagnósticos sistêmicos e manutenção autônoma via Gemini/Claude.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "SYSTEM_HEALTH_AI",
+    "security": "MAINTENANCE_TIER"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@google/generative-ai": "^0.24.1",
+    "@anthropic-ai/sdk": "^0.73.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "*",
+    "@agentevai/sovereign-error-observability": "*"
+  }
+}

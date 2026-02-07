@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/integrations/ai-oracle/src",
   "projectType": "library",
-  "tags": ["type:infrastructure", "scope:integrations"],
+  "tags": ["type:infrastructure", "scope:integrations", "role:cognitive-inference"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -14,6 +14,16 @@
         "tsConfig": "libs/integrations/ai-oracle/tsconfig.lib.json",
         "assets": ["libs/integrations/ai-oracle/*.md"]
       }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/integrations/ai-oracle/jest.config.cts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

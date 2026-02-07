@@ -1,0 +1,43 @@
+{
+  "name": "identity-domain",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/identity-domain/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Unidade de lógica pura para gestão de cidadania e autoridade.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:domain",
+    "scope:identity",
+    "role:identity-management",
+    "tier:core-logic",
+    "protocol:oedp-v5.5"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/identity-domain",
+        "main": "libs/realms/identity-domain/src/index.ts",
+        "tsConfig": "libs/realms/identity-domain/tsconfig.lib.json",
+        "assets": [
+          "libs/realms/identity-domain/*.md",
+          "libs/realms/identity-domain/src/lib/i18n/**/*.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/realms/identity-domain/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
