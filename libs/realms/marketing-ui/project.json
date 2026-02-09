@@ -4,15 +4,16 @@
   "sourceRoot": "libs/realms/marketing-ui/src",
   "projectType": "library",
   "metadata": {
-    "description": "Reino de Conversão Cidadã e Engajamento Institucional.",
-    "author": "Raz Podestá - MetaShark Tech"
+    "description": "Reino de Conversão Cidadã: Aparatos de newsletter, captura de rastro institucional e landing pages regionais.",
+    "author": "Raz Podestá - MetaShark Tech",
+    "protocol": "OEDP-V5.5.2"
   },
   "tags": [
     "type:ui",
     "scope:marketing",
     "role:conversion",
     "tier:presentation",
-    "protocol:oedp-v5.5.2"
+    "realm:marketing"
   ],
   "targets": {
     "build": {
@@ -32,6 +33,12 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p libs/realms/marketing-ui/tsconfig.lib.json --noEmit"
+      }
     }
   }
 }

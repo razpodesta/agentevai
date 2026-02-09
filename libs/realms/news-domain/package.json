@@ -1,23 +1,30 @@
 {
   "name": "@agentevai/news-domain",
-  "version": "1.0.0",
-  "description": "Domínio de Jornalismo: Regras de negócio para ranking, categorização e integridade editorial.",
+  "version": "2.1.0",
+  "description": "Reino de Soberania Editorial: Centraliza a lógica de workflow jornalístico, ranking de relevância e persistência em cofre relacional.",
   "private": true,
   "type": "module",
   "author": {
     "name": "Raz Podestá",
     "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5"
+    "protocol": "OEDP-V5.5.2"
   },
   "metadata": {
-    "tier": "REALM_LOGIC",
-    "role": "EDITORIAL_RULES",
+    "tier": "REALM_CORE",
+    "role": "EDITORIAL_AUTHORITY",
     "realm": "NEWS"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "zod": "^4.3.6",
+    "@supabase/supabase-js": "^2.48.1",
+    "@noble/hashes": "^2.0.1",
+    "@agentevai/types-common": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/blockchain-ledger": "workspace:*"
   },
   "peerDependencies": {}
 }

@@ -1,53 +1,107 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus PublicComplaintOrganismSchema
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - High Precision & Visual Integrity
- * @description ADN que unifica dados de denúncia, autoridade e métricas sociais.
- * @policy ZOD-V4-SYNC: Uso de construtores de elite para IDs e rastro cronológico.
+ * @version 1.1.0
+ * @protocol OEDP-V5.5.2 - High Precision & Structural ADN
+ * @description Única Fonte de Verdade (SSOT) para o aparato de denúncia pública.
+ * Implementa tipagem nominal (Branding) e rastro forense para auditoria de fé pública.
+ * @policy ZOD-V4-SYNC: Construtores de topo e precedência de modificadores estruturais.
  */
 
 import { z } from 'zod';
 import { CitizenAuraCardSchema } from '@agentevai/community-ui';
 
+/**
+ * @section Dimensão de Identidade Nominal (Branded Types)
+ */
+
+export const ComplaintIdentifierSchema = z.uuid()
+  .describe('Identificador universal inalterável da denúncia no ecossistema.')
+  .brand<'ComplaintIdentifier'>();
+
+export type ComplaintIdentifier = z.infer<typeof ComplaintIdentifierSchema>;
+
 export const ComplaintSeveritySchema = z.enum([
-  'INFORMATIVE', // Azul
-  'MODERATE',    // Amarelo
-  'CRITICAL',    // Vermelho
-  'RESOLVED'     // Verde
-]).describe('Nível de urgência determinado pela IA e Auditoria.');
+  'INFORMATIVE', // Estética: Azul (Aviso Comunitário)
+  'MODERATE',    // Estética: Âmbar (Em Investigação)
+  'CRITICAL',    // Estética: Vermelho (Risco Iminente)
+  'RESOLVED'     // Estética: Verde (Justiça Alcançada)
+]).describe('Índice de urgência e impacto social determinado pela IA de Borda.')
+  .brand<'ComplaintSeverity'>();
 
-export const PublicComplaintOrganismSchema = z.object({
-  identifier: z.uuid()
-    .describe('Identificador inalterável da denúncia.'),
+export type ComplaintSeverity = z.infer<typeof ComplaintSeveritySchema>;
 
-  title: z.string().min(10).max(120)
-    .transform(val => val.toUpperCase())
-    .describe('Título editorial em caixa alta soberana.'),
+/**
+ * @name PublicComplaintOrganismInputSchema
+ * @description Aduana de entrada estrita para o orquestrador de denúncias.
+ * Mapeia a integração entre Identidade (Author) e Governança (Merkle Root).
+ */
+export const PublicComplaintOrganismInputSchema = z.object({
+  identifier: ComplaintIdentifierSchema,
 
-  description: z.string().min(50),
+  title: z.string()
+    .min(10, { message: 'TITLE_TOO_SHORT' })
+    .max(120)
+    .transform(value => value.toUpperCase())
+    .describe('Título editorial em caixa alta soberana para impacto visual.'),
+
+  description: z.string()
+    .min(50, { message: 'DESCRIPTION_INSUFFICIENT' })
+    .describe('Relato detalhado e fundamentado do problema público identificado.'),
 
   severity: ComplaintSeveritySchema,
 
-  /** Integridade do Autor (Consome o ADN de Community) */
+  /** 
+   * @section Sincronia de Borda (Community Interface)
+   * Consome o ADN validado do CitizenAuraCard para garantir autoridade do autor.
+   */
   author: CitizenAuraCardSchema,
 
-  /** Evidência Visual */
-  mediaUrl: z.string().url().optional(),
+  /** Evidência Visual Opcional */
+  mediaUrl: z.string()
+    .url()
+    .optional()
+    .describe('Rastro de evidência multimídia hospedado em CDN soberana.'),
 
-  /** Rastro de Soberania */
-  merkleRootAnchor: z.string().length(64)
-    .describe('Prova de imutabilidade blockchain.'),
+  /** 
+   * @section Rastro de Fé Pública (Governance Interface)
+   * Digital matemática inalterável provando a existência da causa na rede.
+   */
+  merkleRootAnchor: z.string()
+    .length(64)
+    .describe('Âncora SHA-256 gerada pelo Blockchain-Ledger para selagem do fato.'),
 
-  /** Métricas de Vontade */
-  supportCount: z.number().int().nonnegative(),
-  rejectionCount: z.number().int().nonnegative(),
+  /** Métricas de Engajamento e Vontade Cidadã */
+  supportCount: z.number()
+    .int()
+    .nonnegative()
+    .describe('Volume total de assinaturas de apoio eletrônico registradas.'),
 
-  /** Localização do Fato */
-  locationLabel: z.string().min(2).describe('Ex: Florianópolis, SC'),
+  rejectionCount: z.number()
+    .int()
+    .nonnegative()
+    .describe('Volume de contestações ou sinalizações de irregularidade.'),
 
-  generatedAt: z.string().datetime(),
+  /** Localização Geopolítica do Fato */
+  locationLabel: z.string()
+    .min(2)
+    .describe('Identificador textual da localidade (Ex: Florianópolis, SC).'),
+
+  /** Metadados de Auditoria e Sincronia Linguística */
+  dictionary: z.record(z.string(), z.unknown())
+    .describe('Silo de tradução regional injetado pelo motor de i18n.'),
+
+  generatedAt: z.string()
+    .datetime()
+    .describe('Marca temporal ISO-8601 da ignição deste rastro editorial.'),
+
   correlationIdentifier: z.uuid()
-}).readonly();
+    .describe('Identificador inalterável da jornada forense para cruzamento de logs.')
 
-export type IPublicComplaintOrganism = z.infer<typeof PublicComplaintOrganismSchema>;
+}).readonly(); // Selagem final de imutabilidade
+
+/**
+ * @interface IPublicComplaintOrganismInput
+ * @description Contrato estrito para as propriedades do organismo.
+ */
+export type IPublicComplaintOrganismInput = z.infer<typeof PublicComplaintOrganismInputSchema>;

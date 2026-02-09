@@ -1,37 +1,57 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignNewsletterSchema
- * @version 2.1.0
- * @protocol OEDP-V5.5.1 - High Precision Audit
- * @description ADN de captura de e-mails institucionais saneado para Zod V4.
+ * @version 2.2.0
+ * @protocol OEDP-V5.5.2 - High Precision & Conversional Integrity
+ * @description ADN mestre para o aparato de captura de e-mails. 
+ * Sincronizado para Zod V4 com suporte total a rastro forense e internacionalização.
  */
 
 import { z } from 'zod';
 
 /**
  * @name SovereignNewsletterInputSchema
- * @description Aduana de entrada para o aparato de conversão.
+ * @description Aduana de entrada estrita. Define a estrutura de dados, 
+ * comportamentos de callback e rastro linguístico para a conversão.
  */
 export const SovereignNewsletterInputSchema = z.object({
-  /** Título editorial (Injetado via i18n ou override manual) */
-  title: z.string().min(5).optional()
-    .describe('Título de impacto visual para a seção de captura.'),
+  /** 
+   * Título de impacto visual. 
+   * Caso ausente, o componente utilizará a chave 'mainTitle' do dicionário.
+   */
+  title: z.string()
+    .min(5)
+    .optional()
+    .describe('Título editorial customizado para a seção de captura.'),
 
   /** 
-   * @section Sincronia Zod V4 (Fix TS2339)
-   * Substituído encadeamento .args() por definição estrutural de objeto.
+   * @section Sincronia Zod V4 
+   * Definição estrutural de função para orquestração de subscrição.
    */
   onSubscribeIntent: z.function({
     input: z.tuple([
-      z.string().email().describe('Endereço de e-mail institucional do cidadão.')
+      z.string().email().describe('Endereço de e-mail institucional validado do cidadão.')
     ]),
-    output: z.promise(z.void()).describe('Promessa de selagem no Vault.')
-  }).describe('Gatilho de alta prioridade para o motor de conversão.'),
+    output: z.promise(z.void()).describe('Promessa de conclusão da selagem no Data Vault.')
+  }).describe('Gatilho de alta prioridade invocado após a manifestação de vontade do usuário.'),
 
-  /** Identificador de correlação para rastro forense */
+  /** 
+   * @section Soberania Linguística
+   * Cura do erro TS2339: Injeção do rastro de dicionário regional.
+   */
+  dictionary: z.record(z.string(), z.unknown())
+    .describe('Fragmento de dicionário regional injetado para humanização da interface.'),
+
+  /** Identificador único da jornada para correlação com o SovereignLogger */
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
 
-}).readonly();
+})
+.brand<'SovereignNewsletterInput'>() // Selo de Identidade de Elite
+.readonly(); // Imutabilidade forçada para proteção de rastro
 
+/**
+ * @interface ISovereignNewsletterInput
+ * @description Contrato imutável resultante da selagem de ADN.
+ */
 export type ISovereignNewsletterInput = z.infer<typeof SovereignNewsletterInputSchema>;

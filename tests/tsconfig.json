@@ -1,14 +1,38 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus QA-Hub-Master-Config
+ * @version 1.1.0
+ * @protocol OEDP-V5.5.2 - Forensic Integrity
+ * @description Configuração mestre para a Bóveda de Perícia Técnica. 
+ * Saneado para resolver o conflito de moduleResolution e garantir suporte a ESM Nativo.
+ */
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
- 
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    /** 
+     * @section Sincronia de Módulos (Cura do Erro de Borda)
+     * Utilizamos NodeNext para garantir compatibilidade total com importações .js
+     * e resolução de pacotes modernos no ecossistema Nx.
+     */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["jest", "node", "@testing-library/jest-dom"]
+
+    /** 
+     * @section Definições de Tipos (Forensic Tools)
+     * Injeção estrita de tipos para testes de UI e rastro de servidor.
+     */
+    "types": [
+      "jest", 
+      "node", 
+      "@testing-library/jest-dom", 
+      "@testing-library/react"
+    ]
   },
   "files": [],
   "include": [],
