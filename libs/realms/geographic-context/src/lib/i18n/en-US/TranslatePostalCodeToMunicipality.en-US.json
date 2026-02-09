@@ -1,0 +1,8 @@
+{
+  "TranslatePostalCodeToMunicipality": {
+    "resolutionStarted": "Initiating territorial translation for postal trace: {postalCode}",
+    "resolutionSuccess": "Municipality [ {cityName} ] successfully identified via postal code.",
+    "errorInvalidFormat": "The provided postal code has an invalid format for Brazilian sovereignty.",
+    "errorNotFound": "No matching territory was found for the provided postal code."
+  }
+}

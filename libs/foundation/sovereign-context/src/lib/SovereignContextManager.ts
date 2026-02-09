@@ -1,50 +1,46 @@
-// libs/foundation/sovereign-context/src/lib/SovereignContextManager.ts
-
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextManager
- * @version 2.4.0
- * @description Fábrica imutável de alta performance para ignição da consciência sistêmica.
- * Transmuta infraestrutura bruta em realidade operativa auditável com precisão nanométrica.
- * @protocol OEDP-V5.5 - High Precision & Forensic Integrity.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @version 2.5.0
+ * @protocol OEDP-V5.5 - High Precision & Neural Integrity
+ * @description Fábrica imutável de elite para ignição da consciência sistêmica.
+ * Integra a Trindade Geopolítica (Manifesto 0018) e sela o rastro forense de borda.
  */
 
+import { z } from 'zod';
 import {
   SovereignContextSchema,
-  ISovereignContext
-} from './schemas/SovereignContext.schema';
+  type ISovereignContext
+} from './schemas/SovereignContext.schema.js';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import {
   SovereignError,
   SovereignErrorCodeSchema
 } from '@agentevai/sovereign-error-observability';
-import { SovereignTranslationEngine } from '@agentevai/internationalization-engine';
+import {
+  SovereignTranslationEngine,
+  TransmuteGeopoliticalId
+} from '@agentevai/internationalization-engine';
 
 /**
  * @interface ISovereignConsciousnessPacket
  * @description ADN de execução que ancora o estado global e o rastro forense.
  */
 export interface ISovereignConsciousnessPacket extends ISovereignContext {
-  /** Identificador único inalterável da jornada para correlação de eventos IA */
   readonly correlationIdentifier: string;
-  /** Ponto de origem física da ignição do sistema */
   readonly ignitionPoint: 'EDGE_RUNTIME' | 'SERVER_CORE' | 'ADMIN_COCKPIT';
-  /** Assinatura de integridade da versão do aparato de consciência */
   readonly apparatusFingerprint: string;
-  /** Latência de inicialização em milissegundos para auditoria de performance */
   readonly ignitionLatencyInMilliseconds: number;
 }
 
 /**
  * @name CreateSovereignContext
  * @function
- * @description Realiza a ignição do sistema, validando o ADN e estabelecendo a Soberania Local.
- * 
+ * @description Ponto de ignição mestre. Valida o ADN territorial e estabelece a Soberania.
+ *
  * @param {unknown} infrastructureSnapshot - Dados brutos (Request, Geo, Headers).
  * @param {ISovereignConsciousnessPacket['ignitionPoint']} origin - Contexto de nascimento.
  * @returns {ISovereignConsciousnessPacket} Realidade purificada e ancorada.
- * @throws {SovereignError} Se a integridade sistêmica for violada na partida.
  */
 export const CreateSovereignContext = (
   infrastructureSnapshot: unknown,
@@ -52,18 +48,18 @@ export const CreateSovereignContext = (
 ): ISovereignConsciousnessPacket => {
   const startTimestamp = performance.now();
   const apparatusName = 'SovereignContextManager';
+  const apparatusVersion = '2.5.0';
   const fileLocation = 'libs/foundation/sovereign-context/src/lib/SovereignContextManager.ts';
-  const apparatusVersion = '2.4.0';
 
-  // 1. Geração de Ancoragem (Correlation Identifier)
+  // 1. Geração de Ancoragem Forense
   const correlationIdentifier = crypto.randomUUID();
 
-  // 2. Aduana de ADN (Safe Structural Validation)
+  // 2. Aduana de ADN (Sincronia com Manifesto 0018)
   const validationResult = SovereignContextSchema.safeParse(infrastructureSnapshot);
 
-  // 3. Protocolo de Resiliência: Colapso de Consciência (Atomizado)
+  // 3. Protocolo de Resiliência: Tratamento de Colapso de Consciência
   if (!validationResult.success) {
-    const errorPacket = handleConsciousnessCollapse({
+    throw handleConsciousnessCollapse({
       snapshot: infrastructureSnapshot,
       errors: validationResult.error,
       origin,
@@ -72,31 +68,33 @@ export const CreateSovereignContext = (
       fileLocation,
       version: apparatusVersion
     });
-
-    throw errorPacket;
   }
 
-  // 4. Extração e Sincronia de Localidade
   const contextData = validationResult.data;
 
-  // 5. Normalização de Consciência Linguística
+  // 4. Sincronia de Soberania (Trindade Geopolítica)
+  // Garante que o país (BR) e o locale (pt-BR) estão em ressonância harmônica.
+  const countryCode = contextData.geography.countryCode;
   const activeLocale = SovereignTranslationEngine.resolveLocale(contextData.language.activeLocale);
+  const routeSlug = TransmuteGeopoliticalId.countryToRoute(countryCode);
 
-  // 6. Cálculo de Latência de Ignição (Swiss Precision)
+  // 5. Cálculo de Latência de Ignição (Swiss Precision)
   const endTimestamp = performance.now();
   const ignitionLatencyInMilliseconds = parseFloat((endTimestamp - startTimestamp).toFixed(4));
 
-  // 7. Telemetria de Sucesso Enriquecida
+  // 6. Telemetria de Sucesso Enriquecida para IA
   SovereignLogger({
     severity: 'INFO',
     apparatus: apparatusName,
     operation: 'IGNITION_SUCCESS',
-    message: `Soberania Estabelecida em ${ignitionLatencyInMilliseconds}ms: [${activeLocale}] - ${contextData.geography.regionName}`,
+    message: `Soberania [${countryCode}] estabelecida em ${ignitionLatencyInMilliseconds}ms via ${routeSlug}.`,
     traceIdentifier: correlationIdentifier,
     metadata: {
-      health: contextData.systemStatus.healthScore,
-      isResilient: contextData.systemStatus.isDegradedModeActive,
+      region: contextData.geography.regionName,
+      city: contextData.geography.citySlug,
+      locale: activeLocale,
       latency: ignitionLatencyInMilliseconds,
+      healthScore: contextData.systemStatus.healthScore,
       origin
     }
   });
@@ -105,7 +103,7 @@ export const CreateSovereignContext = (
     ...contextData,
     correlationIdentifier,
     ignitionPoint: origin,
-    apparatusFingerprint: `SH-${apparatusName}-${apparatusVersion}`,
+    apparatusFingerprint: `AGV-${apparatusName}-${apparatusVersion}-${routeSlug}`,
     ignitionLatencyInMilliseconds
   });
 };
@@ -113,30 +111,28 @@ export const CreateSovereignContext = (
 /**
  * @name handleConsciousnessCollapse
  * @private
- * @description Helper atômico para processar falhas catastróficas de ADN na ignição.
- * @improvement Proativa: Isolamento da lógica de erro para manter o fluxo principal puro.
  */
 function handleConsciousnessCollapse(parameters: {
-  snapshot: unknown;
-  errors: any;
-  origin: string;
-  correlationIdentifier: string;
-  apparatusName: string;
-  fileLocation: string;
-  version: string;
+  readonly snapshot: unknown;
+  readonly errors: z.ZodError;
+  readonly origin: string;
+  readonly correlationIdentifier: string;
+  readonly apparatusName: string;
+  readonly fileLocation: string;
+  readonly version: string;
 }): SovereignError {
   const { snapshot, errors, origin, correlationIdentifier, apparatusName, fileLocation, version } = parameters;
 
-  // Registro imediato de pânico sistêmico
+  // Log de Pânico Técnico para o AI-Neural-Auditor
   SovereignLogger({
     severity: 'CRITICAL',
     apparatus: apparatusName,
     operation: 'IGNITION_FAILURE',
-    message: `Violación de ADN: Ignição via ${origin} abortada por inconsistência regional grave.`,
+    message: `Violación de ADN: Colapso de consciência em ${origin}. Território ilegível.`,
     traceIdentifier: correlationIdentifier,
     metadata: {
-      zodError: errors.flatten(),
-      origin
+      validationIssues: errors.flatten(),
+      providedSnapshot: snapshot
     }
   });
 
@@ -144,13 +140,9 @@ function handleConsciousnessCollapse(parameters: {
     uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-CORE-0001'),
     i18nMappingKey: 'CONSCIOUSNESS_COLLAPSE',
     severity: 'FATAL',
-    apparatusMetadata: {
-      name: apparatusName,
-      version: version,
-      fileLocation
-    },
+    apparatusMetadata: { name: apparatusName, version, fileLocation },
     runtimeSnapshot: {
-      inputPayload: { snapshot, origin },
+      inputPayload: snapshot,
       correlationIdentifier,
       validationIssues: errors.issues
     },
@@ -158,6 +150,6 @@ function handleConsciousnessCollapse(parameters: {
       timestamp: new Date().toISOString(),
       stack: new Error().stack || 'ST_UNAVAILABLE'
     },
-    recoverySuggestion: 'O ruteamento geográfico falhou em prover o país ou slug de cidade. Verifique o Middleware de Geofencing.'
+    recoverySuggestion: 'Falha crítica na resolução geográfica. Verifique o rastro do TerritorialAnchor e os limites de Geofencing.'
   });
 }

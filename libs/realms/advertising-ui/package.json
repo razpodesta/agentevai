@@ -1,0 +1,16 @@
+{
+  "name": "@agentevai/advertising-ui",
+  "version": "1.0.0",
+  "description": "Reino de Monetização Ética: Laboratório de simulação publicitária (Ad-Vantage Lab) e injeção de anúncios regionais.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "REALM_UI",
+    "protocol": "OEDP-V5.5.1",
+    "role": "ADVERTISING_STRATEGY"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

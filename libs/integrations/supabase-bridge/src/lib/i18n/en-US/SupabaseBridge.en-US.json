@@ -1,0 +1,8 @@
+{
+  "SupabaseBridge": {
+    "logVerdictPersisted": "Security verdict for trace {correlationId} sealed in the relational vault.",
+    "errorInsertFailed": "Audit sealing failure: The database rejected the forensic entry.",
+    "errorMissingKeys": "Incapacitated infrastructure: Supabase access keys not located.",
+    "auditTableSync": "Table synchronization for agv_security_verdicts validated for Brazilian territory."
+  }
+}

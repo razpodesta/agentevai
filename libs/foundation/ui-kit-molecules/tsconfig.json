@@ -1,11 +1,22 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus UI-Kit-Molecules-TSConfig
+ * @version 1.1.0
+ * @protocol OEDP-V5.5 - High Precision
+ * @description Configuração de entrada para componentes moleculares.
+ * Bridge vital entre as partículas atômicas e os organismos de página.
+ */
 {
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "types": ["vite/client", "node"]
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "types": ["node", "jest"]
   },
   "files": [],
   "include": [],
@@ -16,6 +27,5 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "extends": "../../../tsconfig.base.json"
+  ]
 }

@@ -1,0 +1,20 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus MasterTSConfig
+ * @version 1.0.0
+ * @protocol OEDP-V5.5
+ * @description Ponto de entrada para ferramentas que não suportam 'tsconfig.base.json'.
+ * Estende a configuração base para garantir a integridade da malha de tipos.
+ */
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    /* As referências são gerenciadas dinamicamente pelo Nx, 
+       mas o arquivo deve conter este objeto base. */
+  ]
+}

@@ -18,11 +18,9 @@
   "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0",
-    "@noble/hashes": "^2.0.1"
+    "@agentevai/sovereign-data-vault": "2.2.0",
+    "@agentevai/sovereign-logger": "2.0.0",
+    "zod": "^4.3.6"
   },
-  "peerDependencies": {
-    "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*",
-    "@agentevai/sovereign-data-vault": "*"
-  }
+  "peerDependencies": {}
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@agentevai/marketing-ui",
+  "version": "1.0.0",
+  "description": "Reino de Conversão Cidadã: Aparatos de newsletter, captura de rastro institucional e landing pages regionais.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "REALM_UI",
+    "protocol": "OEDP-V5.5.1",
+    "role": "CONVERSION_STRATEGY"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

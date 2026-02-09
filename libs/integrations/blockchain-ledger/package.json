@@ -17,13 +17,7 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
-    "merkletreejs": "^0.6.0",
-    "keccak256": "^1.0.6",
-    "@noble/hashes": "^2.0.1"
+    "tslib": "^2.3.0"
   },
-  "peerDependencies": {
-    "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*"
-  }
+  "peerDependencies": {}
 }

@@ -1,0 +1,7 @@
+{
+  "NewsCreationService": {
+    "logIgnition": "News creation process initiated for trace {id}.",
+    "errorValidation": "DNA violation detected in news data.",
+    "statusBlockchain": "Mathematical veracity seal applied successfully."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "SemanticClustering": {
+    "logClusteringIgnition": "Similarity scan initiated for trace {traceId}.",
+    "duplicateDetected": "Semantic duplicate detected: Unifying voices into cluster {clusterId}.",
+    "newUniqueEvent": "No similar event located: Authorizing new sovereign cause.",
+    "errorNeuralAnalysis": "Failure in cognitive clustering analysis."
+  }
+}

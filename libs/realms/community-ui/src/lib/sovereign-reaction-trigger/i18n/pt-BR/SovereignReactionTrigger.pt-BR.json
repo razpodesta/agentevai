@@ -1,0 +1,9 @@
+{
+  "SovereignReactionTrigger": {
+    "supportLabel": "Apoiar",
+    "rejectLabel": "Rejeitar",
+    "appreciateLabel": "Curtir",
+    "logReactionSealed": "Vontade do cidadão selada para a categoria {type}.",
+    "errorAuthRequired": "Ação negada: É necessário autenticação soberana para apoiar denúncias."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "SignaturePoolingOrchestrator": {
+    "logIngestion": "Ato de vontade de nível {level} integrado ao lote regional.",
+    "logSealingStarted": "Iniciando fechamento do pool para selagem matemática.",
+    "errorPoolLocked": "O lote regional já foi selado e não permite novas assinaturas.",
+    "statusImpact": "Impacto acumulado no território: {weight} pontos de fé pública."
+  }
+}

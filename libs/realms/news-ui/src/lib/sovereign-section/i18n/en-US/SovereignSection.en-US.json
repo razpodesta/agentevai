@@ -1,0 +1,9 @@
+{
+  "SovereignSection": {
+    "intent_NATIONAL_ZENITH": "National Zenith",
+    "intent_REGIONAL_PULSE": "Regional Pulse",
+    "intent_INVESTIGATIVE_VAULT": "Investigative Vault",
+    "intent_COMMUNITY_THREAD": "Community Thread",
+    "logSectionIgnited": "Section {title} ignited on trace {id}."
+  }
+}

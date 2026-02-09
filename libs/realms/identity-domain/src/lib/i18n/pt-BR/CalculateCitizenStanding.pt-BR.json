@@ -1,0 +1,7 @@
+{
+  "CalculateCitizenStanding": {
+    "logReputationPulse": "Standing evoluiu de {current} para {final} via {type}.",
+    "errorInvalidInput": "Os dados de entrada para o cálculo de standing estão corrompidos.",
+    "auditImpactDetected": "Impacto social detectado com multiplicador neural de {multiplier}."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "PublicComplaintOrganism": {
+    "severity_CRITICAL": "Urgência Crítica",
+    "severity_MODERATE": "Em Investigação",
+    "severity_INFORMATIVE": "Sugestão Comunitária",
+    "severity_RESOLVED": "Causa Resolvida",
+    "blockchainStatus": "Prova Matemática Ativa",
+    "locationLabelPrefix": "Ocorrência em",
+    "logViewIgnited": "Evidência {id} visualizada sob rastro {traceId}."
+  }
+}

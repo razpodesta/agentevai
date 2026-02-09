@@ -1,10 +1,12 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignTranslationEngine
- * @version 2.5.0
- * @description Motor de elite para processamento linguístico e resolução semântica.
- * Realiza a validação de integridade estrutural do dicionário e interpolação segura.
- * @protocol OEDP-V5.5 - High Performance & Full Resilience.
+ * @version 2.6.0
+ * @protocol OEDP-V5.5 - High Performance & Neural Resonance
+ * @description Motor de elite para resolução semântica e processamento linguístico.
+ * Implementa cache de integridade e suporte a metadados de Aura Semântica.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @policy ESM-STRICT: Uso de extensões explícitas para compatibilidade total.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
@@ -13,28 +15,33 @@ import {
   SovereignErrorCodeSchema
 } from '@agentevai/sovereign-error-observability';
 import {
-  Locale,
-  ISovereignDictionary,
+  type Locale,
+  type ISovereignDictionary,
   LocaleSchema,
   SovereignDictionarySchema
-} from '../schemas/Internationalization.schema';
+} from '../schemas/Internationalization.schema.js';
+
+/**
+ * @section Cache de Integridade (Performance de Elite)
+ * Armazena hashes de dicionários já validados para evitar re-parsing de ADN em cada label.
+ */
+const validatedDictionariesCache = new WeakSet<ISovereignDictionary>();
 
 /**
  * @class SovereignTranslationEngine
- * @description Handler estático para operações de alta performance em strings soberanas.
- * Implementa blindagem contra dicionários corrompidos e falhas de rastro forense.
+ * @description Handler estático para orquestração de inteligência linguística.
  */
 export class SovereignTranslationEngine {
   /**
    * @method translate
-   * @description Resolve uma chave semântica, valida a estrutura do dicionário e registra telemetria.
+   * @description Resolve uma chave semântica, processa variáveis e audita a Aura Semântica.
    *
    * @param {ISovereignDictionary} dictionary - O dicionário consolidado (SSOT).
-   * @param {string} apparatusName - Nome PascalCase do aparato solicitante.
-   * @param {string} semanticKey - Chave da tradução desejada.
-   * @param {Record<string, string | number>} variables - Variáveis para substituição.
-   * @param {string} correlationIdentifier - Identificador de rastro forense.
-   * @returns {string} Texto final processado ou indicador de erro semântico.
+   * @param {string} apparatusName - Nome PascalCase do aparato (ex: 'SovereignRegionalHeader').
+   * @param {string} semanticKey - Chave da tradução (ex: 'actionSuffix').
+   * @param {Record<string, string | number>} variables - Mapa de variáveis para interpolação.
+   * @param {string} correlationIdentifier - Identificador para rastro forense.
+   * @returns {string} Texto final processado pronto para renderização.
    */
   public static translate(
     dictionary: ISovereignDictionary,
@@ -43,7 +50,50 @@ export class SovereignTranslationEngine {
     variables: Record<string, string | number> = {},
     correlationIdentifier: string
   ): string {
-    // 1. Validação de Integridade do Dicionário (Zod 1000% Mastery)
+    // 1. Validação de Integridade Otimizada
+    this.ensureDictionaryIntegrity(dictionary, correlationIdentifier);
+
+    // 2. Resolução do Fragmento de Aparato
+    const apparatusFragment = dictionary.content[apparatusName];
+    if (!apparatusFragment) {
+      this.reportSemanticEntropy('APPARATUS_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.locale, correlationIdentifier);
+      return `[MISSING_APPARATUS:${apparatusName}]`;
+    }
+
+    // 3. Resolução da Chave Semântica
+    const translationEntry = apparatusFragment[semanticKey];
+    if (!translationEntry) {
+      this.reportSemanticEntropy('KEY_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.locale, correlationIdentifier);
+      return `[UNDEFINED:${apparatusName}.${semanticKey}]`;
+    }
+
+    // 4. Auditoria de Aura (Neural Activity)
+    if (translationEntry.aura?.severity === 'CRITICAL' || translationEntry.aura?.severity === 'HIGH') {
+      SovereignLogger({
+        severity: 'WARN',
+        apparatus: 'SovereignTranslationEngine',
+        operation: 'HIGH_SEVERITY_STRING_RESOLVED',
+        message: `String de alta gravidade acessada: ${apparatusName}.${semanticKey}`,
+        traceIdentifier: correlationIdentifier,
+        metadata: { aura: translationEntry.aura }
+      });
+    }
+
+    // 5. Interpolação e Higienização Cinética
+    return this.interpolate(translationEntry.value, variables, correlationIdentifier);
+  }
+
+  /**
+   * @method ensureDictionaryIntegrity
+   * @private
+   * @description Garante que o dicionário respeita o ADN estrutural sem sacrificar performance.
+   */
+  private static ensureDictionaryIntegrity(
+    dictionary: ISovereignDictionary,
+    correlationIdentifier: string
+  ): void {
+    if (validatedDictionariesCache.has(dictionary)) return;
+
     const integrityCheck = SovereignDictionarySchema.safeParse(dictionary);
 
     if (!integrityCheck.success) {
@@ -53,40 +103,28 @@ export class SovereignTranslationEngine {
         severity: 'CRITICAL',
         apparatusMetadata: {
           name: 'SovereignTranslationEngine',
-          version: '2.5.0',
+          version: '2.6.0',
           fileLocation: 'libs/foundation/internationalization-engine/src/lib/handlers/SovereignTranslationEngine.ts'
         },
         runtimeSnapshot: {
-          /** @section CORREÇÃO TS2353: Encapsulamento correto no inputPayload */
-          inputPayload: { apparatusName, semanticKey, providedDictionary: !!dictionary },
+          inputPayload: { dictionaryVersion: dictionary?.metadata?.version },
           correlationIdentifier,
           validationIssues: integrityCheck.error.issues
         },
         forensicTrace: {
           timestamp: new Date().toISOString(),
           stack: new Error().stack || 'ST_UNAVAILABLE'
-        },
-        recoverySuggestion: 'O dicionário falhou na validação de ADN. Verifique o integrityHash e o compilador de i18n.'
+        }
       });
     }
 
-    // 2. Resolução do Fragmento (Lookup Seguro)
-    const fragment = dictionary.content[apparatusName]?.[semanticKey];
-
-    // 3. Tratamento de Entropia Semântica
-    if (!fragment) {
-      this.reportSemanticEntropy(apparatusName, semanticKey, dictionary.metadata.locale, correlationIdentifier);
-      return `[UNDEFINED:${apparatusName}.${semanticKey}]`;
-    }
-
-    // 4. Interpolação de Elite
-    return this.interpolate(fragment.value, variables, correlationIdentifier);
+    validatedDictionariesCache.add(dictionary);
   }
 
   /**
    * @method interpolate
    * @private
-   * @description Realiza a substituição de placeholders {var} com higienização anti-XSS.
+   * @description Realiza a substituição segura de placeholders.
    */
   private static interpolate(
     template: string,
@@ -97,39 +135,35 @@ export class SovereignTranslationEngine {
       const value = variables[variableName];
 
       if (value === undefined) {
-        SovereignLogger({
-          severity: 'WARN',
-          apparatus: 'SovereignTranslationEngine',
-          operation: 'INTERPOLATION_MISSING_VAR',
-          message: `Placehoder {${variableName}} não fornecido para interpolação.`,
-          traceIdentifier: correlationIdentifier,
-        });
+        this.reportSemanticEntropy('INTERPOLATION_MISSING_VAR', 'Engine', variableName, 'N/A', correlationIdentifier);
         return match;
       }
 
-      // Higienização para evitar injeção de caracteres de controle na UI.
-      return String(value).replace(/[<>]/g, '');
+      // Higienização Soberana anti-XSS para o Bordo
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
     });
   }
 
   /**
    * @method resolveLocale
-   * @description Normaliza e valida a localização desejada contra o ADN Soberano.
+   * @description Normaliza a identidade cultural contra o ADN validado.
    */
   public static resolveLocale(requestedLocale: string): Locale {
     const result = LocaleSchema.safeParse(requestedLocale);
-    if (result.success) return result.data;
-
-    // Fallback Soberano para o território brasileiro.
-    return LocaleSchema.parse('pt-BR');
+    return result.success ? result.data : LocaleSchema.parse('pt-BR');
   }
 
   /**
    * @method reportSemanticEntropy
    * @private
-   * @description Notifica o AI-Neural-Auditor sobre falhas na malha linguística.
    */
   private static reportSemanticEntropy(
+    type: string,
     apparatus: string,
     key: string,
     locale: string,
@@ -139,7 +173,7 @@ export class SovereignTranslationEngine {
       severity: 'ERROR',
       apparatus: 'SovereignTranslationEngine',
       operation: 'SEMANTIC_ENTROPY_DETECTED',
-      message: `Dívida Semântica: ${apparatus}.${key} ausente no locale ${locale}.`,
+      message: `Dívida Semântica [${type}]: ${apparatus}.${key} no locale ${locale}.`,
       traceIdentifier: correlationIdentifier,
       metadata: { apparatus, key, locale }
     });

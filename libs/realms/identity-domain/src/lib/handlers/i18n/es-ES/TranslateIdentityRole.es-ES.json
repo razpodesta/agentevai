@@ -1,0 +1,6 @@
+{
+  "TranslateIdentityRole": {
+    "errorMissingRole": "Incapacidad de localizar la traducción para el rol {role} en el idioma {locale}.",
+    "logAuditSuccess": "Rastro semántico sellado para el ciudadano en el territorio {locale}."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "BlockchainLedger": {
+    "logBlockSealed": "Bloque de firmas sellado con éxito mediante Merkle Tree.",
+    "errorEmptyBlock": "Incapacidad de sellado: El bloque de firmas no contiene datos.",
+    "auditRootGenerated": "Raíz maestra generada: {merkleRoot}. Total de voluntades: {count}."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ViralDrivers": {
+    "normalizationApplied": "Visual normalization {ratio} successfully applied.",
+    "whatsappTemplate": "*🚨 AGENTE VAI: {title}*\n\n{message}\n\n🔗 *Read more:* {url}",
+    "tiktokUpload": "Uploading vertical video trace to TikTok server.",
+    "errorRatioMismatch": "The original asset does not have sufficient pixel density for the platform {platform}."
+  }
+}

@@ -1,29 +1,22 @@
 {
   "name": "@agentevai/governance-domain",
   "version": "1.0.0",
-  "description": "Domínio de Governança: Lógica de apoio popular, quórum e integridade de assinaturas eletrônicas.",
+  "description": "Reino de Fé Pública: Gestão de apoio popular, orquestração de assinaturas eletrônicas e selagem blockchain de causas cidadãs.",
   "private": true,
   "type": "module",
-  "author": {
-    "name": "Raz Podestá",
-    "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5"
-  },
+  "author": "Raz Podestá - MetaShark Tech",
   "metadata": {
     "tier": "REALM_LOGIC",
-    "role": "LEGAL_GOVERNANCE",
-    "realm": "GOVERNANCE"
+    "protocol": "OEDP-V5.5.2",
+    "role": "LEGAL_VALIDITY_CORE"
   },
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
     "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*",
-    "@agentevai/identity-domain": "*",
-    "@agentevai/complaints-domain": "*",
-    "@agentevai/blockchain-ledger": "*"
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/blockchain-ledger": "workspace:*"
   }
 }

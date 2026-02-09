@@ -1,0 +1,9 @@
+{
+  "AiNeuralAuditor": {
+    "logAuditIgnition": "Escaneo forense iniciado para el rastro de correlación {correlationIdentifier}.",
+    "verdictIssued": "La Inteligencia Artificial ha emitido un veredicto de {diagnosis} para el aparato {apparatus}.",
+    "humanEscalation": "CRÍTICO: Protocolo de autocuración insuficiente. Escalando intervención a Ingeniero de Soberanía.",
+    "errorCognitiveBlindness": "Falla catastrófica: El Auditor Neural ha perdido la capacidad de juicio y análisis forense.",
+    "confidenceReport": "Nivel de certeza del análisis neural sellado en {score}."
+  }
+}

@@ -1,18 +1,14 @@
 {
   "UserIdentity": {
-    "roleLabel_ANONYMOUS_CITIZEN": "Observador Anônimo",
-    "roleLabel_ACTIVE_CITIZEN": "Cidadão Ativo",
-    "roleLabel_VERIFIED_CITIZEN": "Cidadão Verificado",
-    "roleLabel_INDEPENDENT_JOURNALIST": "Jornalista Independente",
-    "roleLabel_REGIONAL_MODERATOR": "Moderador Regional",
-    "roleLabel_GOVERNANCE_AUDITOR": "Auditor de Governança",
-    "roleLabel_PLATFORM_ENGINEER": "Engenheiro de Soberania",
-
-    "errorInsufficientReputation": "Ação negada: Sua reputação atual ({currentScore}) é insuficiente para executar esta operação.",
-    "errorRegionalMismatch": "Violação de Fronteira: Seu poder de moderador está restrito à região de {region}.",
-    "errorIdentitySuspended": "Sua identidade foi temporariamente suspensa pelo Auditor Neural por suspeita de entropia.",
-
-    "statusAura_REPUTATION_ZENITH": "Sua voz possui peso máximo na comunidade.",
-    "statusAura_REPUTATION_ABYSSAL": "Atenção: Seu perfil está sob vigilância estrita por baixa credibilidade."
+    "role_PLATFORM_ENGINEER": "Engenheiro de Soberania",
+    "role_GOVERNANCE_AUDITOR": "Auditor de Governança",
+    "role_REGIONAL_MODERATOR": "Moderador Regional",
+    "role_INDEPENDENT_JOURNALIST": "Jornalista Independente",
+    "role_VERIFIED_CITIZEN": "Cidadão Verificado",
+    "role_ACTIVE_CITIZEN": "Cidadão Ativo",
+    "role_ANONYMOUS_CITIZEN": "Observador Anônimo",
+    "reputationStandingLabel": "Standing Social",
+    "assuranceLevelLabel": "Nível de Garantia",
+    "errorInsufficientStanding": "Standing insuficiente para realizar esta ação pública."
   }
 }

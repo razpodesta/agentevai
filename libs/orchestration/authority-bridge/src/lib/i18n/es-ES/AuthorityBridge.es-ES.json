@@ -1,0 +1,8 @@
+{
+  "AuthorityBridge": {
+    "logDespatchIgnited": "Proceso de comunicación oficial iniciado para la autoridad {target}.",
+    "logDespatchSuccess": "Éxito Institucional: Documento {identifier} sellado y despachado vía {channel}.",
+    "errorProviderFailure": "Falla en el puente institucional: El proveedor {provider} rechazó el despacho del documento.",
+    "auditImpactReport": "Impacto regional en {region} consolidado con {count} firmas verificadas."
+  }
+}

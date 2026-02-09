@@ -1,0 +1,8 @@
+{
+  "ExecuteBotSentinel": {
+    "logInspectionComplete": "Edge inspection completed for agent {fingerprint}.",
+    "botDetected": "ALERT: Hostile automation detected with a score of {score}.",
+    "agentMined": "Legitimate agent trace mined and sealed for the intelligence project.",
+    "errorAduanaFailure": "Critical security aduana failure: Network trace is unreadable."
+  }
+}

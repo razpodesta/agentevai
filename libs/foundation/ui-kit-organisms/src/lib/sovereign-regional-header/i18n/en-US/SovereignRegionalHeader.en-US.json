@@ -1,0 +1,7 @@
+{
+  "SovereignRegionalHeader": {
+    "actionSuffix": "in action",
+    "headerAriaLabel": "Regional Header for {region}",
+    "logImpression": "Regional header successfully rendered for {region}."
+  }
+}

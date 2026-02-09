@@ -1,0 +1,7 @@
+{
+  "SovereignRegionalHeader": {
+    "actionSuffix": "en acción",
+    "headerAriaLabel": "Cabecera Regional de {region}",
+    "logImpression": "Cabecera regional renderizada con éxito para {region}."
+  }
+}

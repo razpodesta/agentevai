@@ -1,24 +1,42 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextHub
- * @version 2.1.0
- * @description Ponto único de exposição para a Consciência Sistêmica do Agentevai.
- * Centraliza o ADN Geográfico, Linguístico, Estético e de Saúde.
- * @protocol OEDP-V5.5 - Standard MetaShark
+ * @version 2.3.0
+ * @protocol OEDP-V5.5 - High Performance Hub
+ * @description Ponto único de exposição (SSOT) para a Consciência Sistêmica.
+ * Atua como ponte (Bridge) para os contratos de soberania geopolítica.
  */
 
 /**
- * @section Camada de Gestão (Manager)
- * Factory e Interfaces de Contexto Realimentado (Consciousness).
+ * @section Camada de Ponte (Sovereignty Bridge)
+ * Re-exportação dos esquemas centrais da types-common para simplificar a malha de tipos.
+ */
+export {
+  SovereignLocaleSchema,
+  SovereignCountrySchema,
+  SovereignRouteSchema,
+  type SovereignLocale,
+  type SovereignCountry,
+  type SovereignRoute
+} from '@agentevai/types-common';
+
+/**
+ * @section Camada de Gestão (Context Engine)
  */
 export {
   CreateSovereignContext,
   type ISovereignConsciousnessPacket,
-} from './lib/SovereignContextManager';
+} from './lib/SovereignContextManager.js';
 
 /**
- * @section Camada de Definição (ADN)
- * Esquemas de validação Zod e Interfaces Base.
+ * @section Camada de Detecção (Identity Handlers)
+ */
+export {
+  ResolveVisitorIdentity
+} from './lib/handlers/ResolveVisitorIdentity.js';
+
+/**
+ * @section Camada de Definição (ADN & Schemas)
  */
 export {
   SovereignContextSchema,
@@ -27,10 +45,10 @@ export {
   type RegionSlug,
   HealthScoreSchema,
   type HealthScore,
-} from './lib/schemas/SovereignContext.schema';
+} from './lib/schemas/SovereignContext.schema.js';
 
-/**
- * @note Este aparato é um Alicerce (Foundation).
- * Nenhuma biblioteca nesta camada deve importar de camadas superiores (Realms/Orchestration).
- * A integridade desta fronteira é monitorada pelo AI-Neural-Auditor.
- */
+export {
+  VisitorIdentitySchema,
+  type IVisitorIdentity,
+  VisitorDeviceTypeSchema,
+} from './lib/schemas/VisitorIdentity.schema.js';

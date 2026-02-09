@@ -1,0 +1,11 @@
+{
+  "EditorialWorkflowEngine": {
+    "label_DRAFT": "Draft",
+    "label_AI_ANALYSIS": "Under Neural Forensic",
+    "label_MANUAL_REVIEW": "Engineer Review",
+    "label_BLOCKCHAIN_SEALED": "Mathematical Sovereignty Guaranteed",
+    "label_PUBLISHED": "Published",
+    "error_ILLEGAL_TRANSITION": "Transition denied: Action {action} is not allowed in state {state}.",
+    "log_TRACE_SEALED": "Editorial trace verified for news item {id}."
+  }
+}

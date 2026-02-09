@@ -1,0 +1,8 @@
+{
+  "NewsInfrastructure": {
+    "logArticlePersisted": "Artigo jornalístico {id} persistido com sucesso no território {region}.",
+    "logStateTransmuted": "Estado editorial alterado para {state} via rastro de auditoria.",
+    "errorPersistViolation": "Incapacidade de gravar no cofre de notícias: Violação de integridade Zod.",
+    "errorConnectionLost": "Ponte de dados com o Supabase interrompida no rastro {traceId}."
+  }
+}

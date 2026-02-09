@@ -1,0 +1,8 @@
+{
+  "ViralEngine": {
+    "logDiffusionStarted": "Enxame de difusão iniciado para a cápsula {title}.",
+    "logDiffusionSuccess": "Sucesso Viral: Denúncia propagada com integridade em {platform}.",
+    "errorApiViolation": "Violação de API: A plataforma {platform} recusou o rastro de mídia.",
+    "auditMerkleProof": "Selo de veracidade blockchain {root} injetado no metadado de compartilhamento."
+  }
+}

@@ -1,23 +1,25 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus UI-Kit-Organisms-TSConfig-Spec
+ * @version 1.2.1
+ * @protocol OEDP-V5.5 - Forensic Integrity
+ * @description Configuração de infraestrutura para testes de organismos.
+ * Corrigido: Saneamento de rastro para evitar erro de arquivo não encontrado.
+ */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
     "module": "commonjs",
-    "moduleResolution": "node10",
-    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
     "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
-    "jest.config.cts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.test.tsx",
     "src/**/*.spec.tsx",
-    "src/**/*.test.js",
-    "src/**/*.spec.js",
-    "src/**/*.test.jsx",
-    "src/**/*.spec.jsx",
     "src/**/*.d.ts"
   ]
 }

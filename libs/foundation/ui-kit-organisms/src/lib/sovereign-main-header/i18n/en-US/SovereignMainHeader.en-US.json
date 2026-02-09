@@ -1,0 +1,9 @@
+{
+  "SovereignMainHeader": {
+    "loginButtonLabel": "Sign In",
+    "subscribeButtonLabel": "Subscribe",
+    "languageSelectorAria": "Change system cultural identity",
+    "themeToggleAria": "Toggle light phase between Obsidian and Milk",
+    "searchPlaceholder": "Search complaints and regional facts..."
+  }
+}

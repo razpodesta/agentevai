@@ -1,0 +1,9 @@
+{
+  "CitizenAuraCard": {
+    "standingLabel": "{score} standing points",
+    "verifiedLabel": "Certified Sovereign Identity",
+    "suspendedAlert": "This profile is under technical restriction.",
+    "role_GOVERNANCE_AUDITOR": "Transparency Auditor",
+    "role_ACTIVE_CITIZEN": "Active Voice"
+  }
+}

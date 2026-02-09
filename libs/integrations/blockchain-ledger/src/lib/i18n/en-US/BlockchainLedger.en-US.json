@@ -1,0 +1,7 @@
+{
+  "BlockchainLedger": {
+    "logBlockSealed": "Signature block successfully sealed via Merkle Tree.",
+    "errorEmptyBlock": "Sealing failure: The signature block contains no data.",
+    "auditRootGenerated": "Master root generated: {merkleRoot}. Total intentions: {count}."
+  }
+}

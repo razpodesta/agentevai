@@ -1,30 +1,68 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus PulseIndicator
- * @function Átomo visual de feedback cinético para sinalização de estado ativo.
- * @context Foundation / Atomic Design
+ * @version 1.1.0
+ * @protocol OEDP-V5.5 - High Precision & Kinetic UI
+ * @description Átomo visual de feedback cinético para sinalização de estado ativo.
+ * Implementa pulsação neural baseada no nível de urgência regional.
+ * @policy ZERO-ANY: Estritamente tipado.
+ * @policy PERFORMANCE-FIRST: Componente memorizado para otimização de ciclos de renderização.
  */
 
-import React from 'react';
+'use client';
+
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
+import { z } from 'zod';
 
-interface PulseIndicatorProperties {
-  readonly isCritical: boolean;
-}
+/**
+ * @section Aduana de ADN (Fronteira Local)
+ */
+const PulseIndicatorSchema = z.object({
+  isCritical: z.boolean()
+    .describe('Define se o pulso deve emitir alerta de criticidade (Vermelho) ou estabilidade (Ciano).')
+}).readonly();
 
-export const PulseIndicator: React.FC<PulseIndicatorProperties> = ({ isCritical }) => {
+export type IPulseIndicator = z.infer<typeof PulseIndicatorSchema>;
+
+/**
+ * @name PulseIndicator
+ * @component
+ * @description Partícula cinética que ancora a atenção visual para o status de soberania.
+ */
+export const PulseIndicator: React.FC<IPulseIndicator> = memo(({ isCritical }) => {
+  // 1. Validação de Integridade (Aduana de Micro-Lego)
+  const data = PulseIndicatorSchema.parse({ isCritical });
+
+  // 2. Orquestração de Estilos Dinâmicos
+  const pulseColorClass = data.isCritical ? 'bg-red-500' : 'bg-brand-action';
+  const coreColorClass = data.isCritical ? 'bg-red-600' : 'bg-brand-action';
+
   return (
-    <div className="relative flex h-2.5 w-2.5 items-center justify-center" aria-hidden="true">
+    <div
+      className="relative flex h-2.5 w-2.5 items-center justify-center"
+      aria-hidden="true"
+    >
+      {/* Halo de Expansão (Pulso Neural) */}
       <motion.span
-        animate={{ scale: [1, 2.2, 1], opacity: [0.8, 0, 0.8] }}
-        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-        className={`absolute inline-flex h-full w-full rounded-full ${
-          isCritical ? 'bg-red-500' : 'bg-brand-action'
-        }`}
+        initial={{ scale: 1, opacity: 0.8 }}
+        animate={{
+          scale: [1, 2.4, 1],
+          opacity: [0.6, 0, 0.6]
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          ease: "easeInOut"
+        }}
+        className={`absolute inline-flex h-full w-full rounded-full ${pulseColorClass}`}
       />
-      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full shadow-sm ${
-        isCritical ? 'bg-red-600' : 'bg-brand-action'
-      }`} />
+
+      {/* Núcleo Estático (Ancoragem Visual) */}
+      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full shadow-sm ring-1 ring-black/5 ${coreColorClass}`} />
     </div>
   );
-};
+});
+
+// Identidade Forense para DevTools
+PulseIndicator.displayName = 'PulseIndicator';

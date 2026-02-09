@@ -1,0 +1,9 @@
+{
+  "PopularSupportTrigger": {
+    "label_IDLE": "Support this Cause",
+    "label_SEALED": "Will Sealed",
+    "sovereignBonus": "Sovereign Identity (20x Weight)",
+    "blockchainTrustInfo": "Your signature will be protected by Merkle Tree.",
+    "errorAuth": "Authentication required to sign."
+  }
+}

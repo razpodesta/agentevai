@@ -1,0 +1,8 @@
+{
+  "TranslatePostalCodeToMunicipality": {
+    "resolutionStarted": "Iniciando la traducción territorial para el rastro postal: {postalCode}",
+    "resolutionSuccess": "Municipio [ {cityName} ] identificado con éxito mediante el código postal.",
+    "errorInvalidFormat": "El código postal proporcionado tiene un formato no válido para la soberanía brasileña.",
+    "errorNotFound": "No se localizó ningún territorio correspondiente para el código postal informado."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "GovernanceAuditorFactory": {
+    "logAuditPrivilegesSealed": "Autoridade de auditoria selada para o nível {level}.",
+    "errorIntegrityViolation": "Violação de Integridade: O auditor possui standing insuficiente para exercer moderação.",
+    "statusSovereignActive": "Acesso soberano detectado: Imunidade algorítmica habilitada."
+  }
+}

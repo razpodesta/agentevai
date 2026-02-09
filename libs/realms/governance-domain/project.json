@@ -3,7 +3,17 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/realms/governance-domain/src",
   "projectType": "library",
-  "tags": ["type:domain", "scope:governance", "role:legal-validity"],
+  "metadata": {
+    "description": "Lógica mestre de soberania governamental e assinaturas eletrônicas.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:domain",
+    "scope:governance",
+    "role:legal-validity",
+    "tier:core-logic",
+    "protocol:oedp-v5.5.2"
+  ],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -11,8 +21,7 @@
       "options": {
         "outputPath": "dist/libs/realms/governance-domain",
         "main": "libs/realms/governance-domain/src/index.ts",
-        "tsConfig": "libs/realms/governance-domain/tsconfig.lib.json",
-        "assets": ["libs/realms/governance-domain/*.md"]
+        "tsConfig": "libs/realms/governance-domain/tsconfig.lib.json"
       }
     },
     "test": {
@@ -21,9 +30,6 @@
       "options": {
         "jestConfig": "libs/realms/governance-domain/jest.config.cts"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

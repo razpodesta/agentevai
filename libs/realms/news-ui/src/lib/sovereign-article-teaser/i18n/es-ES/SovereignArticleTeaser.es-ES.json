@@ -1,0 +1,8 @@
+{
+  "SovereignArticleTeaser": {
+    "readingTimeSuffix": "{minutes} MIN DE LECTURA",
+    "category_INFRASTRUCTURE": "Infraestructura",
+    "category_SECURITY": "Seguridad Pública",
+    "logTeaserImpression": "Impresión visual registrada para el teaser {id}."
+  }
+}

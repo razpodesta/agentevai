@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "generatedAt": "2026-02-09T19:24:45.787Z",
+    "protocol": "OEDP-V5.5",
+    "nodeVersion": "v20.19.0",
+    "totalAparatosAudited": 29,
+    "entropyDetected": 0
+  },
+  "results": [
+    {
+      "libraryName": "apparatus-metadata-registry",
+      "path": "libs\\foundation\\apparatus-metadata-registry\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "design-tokens",
+      "path": "libs\\foundation\\design-tokens\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "internationalization-engine",
+      "path": "libs\\foundation\\internationalization-engine\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "sovereign-context",
+      "path": "libs\\foundation\\sovereign-context\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "sovereign-data-vault",
+      "path": "libs\\foundation\\sovereign-data-vault\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "sovereign-error-observability",
+      "path": "libs\\foundation\\sovereign-error-observability\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "sovereign-logger",
+      "path": "libs\\foundation\\sovereign-logger\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "types-common",
+      "path": "libs\\foundation\\types-common\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "ai-model-orchestrator",
+      "path": "libs\\integrations\\ai-model-orchestrator\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "ai-oracle",
+      "path": "libs\\integrations\\ai-oracle\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "blockchain-ledger",
+      "path": "libs\\integrations\\blockchain-ledger\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "search-engine",
+      "path": "libs\\integrations\\search-engine\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "supabase-bridge",
+      "path": "libs\\integrations\\supabase-bridge\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "viral-social-bridge",
+      "path": "libs\\integrations\\viral-social-bridge\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "whatsapp-gateway",
+      "path": "libs\\integrations\\whatsapp-gateway\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "ai-neural-auditor",
+      "path": "libs\\orchestration\\ai-neural-auditor\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "ai-self-healing",
+      "path": "libs\\orchestration\\ai-self-healing\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "authority-bridge",
+      "path": "libs\\orchestration\\authority-bridge\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "notification-nexus",
+      "path": "libs\\orchestration\\notification-nexus\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "security-auditor",
+      "path": "libs\\orchestration\\security-auditor\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "semantic-clustering",
+      "path": "libs\\orchestration\\semantic-clustering\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "viral-engine",
+      "path": "libs\\orchestration\\viral-engine\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "complaints-domain",
+      "path": "libs\\realms\\complaints-domain\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "geographic-context",
+      "path": "libs\\realms\\geographic-context\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "geography-infrastructure",
+      "path": "libs\\realms\\geography-infrastructure\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "governance-domain",
+      "path": "libs\\realms\\governance-domain\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "identity-domain",
+      "path": "libs\\realms\\identity-domain\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "news-domain",
+      "path": "libs\\realms\\news-domain\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    },
+    {
+      "libraryName": "apparatus-factory",
+      "path": "libs\\tools\\apparatus-factory\\tsconfig.json",
+      "status": "PERFECT",
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "InstagramDespatch": {
+    "captionTemplate": "{title}\n\n{message}\n\nBlockchain Anchor: {root}\nLink in bio.",
+    "logVisualSuccess": "Institutional media successfully published on Instagram ID: {postId}",
+    "errorRatioViolation": "Image ratio violates Meta's aesthetic standards for this territory."
+  }
+}

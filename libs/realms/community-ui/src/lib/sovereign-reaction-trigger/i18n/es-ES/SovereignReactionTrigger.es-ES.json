@@ -1,0 +1,9 @@
+{
+  "SovereignReactionTrigger": {
+    "supportLabel": "Apoyar",
+    "rejectLabel": "Rechazar",
+    "appreciateLabel": "Me gusta",
+    "logReactionSealed": "Voluntad del ciudadano sellada para la categoría {type}.",
+    "errorAuthRequired": "Acción denegada: Es necesaria la autenticación soberana para apoyar denuncias."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "governance-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/governance-ui/src",
+  "projectType": "library",
+  "tags": ["type:ui", "scope:governance", "role:legal-interface"],
+  "// targets": "to see all targets run: nx show project governance-ui --web",
+  "targets": {}
+}

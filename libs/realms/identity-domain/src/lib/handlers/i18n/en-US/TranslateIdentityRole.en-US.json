@@ -1,0 +1,6 @@
+{
+  "TranslateIdentityRole": {
+    "errorMissingRole": "Unable to locate translation for role {role} in language {locale}.",
+    "logAuditSuccess": "Semantic trace sealed for the citizen within {locale} territory."
+  }
+}

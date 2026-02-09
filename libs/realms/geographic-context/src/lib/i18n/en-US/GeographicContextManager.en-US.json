@@ -1,0 +1,7 @@
+{
+  "GeographicContextManager": {
+    "territorialIgnitionSuccess": "Geographic awareness established for {cityName} [ {stateCode} ].",
+    "errorIbgeContractViolation": "Critical failure: IBGE payload does not respect the structural DNA.",
+    "logTransmutationLatency": "Territorial transmutation completed in {latency}ms."
+  }
+}

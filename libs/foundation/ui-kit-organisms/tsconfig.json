@@ -1,11 +1,22 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus UI-Kit-Organisms-TSConfig
+ * @version 1.2.1
+ * @protocol OEDP-V5.5 - High Precision Audit
+ * @description Configuração mestre de compilação para o Reino de Organismos.
+ * Nivelado: Resolve degradação de moduleResolution para compatibilidade Next.js 16.
+ */
 {
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "types": ["vite/client", "node"]
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "types": ["node", "jest"]
   },
   "files": [],
   "include": [],
@@ -16,6 +27,5 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "extends": "../../../tsconfig.base.json"
+  ]
 }

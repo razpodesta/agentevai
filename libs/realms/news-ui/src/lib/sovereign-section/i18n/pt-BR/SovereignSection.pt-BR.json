@@ -1,0 +1,9 @@
+{
+  "SovereignSection": {
+    "intent_NATIONAL_ZENITH": "Zênite Nacional",
+    "intent_REGIONAL_PULSE": "Pulso Regional",
+    "intent_INVESTIGATIVE_VAULT": "Cofre Investigativo",
+    "intent_COMMUNITY_THREAD": "Hilo da Comunidade",
+    "logSectionIgnited": "Seção {title} carregada no rastro {id}."
+  }
+}

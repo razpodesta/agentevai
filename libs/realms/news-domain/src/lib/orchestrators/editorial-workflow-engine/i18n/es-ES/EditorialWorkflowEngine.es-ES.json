@@ -1,0 +1,11 @@
+{
+  "EditorialWorkflowEngine": {
+    "label_DRAFT": "Borrador",
+    "label_AI_ANALYSIS": "En Peritaje Neural",
+    "label_MANUAL_REVIEW": "Revisión por Ingeniero",
+    "label_BLOCKCHAIN_SEALED": "Soberanía Matemática Garantizada",
+    "label_PUBLISHED": "Publicado",
+    "error_ILLEGAL_TRANSITION": "Transición denegada: La acción {action} no está permitida en el estado {state}.",
+    "log_TRACE_SEALED": "Rastro editorial verificado para la noticia {id}."
+  }
+}

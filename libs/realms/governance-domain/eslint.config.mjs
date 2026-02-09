@@ -1,19 +1,26 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus ESLintGovernanceRules
+ */
+
 import baseConfig from '../../../eslint.config.mjs';
 
 export default [
   ...baseConfig,
   {
-    files: ['**/*.json'],
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      '@nx/dependency-checks': [
+      /** 
+       * @section Saneamento de Nomenclatura 
+       * Proibido o uso de 'sig' (Abreviação). Use 'electronicSignature'.
+       */
+      'no-restricted-syntax': [
         'error',
         {
-          ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
-        },
-      ],
-    },
-    languageOptions: {
-      parser: await import('jsonc-eslint-parser'),
+          selector: "VariableDeclarator[id.name='sig']",
+          message: "Abreviação proibida: Use 'electronicSignatureIdentifier' ou 'merkleProof'."
+        }
+      ]
     },
   },
 ];

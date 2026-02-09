@@ -1,0 +1,8 @@
+{
+  "NewsInfrastructure": {
+    "logArticlePersisted": "News article {id} successfully persisted in {region} territory.",
+    "logStateTransmuted": "Editorial state changed to {state} via audit trace.",
+    "errorPersistViolation": "Inability to write to news vault: Zod integrity violation.",
+    "errorConnectionLost": "Data bridge to Supabase interrupted on trace {traceId}."
+  }
+}

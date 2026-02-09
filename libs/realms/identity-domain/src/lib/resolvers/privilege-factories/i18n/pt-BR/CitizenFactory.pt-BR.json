@@ -1,0 +1,7 @@
+{
+  "CitizenFactory": {
+    "logAuthorityResolved": "Autoridade calculada para o nível de garantia {level} com standing social de {standing}.",
+    "errorHostileStatus": "Alerta de Soberania: Cidadão operando em modo de privilégios degradados devido ao rastro de comportamento hostil.",
+    "auditWeightApplied": "Multiplicador de influência democrática definido em {weight}x para este rastro de identidade."
+  }
+}

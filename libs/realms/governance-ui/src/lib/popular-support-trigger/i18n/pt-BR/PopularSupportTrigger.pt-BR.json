@@ -1,0 +1,9 @@
+{
+  "PopularSupportTrigger": {
+    "label_IDLE": "Apoiar esta Causa",
+    "label_SEALED": "Vontade Selada",
+    "sovereignBonus": "Identidade Soberana (Peso 20x)",
+    "blockchainTrustInfo": "Sua assinatura será protegida por Merkle Tree.",
+    "errorAuth": "Autenticação necessária para assinar."
+  }
+}

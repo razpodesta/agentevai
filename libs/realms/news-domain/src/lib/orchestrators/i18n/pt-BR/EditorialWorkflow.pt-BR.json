@@ -1,0 +1,12 @@
+{
+  "EditorialWorkflow": {
+    "state_DRAFT": "Rascunho",
+    "state_AI_ANALYSIS": "Em Perícia Neural",
+    "state_MANUAL_REVIEW": "Revisão por Engenheiro",
+    "state_REJECTED": "Conteúdo Rejeitado",
+    "state_BLOCKCHAIN_SEALED": "Soberania Matemática Garantida",
+    "state_PUBLISHED": "Publicado",
+    "errorIllegalTransition": "Transição de estado negada: Ação {action} não é permitida para o estado {state}.",
+    "logManualEscalation": "A IA solicitou intervenção humana para decidir sobre o rastro {id}."
+  }
+}

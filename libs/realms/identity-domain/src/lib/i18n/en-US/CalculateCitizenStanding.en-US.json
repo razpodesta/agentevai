@@ -1,0 +1,7 @@
+{
+  "CalculateCitizenStanding": {
+    "logReputationPulse": "Standing evolved from {current} to {final} via {type}.",
+    "errorInvalidInput": "Input data for standing calculation is corrupted.",
+    "auditImpactDetected": "Social impact detected with a neural multiplier of {multiplier}."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "AiSelfHealing": {
+    "logInterventionStart": "Physical intervention {protocol} initiated for apparatus {apparatus}.",
+    "logHealingSuccess": "Patch successfully applied in {latency}ms. Nominal state restored.",
+    "errorInfrastructureFailure": "Critical inability to act on infrastructure: {error}.",
+    "auditReportSealed": "Infrastructure report sealed for forensic auditing."
+  }
+}

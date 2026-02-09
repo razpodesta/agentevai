@@ -1,0 +1,17 @@
+{
+  "name": "@agentevai/tests-hub",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Bóveda de Perícia Técnica: Repositório central de auditoria forense e testes espelho.",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "QA_HUB",
+    "protocol": "OEDP-V5.5.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

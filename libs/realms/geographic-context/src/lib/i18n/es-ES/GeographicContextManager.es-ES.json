@@ -1,0 +1,7 @@
+{
+  "GeographicContextManager": {
+    "territorialIgnitionSuccess": "Conciencia geográfica establecida para {cityName} [ {stateCode} ].",
+    "errorIbgeContractViolation": "Falla crítica: El payload del IBGE no respeta el ADN estructural.",
+    "logTransmutationLatency": "Transmutación territorial completada en {latency}ms."
+  }
+}

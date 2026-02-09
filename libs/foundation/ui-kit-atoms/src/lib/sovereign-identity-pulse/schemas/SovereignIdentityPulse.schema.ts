@@ -1,23 +1,49 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignIdentityPulseSchema
- * @version 1.1.0
- * @description Aduana de dados para validação de identidade regional e pulso de estado.
- * @policy Zero-Any Policy & Zero-Abbreviations.
+ * @version 1.3.1
+ * @protocol OEDP-V5.5 - High Precision & Kinetic Branding
+ * @description ADN para o aparato visual de identidade regional.
  */
 
 import { z } from 'zod';
+import { RegionSlugSchema } from '@agentevai/sovereign-context';
+/**
+ * @section CORREÇÃO TS2724
+ * Importação redirecionada para a Bóveda de Contratos (types-common).
+ */
+import { SovereignCountrySchema } from '@agentevai/types-common';
 
+/**
+ * @name SovereignIdentityPulseSchema
+ * @description Aduana de ADN para o componente que ancora a soberania territorial na UI.
+ */
 export const SovereignIdentityPulseSchema = z.object({
-  /** Nome amigável da cidade detectada via infraestrutura de Geofencing */
-  cityName: z.string().min(2),
-  /** Código soberano do país seguindo o padrão ISO 3166-1 alpha-2 */
-  countryCode: z.enum(['br', 'es', 'us']),
-  /** Gatilho semântico para estado de alerta máximo ou urgência na região */
-  isCritical: z.boolean().default(false),
-  /** Função de dispatch para eventos de interação do cidadão com o aparato */
-  onInteraction: z.function().args(z.string()).returns(z.void()).optional(),
+  regionName: z.string()
+    .min(2, { message: 'REGION_NAME_TOO_SHORT' })
+    .describe('Nome amigável da cidade ou estado para exibição (Ex: Florianópolis).'),
+
+  regionSlug: RegionSlugSchema
+    .describe('Identificador único para ruteamento dinâmico e SEO.'),
+
+  stateAbbreviation: z.string()
+    .length(2)
+    .toUpperCase()
+    .describe('Sigla da Unidade Federativa para contextualização regional (Ex: SC).'),
+
+  countryCode: SovereignCountrySchema,
+
+  pulseIntensity: z.enum(['STABLE', 'VIBRANT', 'CRITICAL'])
+    .default('STABLE')
+    .describe('Define a frequência e cor da animação do pulso neural.'),
+
+  onInteractionTrigger: z.function({
+    input: z.tuple([z.string().describe('Identifier da zona de toque')]),
+    output: z.void()
+  })
+  .optional()
+  .describe('Dispatcher para captura de métricas de engajamento visual.'),
+
 }).readonly();
 
-/** Interface imutável extraída do Schema para tipagem de propriedades React */
 export type ISovereignIdentityPulse = z.infer<typeof SovereignIdentityPulseSchema>;

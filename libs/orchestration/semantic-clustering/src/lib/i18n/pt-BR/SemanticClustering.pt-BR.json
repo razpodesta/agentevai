@@ -1,0 +1,8 @@
+{
+  "SemanticClustering": {
+    "logClusteringIgnition": "Varredura de similaridade iniciada para o rastro {traceId}.",
+    "duplicateDetected": "Duplicidade semântica detectada: Unificando vozes no cluster {clusterId}.",
+    "newUniqueEvent": "Nenhum evento similar localizado: Autorizando nova causa soberana.",
+    "errorNeuralAnalysis": "Falha na análise cognitiva de agrupamento."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "SupabaseBridge": {
+    "logVerdictPersisted": "Veredito de segurança do rastro {correlationId} selado no cofre relacional.",
+    "errorInsertFailed": "Falha na selagem de auditoria: O banco de dados recusou a entrada forense.",
+    "errorMissingKeys": "Infraestrutura incapacitada: Chaves de acesso ao Supabase não localizadas.",
+    "auditTableSync": "Sincronia de tabela agv_security_verdicts validada para o território brasileiro."
+  }
+}

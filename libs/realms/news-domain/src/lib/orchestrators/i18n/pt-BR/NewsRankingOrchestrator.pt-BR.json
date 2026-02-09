@@ -1,0 +1,8 @@
+{
+  "NewsRankingOrchestrator": {
+    "logRankingComplete": "Ranking editorial consolidado com sucesso para {count} notícias.",
+    "logZenithAssigned": "A notícia {id} atingiu o Índice de Relevância Soberana para o Zênite Nacional.",
+    "errorAduanaFailed": "Violação de ADN: A lista de notícias para ranking possui campos corrompidos.",
+    "auditBlockchainBonus": "Bônus de veracidade blockchain aplicado ao identificador {id}."
+  }
+}

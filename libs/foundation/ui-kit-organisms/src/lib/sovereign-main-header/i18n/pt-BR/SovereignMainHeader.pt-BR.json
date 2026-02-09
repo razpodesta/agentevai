@@ -1,0 +1,9 @@
+{
+  "SovereignMainHeader": {
+    "loginButtonLabel": "Entrar",
+    "subscribeButtonLabel": "Inscreva-se",
+    "languageSelectorAria": "Alterar identidade cultural do sistema",
+    "themeToggleAria": "Alternar fase lumínica entre Obsidian e Milk",
+    "searchPlaceholder": "Buscar denúncias e fatos regionais..."
+  }
+}

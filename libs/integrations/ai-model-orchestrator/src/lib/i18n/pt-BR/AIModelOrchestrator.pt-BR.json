@@ -1,8 +1,8 @@
 {
   "AIModelOrchestrator": {
-    "providerSelected": "Motor de diagnóstico selecionado: {provider}",
-    "handshakeError": "Incapacidade de conectar com o cluster de IA de saúde.",
-    "repairSuggestion": "A IA sugere a seguinte refatoração: {suggestion}",
-    "budgetWarning": "Alerta: O diagnóstico consumiu uma densidade de tokens acima do limite de manutenção."
+    "logNeuralDispatch": "Despachando rastro forense para análise neural via {provider}.",
+    "logNeuralSuccess": "Diagnóstico estrutural recebido com sucesso do oráculo de IA.",
+    "errorUnsupportedProvider": "O provedor de inteligência {provider} não está homologado para tarefas de saúde.",
+    "errorConnectionFailed": "Incapacidade crítica de handshake com o cluster de inteligência externa."
   }
 }

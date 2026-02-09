@@ -1,0 +1,8 @@
+{
+  "ExecuteEntropyGuard": {
+    "logAuditCleared": "Cadence audit approved for address {ip}.",
+    "logThresholdExceeded": "ALERT: Request threshold exceeded. Activating entropy mitigation for {ip}.",
+    "errorNetworkIlegible": "Critical inability to read the network trace of the IP protocol.",
+    "statusAdaptiveLimit": "Adaptive limit of {limit} requests applied based on trace reputation."
+  }
+}

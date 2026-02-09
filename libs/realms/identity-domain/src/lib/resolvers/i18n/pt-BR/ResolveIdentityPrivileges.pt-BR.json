@@ -1,0 +1,7 @@
+{
+  "ResolveIdentityPrivileges": {
+    "privilegeResolutionSuccess": "Autoridade de interface consolidada para o papel: {role}.",
+    "entropySanctionActive": "Aviso: Privilégios degradados devido ao baixo standing social.",
+    "sovereignAssuranceBonus": "Bônus de influência aplicado via Garantia Soberana (IAL3)."
+  }
+}

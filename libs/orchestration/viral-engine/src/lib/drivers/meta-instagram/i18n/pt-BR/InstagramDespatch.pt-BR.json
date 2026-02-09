@@ -1,0 +1,7 @@
+{
+  "InstagramDespatch": {
+    "captionTemplate": "{title}\n\n{message}\n\nÂncora Blockchain: {root}\nLink na bio.",
+    "logVisualSuccess": "Mídia institucional publicada no Instagram ID: {postId}",
+    "errorRatioViolation": "A proporção da imagem viola as normas estéticas da Meta para este território."
+  }
+}

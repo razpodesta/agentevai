@@ -107,6 +107,9 @@ importers:
       geolib:
         specifier: ^3.3.4
         version: 3.3.4
+      glob:
+        specifier: ^13.0.1
+        version: 13.0.1
       graphql:
         specifier: ^16.12.0
         version: 16.12.0

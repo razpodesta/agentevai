@@ -1,0 +1,8 @@
+{
+  "AIModelOrchestrator": {
+    "logNeuralDispatch": "Dispatching forensic trace for neural analysis via {provider}.",
+    "logNeuralSuccess": "Structural diagnosis successfully received from the AI oracle.",
+    "errorUnsupportedProvider": "Intelligence provider {provider} is not authorized for health tasks.",
+    "errorConnectionFailed": "Critical failure in handshake with the external intelligence cluster."
+  }
+}

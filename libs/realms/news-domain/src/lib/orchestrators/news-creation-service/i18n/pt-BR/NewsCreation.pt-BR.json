@@ -1,0 +1,7 @@
+{
+  "NewsCreationService": {
+    "logIgnition": "Processo de criação de notícia iniciado para o rastro {id}.",
+    "errorValidation": "Violação de ADN detectada nos dados da notícia.",
+    "statusBlockchain": "Selo de veracidade matemática aplicado com sucesso."
+  }
+}

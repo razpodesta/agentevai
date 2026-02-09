@@ -1,31 +1,52 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus AIModelOrchestratorSchema
- * @description Define o contrato de envio para diagnóstico por IAs de saúde.
- * Rota Relativa: libs/integrations/ai-model-orchestrator/src/lib/schemas/AIModelOrchestrator.schema.ts
+ * @version 2.0.0
+ * @protocol OEDP-V5.5.1 - Neural Diplomacy
+ * @description ADN para tarefas de diagnóstico sistêmico via IA.
  */
 
 import { z } from 'zod';
 
-export const AIProviderSchema = z.enum(['GOOGLE_GEMINI', 'ANTHROPIC_CLAUDE', 'OPENAI_GPT', 'GROK_XAI']);
+export const AIProviderSchema = z.enum([
+  'GOOGLE_GEMINI', 
+  'ANTHROPIC_CLAUDE', 
+  'OPENAI_GPT'
+]).describe('Provedores homologados para manutenção sistêmica.');
 
-export const HealthTaskSchema = z.object({
-  taskIdentifier: z.string().uuid(),
+/**
+ * @name HealthTaskBaseSchema
+ * @description Estrutura fundamental para processamento cognitivo de falhas.
+ */
+export const HealthTaskBaseSchema = z.object({
+  taskIdentifier: z.uuid()
+    .describe('Identificador único da tarefa de diagnóstico.'),
+
   providerPreference: AIProviderSchema.default('GOOGLE_GEMINI'),
-  modelTier: z.string().default('gemini-3.0-ultra-high-fidelity'),
-  
-  /** O banquete de dados vindo do SovereignErrorObservability */
-  contextPayload: z.object({
-    errorMessage: z.string(),
-    stackTrace: z.string(),
-    apparatusCode: z.string(),
-    inputSnapshot: z.unknown(),
-  }),
 
-  /** Prompt de manutenção específico para guiar a correção */
+  modelTier: z.string()
+    .default('gemini-2.0-flash-thinking')
+    .describe('Especificação do modelo (ex: sonnet-3.5, gpt-4o).'),
+  
+  contextPayload: z.object({
+    errorMessage: z.string().min(1),
+    stackTrace: z.string().default('NO_STACK_PROVIDED'),
+    apparatusCode: z.string().min(3),
+    inputSnapshot: z.unknown().describe('Snapshot anonimizado da falha.'),
+  }).loose(),
+
   maintenanceDirective: z.string()
-    .min(100)
-    .describe('Instrução de engenharia que define como a IA deve analisar a falha'),
-}).readonly();
+    .min(50)
+    .describe('Instrução técnica (Prompt) para guiar a IA na resolução.'),
+
+  correlationIdentifier: z.uuid()
+    .describe('Rastro forense para correlação com o SovereignLogger.')
+}).loose();
+
+/**
+ * @name HealthTaskSchema
+ * @description O contrato SELADO para trânsito entre orquestrador e drivers.
+ */
+export const HealthTaskSchema = HealthTaskBaseSchema.readonly();
 
 export type IHealthTask = z.infer<typeof HealthTaskSchema>;

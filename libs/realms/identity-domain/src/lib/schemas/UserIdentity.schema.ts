@@ -1,66 +1,56 @@
-// libs/realms/identity-domain/src/lib/schemas/UserIdentity.schema.ts
-
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus UserIdentitySchema
- * @version 1.2.0
- * @protocol OEDP-V5.5 - High Precision & Zero-Any
- * @description Única Fonte de Verdade (SSOT) para o ADN de identidade no Agentevai.
- * Este aparato define a anatomia de privilégios, rastro de presença anonimizado 
- * e níveis de confiança necessários para governança cidadã de elite.
- * @policy ZERO-ABBREVIATIONS: Prosa técnica militar.
- * @policy LGPD-COMPLIANT: Localização persistida apenas via Digital Fingerprint.
+ * @version 2.1.0
+ * @protocol OEDP-V5.5.1 - High Precision & Forensic Integrity
+ * @description Única Fonte de Verdade (SSOT) para o ADN de identidade do cidadão.
+ * Implementa a separação entre Base e Selagem para suporte total à Autocura Neural.
+ * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica via Branded Types.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @policy ZOD-V4-SYNC: Uso de construtores de elite e precedência de modificadores.
  */
 
 import { z } from 'zod';
 
 /**
  * @section Tipagem Nominal (Branded Types)
- * Blindagem de tipos primitivos para evitar colisões semânticas.
+ * Blindagem de tipos primitivos para evitar colisões entre identificadores.
  */
 
-/** Identificador universal inalterável do cidadão via OAuth. */
-export const CitizenIdentifierSchema = z.string()
-  .uuid()
-  .describe('UUID v4 exclusivo para correlação forense com SovereignDataVault.')
+export const CitizenIdentifierSchema = z.uuid()
+  .describe('Identificador universal inalterável (UUID v4) gerado na ignição do perfil.')
   .brand<'CitizenIdentifier'>();
 
 export type CitizenIdentifier = z.infer<typeof CitizenIdentifierSchema>;
 
-/** Hash anonimizado da localização física para auditoria sem PII. */
 export const DigitalPresenceFingerprintSchema = z.string()
-  .min(64)
-  .max(64)
+  .length(64)
   .regex(/^[a-f0-9]+$/)
-  .describe('Hash SHA-256 (Noble) que ancora a última localização conhecida do cidadão.')
+  .describe('Hash SHA-256 anonimizado que ancora a localização e o rastro de rede do cidadão.')
   .brand<'DigitalPresenceFingerprint'>();
 
 export type DigitalPresenceFingerprint = z.infer<typeof DigitalPresenceFingerprintSchema>;
 
-/** Pontuação de standing social moderada por IA. */
 export const ReputationScoreSchema = z.number()
   .min(-1000)
   .max(10000)
-  .describe('Métrica de confiabilidade social que modula privilégios em runtime.')
+  .describe('Índice de standing social moderado por IA que determina o peso da voz pública.')
   .brand<'ReputationScore'>();
 
 export type ReputationScore = z.infer<typeof ReputationScoreSchema>;
 
 /**
- * @section Níveis de Garantia de Identidade (IAL)
- * Baseado no padrão NIST 800-63A para segurança institucional.
+ * @section Taxonomia de Autoridade e Confiança
  */
+
 export const IdentityAssuranceLevelSchema = z.enum([
-  'IAL1_UNVERIFIED', // Autodeclarado.
-  'IAL2_VERIFIED',   // Documento validado via OCR/IA.
-  'IAL3_SOVEREIGN'   // Presença física ou biometria avançada (Certificado Digital).
-]).describe('Nível de prova de identidade que determina o peso das assinaturas.');
+  'IAL1_UNVERIFIED',
+  'IAL2_VERIFIED',
+  'IAL3_SOVEREIGN'
+]).describe('Nível de garantia de identidade baseado no padrão NIST 800-63A.');
 
 export type IIdentityAssuranceLevel = z.infer<typeof IdentityAssuranceLevelSchema>;
 
-/**
- * @section Taxonomia de Papéis Soberanos
- */
 export const IdentityRoleSchema = z.enum([
   'ANONYMOUS_CITIZEN',
   'ACTIVE_CITIZEN',
@@ -69,57 +59,87 @@ export const IdentityRoleSchema = z.enum([
   'REGIONAL_MODERATOR',
   'GOVERNANCE_AUDITOR',
   'PLATFORM_ENGINEER'
-]).describe('Papel fundamental que define o raio de ação técnica do cidadão.');
+]).describe('Papel fundamental que define o raio de atuação e autoridade no sistema.');
 
 export type IIdentityRole = z.infer<typeof IdentityRoleSchema>;
 
 /**
- * @section Privilégios Cinéticos
+ * @name IdentityAttributesBaseSchema
+ * @description ADN de atributos cinéticos de permissão.
  */
-export const IdentityAttributesSchema = z.object({
-  canPublishOriginalContent: z.boolean().default(false),
-  canEndorsePublicComplaints: z.boolean().default(false),
-  canModerateRegionalEntropy: z.boolean().default(false),
-  isImmuneToAutoModeration: z.boolean().default(false),
-  votingWeightMultiplier: z.number().min(1).max(5).default(1),
-  
-  /** @improvement Proativa: Tag de auditoria para identificar se os privilégios foram degradados pela IA */
-  isOperatingInDegradedPrivilegeMode: z.boolean().default(false)
-}).readonly();
+export const IdentityAttributesBaseSchema = z.object({
+  canPublishOriginalContent: z.boolean()
+    .default(false)
+    .describe('Capacidade de iniciar novas denúncias ou notícias.'),
+
+  canEndorsePublicComplaints: z.boolean()
+    .default(false)
+    .describe('Permissão para adicionar assinaturas de apoio a causas existentes.'),
+
+  canModerateRegionalEntropy: z.boolean()
+    .default(false)
+    .describe('Poder de intervenção em conteúdos que violem a soberania comunitária.'),
+
+  isImmuneToAutoModeration: z.boolean()
+    .default(false)
+    .describe('Flag de alta confiança que bypassa filtros automáticos de IA.'),
+
+  votingWeightMultiplier: z.number()
+    .min(1)
+    .max(5)
+    .default(1)
+    .describe('Multiplicador de peso de voto baseado no Standing e Nível de Garantia.'),
+
+  isOperatingInDegradedPrivilegeMode: z.boolean()
+    .default(false)
+    .describe('Indica se o cidadão sofreu sanções automáticas pelo Auditor Neural.')
+}).loose();
+
+/**
+ * @name IdentityAttributesSchema
+ * @description O contrato de atributos SELADO para trânsito de dados.
+ */
+export const IdentityAttributesSchema = IdentityAttributesBaseSchema.readonly();
 
 export type IIdentityAttributes = z.infer<typeof IdentityAttributesSchema>;
 
 /**
- * @name UserIdentitySchema
- * @description Aduana de ADN para o perfil do cidadão logado.
+ * @name UserIdentityBaseSchema
+ * @description Estrutura fundamental da identidade. Aberta para transformações auditáveis.
  */
-export const UserIdentitySchema = z.object({
-  /** Identidade global */
+export const UserIdentityBaseSchema = z.object({
   identifier: CitizenIdentifierSchema,
-  
-  /** Qualidade da prova de identidade */
-  assuranceLevel: IdentityAssuranceLevelSchema.default('IAL1_UNVERIFIED'),
 
-  /** Papel e Standing */
+  assuranceLevel: IdentityAssuranceLevelSchema,
+
   coreRole: IdentityRoleSchema,
+
   reputationStanding: ReputationScoreSchema,
-  
-  /** Rastro de Localização (LGPD Shield) */
+
   presence: z.object({
     lastRegionalFingerprint: DigitalPresenceFingerprintSchema,
     lastSyncTimestamp: z.string().datetime(),
-    /** UUID da sessão de consciência que gerou este snapshot de identidade */
-    consciousnessCorrelationIdentifier: z.string().uuid()
-  }).describe('Rastro de presença anonimizado sincronizado com o SovereignContextManager.'),
+    consciousnessCorrelationIdentifier: z.uuid()
+  }).describe('Snapshot de presença técnica sincronizado com o SovereignContextManager.'),
 
-  /** Ancoragem territorial explícita */
   geographicAnchor: z.object({
-    stateAbbreviation: z.string().length(2).toUpperCase(),
-    citySlug: z.string().min(2).toLowerCase()
-  }).optional().describe('Fronteira geográfica de autoridade (Moderadores/Jornalistas).'),
+    stateCode: z.string()
+      .length(2)
+      .toUpperCase()
+      .describe('Sigla da Unidade Federativa de autoridade (Ex: SC, SP).'),
+    citySlug: z.string()
+      .min(2)
+      .toLowerCase()
+      .describe('Slug de ruteamento para o Jornal Local de atuação.')
+  }).optional().describe('Fronteira geográfica onde o cidadão possui direitos especiais (Ex: Moderadores).'),
 
-  /** Permissões calculadas */
   attributes: IdentityAttributesSchema
-}).readonly();
+}).loose();
+
+/**
+ * @name UserIdentitySchema
+ * @description O contrato mestre SELADO e IMUTÁVEL para uso em todo o Monorepo.
+ */
+export const UserIdentitySchema = UserIdentityBaseSchema.readonly();
 
 export type IUserIdentity = z.infer<typeof UserIdentitySchema>;

@@ -1,0 +1,8 @@
+{
+  "LookupTerritorialAnchor": {
+    "localAnchorIgnited": "Development environment detected. Local anchoring ignited.",
+    "externalNationDetected": "Access originated outside Brazilian sovereignty: {countryCode}.",
+    "externalServiceFailure": "Failure communicating with external geolocation infrastructure.",
+    "fallbackActivated": "Resilience protocol activated: Returning to default national trace."
+  }
+}

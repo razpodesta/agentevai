@@ -1,121 +1,76 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CalculateCitizenStanding
- * @version 1.3.0
- * @protocol OEDP-V5.5 - High Precision & Forensic Integrity
- * @description Motor aritmético atômico para transmutação de eventos sociais em Standing de Reputação.
- * Implementa Clamping de ADN, Multiplicadores de IA e detecção de Inércia Reputacional.
- * @policy ZERO-ANY: Tipagem Nominal Estrita (Branded Types).
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @version 2.1.0
+ * @protocol OEDP-V5.5.1 - God Tier
+ * @description Motor de transmutação de eventos sociais em Standing.
+ * @policy ZERO-ANY: Saneamento total de tipos.
  */
 
-import { z } from 'zod';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import { SovereignError } from '@agentevai/sovereign-error-observability';
+import { ReputationScore, ReputationScoreSchema } from '../schemas/UserIdentity.schema.js';
 import {
-  ReputationScoreSchema,
-  ReputationScore
-} from '../schemas/UserIdentity.schema';
+  CalculateCitizenStandingInputSchema,
+  ICalculateCitizenStandingInput
+} from './schemas/CalculateCitizenStanding.schema.js';
 
 /**
- * @section Taxonomia de Impacto (Soberania Algorítmica)
- * Define os pesos base para cada interação permitida no ecossistema.
- * Extraído para constante imutável fora do escopo funcional para performance.
+ * @section Registro de Pesos (Imutável)
+ * Centraliza a inteligência de impacto fora da lógica condicional.
  */
-const BASE_IMPACT_WEIGHTS = {
-  COMPLAINT_VERIFIED: 50,    // Validação institucional/IA (+50)
-  SUPPORT_RECEIVED: 5,      // Reconhecimento de pares (+5)
-  SUPPORT_GIVEN: 1,         // Engajamento proativo (+1)
-  SENIORITY_MILESTONE: 10,  // Recompensa por lealdade temporal (+10)
-  ENTROPY_DETECTED: -100,   // Comportamento tóxico detectado pela IA (-100)
-  FAKE_NEWS_CONFIRMED: -500 // Violação gravíssima de veracidade (-500)
-} as const;
-
-/**
- * @name ImpactEventSchema
- * @description Aduana de ADN para eventos de alteração de standing.
- */
-const ImpactEventSchema = z.object({
-  impactType: z.enum([
-    'COMPLAINT_VERIFIED',
-    'SUPPORT_RECEIVED',
-    'SUPPORT_GIVEN',
-    'ENTROPY_DETECTED',
-    'FAKE_NEWS_CONFIRMED',
-    'SENIORITY_MILESTONE'
-  ]).describe('Categoria semântica do evento de impacto social.'),
-  
-  neuralMultiplier: z.number()
-    .min(0.5)
-    .max(5)
-    .default(1)
-    .describe('Fator dinâmico injetado pela IA com base na qualidade do rastro forense.')
-}).readonly();
-
-export type IImpactEvent = z.infer<typeof ImpactEventSchema>;
-
-export interface CalculateCitizenStandingParameters {
-  readonly currentReputationScore: number;
-  readonly impactEvent: IImpactEvent;
-  readonly correlationIdentifier: string;
-}
+const IMPACT_WEIGHT_MAP: Record<string, number> = {
+  COMPLAINT_VERIFIED: 50,
+  SUPPORT_RECEIVED: 5,
+  SUPPORT_GIVEN: 1,
+  SENIORITY_MILESTONE: 10,
+  ENTROPY_DETECTED: -100,
+  FAKE_NEWS_CONFIRMED: -500
+};
 
 /**
  * @name CalculateCitizenStanding
  * @function
- * @description Executa a evolução do standing social do cidadão com precisão de relógio suíço.
- * 
- * @param {CalculateCitizenStandingParameters} parameters - Snapshot atual e evento de impacto.
- * @returns {ReputationScore} Standing resultante validado e grampeado ao ADN.
+ * @description Executa a progressão social do cidadão com auditoria integrada.
  */
 export const CalculateCitizenStanding = (
-  parameters: CalculateCitizenStandingParameters
+  parameters: ICalculateCitizenStandingInput
 ): ReputationScore => {
   const apparatusName = 'CalculateCitizenStanding';
-  const { currentReputationScore, impactEvent, correlationIdentifier } = parameters;
+  const fileLocation = 'libs/realms/identity-domain/src/lib/calculators/CalculateCitizenStanding.ts';
 
   try {
-    // 1. Validação de Integridade de Entrada
-    const validatedEvent = ImpactEventSchema.parse(impactEvent);
+    // 1. Aduana de ADN (Sincronizada com Branded Types)
+    const data = CalculateCitizenStandingInputSchema.parse(parameters);
 
-    // 2. Processamento Cinético do Delta
-    const baseWeight = BASE_IMPACT_WEIGHTS[validatedEvent.impactType];
-    const calculatedDelta = baseWeight * validatedEvent.neuralMultiplier;
-    
-    // 3. Aritmética de Evolução e Clamping (Soberania de Fronteira)
-    // Impede que o score transborde os limites [-1000, 10000] definidos no UserIdentitySchema.
-    const rawNewScore = currentReputationScore + calculatedDelta;
-    const clampedScore = Math.min(Math.max(rawNewScore, -1000), 10000);
+    // 2. Processamento Cinético
+    const baseWeight = IMPACT_WEIGHT_MAP[data.impactType];
+    const calculatedDelta = baseWeight * data.neuralMultiplier;
 
-    // 4. Validação de Saída (Branded Type Enforcement)
-    const newReputationScore = ReputationScoreSchema.parse(clampedScore);
+    // 3. Evolução e Clamping
+    const rawEvolvedScore = data.currentReputationScore + calculatedDelta;
 
-    // 5. Telemetria Forense (OEDP-V5.5 Compliant)
+    // 4. Selagem de Saída (Garante persistência de Marca/Brand)
+    const finalScore = ReputationScoreSchema.parse(rawEvolvedScore);
+
+    // 5. Telemetria Forense
     SovereignLogger({
       severity: calculatedDelta < 0 ? 'WARN' : 'INFO',
       apparatus: apparatusName,
-      operation: 'REPUTATION_PULSE_PROCESSED',
-      message: `Standing evoluiu de ${currentReputationScore} para ${newReputationScore} (Delta: ${calculatedDelta}).`,
-      traceIdentifier: correlationIdentifier,
-      metadata: {
-        impactType: validatedEvent.impactType,
-        appliedMultiplier: validatedEvent.neuralMultiplier,
-        isEntropyDetected: calculatedDelta < 0
-      }
+      operation: 'STANDING_EVOLVED',
+      message: `Cidadão: ${data.currentReputationScore} -> ${finalScore} [${data.impactType}]`,
+      traceIdentifier: data.correlationIdentifier,
+      metadata: { delta: calculatedDelta, multiplier: data.neuralMultiplier }
     });
 
-    return newReputationScore;
+    return finalScore;
 
   } catch (error) {
-    /**
-     * @section Resiliência e Transmutação de Erro
-     * Falhas no cálculo de reputação são HIGH severity pois afetam o motor de autoridade.
-     */
     throw SovereignError.transmute(error, {
       code: 'OS-APP-5002',
       apparatus: apparatusName,
-      location: 'libs/realms/identity-domain/src/lib/calculators/CalculateCitizenStanding.ts',
-      correlationIdentifier,
+      location: fileLocation,
+      correlationIdentifier: parameters?.correlationIdentifier || 'NO_TRACE',
       severity: 'HIGH'
     });
   }

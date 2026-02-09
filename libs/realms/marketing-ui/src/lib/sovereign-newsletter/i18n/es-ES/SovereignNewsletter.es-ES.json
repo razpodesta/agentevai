@@ -1,0 +1,12 @@
+{
+  "AdVantagePreviewUI": {
+    "labTitle": "Ad-Vantage Intelligence Lab",
+    "labSubtitle": "Simulador de Impacto Regional",
+    "formatSelectorLabel": "Seleccione el Formato del Aviso",
+    "format_EDITORIAL_BANNER": "Banner Editorial",
+    "format_NATIVE_INJECTION": "Inserción Nativa",
+    "format_REGIONAL_STORY": "Story Regional",
+    "previewModeLabel": "Modo de Previsualización en Tiempo Real",
+    "ethicsDeclaration": "ANUNCIO ÉTICO CERTIFICADO: Sin rastreo invasivo."
+  }
+}

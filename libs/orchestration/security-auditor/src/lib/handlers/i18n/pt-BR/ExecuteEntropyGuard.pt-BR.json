@@ -1,0 +1,8 @@
+{
+  "ExecuteEntropyGuard": {
+    "logAuditCleared": "Auditoria de cadência aprovada para o endereço {ip}.",
+    "logThresholdExceeded": "ALERTA: Limite de requisições excedido. Ativando mitigação de entropia para {ip}.",
+    "errorNetworkIlegible": "Incapacidade crítica de ler o rastro de rede do protocolo IP.",
+    "statusAdaptiveLimit": "Limite adaptativo de {limit} requisições aplicado com base na reputação do rastro."
+  }
+}

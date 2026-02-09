@@ -1,0 +1,27 @@
+{
+  "name": "advertising-ui",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/advertising-ui/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Reino de Publicidade Ética e Laboratório de Impacto Regional.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:ui", 
+    "scope:marketing", 
+    "role:advertising", 
+    "tier:presentation", 
+    "protocol:oedp-v5.5.1"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/advertising-ui",
+        "configFile": "libs/realms/advertising-ui/vite.config.mts"
+      }
+    }
+  }
+}

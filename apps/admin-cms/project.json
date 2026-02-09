@@ -1,87 +1,67 @@
 {
-  "name": "api-core",
+  "name": "admin-cms",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/api-core/src",
+  "sourceRoot": "apps/admin-cms/src",
   "projectType": "application",
-  "tags": ["type:app", "platform:server", "stack:nestjs-11", "domain:core"],
+  "metadata": {
+    "description": "Cockpit de Soberania: Interface administrativa para moderação de IA e auditoria de rastro.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:app",
+    "platform:web",
+    "stack:nextjs-16",
+    "domain:administration",
+    "tier:admin-tier"
+  ],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:build",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apps/api-core",
-        "main": "apps/api-core/src/main.ts",
-        "tsConfig": "apps/api-core/tsconfig.app.json",
-        "assets": ["apps/api-core/src/assets"],
-        "webpackConfig": "apps/api-core/webpack.config.js",
-        "generatePackageJson": true,
-        "tsPlugins": [
-          {
-            "name": "@nestjs/swagger/plugin",
-            "options": {
-              "dtoFileNameSuffix": [".dto.ts", ".entity.ts"],
-              "controllerFileNameSuffix": [".controller.ts"],
-              "classValidatorShim": true,
-              "dtoKeyOfComment": "description"
-            }
-          }
-        ]
+        "outputPath": "dist/apps/admin-cms"
       },
       "configurations": {
         "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+          "outputPath": "apps/admin-cms"
         },
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/api-core/src/environments/environment.ts",
-              "with": "apps/api-core/src/environments/environment.prod.ts"
-            }
-          ]
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nx/js:node",
+      "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "api-core:build"
+        "buildTarget": "admin-cms:build",
+        "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "api-core:build:development"
+          "buildTarget": "admin-cms:build:development"
         },
         "production": {
-          "buildTarget": "api-core:build:production"
+          "buildTarget": "admin-cms:build:production",
+          "dev": false
         }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "admin-cms:build:production"
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/api-core/jest.config.cts",
+        "jestConfig": "apps/admin-cms/jest.config.cts",
         "passWithNoTests": true
       }
     },
-    "prune": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": [
-          "pnpm mod-clean -n -r",
-          "cd dist/apps/api-core && pnpm install --prod"
-        ],
-        "parallel": false
-      },
-      "dependsOn": ["build"]
+    "lint": {
+      "executor": "@nx/eslint:lint"
     }
   }
 }

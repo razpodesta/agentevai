@@ -1,0 +1,8 @@
+{
+  "AIModelOrchestrator": {
+    "logNeuralDispatch": "Despachando rastro forense para análisis neural vía {provider}.",
+    "logNeuralSuccess": "Diagnóstico estructural recibido con éxito del oráculo de IA.",
+    "errorUnsupportedProvider": "El proveedor de inteligencia {provider} no está homologado para tareas de salud.",
+    "errorConnectionFailed": "Incapacidad crítica de handshake con el clúster de inteligencia externa."
+  }
+}

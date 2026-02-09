@@ -1,0 +1,12 @@
+{
+  "EditorialWorkflow": {
+    "state_DRAFT": "Draft",
+    "state_AI_ANALYSIS": "Under Neural Forensic",
+    "state_MANUAL_REVIEW": "Engineer Review",
+    "state_REJECTED": "Content Rejected",
+    "state_BLOCKCHAIN_SEALED": "Mathematical Sovereignty Guaranteed",
+    "state_PUBLISHED": "Published",
+    "errorIllegalTransition": "State transition denied: Action {action} is not allowed for state {state}.",
+    "logManualEscalation": "AI requested human intervention to decide on trace {id}."
+  }
+}

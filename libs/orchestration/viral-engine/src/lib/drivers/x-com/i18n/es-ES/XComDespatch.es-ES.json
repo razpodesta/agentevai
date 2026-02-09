@@ -1,0 +1,7 @@
+{
+  "XComDespatch": {
+    "statusTemplate": "{message}\n\nPrueba Digital: {root}\nLeer más: {url}",
+    "logDespatchSuccess": "Publicación realizada con éxito en X.com ID: {tweetId}",
+    "errorTextTooLong": "El contenido de la denuncia excede los límites de soberanía textual de X.com."
+  }
+}

@@ -1,12 +1,29 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @description Barril de exposição do motor de internacionalização de elite.
+ * @apparatus InternationalizationEngineHub
+ * @version 2.4.1
  */
-
-export * from './lib/handlers/SovereignTranslationEngine';
-export * from './lib/schemas/Internationalization.schema';
 
 /**
- * @note Este aparato é fundamental para a acessibilidade e soberania cultural.
- * Ele integra as mensagens de erro e as chaves de segurança do DataVault.
+ * @section Camada Operativa
+ * CORREÇÃO ESM: Uso de extensões explícitas para garantir compatibilidade NodeNext.
  */
+export {
+  SovereignTranslationEngine
+} from './lib/handlers/SovereignTranslationEngine.js';
+
+export {
+  TransmuteGeopoliticalId
+} from './lib/handlers/TransmuteGeopoliticalId.js';
+
+/**
+ * @section Camada de Definição
+ * Agora os membros 'LocaleSchema' e 'Locale' são encontrados corretamente.
+ */
+export {
+  LocaleSchema,
+  TranslationFragmentSchema,
+  SovereignDictionarySchema,
+  type Locale,
+  type ISovereignDictionary
+} from './lib/schemas/Internationalization.schema.js';
