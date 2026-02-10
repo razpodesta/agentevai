@@ -1,8 +1,9 @@
 {
   "SupabaseBridge": {
-    "logVerdictPersisted": "Security verdict for trace {correlationId} sealed in the relational vault.",
-    "errorInsertFailed": "Audit sealing failure: The database rejected the forensic entry.",
-    "errorMissingKeys": "Incapacitated infrastructure: Supabase access keys not located.",
-    "auditTableSync": "Table synchronization for agv_security_verdicts validated for Brazilian territory."
+    "errorInfrastructureKeys": "Operational Incapacity: Access keys for the relational vault (Supabase) were not located in the environment.",
+    "errorDatabaseInsert": "Sealing Failure: The database rejected the forensic trace recording for {identifier}.",
+    "logVerdictPersisted": "Security verdict successfully sealed for the journey {correlationIdentifier}.",
+    "logTraceSealed": "Behavioral trace [{fingerprint}] permanently recorded in the audit mesh.",
+    "auditTableSync": "Integrity check: Table {tableName} synchronized with the Sovereignty DNA."
   }
 }

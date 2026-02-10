@@ -1,23 +1,24 @@
 {
   "name": "@agentevai/supabase-bridge",
-  "version": "1.0.0",
-  "description": "Ponte de Persistência: Adaptador hexagonal para Supabase, gerenciando persistência relacional e autenticação OAuth.",
+  "version": "2.1.1",
+  "description": "Ponte de Persistência Soberana: Gerencia a conexão com o cofre relacional e drivers de auditoria.",
   "private": true,
   "type": "module",
   "author": {
     "name": "Raz Podestá",
     "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5"
+    "protocol": "OEDP-V6.0"
   },
   "metadata": {
     "tier": "INTEGRATION",
-    "role": "DATA_ADAPTER",
-    "provider": "SUPABASE"
+    "role": "RELATIONAL_VAULT_ADAPTER"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "peerDependencies": {}
+    "@supabase/supabase-js": "2.48.1",
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*"
+  }
 }

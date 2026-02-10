@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignLogger
- * @version 3.0.0
+ * @version 4.0.0
  * @protocol OEDP-V6.0 - Neural Pulse Engine
  * @description Motor de telemetria de alta performance.
- * Saneado para conformidade ESM e rastro forense inquebrável.
+ * Saneado para erradicar o tipo 'Function' e unificar o rastro forense.
  */
 
 import pino from 'pino';
@@ -14,8 +14,11 @@ import {
 } from './schemas/SovereignLogger.schema.js';
 
 /**
- * @section Configuração de Engine Soberana
+ * @section Definição de Assinatura Funcional
+ * Erradica o erro @typescript-eslint/no-unsafe-function-type.
  */
+type PinoLogMethod = (meritObject: object, semanticMessage: string) => void;
+
 const engine = pino({
   level: process.env['LOG_LEVEL'] || 'info',
   formatters: {
@@ -36,18 +39,22 @@ export const SovereignLogger = (payload: ISovereignLog): void => {
     // 1. Aduana de Integridade (Zod Enforcement)
     const validatedData = SovereignLogSchema.parse(payload);
 
-    // 2. Composição do Rastro Forense
+    // 2. Composição do Rastro Forense (Unificação correlationIdentifier)
     const logEntry = {
       apparatus: validatedData.apparatus,
       operation: validatedData.operation,
-      trace: validatedData.correlationIdentifier || 'ORPHAN_TRACE',
+      correlationIdentifier: validatedData.correlationIdentifier || 'ORPHAN_TRACE',
       ...validatedData.metadata
     };
 
     // 3. Despacho Semântico Otimizado
     const logMessage = `[${validatedData.apparatus}:${validatedData.operation}] ${validatedData.message}`;
 
-    const logMap: Record<string, Function> = {
+    /**
+     * @section Mapeamento de Métodos Pino
+     * Tipagem estrita para garantir que não haja vazamento de radiação técnica.
+     */
+    const logMap: Record<ISovereignLog['severity'], PinoLogMethod> = {
       INFO: engine.info.bind(engine),
       WARN: engine.warn.bind(engine),
       ERROR: engine.error.bind(engine),

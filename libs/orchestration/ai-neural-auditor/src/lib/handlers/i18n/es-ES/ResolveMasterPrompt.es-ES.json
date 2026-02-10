@@ -1,0 +1,8 @@
+{
+  "ResolveMasterPrompt": {
+    "baseTemplate": "Actúe como um {persona}. Analice la falla estructural: {error}. Verifique el rastro forense: {stack}. Determine si el aparato {apparatus} requiere AUTO-REPAIR o HUMAN_INTERVENTION.",
+    "persona_ARCHITECT": "Arquitecto de Software de Élite",
+    "persona_SECURITY": "Centinela de Seguridad Cibernética",
+    "persona_FORENSIC": "Perito Forense Digital"
+  }
+}

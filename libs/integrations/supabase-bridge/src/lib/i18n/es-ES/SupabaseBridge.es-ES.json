@@ -1,8 +1,9 @@
 {
   "SupabaseBridge": {
-    "logVerdictPersisted": "Veredicto de seguridad del rastro {correlationId} sellado en el cofre relacional.",
-    "errorInsertFailed": "Falla en el sellado de auditoría: La base de datos rechazó la entrada forense.",
-    "errorMissingKeys": "Infraestructura incapacitada: Llaves de acceso a Supabase no localizadas.",
-    "auditTableSync": "Sincronía de tabla agv_security_verdicts validada para el territorio brasileño."
+    "errorInfrastructureKeys": "Incapacidad Operativa: Llaves de acceso al cofre relacional (Supabase) no localizadas en el entorno.",
+    "errorDatabaseInsert": "Fallo en el Sellado: La base de datos rechazó la grabación del rastro forense {identifier}.",
+    "logVerdictPersisted": "Veredicto de seguridad sellado con éxito para la jornada {correlationIdentifier}.",
+    "logTraceSealed": "Rastro behaviorista [{fingerprint}] registrado permanentemente en la malla de auditoría.",
+    "auditTableSync": "Verificación de integridad: Tabla {tableName} sintonizada con el ADN de Soberanía."
   }
 }

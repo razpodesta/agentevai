@@ -1,7 +1,7 @@
 {
   "ResolveIdentityPrivileges": {
-    "privilegeResolutionSuccess": "Autoridad de interfaz consolidada para el rol: {role}.",
-    "entropySanctionActive": "Aviso: Privilegios degradados debido al bajo standing social.",
-    "sovereignAssuranceBonus": "Bono de influencia aplicado vía Garantía Soberana (IAL3)."
+    "logAuthorityConsolidated": "Matriz de privilegios sellada para el rol técnico: {role}.",
+    "logEntropySanction": "ALERTA: Privilegios degradados por standing negativo para el rastro {role}.",
+    "errorResolutionFailure": "Falla crítica en la orquestación de autoridad regional."
   }
 }

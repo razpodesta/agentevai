@@ -1,7 +1,7 @@
 {
   "ResolveIdentityPrivileges": {
-    "privilegeResolutionSuccess": "Interface authority consolidated for the role: {role}.",
-    "entropySanctionActive": "Warning: Privileges degraded due to low social standing.",
-    "sovereignAssuranceBonus": "Influence bonus applied via Sovereign Assurance (IAL3)."
+    "logAuthorityConsolidated": "Privilege matrix sealed for the technical role: {role}.",
+    "logEntropySanction": "ALERT: Privileges degraded due to negative standing for trace {role}.",
+    "errorResolutionFailure": "Critical failure in regional authority orchestration."
   }
 }

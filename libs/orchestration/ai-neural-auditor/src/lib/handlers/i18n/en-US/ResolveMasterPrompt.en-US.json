@@ -1,0 +1,8 @@
+{
+  "ResolveMasterPrompt": {
+    "baseTemplate": "Act as a {persona}. Analyze the structural failure: {error}. Check the forensic trace: {stack}. Determine if the apparatus {apparatus} requires AUTO-REPAIR or HUMAN_INTERVENTION.",
+    "persona_ARCHITECT": "Elite Software Architect",
+    "persona_SECURITY": "Cybersecurity Sentinel",
+    "persona_FORENSIC": "Digital Forensic Examiner"
+  }
+}

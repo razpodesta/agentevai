@@ -1,8 +1,7 @@
 {
   "ExecuteBotSentinel": {
-    "logInspectionComplete": "Inspeção de borda concluída para o agente {fingerprint}.",
-    "botDetected": "ALERTA: Automação hostil detectada com score de {score}.",
-    "agentMined": "Rastro de agente legítimo minerado e selado para o projeto de inteligência.",
-    "errorAduanaFailure": "Falha crítica na aduana de segurança: O rastro de rede está ilegível."
+    "logInspectionComplete": "Inspeção de borda concluída: {category} [Score: {score}]",
+    "logSecurityFailure": "Falha crítica na aduana de segurança. Ativando bloqueio preventivo.",
+    "agentMined": "Rastro de agente legitimado para o projeto de inteligência: {fingerprint}"
   }
 }

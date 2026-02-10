@@ -1,13 +1,13 @@
 {
   "name": "@agentevai/news-domain",
-  "version": "2.1.0",
-  "description": "Reino de Soberania Editorial: Centraliza a lógica de workflow jornalístico, ranking de relevância e persistência em cofre relacional.",
+  "version": "2.2.0",
+  "description": "Reino de Soberania Editorial: Centraliza a lógica de workflow jornalístico, ranking de relevância e selagem de veracidade.",
   "private": true,
   "type": "module",
   "author": {
     "name": "Raz Podestá",
     "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5.2"
+    "protocol": "OEDP-V6.0"
   },
   "metadata": {
     "tier": "REALM_CORE",
@@ -17,14 +17,10 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
     "zod": "^4.3.6",
-    "@supabase/supabase-js": "^2.48.1",
     "@noble/hashes": "^2.0.1",
-    "@agentevai/types-common": "workspace:*",
     "@agentevai/sovereign-logger": "workspace:*",
     "@agentevai/sovereign-error-observability": "workspace:*",
     "@agentevai/blockchain-ledger": "workspace:*"
-  },
-  "peerDependencies": {}
+  }
 }
