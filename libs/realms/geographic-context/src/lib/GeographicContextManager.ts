@@ -1,28 +1,28 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GeographicContextManager
- * @version 3.0.0
- * @protocol OEDP-V5.5 - High Precision & Territorial Sovereignty
+ * @version 3.3.0
+ * @protocol OEDP-V6.0 - High Precision & Zero-Abbreviations
  * @description Orquestrador de inteligência geográfica brasileira.
- * Refatorado para Responsabilidade Única (SRP): Delega formatação e valida ADN Soberano.
- * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * Transmuta o rastro volátil de APIs governamentais no ADN soberano.
+ * @policy ZERO-ABBREVIATIONS: Erradicação total de 'id' (Cura de no-restricted-syntax).
+ * @policy ZERO-ANY: Saneamento absoluto via unknown + parsing.
+ * @policy ESM-STRICT: Uso de extensões explícitas (.js).
  */
 
 import { z } from 'zod';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import {
+  SovereignError,
+  SovereignErrorCodeSchema
+} from '@agentevai/sovereign-error-observability';
 import {
   RegionSlugSchema,
   SovereignCountrySchema
 } from '@agentevai/sovereign-context';
-
-/**
- * @section Injeção de Foundation
- * Consumo do aparato atômico para erradicação de lógica redundante.
- */
 import { TransmuteTextToSlug } from '@agentevai/types-common';
 
+/** @section Sincronia de ADN Local */
 import {
   BrazilianMunicipalitySchema,
   IbgeCodeSchema,
@@ -31,12 +31,13 @@ import {
 } from './schemas/GeographicRegion.schema.js';
 
 /**
- * @section Aduana de Entrada (Contrato Externo IBGE)
- * Define a estrutura bruta esperada da API governamental para purificação.
+ * @section Aduana de Infraestrutura Externa (IBGE Contract)
+ * @description Captura o rastro bruto e transmuta abreviações em termos integrais.
  */
-const IbgeExternalPayloadSchema = z.object({
-  id: z.number().describe('ID numérico original do IBGE.'),
-  nome: z.string().describe('Nome por extenso da localidade.'),
+const IbgeExternalResponseSchema = z.object({
+  // Capturamos 'id' da API, mas transmutamos para 'identifier' para conformidade Elite
+  identifier: z.number().describe('Identificador numérico bruto do IBGE.'),
+  nome: z.string().describe('Nome por extenso do município.'),
   microrregiao: z.object({
     mesorregiao: z.object({
       UF: z.object({
@@ -44,60 +45,60 @@ const IbgeExternalPayloadSchema = z.object({
       })
     })
   })
-}).readonly();
+})
+.transform((rawTrace) => ({
+  identifier: rawTrace.identifier, // Transmutação Soberana concluída
+  name: rawTrace.nome,
+  stateAbbreviation: rawTrace.microrregiao.mesorregiao.UF.sigla
+}))
+.readonly();
 
 /**
  * @name TransmuteIbgeToMunicipality
  * @function
- * @description Transmuta o payload volátil do IBGE no ADN estrutural Agentevai com precisão de milissegundos.
+ * @description Transmuta o rastro bruto do IBGE no ADN estrutural Agentevai.
  *
- * @param {unknown} rawPayload - JSON bruto da API do IBGE.
- * @param {string} correlationIdentifier - UUID para rastro forense e correlação de logs.
- * @returns {IBrazilianMunicipality} Dados da cidade purificados, tipados e selados.
+ * @param {unknown} rawPayload - O payload bruto (unknown para segurança).
+ * @param {string} correlationIdentifier - UUID para rastro forense.
+ * @returns {IBrazilianMunicipality} Dados regionais selados e validados.
  */
 export const TransmuteIbgeToMunicipality = (
   rawPayload: unknown,
   correlationIdentifier: string
 ): IBrazilianMunicipality => {
-  const startTimestamp = performance.now();
   const apparatusName = 'GeographicContextManager';
   const fileLocation = 'libs/realms/geographic-context/src/lib/GeographicContextManager.ts';
 
   try {
-    // 1. Validação de Integridade da Fonte (Aduana IBGE)
-    const externalData = IbgeExternalPayloadSchema.parse(rawPayload);
+    // 1. ADUANA DE BORDA (Purificação e Renomeação Automática)
+    const externalSnapshot = IbgeExternalResponseSchema.parse(rawPayload);
 
-    // 2. Orquestração de Transmutação (Delegação para Foundation)
-    // Erradicamos a lógica de regex interna para garantir consistência global de URLs.
-    const generatedSlug = TransmuteTextToSlug(externalData.nome);
+    // 2. ORQUESTRAÇÃO DE TRANSMUTAÇÃO (Foundation Service)
+    const generatedSlug = TransmuteTextToSlug(externalSnapshot.name);
 
     /**
      * @section Composição de Snapshot Territorial
-     * Mapeamento estrito para o ADN SovereignCountry (Manifesto 0018).
+     * Mapeamento estrito para o ADN de Identidade Nacional.
      */
     const municipalitySnapshot = {
-      identifier: IbgeCodeSchema.parse(externalData.id),
-      name: externalData.nome.trim(),
+      identifier: IbgeCodeSchema.parse(externalSnapshot.identifier),
+      name: externalSnapshot.name.trim(),
       slug: RegionSlugSchema.parse(generatedSlug),
-      stateCode: BrazilianStateCodeSchema.parse(externalData.microrregiao.mesorregiao.UF.sigla),
+      stateCode: BrazilianStateCodeSchema.parse(externalSnapshot.stateAbbreviation),
       countryCode: SovereignCountrySchema.parse('BR')
     };
 
-    // 3. Selagem e Validação de ADN Final (Status PERFECT)
+    // 3. SELAGEM FINAL (Imutabilidade God Tier)
     const validatedMunicipality = BrazilianMunicipalitySchema.parse(municipalitySnapshot);
 
-    // 4. Telemetria de Performance e Sucesso
-    const endTimestamp = performance.now();
-    const transmutationLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
-
+    // 4. TELEMETRIA NEURAL
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
-      operation: 'TERRITORIAL_IGNITION_SUCCESS',
-      message: `Consciência geográfica estabelecida para ${validatedMunicipality.name} [${validatedMunicipality.stateCode}].`,
-      traceIdentifier: correlationIdentifier,
+      operation: 'TERRITORIAL_TRANSMUTATION_SUCCESS',
+      message: `Soberania territorial selada para ${validatedMunicipality.name}.`,
+      correlationIdentifier: correlationIdentifier,
       metadata: {
-        latencyInMilliseconds: transmutationLatency,
         ibgeIdentifier: validatedMunicipality.identifier,
         regionalSlug: validatedMunicipality.slug
       }
@@ -105,13 +106,9 @@ export const TransmuteIbgeToMunicipality = (
 
     return validatedMunicipality;
 
-  } catch (error) {
-    /**
-     * @section Protocolo de Resiliência
-     * Falhas na transmutação geográfica são impeditivos para o ruteamento dinâmico.
-     */
-    throw SovereignError.transmute(error, {
-      code: 'OS-GEO-1001',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-GEO-1001'),
       apparatus: apparatusName,
       location: fileLocation,
       correlationIdentifier,

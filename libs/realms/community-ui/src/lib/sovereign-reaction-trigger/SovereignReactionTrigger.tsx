@@ -1,77 +1,114 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignReactionTrigger
- * @version 1.0.0
- * @description Átomo interativo que utiliza palavras e ícones cinéticos para selar a vontade.
- * @policy MOBILE-FIRST: Área de toque mínima de 44px e feedback haptic visual.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - God Tier Implementation
+ * @description Atuador de vontade cidadã. Erradica o erro TS2353 ao sincronizar
+ * o rastro de telemetria com o ADN Mestre do Logger.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ZERO-ANY: Saneamento total de tipos via Zod parsing.
  */
 
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ThumbsUp, ThumbsDown, Heart } from 'lucide-react'; // Fallbacks enquanto os assets 3D são injetados
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import {
-  SovereignReactionTriggerSchema,
+  SovereignTranslationEngine,
+  type ISovereignDictionary
+} from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de ADN */
+import {
+  SovereignReactionTriggerInputSchema,
+  resolveSovereignReactionTheme,
   type ISovereignReactionTrigger
 } from './schemas/SovereignReaction.schema.js';
 
-export const SovereignReactionTrigger: React.FC<ISovereignReactionTrigger> = (properties) => {
+const SovereignReactionTriggerComponent: React.FC<ISovereignReactionTrigger> = (properties) => {
   const apparatusName = 'SovereignReactionTrigger';
 
-  // 1. Aduana de ADN
-  const data = SovereignReactionTriggerSchema.parse(properties);
+  // 1. ADUANA DE ADN (Garante integridade estrutural e fixa o rastro)
+  const validatedData = useMemo(() =>
+    SovereignReactionTriggerInputSchema.parse(properties),
+  [properties]);
 
-  // 2. Orquestração Estética (Manifesto 0008)
-  const themeMap = {
-    SUPPORT: {
-      color: 'text-brand-action',
-      bg: 'bg-brand-action/10',
-      icon: ThumbsUp,
-      labelKey: 'supportLabel'
-    },
-    REJECT: {
-      color: 'text-red-500',
-      bg: 'bg-red-500/10',
-      icon: ThumbsDown,
-      labelKey: 'rejectLabel'
-    },
-    APPRECIATE: {
-      color: 'text-pink-500',
-      bg: 'bg-pink-500/10',
-      icon: Heart,
-      labelKey: 'appreciateLabel'
-    }
-  };
+  // 2. RESOLUÇÃO DETERMINÍSTICA DE TEMA
+  const visualTheme = useMemo(() =>
+    resolveSovereignReactionTheme(validatedData.reactionType, validatedData.correlationIdentifier),
+  [validatedData.reactionType, validatedData.correlationIdentifier]);
 
-  const activeTheme = themeMap[data.reactionType];
+  // 3. TELEMETRIA DE POSICIONAMENTO (Cura do Erro TS2353)
+  useEffect(() => {
+    SovereignLogger({
+      severity: 'INFO',
+      apparatus: apparatusName,
+      operation: 'INTERACTION_NODE_MOUNTED',
+      message: `Atuador de [${validatedData.reactionType}] selado no rastro forense.`,
+      correlationIdentifier: validatedData.correlationIdentifier // Sincronizado com OEDP-V6.0
+    });
+  }, [validatedData.reactionType, validatedData.correlationIdentifier]);
+
+  // 4. RESOLUÇÃO SEMÂNTICA (Engine Elite)
+  const translateLabel = useCallback((semanticKey: string, variables = {}) => {
+    return SovereignTranslationEngine.translate(
+      validatedData.dictionary as unknown as ISovereignDictionary,
+      apparatusName,
+      semanticKey,
+      variables,
+      validatedData.correlationIdentifier
+    );
+  }, [validatedData.dictionary, validatedData.correlationIdentifier]);
+
+  // 5. HANDLER DE DISPARO DE VONTADE
+  const handleInteractionIgnition = useCallback(() => {
+    validatedData.onInteractionIgnition(validatedData.reactionType);
+  }, [validatedData]);
 
   return (
     <motion.button
-      whileTap={{ scale: 0.92 }}
-      whileHover={{ y: -2 }}
-      onClick={() => data.onInteractionIgnition(data.reactionType)}
+      whileTap={{ scale: 0.95, y: 1 }}
+      whileHover={{ scale: 1.02 }}
+      onClick={handleInteractionIgnition}
+      aria-label={translateLabel('ariaReactionStatus', {
+        type: validatedData.reactionType,
+        count: validatedData.interactionCount
+      })}
       className={`
-        flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all duration-500
-        font-serif font-bold uppercase tracking-tighter text-sm
-        ${data.isUserActivelyEngaged ? `${activeTheme.bg} ${activeTheme.color} border-current shadow-lg` : 'border-neutral-200 text-neutral-500 hover:border-neutral-400'}
+        relative flex items-center gap-4 px-7 py-3.5 rounded-full border transition-all duration-700
+        font-serif font-black uppercase tracking-widest text-[11px] group
+        ${validatedData.isUserActivelyEngaged
+          ? `${visualTheme.backgroundClass} ${visualTheme.colorClass} border-current shadow-lg ring-1 ring-current/20`
+          : 'border-neutral-200 dark:border-white/10 text-neutral-500 hover:border-brand-action/40 hover:text-brand-action'}
       `}
     >
-      {/* Ícone Cinético */}
-      <activeTheme.icon
-        size={18}
-        strokeWidth={data.isUserActivelyEngaged ? 3 : 2}
-        className={data.isUserActivelyEngaged ? 'animate-pulse' : ''}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`${validatedData.reactionType}-${validatedData.isUserActivelyEngaged}`}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="relative"
+        >
+          <visualTheme.icon
+            size={18}
+            strokeWidth={validatedData.isUserActivelyEngaged ? 3 : 2}
+            className={validatedData.isUserActivelyEngaged ? 'animate-pulse' : 'opacity-80 group-hover:opacity-100'}
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* A Palavra (O Ato de Vontade) */}
-      <span>{activeTheme.labelKey}</span>
+      <span className="leading-none select-none">
+        {translateLabel(visualTheme.labelKey)}
+      </span>
 
-      {/* Contador de Impacto */}
-      <span className="pl-2 border-l border-current/20 font-mono font-medium">
-        {data.interactionCount}
+      <div className="h-4 w-[1px] bg-current opacity-20" />
+
+      <span className="font-mono font-black tabular-nums tracking-tighter text-sm">
+        {validatedData.interactionCount}
       </span>
     </motion.button>
   );
 };
+
+export const SovereignReactionTrigger = memo(SovereignReactionTriggerComponent);

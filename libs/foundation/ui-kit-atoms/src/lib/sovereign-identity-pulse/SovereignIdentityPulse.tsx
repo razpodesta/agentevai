@@ -1,30 +1,31 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignIdentityPulse
- * @version 1.2.1
- * @protocol OEDP-V5.5 - High Precision & Kinetic UI
- * @description Indicador cinético de presença regional e autoridade de marca.
- * Transmuta o contexto geográfico em uma assinatura visual trilingue e auditável.
- * @policy ZERO-ANY: Erradicação de tipagem anárquica via Branded Type validation.
- * @policy LINGUISTIC_SOVEREIGNTY: Zero strings hardcoded (Ready for Dictionary injection).
+ * @version 2.1.0
+ * @protocol OEDP-V6.0 - High Performance & Forensic Pulse
+ * @description Indicador cinético de presença regional. Saneado contra erro
+ * de propriedades ausentes (TS2739) e vácuo de rastro forense.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica.
+ * @policy ESM-STRICT: Uso de extensões explícitas (.js).
  */
 
 'use client';
 
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useCallback, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import {
   SovereignError,
   SovereignErrorCodeSchema
 } from '@agentevai/sovereign-error-observability';
-
-/**
- * CORREÇÃO ESM: Extensões explícitas para resolução NodeNext.
- * Nota: Importamos o Schema e o PulseIndicator com a terminação .js necessária para o runtime.
- */
 import {
-  SovereignIdentityPulseSchema,
+  SovereignTranslationEngine,
+  type ISovereignDictionary
+} from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de ADN e Sub-Legos */
+import {
+  SovereignIdentityPulseInputSchema,
   type ISovereignIdentityPulse
 } from './schemas/SovereignIdentityPulse.schema.js';
 import { PulseIndicator } from './PulseIndicator.js';
@@ -32,97 +33,104 @@ import { PulseIndicator } from './PulseIndicator.js';
 /**
  * @name SovereignIdentityPulse
  * @component
- * @description Átomo de branding dinâmico que pulsa conforme a saúde e localização regional.
- *
- * @param {ISovereignIdentityPulse} properties - Propriedades validadas pelo ADN Zod.
+ * @description Atuador visual que ancora a soberania regional no rastro de interface.
  */
-export const SovereignIdentityPulse: React.FC<ISovereignIdentityPulse> = (properties) => {
+const SovereignIdentityPulseComponent: React.FC<ISovereignIdentityPulse> = (properties) => {
   const apparatusName = 'SovereignIdentityPulse';
   const fileLocation = 'libs/foundation/ui-kit-atoms/src/lib/sovereign-identity-pulse/SovereignIdentityPulse.tsx';
 
-  // 1. Aduana de ADN (Saneamento de Tipagem de Elite)
-  const data = useMemo(() => {
-    const result = SovereignIdentityPulseSchema.safeParse(properties);
+  // 1. ADUANA DE ADN (Filtro de Integridade e Selagem de Rastro)
+  const validatedData = useMemo(() => {
+    const result = SovereignIdentityPulseInputSchema.safeParse(properties);
 
     if (!result.success) {
-      /**
-       * @section CORREÇÃO DE QUALIDADE
-       * Erradicação do 'as any'. Utilizamos o SovereignErrorCodeSchema.parse
-       * para garantir que o código de erro respeita o ADN Branded do sistema.
-       */
       throw new SovereignError({
         uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-APP-4001'),
-        i18nMappingKey: 'IDENTITY_PULSE_INVALID_PROPS',
-        severity: 'HIGH',
-        apparatusMetadata: {
-          name: apparatusName,
-          version: '1.2.1',
-          fileLocation
-        },
+        i18nMappingKey: 'IDENTITY_PULSE_ADN_CORRUPTED',
+        severity: 'MEDIUM',
+        apparatusMetadata: { name: apparatusName, version: '2.1.0', fileLocation },
         runtimeSnapshot: {
           inputPayload: properties,
-          correlationIdentifier: crypto.randomUUID(),
+          correlationIdentifier: properties.correlationIdentifier || 'ORPHAN_TRACE',
           validationIssues: result.error.issues
         },
         forensicTrace: {
           timestamp: new Date().toISOString(),
-          stack: new Error().stack || 'STACK_TRACE_UNAVAILABLE'
+          stack: 'UI_ATOM_IGNITION_FAILURE'
         }
       });
     }
     return result.data;
   }, [properties]);
 
-  // 2. Telemetria de Ciclo de Vida Neural
+  // 2. TELEMETRIA DE IMPACTO VISUAL
   useEffect(() => {
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
-      operation: 'VISUAL_IGNITION',
-      message: `Pulso de Soberania renderizado para: ${data.cityName}`,
-      metadata: {
-        region: data.cityName,
-        isUrgent: data.isCritical,
-        country: data.countryCode
-      }
+      operation: 'IDENTITY_PULSE_RENDERED',
+      message: `Pulso de soberania regional selado: ${validatedData.regionSlug}`,
+      correlationIdentifier: validatedData.correlationIdentifier
     });
-  }, [data.cityName, data.isCritical, data.countryCode]);
+  }, [validatedData.regionSlug, validatedData.correlationIdentifier]);
 
-  // 3. Renderização Cinética de Elite
+  // 3. RESOLUÇÃO SEMÂNTICA (Tradução via Engine Elite)
+  const translateLabel = useCallback((semanticKey: string, variables = {}) => {
+    return SovereignTranslationEngine.translate(
+      validatedData.dictionary as unknown as ISovereignDictionary,
+      apparatusName,
+      semanticKey,
+      variables,
+      validatedData.correlationIdentifier
+    );
+  }, [validatedData.dictionary, validatedData.correlationIdentifier]);
+
+  /** @section Mapeamento de Estados Cinéticos */
+  const isCriticalPulseActive = validatedData.pulseIntensity === 'CRITICAL';
+
   return (
     <div
-      className="flex flex-col items-start gap-0.5 select-none font-serif"
+      className="flex flex-col items-start gap-1 select-none font-serif group cursor-default"
       role="status"
       aria-live="polite"
-      aria-label={`Portal Agentevai - Região ativa: ${data.cityName}`}
+      aria-label={translateLabel('statusAriaLabel', { region: validatedData.regionName })}
     >
-      {/* Logo de Soberania (A GENTE VAI) - Semantic H1 for SEO Sovereignty */}
-      <motion.h1
-        className="text-2xl font-black tracking-tighter text-brand-primary dark:text-white uppercase leading-none"
-        initial={{ opacity: 0, x: -5 }}
+      {/* 🏛️ Logo de Soberania Editorial */}
+      <motion.span
+        initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="text-2xl font-black tracking-tighter text-brand-primary dark:text-white uppercase leading-none"
       >
         A GENTE VAI
-      </motion.h1>
+      </motion.span>
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={data.cityName}
-          initial={{ y: 8, opacity: 0 }}
+          key={validatedData.regionName}
+          initial={{ y: 5, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -8, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "anticipate" }}
-          className="flex items-center gap-2"
+          exit={{ y: -5, opacity: 0 }}
+          transition={{ duration: 0.5, ease: "anticipate" }}
+          className="flex items-center gap-2.5"
         >
-          <PulseIndicator isCritical={data.isCritical} />
+          {/*
+            📸 CURA DO ERRO TS2739: Injeção de Rastro e Dicionário no Filho.
+            Agora o PulseIndicator recebe o rastro técnico obrigatório.
+          */}
+          <PulseIndicator
+            isCritical={isCriticalPulseActive}
+            correlationIdentifier={validatedData.correlationIdentifier}
+            dictionary={validatedData.dictionary}
+          />
 
-          {/* Subtítulo dinâmico: 'em ação' será futuramente injetado via i18n Engine */}
-          <span className="text-[13px] italic font-medium text-brand-action transition-colors">
-            {data.cityName} em ação
+          <span className="text-[13px] italic font-medium text-brand-action transition-colors duration-500 group-hover:text-neutral-900 dark:group-hover:text-white">
+            {validatedData.regionName} {translateLabel('actionSuffix')}
           </span>
         </motion.div>
       </AnimatePresence>
     </div>
   );
 };
+
+export const SovereignIdentityPulse = memo(SovereignIdentityPulseComponent);

@@ -1,11 +1,12 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TransmuteGeopoliticalId
- * @version 1.2.0
- * @protocol OEDP-V5.5 - High Performance & Neural Resilience
- * @description Motor de conversão estrita entre as dimensões da Trindade Geopolítica.
- * Implementa a lógica de transmutação entre Locales (Cultura), Países (Nação) e Rotas (Navegação).
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @version 2.0.0
+ * @protocol OEDP-V5.5.2 - High Performance Geopolitical Logic
+ * @description Motor atômico de conversão entre Locale, Country e Route.
+ * Erradica falhas de indexação e garante a integridade da Trindade Geopolítica.
+ * @policy ZERO-ANY: Saneamento total via ADN Zod.
+ * @policy ESM-STRICT: Extensões .js obrigatórias.
  */
 
 import {
@@ -17,42 +18,42 @@ import {
   SovereignRouteSchema
 } from '@agentevai/types-common';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { TransmutationInputSchema } from '../schemas/TransmuteGeopoliticalId.schema.js';
 
 /**
- * @section Mapas de Soberania (Estáticos)
- * Definidos fora da classe para otimização de memória e acesso em tempo constante O(1).
+ * @section Mapas de Soberania (O(1) Access)
  */
-const ROUTE_TO_LOCALE_MAP: Record<string, SovereignLocale> = {
+const ROUTE_TO_LOCALE_MAP: Readonly<Record<string, SovereignLocale>> = Object.freeze({
   'br': 'pt-BR' as SovereignLocale,
   'es': 'es-ES' as SovereignLocale,
   'us': 'en-US' as SovereignLocale,
-};
+});
 
-const LOCALE_TO_COUNTRY_MAP: Record<string, SovereignCountry> = {
+const LOCALE_TO_COUNTRY_MAP: Readonly<Record<string, SovereignCountry>> = Object.freeze({
   'pt-BR': 'BR' as SovereignCountry,
   'es-ES': 'ES' as SovereignCountry,
   'en-US': 'US' as SovereignCountry,
-};
+});
 
 /**
  * @class TransmuteGeopoliticalId
- * @description Handler de elite para orquestração de IDs geopolíticos.
+ * @description Central de inteligência para normalização de identificadores nacionais.
  */
 export class TransmuteGeopoliticalId {
+  private static readonly apparatusName = 'TransmuteGeopoliticalId';
 
   /**
    * @method routeToLocale
-   * @description Transmuta um slug de rota (ex: 'br') para um Locale BCP 47.
-   * @param {string} route - O slug extraído da URL.
-   * @returns {SovereignLocale} Identidade cultural validada.
+   * @description Transmuta um slug de rota URL em um Locale BCP 47 validado.
    */
-  public static routeToLocale(route: string): SovereignLocale {
-    const normalizedRoute = route.toLowerCase();
+  public static routeToLocale(routeSlug: string, correlationIdentifier: string): SovereignLocale {
+    const input = TransmutationInputSchema.parse({ rawInput: routeSlug, correlationIdentifier });
+    const normalizedRoute = input.rawInput.toLowerCase();
     const resolvedLocale = ROUTE_TO_LOCALE_MAP[normalizedRoute];
 
     if (!resolvedLocale) {
-      this.reportInconsistency('ROUTE_NOT_MAPPED', { route });
-      return SovereignLocaleSchema.parse('pt-BR'); // Fallback Soberano
+      this.reportEntropy('errorRouteNotMapped', normalizedRoute, correlationIdentifier);
+      return SovereignLocaleSchema.parse('pt-BR');
     }
 
     return resolvedLocale;
@@ -60,22 +61,23 @@ export class TransmuteGeopoliticalId {
 
   /**
    * @method localeToCountry
-   * @description Extrai a Soberania Nacional de um Locale.
-   * @param {SovereignLocale} locale - Identidade cultural.
-   * @returns {SovereignCountry} Código ISO do país em caixa alta.
+   * @description Extrai a Soberania Nacional de uma Identidade Cultural.
    */
-  public static localeToCountry(locale: string): SovereignCountry {
-    const resolvedCountry = LOCALE_TO_COUNTRY_MAP[locale];
+  public static localeToCountry(sovereignLocale: string, correlationIdentifier: string): SovereignCountry {
+    const input = TransmutationInputSchema.parse({ rawInput: sovereignLocale, correlationIdentifier });
+    const resolvedCountry = LOCALE_TO_COUNTRY_MAP[input.rawInput];
 
     if (!resolvedCountry) {
-      // Caso não esteja no mapa, tenta inferência via split (Resiliência)
-      const parts = locale.split('-');
+      // Resiliência: Tentativa de extração por sufixo ISO
+      const parts = input.rawInput.split('-');
       if (parts.length === 2) {
-        return SovereignCountrySchema.parse(parts[1].toUpperCase());
+        const inferredCountry = parts[1].toUpperCase();
+        const validation = SovereignCountrySchema.safeParse(inferredCountry);
+        if (validation.success) return validation.data;
       }
 
-      this.reportInconsistency('LOCALE_CORRUPTED', { locale });
-      return SovereignCountrySchema.parse('BR'); // Fallback Nacional
+      this.reportEntropy('errorLocaleCorrupted', input.rawInput, correlationIdentifier);
+      return SovereignCountrySchema.parse('BR');
     }
 
     return resolvedCountry;
@@ -83,18 +85,16 @@ export class TransmuteGeopoliticalId {
 
   /**
    * @method countryToRoute
-   * @description Converte a Soberania Nacional em um slug de navegação.
-   * @param {SovereignCountry} country - Identificador da Nação.
-   * @returns {SovereignRoute} Slug de ruteamento em caixa baixa.
+   * @description Converte o Código do País em um slug de navegação amigável.
    */
-  public static countryToRoute(country: string): SovereignRoute {
-    const route = country.toLowerCase();
+  public static countryToRoute(sovereignCountry: string, correlationIdentifier: string): SovereignRoute {
+    const input = TransmutationInputSchema.parse({ rawInput: sovereignCountry, correlationIdentifier });
+    const normalizedRoute = input.rawInput.toLowerCase();
 
-    // Validação de ADN antes de retornar
-    const validation = SovereignRouteSchema.safeParse(route);
+    const validation = SovereignRouteSchema.safeParse(normalizedRoute);
 
     if (!validation.success) {
-      this.reportInconsistency('COUNTRY_CODE_INVALID', { country });
+      this.reportEntropy('errorRouteNotMapped', input.rawInput, correlationIdentifier);
       return SovereignRouteSchema.parse('br');
     }
 
@@ -102,17 +102,24 @@ export class TransmuteGeopoliticalId {
   }
 
   /**
-   * @method reportInconsistency
+   * @method reportEntropy
    * @private
-   * @description Notifica o sistema sobre dados geopolíticos fora do padrão.
+   * @description Registra falhas de mapeamento com metadados estritos.
+   * Resolve o Erro TS2322 garantindo rastro técnico Record<string, unknown>.
    */
-  private static reportInconsistency(errorType: string, metadata: object): void {
+  private static reportEntropy(key: string, input: string, correlationIdentifier: string): void {
+    const forensicMetadata: Record<string, unknown> = {
+      faultyInput: input,
+      apparatusVersion: '2.0.0'
+    };
+
     SovereignLogger({
       severity: 'WARN',
-      apparatus: 'TransmuteGeopoliticalId',
+      apparatus: this.apparatusName,
       operation: 'GEOPOLITICAL_ENTROPY',
-      message: `Inconsistência detectada: ${errorType}`,
-      metadata
+      message: `Falha na transmutação: ${key} para a entrada ${input}`,
+      traceIdentifier: correlationIdentifier,
+      metadata: forensicMetadata
     });
   }
 }

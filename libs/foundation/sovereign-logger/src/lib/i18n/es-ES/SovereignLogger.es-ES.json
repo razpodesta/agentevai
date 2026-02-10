@@ -1,7 +1,7 @@
 {
   "SovereignLogger": {
-    "systemPulse": "Pulso del sistema registrado con éxito.",
-    "criticalFailure": "Falla crítica detectada en el aparato {apparatus}.",
-    "invalidAduana": "Violación de integridad en el registro detectada."
+    "TELEMETRY_ADN_VIOLATION": "El registro enviado no respeta el contrato de integridad técnica.",
+    "ORPHAN_TRACE_ALERT": "Alerta: Pulso de telemetría sin identificador de correlación.",
+    "CRITICAL_ENGINE_SHUTDOWN": "Fallo catastrófico en el motor de salida de datos."
   }
 }

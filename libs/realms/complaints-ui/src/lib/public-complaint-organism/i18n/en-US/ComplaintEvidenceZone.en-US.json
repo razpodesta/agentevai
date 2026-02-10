@@ -1,0 +1,7 @@
+{
+  "ComplaintEvidenceZone": {
+    "verifiedAssetLabel": "VERIFIED VISUAL PROOF",
+    "errorMediaLoad": "Technical failure while loading the visual trace of the complaint.",
+    "accessibilityDescription": "Visual evidence of the reported fact: {title}"
+  }
+}

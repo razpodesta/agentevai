@@ -1,6 +1,8 @@
 {
   "TranslateIdentityRole": {
-    "errorMissingRole": "Incapacidade de localizar tradução para o papel {role} no idioma {locale}.",
-    "logAuditSuccess": "Rastro semântico selado para o cidadão no território {locale}."
+    "errorMissingRole": "O papel {targetIdentityRole} não possui tradução mapeada para o território {activeSovereignLocale}.",
+    "logAuditSuccess": "Sincronia léxica de identidade selada com sucesso.",
+    "GEOPOLITICAL_VOID": "A localidade informada não é reconhecida pelo sistema.",
+    "SEMANTIC_VOID": "O papel do usuário não possui correspondente humanizado."
   }
 }

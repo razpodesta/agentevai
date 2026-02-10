@@ -1,49 +1,54 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignIdentityPulseSchema
- * @version 1.3.1
- * @protocol OEDP-V5.5 - High Precision & Kinetic Branding
- * @description ADN para o aparato visual de identidade regional.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Visual Authority ADN
+ * @description ADN que define a estrutura inalterável do pulso de identidade regional.
+ * Sincronizado para erradicar falhas de rastro forense e otimizar a performance de ignição.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ZOD-V4-SYNC: Uso de construtores de elite e precedência de modificadores.
  */
 
 import { z } from 'zod';
-import { RegionSlugSchema } from '@agentevai/sovereign-context';
-/**
- * @section CORREÇÃO TS2724
- * Importação redirecionada para a Bóveda de Contratos (types-common).
- */
 import { SovereignCountrySchema } from '@agentevai/types-common';
 
 /**
- * @name SovereignIdentityPulseSchema
- * @description Aduana de ADN para o componente que ancora a soberania territorial na UI.
+ * @name SovereignIdentityPulseInputSchema
+ * @description Aduana de entrada estrita para o indicador cinético de soberania.
  */
-export const SovereignIdentityPulseSchema = z.object({
+export const SovereignIdentityPulseInputSchema = z.object({
   regionName: z.string()
-    .min(2, { message: 'REGION_NAME_TOO_SHORT' })
-    .describe('Nome amigável da cidade ou estado para exibição (Ex: Florianópolis).'),
+    .min(2)
+    .describe('Nome amigável da localidade para exibição editorial (ex: Florianópolis).'),
 
-  regionSlug: RegionSlugSchema
-    .describe('Identificador único para ruteamento dinâmico e SEO.'),
+  regionSlug: z.string()
+    .min(2)
+    .toLowerCase()
+    .describe('Identificador único de ruteamento geográfico.'),
 
   stateAbbreviation: z.string()
     .length(2)
     .toUpperCase()
-    .describe('Sigla da Unidade Federativa para contextualização regional (Ex: SC).'),
+    .describe('Sigla da Unidade Federativa correspondente.'),
 
-  countryCode: SovereignCountrySchema,
+  countryCode: SovereignCountrySchema
+    .describe('Âncora de soberania nacional validada pelo Manifesto 0018.'),
 
   pulseIntensity: z.enum(['STABLE', 'VIBRANT', 'CRITICAL'])
     .default('STABLE')
-    .describe('Define a frequência e cor da animação do pulso neural.'),
+    .describe('Nível de atividade neural detectado para modulação cinética.'),
 
-  onInteractionTrigger: z.function({
-    input: z.tuple([z.string().describe('Identifier da zona de toque')]),
-    output: z.void()
-  })
-  .optional()
-  .describe('Dispatcher para captura de métricas de engajamento visual.'),
+  /**
+   * @section Soberania Linguística
+   * Injeção do rastro semântico regional.
+   */
+  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
+    .describe('Fragmento de dicionário regionalizado para humanização do aparato.'),
+
+  /** Sincronia de Rastro Forense (Cura do Erro TS2353) */
+  correlationIdentifier: z.uuid()
+    .describe('Identificador inalterável da jornada forense atual.')
 
 }).readonly();
 
-export type ISovereignIdentityPulse = z.infer<typeof SovereignIdentityPulseSchema>;
+export type ISovereignIdentityPulse = z.infer<typeof SovereignIdentityPulseInputSchema>;

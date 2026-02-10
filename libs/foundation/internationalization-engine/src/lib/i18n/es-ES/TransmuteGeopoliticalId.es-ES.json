@@ -1,0 +1,8 @@
+{
+  "TransmuteGeopoliticalId": {
+    "errorRouteNotMapped": "La ruta {input} no posee mapeo cultural en el territorio activo.",
+    "errorLocaleCorrupted": "El rastro de localidad {input} está corrompido o es ilegible.",
+    "logTransmutationSuccess": "Transmutación geopolítica concluida para {input}.",
+    "auditEntropyDetected": "Entropía detectada en el rastro geopolítico: {input}."
+  }
+}

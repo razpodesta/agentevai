@@ -1,45 +1,39 @@
-// libs/foundation/sovereign-error-observability/src/lib/SovereignError.ts
-
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignError
- * @version 2.3.0
- * @description Motor operativo de transmutação de falhas e diagnósticos.
- * Converte entropia sistêmica em Pacotes de Dados Soberanos (ADN v2.1.0) 
- * com captura de metadados de telemetria de alta precisão.
- * @protocol OEDP-V5.5 - High Resilience & Neural Visibility.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - High Resilience & Neural Resonance
+ * @description Motor operativo que transmuta entropia sistêmica em Pacotes de Dados Soberanos.
+ * @policy ESM-STRICT: Uso de extensões .js para conformidade NodeNext.
  */
 
 import {
   SovereignErrorSchema,
-  ISovereignError,
-  SovereignErrorCodeSchema
-} from './schemas/SovereignError.schema';
+  SovereignErrorCodeSchema,
+  type ISovereignError
+} from './schemas/SovereignError.schema.js';
 
 /**
  * @class SovereignError
  * @extends Error
  * @description Unidade fundamental de observabilidade de falhas.
- * Projetado para ser processado pelo AI-Neural-Auditor e persistido em rastro forense.
+ * Projetada para ser o "Lego de Dor" consumido pelo AI-Neural-Auditor.
  */
 export class SovereignError extends Error {
   /** O ADN purificado e imutável da falha */
   public readonly packet: ISovereignError;
 
   constructor(payload: ISovereignError) {
-    // 1. Validação Aduaneira (Zod 1000% Mastery)
-    // Garante que o pacote de erro não contém dados corrompidos antes da emissão.
+    // 1. Aduana de Integridade (Zod Enforcement)
     const validatedPacket = SovereignErrorSchema.parse(payload);
 
-    // 2. Invocação do Constructor Nativo
-    // Formatação semântica para logs de console tradicionais (Legacy Support).
-    super(`[${validatedPacket.uniqueErrorCode}] ${validatedPacket.apparatusMetadata.name} v${validatedPacket.apparatusMetadata.version}: ${validatedPacket.i18nMappingKey}`);
+    // 2. Ignição do Constructor Nativo
+    super(`[${validatedPacket.uniqueErrorCode}] ${validatedPacket.apparatusMetadata.name}: ${validatedPacket.i18nMappingKey}`);
 
     this.name = 'SovereignError';
     this.packet = validatedPacket;
 
-    // 3. Captura Forense de Pilha (V8 Integration)
+    // 3. Captura Forense de Pilha (V8 Engine Integration)
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, SovereignError);
     }
@@ -48,8 +42,7 @@ export class SovereignError extends Error {
   /**
    * @method transmute
    * @static
-   * @description Fábrica de elite para converter exceções nativas ou objetos desconhecidos
-   * em erros soberanos estruturados. Ideal para capturar falhas em APIs de Terceiros.
+   * @description Fábrica de elite que converte exceções genéricas em diagnósticos soberanos.
    */
   public static transmute(
     nativeError: unknown,
@@ -62,13 +55,12 @@ export class SovereignError extends Error {
       recoverySuggestion?: string;
     }
   ): SovereignError {
-    const errorInstance = nativeError instanceof Error 
-      ? nativeError 
-      : new Error(typeof nativeError === 'object' ? JSON.stringify(nativeError) : String(nativeError));
+    const errorInstance = nativeError instanceof Error
+      ? nativeError
+      : new Error(JSON.stringify(nativeError));
 
-    // Captura proativa de uso de memória (Node.js fallback)
-    const memoryUsageSnapshot = typeof process !== 'undefined' 
-      ? Math.round(process.memoryUsage().heapUsed / 1024 / 1024) 
+    const memorySnapshot = typeof process !== 'undefined'
+      ? Math.round(process.memoryUsage().heapUsed / 1024 / 1024)
       : undefined;
 
     return new SovereignError({
@@ -77,65 +69,42 @@ export class SovereignError extends Error {
       severity: context.severity || 'HIGH',
       apparatusMetadata: {
         name: context.apparatus,
-        version: '2.3.0',
+        version: '3.0.0',
         fileLocation: context.location
       },
       runtimeSnapshot: {
-        inputPayload: { 
+        inputPayload: {
           originalMessage: errorInstance.message,
-          errorType: errorInstance.name,
-          platform: typeof window === 'undefined' ? 'SERVER/EDGE' : 'BROWSER'
+          errorType: errorInstance.name
         },
         correlationIdentifier: context.correlationIdentifier,
-        memoryUsage: memoryUsageSnapshot
+        memoryUsageInMegabytes: memorySnapshot
       },
       forensicTrace: {
         timestamp: new Date().toISOString(),
-        stack: errorInstance.stack || 'STACK_UNAVAILABLE'
+        stack: errorInstance.stack || 'STACK_TRACE_UNAVAILABLE'
       },
-      recoverySuggestion: context.recoverySuggestion || 'Acionar o AI-Neural-Auditor para análise de rastro de IP e estado do Monorepo.'
+      recoverySuggestion: context.recoverySuggestion || 'Acionar Auditor Neural para análise de rastro.'
     });
   }
 
   /**
-   * @method capture
-   * @static
-   * @description Atalho de elite para criação rápida de erros com ADN validado.
-   */
-  public static capture(payload: ISovereignError): SovereignError {
-    return new SovereignError(payload);
-  }
-
-  /**
    * @method getDiagnosticReport
-   * @description Gera um relatório técnico denso para o AI-Neural-Auditor.
-   * Utiliza um sumário neural para facilitar o reconhecimento de padrões.
+   * @description Gera rastro estruturado para consumo imediato por IAs de Manutenção.
    */
   public getDiagnosticReport(): string {
-    const reportPayload = {
+    return JSON.stringify({
       fingerprint: `F-${this.packet.uniqueErrorCode}-${this.packet.runtimeSnapshot.correlationIdentifier}`,
-      neuralSummary: {
-        errorCode: this.packet.uniqueErrorCode,
-        apparatus: `${this.packet.apparatusMetadata.name}@${this.packet.apparatusMetadata.version}`,
-        location: this.packet.apparatusMetadata.fileLocation,
-        severity: this.packet.severity
+      neuralContext: {
+        apparatus: this.packet.apparatusMetadata.name,
+        severity: this.packet.severity,
+        location: this.packet.apparatusMetadata.fileLocation
       },
-      diagnosticContext: {
-        issues: this.packet.runtimeSnapshot.validationIssues || [],
-        memory: this.packet.runtimeSnapshot.memoryUsage ? `${this.packet.runtimeSnapshot.memoryUsage}MB` : 'N/A',
-        timestamp: this.packet.forensicTrace.timestamp
-      },
-      recoveryDirective: this.packet.recoverySuggestion || 'CONSULT_SOVEREIGN_ARCHITECT'
-    };
-
-    return JSON.stringify(reportPayload);
+      rastro: this.packet.forensicTrace.stack,
+      suggestion: this.packet.recoverySuggestion
+    });
   }
 
-  /**
-   * @method toJSON
-   * @description Garante que ao serializar o erro, o pacote ADN seja o output primário,
-   * facilitando o transporte via HTTP/JSON para o admin-cms.
-   */
   public toJSON(): ISovereignError {
     return this.packet;
   }

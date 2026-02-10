@@ -1,7 +1,8 @@
 {
   "SovereignRegionalHeader": {
     "actionSuffix": "em ação",
-    "headerAriaLabel": "Cabeçalho Regional de {region}",
-    "logImpression": "Cabeçalho regional renderizado com sucesso para {region}."
+    "headerAriaLabel": "Cabeçalho regional de autoridade para {region}",
+    "logImpression": "Impressão visual de soberania registrada para {region}.",
+    "statusIndicatorAria": "Estado do pulso neural regional: {status}"
   }
 }

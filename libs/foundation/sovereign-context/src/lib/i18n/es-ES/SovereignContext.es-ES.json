@@ -1,0 +1,8 @@
+{
+  "SovereignContext": {
+    "initializationError": "Error al intentar establecer la conciencia del sistema en el territorio.",
+    "regionActive": "Sistema operando bajo la soberanía de {region}.",
+    "degradedAlert": "Atención: Sistema operando en modo de resiliencia neural.",
+    "CONSCIOUSNESS_COLLAPSE": "Falla catastrófica: El sistema no pudo anclar su identidad geográfica."
+  }
+}

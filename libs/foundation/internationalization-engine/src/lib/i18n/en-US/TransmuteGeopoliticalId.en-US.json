@@ -1,0 +1,8 @@
+{
+  "TransmuteGeopoliticalId": {
+    "errorRouteNotMapped": "The route {input} has no cultural mapping in the active territory.",
+    "errorLocaleCorrupted": "The locale trace {input} is corrupted or unreadable.",
+    "logTransmutationSuccess": "Geopolitical transmutation completed for {input}.",
+    "auditEntropyDetected": "Entropy detected in the geopolitical trace: {input}."
+  }
+}

@@ -1,7 +1,7 @@
 {
   "SovereignIdentityPulse": {
     "actionSuffix": "em ação",
-    "statusAria": "Localização detectada:",
-    "fallbackCity": "Brasil"
+    "statusAriaLabel": "Região ativa detectada: {region}",
+    "logVisualIgnition": "Pulso de soberania regional ignificado para {region}."
   }
 }

@@ -1,0 +1,8 @@
+{
+  "SovereignError": {
+    "GENERIC_INFRASTRUCTURE_FAILURE": "Ocorreu uma falha na infraestrutura de base do sistema.",
+    "CONSCIOUSNESS_COLLAPSE": "Colapso de consciência: O sistema não conseguiu determinar o contexto operacional.",
+    "ADN_CORRUPTION": "Corrupção de ADN detectada: Os dados não respeitam o contrato soberano.",
+    "REACTION_THEME_NOT_FOUND": "Falha estética: O tema visual para a reação solicitada não existe."
+  }
+}

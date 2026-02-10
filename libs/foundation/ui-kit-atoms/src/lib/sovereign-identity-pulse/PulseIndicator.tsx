@@ -1,68 +1,78 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus PulseIndicator
- * @version 1.1.0
- * @protocol OEDP-V5.5 - High Precision & Kinetic UI
- * @description Átomo visual de feedback cinético para sinalização de estado ativo.
- * Implementa pulsação neural baseada no nível de urgência regional.
- * @policy ZERO-ANY: Estritamente tipado.
- * @policy PERFORMANCE-FIRST: Componente memorizado para otimização de ciclos de renderização.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Performance Kinetic UI
+ * @description Partícula visual de feedback sistêmico.
+ * Implementa física de mola para representar a vitalidade do rastro regional.
  */
 
 'use client';
 
-import React, { memo } from 'react';
+import React, { useMemo, memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { z } from 'zod';
+import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
 
-/**
- * @section Aduana de ADN (Fronteira Local)
- */
-const PulseIndicatorSchema = z.object({
-  isCritical: z.boolean()
-    .describe('Define se o pulso deve emitir alerta de criticidade (Vermelho) ou estabilidade (Ciano).')
-}).readonly();
+/** @section Sincronia de ADN Local */
+import {
+  PulseIndicatorInputSchema,
+  type IPulseIndicator
+} from './schemas/PulseIndicator.schema.js';
 
-export type IPulseIndicator = z.infer<typeof PulseIndicatorSchema>;
+const PulseIndicatorComponent: React.FC<IPulseIndicator> = (properties) => {
+  const apparatusName = 'PulseIndicator';
 
-/**
- * @name PulseIndicator
- * @component
- * @description Partícula cinética que ancora a atenção visual para o status de soberania.
- */
-export const PulseIndicator: React.FC<IPulseIndicator> = memo(({ isCritical }) => {
-  // 1. Validação de Integridade (Aduana de Micro-Lego)
-  const data = PulseIndicatorSchema.parse({ isCritical });
+  // 1. ADUANA DE MICRO-ADN (Validação de integridade atômica)
+  const validatedData = useMemo(() =>
+    PulseIndicatorInputSchema.parse(properties),
+  [properties]);
 
-  // 2. Orquestração de Estilos Dinâmicos
-  const pulseColorClass = data.isCritical ? 'bg-red-500' : 'bg-brand-action';
-  const coreColorClass = data.isCritical ? 'bg-red-600' : 'bg-brand-action';
+  // 2. RESOLUÇÃO SEMÂNTICA (Acessibilidade Soberana)
+  const translateLabel = useCallback((semanticKey: string) => {
+    return SovereignTranslationEngine.translate(
+      validatedData.dictionary as unknown as ISovereignDictionary,
+      apparatusName,
+      semanticKey,
+      {},
+      validatedData.correlationIdentifier
+    );
+  }, [validatedData.dictionary, validatedData.correlationIdentifier]);
+
+  // 3. ORQUESTRAÇÃO CROMÁTICA
+  const pulseColorClass = validatedData.isCritical ? 'bg-red-500' : 'bg-brand-action';
+  const coreColorClass = validatedData.isCritical ? 'bg-red-600' : 'bg-brand-action';
 
   return (
     <div
-      className="relative flex h-2.5 w-2.5 items-center justify-center"
-      aria-hidden="true"
+      className="relative flex h-3 w-3 items-center justify-center"
+      role="img"
+      aria-label={translateLabel(validatedData.isCritical ? 'statusCritical' : 'statusStable')}
     >
-      {/* Halo de Expansão (Pulso Neural) */}
+      {/* Halo de Expansão Neural (Física de Mola) */}
       <motion.span
-        initial={{ scale: 1, opacity: 0.8 }}
+        initial={{ scale: 1, opacity: 0.6 }}
         animate={{
-          scale: [1, 2.4, 1],
-          opacity: [0.6, 0, 0.6]
+          scale: [1, 2.2, 1],
+          opacity: [0.5, 0, 0.5]
         }}
         transition={{
           repeat: Infinity,
-          duration: 3,
+          duration: validatedData.isCritical ? 1.5 : 3, // Cadência acelerada em alerta
           ease: "easeInOut"
         }}
-        className={`absolute inline-flex h-full w-full rounded-full ${pulseColorClass}`}
+        className={`absolute inline-flex h-full w-full rounded-full shadow-lg ${pulseColorClass}`}
       />
 
-      {/* Núcleo Estático (Ancoragem Visual) */}
-      <span className={`relative inline-flex h-2.5 w-2.5 rounded-full shadow-sm ring-1 ring-black/5 ${coreColorClass}`} />
+      {/* Núcleo de Ancoragem Estática */}
+      <span
+        className={`relative inline-flex h-2.5 w-2.5 rounded-full ring-2 ring-white/10 dark:ring-black/20 ${coreColorClass}`}
+      />
     </div>
   );
-});
+};
 
-// Identidade Forense para DevTools
-PulseIndicator.displayName = 'PulseIndicator';
+/**
+ * @section Selagem de Performance
+ * Memoização atômica para evitar repaints desnecessários no enxame de UI.
+ */
+export const PulseIndicator = memo(PulseIndicatorComponent);

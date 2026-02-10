@@ -1,13 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus InternationalizationEngineHub
- * @version 2.4.1
+ * @version 2.6.0
  */
 
-/**
- * @section Camada Operativa
- * CORREÇÃO ESM: Uso de extensões explícitas para garantir compatibilidade NodeNext.
- */
+/* --- ⚙️ MOTORES DE TRANSMUTAÇÃO --- */
 export {
   SovereignTranslationEngine
 } from './lib/handlers/SovereignTranslationEngine.js';
@@ -16,14 +13,6 @@ export {
   TransmuteGeopoliticalId
 } from './lib/handlers/TransmuteGeopoliticalId.js';
 
-/**
- * @section Camada de Definição
- * Agora os membros 'LocaleSchema' e 'Locale' são encontrados corretamente.
- */
-export {
-  LocaleSchema,
-  TranslationFragmentSchema,
-  SovereignDictionarySchema,
-  type Locale,
-  type ISovereignDictionary
-} from './lib/schemas/Internationalization.schema.js';
+/* --- 🧬 ADN E SCHEMAS --- */
+export * from './lib/schemas/Internationalization.schema.js';
+export * from './lib/schemas/TransmuteGeopoliticalId.schema.js';

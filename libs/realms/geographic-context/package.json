@@ -1,31 +1,31 @@
 {
   "name": "@agentevai/geographic-context",
-  "version": "1.1.0",
-  "description": "Inteligência Geográfica: Transmuta dados governamentais (IBGE) em contextos territoriais soberanos.",
+  "version": "2.0.0",
+  "description": "Inteligência Geográfica: Transmuta dados governamentais e infraestrutura postal em contextos territoriais soberanos.",
   "private": true,
   "type": "module",
   "author": {
     "name": "Raz Podestá",
     "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5"
+    "protocol": "OEDP-V6.0"
   },
   "metadata": {
-    "tier": "REALM_LOGIC",
+    "tier": "REALM_CORE",
     "role": "GEOSPATIAL_RESOLVER",
-    "realm": "GEOGRAPHY"
+    "realm": "GEOGRAPHY",
+    "stability": "GOD_TIER"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
-    "@agentevai/sovereign-error-observability": "2.2.0",
-    "@agentevai/types-common": "1.2.0",
-    "@agentevai/internationalization-engine": "2.5.0",
-    "@agentevai/search-engine": "1.0.0"
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/types-common": "workspace:*",
+    "@agentevai/internationalization-engine": "2.6.0",
+    "@agentevai/search-engine": "workspace:*"
   },
   "peerDependencies": {
     "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*",
-    "@agentevai/sovereign-context": "*"
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-context": "workspace:*"
   }
 }

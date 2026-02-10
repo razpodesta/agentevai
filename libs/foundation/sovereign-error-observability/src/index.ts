@@ -1,17 +1,19 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignErrorObservabilityHub
- * @version 2.2.0
- * @description Ponto único de exportação para o motor de observabilidade de falhas.
+ * @version 2.3.0
+ * @protocol OEDP-V6.0 - High Precision & ESM Sovereignty
+ * @description Ponto único de exposição (SSOT) para o motor de observabilidade de falhas.
  * Fornece a gramática taxonômica para diagnóstico e autocura do sistema.
- * @protocol OEDP-V5.5 - Standard MetaShark
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ESM-STRICT: Uso de extensões explícitas (.js) para compatibilidade nativa.
  */
 
 /**
  * @section Camada Operativa (Motor de Transmutação)
  * Classe mestre para captura e estruturação de falhas sistêmicas.
  */
-export { SovereignError } from './lib/SovereignError';
+export { SovereignError } from './lib/SovereignError.js';
 
 /**
  * @section Camada de Definição (ADN Criptográfico)
@@ -22,10 +24,10 @@ export {
   SovereignErrorCodeSchema,
   type ISovereignError,
   type SovereignErrorCode,
-} from './lib/schemas/SovereignError.schema';
+} from './lib/schemas/SovereignError.schema.js';
 
 /**
  * @note Este aparato reside na Foundation (Alicerce).
- * Ele é a "Linguagem de Dor" comum a todos os Reinos (Realms).
- * O AI-Neural-Auditor monitora a pureza deste barril para evitar acoplamento circular.
+ * Rastro Forense: Monitorado pelo AI-Neural-Auditor para garantir que a
+ * "Linguagem de Dor" permaneça pura e sem dependências circulares.
  */

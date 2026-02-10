@@ -1,0 +1,8 @@
+{
+  "SovereignError": {
+    "GENERIC_INFRASTRUCTURE_FAILURE": "A failure occurred in the system's base infrastructure.",
+    "CONSCIOUSNESS_COLLAPSE": "Consciousness collapse: The system could not determine the operational context.",
+    "ADN_CORRUPTION": "DNA corruption detected: The data does not respect the sovereign contract.",
+    "REACTION_THEME_NOT_FOUND": "Aesthetic failure: The visual theme for the requested reaction does not exist."
+  }
+}

@@ -1,9 +1,10 @@
 {
   "SovereignReactionTrigger": {
-    "supportLabel": "Support",
-    "rejectLabel": "Reject",
-    "appreciateLabel": "Like",
-    "logReactionSealed": "Citizen's will sealed for category {type}.",
-    "errorAuthRequired": "Action denied: Sovereign authentication is required to support complaints."
+    "label_SUPPORT": "Support",
+    "label_REJECT": "Reject",
+    "label_APPRECIATE": "Like",
+    "ariaReactionStatus": "Reaction {type} active with {count} interactions.",
+    "logInteractionSuccess": "Act of will [{type}] sealed in the regional swarm.",
+    "REACTION_THEME_NOT_FOUND": "Rendering failure: Visual theme not located."
   }
 }

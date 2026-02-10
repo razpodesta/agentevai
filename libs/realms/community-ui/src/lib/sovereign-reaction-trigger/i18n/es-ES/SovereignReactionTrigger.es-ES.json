@@ -1,9 +1,10 @@
 {
   "SovereignReactionTrigger": {
-    "supportLabel": "Apoyar",
-    "rejectLabel": "Rechazar",
-    "appreciateLabel": "Me gusta",
-    "logReactionSealed": "Voluntad del ciudadano sellada para la categoría {type}.",
-    "errorAuthRequired": "Acción denegada: Es necesaria la autenticación soberana para apoyar denuncias."
+    "label_SUPPORT": "Apoyar",
+    "label_REJECT": "Rechazar",
+    "label_APPRECIATE": "Me gusta",
+    "ariaReactionStatus": "Reacción {type} activa con {count} interacciones.",
+    "logInteractionSuccess": "Acto de voluntad [{type}] sellado en el enjambre regional.",
+    "REACTION_THEME_NOT_FOUND": "Fallo de renderizado: Tema visual no localizado."
   }
 }

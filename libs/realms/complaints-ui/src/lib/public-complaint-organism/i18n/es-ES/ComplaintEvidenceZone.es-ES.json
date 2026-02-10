@@ -1,0 +1,7 @@
+{
+  "ComplaintEvidenceZone": {
+    "verifiedAssetLabel": "PRUEBA VISUAL VERIFICADA",
+    "errorMediaLoad": "Fallo técnico al cargar el rastro visual del reporte.",
+    "accessibilityDescription": "Evidencia visual del hecho reportado: {title}"
+  }
+}

@@ -1,18 +1,25 @@
 {
   "name": "@agentevai/identity-domain",
-  "version": "1.3.0",
+  "version": "2.0.0",
+  "description": "Reino de Soberania de Identidade: Orquestra a transmutação de papéis, mérito social e autoridade NIST.",
   "private": true,
   "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.0"
+  },
   "metadata": {
-    "protocol": "OEDP-V5.5",
-    "tier": "CORE_LOGIC"
+    "tier": "REALM_CORE",
+    "role": "IDENTITY_AUTHORITY",
+    "realm": "IDENTITY"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "peerDependencies": {
-    "zod": "^4.3.6",
+    "@agentevai/types-common": "workspace:*",
     "@agentevai/sovereign-logger": "workspace:*",
     "@agentevai/sovereign-error-observability": "workspace:*"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
   }
 }

@@ -1,9 +1,11 @@
 {
   "SovereignMainHeader": {
-    "loginButtonLabel": "Sign In",
-    "subscribeButtonLabel": "Subscribe",
+    "loginButtonLabel": "Citizen Access",
+    "subscribeButtonLabel": "Ensure Sovereignty",
     "languageSelectorAria": "Change system cultural identity",
     "themeToggleAria": "Toggle light phase between Obsidian and Milk",
-    "searchPlaceholder": "Search complaints and regional facts..."
+    "defaultRegionName": "Brazil",
+    "actionSuffix": "in action",
+    "verificationLabel": "Sovereign Identity Active"
   }
 }

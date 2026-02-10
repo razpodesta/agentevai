@@ -1,9 +1,11 @@
 {
   "SovereignMainHeader": {
-    "loginButtonLabel": "Entrar",
-    "subscribeButtonLabel": "Inscreva-se",
+    "loginButtonLabel": "Acesso Cidadão",
+    "subscribeButtonLabel": "Garantir Soberania",
     "languageSelectorAria": "Alterar identidade cultural do sistema",
     "themeToggleAria": "Alternar fase lumínica entre Obsidian e Milk",
-    "searchPlaceholder": "Buscar denúncias e fatos regionais..."
+    "defaultRegionName": "Brasil",
+    "actionSuffix": "em ação",
+    "verificationLabel": "Identidade Soberana Ativa"
   }
 }

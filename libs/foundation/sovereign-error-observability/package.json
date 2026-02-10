@@ -1,22 +1,25 @@
 {
   "name": "@agentevai/sovereign-error-observability",
-  "version": "2.2.0",
-  "description": "Linguagem de Dor: Motor de transmutação de falhas e diagnósticos para autocura.",
+  "version": "2.3.0",
+  "description": "Linguagem de Dor: Motor de transmutação de falhas e diagnósticos estruturados para autocura neural.",
   "private": true,
   "type": "module",
-  "author": "Raz Podestá - MetaShark Tech",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.0"
+  },
   "metadata": {
-    "tier": "FOUNDATION_UTIL",
-    "protocol": "OEDP-V5.5",
-    "role": "RESILIENCE_CORE"
+    "tier": "FOUNDATION_CORE",
+    "role": "ERROR_OBSERVABILITY",
+    "stability": "GOD_TIER",
+    "coverage_target": 100
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*"
+    "@agentevai/sovereign-logger": "workspace:*"
   }
 }

@@ -1,37 +1,72 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus PopularSupportTriggerSchema
- * @version 1.0.0
+ * @version 1.2.0
+ * @protocol OEDP-V5.5.2 - Public Trust Integrity
+ * @description ADN que define o estado e o comportamento do gatilho de apoio popular.
+ * Saneado contra erro TS2769 via marcação nominal de valor padrão.
  */
 
 import { z } from 'zod';
 import { IdentityAssuranceLevelSchema } from '@agentevai/identity-domain';
 
-export const SupportStatusSchema = z.enum([
-  'IDLE',         // Aguardando intenção
-  'SIGNING',      // Processando assinatura eletrônica
-  'SEALED',       // Selado no Pool Regional
-  'UNAUTHORIZED'  // Cidadão não logado ou IAL insuficiente
-]).brand<'SupportStatus'>();
+/**
+ * @section Dimensão de Estado Operativo
+ */
+const SupportStatusEnum = z.enum([
+  'IDLE',
+  'SIGNING',
+  'SEALED',
+  'UNAUTHORIZED'
+]);
+
+export const SupportStatusSchema = SupportStatusEnum
+  .describe('Reflete o estágio atual da assinatura eletrônica no rastro de soberania.')
+  .brand<'SupportStatus'>();
 
 export type SupportStatus = z.infer<typeof SupportStatusSchema>;
 
-export const PopularSupportTriggerInputSchema = z.object({
-  status: SupportStatusSchema.default('IDLE' as SupportStatus),
+/**
+ * @name PopularSupportTriggerInputBaseSchema
+ * @description Estrutura base para permitir a aplicação de defaults em tipos nominais.
+ */
+export const PopularSupportTriggerInputBaseSchema = z.object({
+  /** 
+   * @section Sincronia Zod v4 
+   * Cura do Erro TS2769: O valor padrão deve ser forçado ao tipo nominal do esquema.
+   */
+  status: SupportStatusSchema
+    .default('IDLE' as SupportStatus),
   
-  assuranceLevel: IdentityAssuranceLevelSchema,
+  assuranceLevel: IdentityAssuranceLevelSchema
+    .describe('Nível de fé pública (IAL) verificado da identidade ativa.'),
 
-  currentSupportCount: z.number().int().nonnegative(),
+  currentSupportCount: z.number()
+    .int()
+    .nonnegative()
+    .describe('Volume total de vontades cidadãs seladas no rastro regional.'),
 
-  /** Chave do fragmento i18n injetado */
-  dictionary: z.record(z.string(), z.unknown()),
+  dictionary: z.record(z.string(), z.unknown())
+    .describe('Silo linguístico regionalizado para humanização de estados cinéticos.'),
 
+  /** 
+   * Sintaxe de Objeto Zod v4 para funções assíncronas.
+   */
   onSignIntent: z.function({
     input: z.tuple([]),
     output: z.promise(z.void())
-  }).describe('Gatilho para ignição da assinatura via Vault.'),
+  }).describe('Gatilho de alta prioridade que inicia a selagem no Blockchain-Ledger.'),
 
   correlationIdentifier: z.uuid()
-}).readonly();
+    .describe('Identificador inalterável da jornada forense para perícia técnica.')
+});
+
+/**
+ * @name PopularSupportTriggerInputSchema
+ * @section Sellado Nominal Final
+ */
+export const PopularSupportTriggerInputSchema = PopularSupportTriggerInputBaseSchema
+  .brand<'PopularSupportTriggerInput'>()
+  .readonly();
 
 export type IPopularSupportTriggerInput = z.infer<typeof PopularSupportTriggerInputSchema>;

@@ -1,36 +1,34 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus VisitorIdentitySchema
- * @version 1.2.0
- * @protocol OEDP-V5.5 - High Precision & Neural Integrity
- * @description ADN para a identificação técnica e capacidades do aparato do visitante.
- * Alinhado ao Manifesto 0018 para consistência de Locale e Soberania.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Forensic Precision & High Performance
+ * @description ADN que define a identidade técnica, capacidades de hardware
+ * e rastro cultural do visitante. Sincronizado com o Manifesto 0018.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica.
  */
 
 import { z } from 'zod';
 import { SovereignLocaleSchema } from '@agentevai/types-common';
 
 /**
- * @section Tipagem Nominal (Branded Types)
+ * @section Taxonomia de Hardware e Software
  */
 export const BrowserEngineSchema = z.enum(['WebKit', 'Blink', 'Gecko', 'Presto', 'Unknown'])
-  .describe('Motor de renderização detectado para otimização de CSS e animações cinéticas.');
+  .describe('Motor de renderização detectado para otimização de animações cinéticas.');
 
 export const VisitorDeviceTypeSchema = z.enum(['MOBILE', 'TABLET', 'DESKTOP', 'BOT'])
-  .describe('Categorização semântica do hardware para entrega de layouts Mobile-First.');
+  .describe('Categorização semântica do hardware para entrega de layouts adaptativos.');
 
 /**
  * @name VisitorIdentitySchema
  * @description Aduana de ADN para a identidade técnica do visitante.
- * Monitorado pelo AI-Neural-Auditor para ajuste de carga de renderização.
+ * Utilizado pelo AI-Neural-Auditor para ajuste dinâmico de payload.
  */
 export const VisitorIdentitySchema = z.object({
-  /**
-   * @section Sincronia Geopolítica
-   * Garante que o idioma detectado pelo navegador seja validado contra nossa malha soberana.
-   */
+  /** Identidade Cultural validada (pt-BR, es-ES, en-US) */
   preferredLocale: SovereignLocaleSchema
-    .describe('Identidade cultural preferida do visitante, validada contra o padrão BCP 47.'),
+    .describe('Identidade cultural preferida do visitante conforme padrão BCP 47.'),
 
   deviceType: VisitorDeviceTypeSchema,
 
@@ -38,27 +36,19 @@ export const VisitorIdentitySchema = z.object({
 
   userAgent: z.string()
     .min(5)
-    .describe('Rastro forense bruto do agente do usuário para análise de vulnerabilidades.'),
+    .describe('Rastro textual bruto do agente do usuário para perícia forense.'),
 
-  /**
-   * @section Orquestração de Performance (Fase 5.5)
-   * Utilizado pelo Framer Motion para decidir entre animações 3D ou degradadas.
-   */
+  /** Orquestração de Performance */
   isHighPerformanceDevice: z.boolean()
-    .describe('Inferência de capacidade de CPU/GPU para habilitar experiência cinética total.'),
+    .describe('Sinalizador de capacidade de processamento para ativação de Aura Cinética.'),
 
-  /**
-   * @section Segurança e Defesa
-   * Sinalizador de integridade para o SovereignShield.
-   */
+  /** Borda de Segurança */
   isBot: z.boolean()
     .default(false)
-    .describe('Indica se o visitante é um autômato (Search Crawler ou Malicious Script).'),
+    .describe('Indica se o rastro pertence a um autômato ou crawler.'),
 
-}).readonly();
+})
+.brand<'VisitorIdentity'>() // Selagem Nominal de Soberania
+.readonly();
 
-/**
- * @interface IVisitorIdentity
- * @description Interface imutável e Branded para consumo em todo o ecossistema.
- */
-export type IVisitorIdentity = z.infer<typeof VisitorIdentitySchema> & { readonly __brand?: 'VisitorIdentity' };
+export type IVisitorIdentity = z.infer<typeof VisitorIdentitySchema>;

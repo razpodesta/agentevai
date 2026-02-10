@@ -1,11 +1,11 @@
 {
   "PublicComplaintOrganism": {
-    "severity_CRITICAL": "Critical Urgency",
-    "severity_MODERATE": "Under Investigation",
-    "severity_INFORMATIVE": "Community Suggestion",
-    "severity_RESOLVED": "Cause Resolved",
-    "blockchainStatus": "Active Mathematical Proof",
-    "locationLabelPrefix": "Occurred in",
-    "logViewIgnited": "Evidence {id} viewed under trace {traceId}."
+    "statusLabel_CRITICAL": "CRITICAL URGENCY",
+    "statusLabel_MODERATE": "UNDER INVESTIGATION",
+    "statusLabel_INFORMATIVE": "COMMUNITY REPORT",
+    "statusLabel_RESOLVED": "CAUSE RESOLVED",
+    "blockchainVerifiedLabel": "MATHEMATICAL PUBLIC TRUST",
+    "locationAria": "Incident location: {location}",
+    "errorAduanaFailed": "DNA Failure: The complaint data is corrupted."
   }
 }

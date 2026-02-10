@@ -1,11 +1,11 @@
 {
   "PublicComplaintOrganism": {
-    "severity_CRITICAL": "Urgencia Crítica",
-    "severity_MODERATE": "En Investigación",
-    "severity_INFORMATIVE": "Sugerencia Comunitaria",
-    "severity_RESOLVED": "Causa Resuelta",
-    "blockchainStatus": "Prueba Matemática Activa",
-    "locationLabelPrefix": "Ocurrido en",
-    "logViewIgnited": "Evidencia {id} visualizada bajo rastro {traceId}."
+    "statusLabel_CRITICAL": "URGENCIA CRÍTICA",
+    "statusLabel_MODERATE": "EN INVESTIGACIÓN",
+    "statusLabel_INFORMATIVE": "REPORTE COMUNITARIO",
+    "statusLabel_RESOLVED": "CAUSA RESUELTA",
+    "blockchainVerifiedLabel": "FE PÚBLICA MATEMÁTICA",
+    "locationAria": "Ubicación del incidente: {location}",
+    "errorAduanaFailed": "Fallo de ADN: Los datos del reporte están corrompidos."
   }
 }

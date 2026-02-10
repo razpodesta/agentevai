@@ -1,43 +1,41 @@
-/**
- * @author Raz Podestá - MetaShark Tech
- * @apparatus QA-Hub-Master-Config
- * @version 1.1.0
- * @protocol OEDP-V5.5.2 - Forensic Integrity
- * @description Configuração mestre para a Bóveda de Perícia Técnica. 
- * Saneado para resolver o conflito de moduleResolution e garantir suporte a ESM Nativo.
- */
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    /** 
-     * @section Sincronia de Módulos (Cura do Erro de Borda)
-     * Utilizamos NodeNext para garantir compatibilidade total com importações .js
-     * e resolução de pacotes modernos no ecossistema Nx.
+    /**
+     * @section Sincronia de Soberania ESM (Cura de Borda)
+     * Transmutado para NodeNext/NodeNext para garantir que o rastro de importações
+     * suporte extensões .js obrigatórias e resolução de pacotes de 2026.
      */
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
+
+    /** @section Rigor e Higiene Técnica */
     "strict": true,
     "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "jsx": "react-jsx",
 
-    /** 
-     * @section Definições de Tipos (Forensic Tools)
-     * Injeção estrita de tipos para testes de UI e rastro de servidor.
+    /**
+     * @section Definições de Perícia (QA Tooling)
+     * Injeção de tipos para auditoria visual e funcional.
      */
     "types": [
-      "jest", 
-      "node", 
-      "@testing-library/jest-dom", 
+      "jest",
+      "node",
+      "@testing-library/jest-dom",
       "@testing-library/react"
     ]
   },
   "files": [],
   "include": [],
   "references": [
-    { "path": "./tsconfig.lib.json" },
-    { "path": "./tsconfig.spec.json" }
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
   ]
 }

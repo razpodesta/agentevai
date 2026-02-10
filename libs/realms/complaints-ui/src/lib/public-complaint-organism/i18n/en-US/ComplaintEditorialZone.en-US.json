@@ -1,0 +1,9 @@
+{
+  "ComplaintEditorialZone": {
+    "statusLabel_INFORMATIVE": "Community Report",
+    "statusLabel_MODERATE": "Under Investigation",
+    "statusLabel_CRITICAL": "Critical Urgency",
+    "statusLabel_RESOLVED": "Cause Resolved",
+    "traceLabel": "FORENSIC TRACE"
+  }
+}

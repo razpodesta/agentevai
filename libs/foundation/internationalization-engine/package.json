@@ -1,24 +1,26 @@
 {
   "name": "@agentevai/internationalization-engine",
-  "version": "2.5.0",
-  "description": "Motor de Soberania Linguística: Orquestrador de dicionários granulares e resolução semântica trilingue.",
+  "version": "2.6.0",
+  "description": "Motor de Soberania Linguística: Orquestrador de dicionários e conversão geopolítica de elite.",
   "private": true,
   "type": "module",
-  "author": "Raz Podestá - MetaShark Tech",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V5.5.2"
+  },
   "metadata": {
     "tier": "FOUNDATION_UTIL",
-    "protocol": "OEDP-V5.5",
     "role": "I18N_ENGINE"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
-    "@agentevai/types-common": "1.2.0"
+    "@agentevai/types-common": "workspace:*"
   },
   "peerDependencies": {
     "zod": "^4.3.6",
-    "@agentevai/sovereign-logger": "*",
-    "@agentevai/sovereign-error-observability": "*"
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*"
   }
 }

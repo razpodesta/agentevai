@@ -1,10 +1,11 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextSchema
- * @version 2.1.0
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - Standard MetaShark
  * @description Define o ADN da realidade operacional (Geografia, Idioma, Estética e Saúde).
- * Alinhado ao Manifesto 0018: Soberania de Nomenclatura Geopolítica.
- * @protocol OEDP-V5.5 - Standard MetaShark
+ * Sincronizado para Zod V4 e unificação de rastro forense.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica absoluta.
  */
 
 import { z } from 'zod';
@@ -28,10 +29,6 @@ export type HealthScore = z.infer<typeof HealthScoreSchema>;
  */
 export const SovereignContextSchema = z.object({
   geography: z.object({
-    /**
-     * @section ALINHAMENTO MANIFESTO 0018
-     * Uso de SovereignCountrySchema (BR, ES, US) em vez de minúsculas.
-     */
     countryCode: SovereignCountrySchema
       .describe('Código ISO 3166-1 alpha-2 da soberania nacional ativa.'),
 
@@ -39,7 +36,7 @@ export const SovereignContextSchema = z.object({
       .length(2)
       .toUpperCase()
       .trim()
-      .describe('Sigla da Unidade Federativa (Ex: SC, SP).'),
+      .describe('Sigla da Unidade Federativa (UF).'),
 
     citySlug: RegionSlugSchema
       .describe('Slug de ruteamento para o Jornal Local.'),
@@ -47,7 +44,7 @@ export const SovereignContextSchema = z.object({
     regionName: z.string()
       .min(2)
       .trim()
-      .describe('Nome amigável da localidade para exibição em aparatos de branding.'),
+      .describe('Nome amigável da localidade para exibição editorial.'),
 
     timezone: z.string()
       .default('America/Sao_Paulo')
@@ -55,13 +52,12 @@ export const SovereignContextSchema = z.object({
   }),
 
   language: z.object({
-    /** Sincronia estrita com BCP 47 (pt-BR, es-ES, en-US) */
     activeLocale: SovereignLocaleSchema
-      .describe('Identidade cultural e linguística ativa.'),
+      .describe('Identidade cultural e linguística ativa (BCP 47).'),
 
     direction: z.enum(['ltr', 'rtl'])
       .default('ltr')
-      .describe('Direção visual semântica do texto.'),
+      .describe('Direção semântica do texto.'),
   }),
 
   appearance: z.object({
@@ -70,7 +66,7 @@ export const SovereignContextSchema = z.object({
 
     motionProfile: z.enum(['FULL', 'REDUCED', 'NONE'])
       .default('FULL')
-      .describe('Intensidade cinética baseada na performance do aparato.'),
+      .describe('Intensidade cinética baseada na performance do hardware.'),
   }),
 
   systemStatus: z.object({
@@ -86,11 +82,8 @@ export const SovereignContextSchema = z.object({
       .describe('Marca temporal da ancoragem de consciência.'),
   }),
 })
-/**
- * @section Refinamentos de Elite (Soberania Geopolítica)
- */
 .refine((data) => {
-  // Validação cruzada: Se o país é BR, o locale deve ser pt-BR.
+  // Validação de Soberania: Brasil exige pt-BR
   if (data.geography.countryCode === 'BR' && data.language.activeLocale !== 'pt-BR') {
     return false;
   }

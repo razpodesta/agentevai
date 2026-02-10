@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ESLintSovereignRules
- * @version 2.7.0
- * @protocol OEDP-V5.5.2 - High Precision Boundaries & Linguistic Sovereignty
- * @description Constituição mestre de linting e policiamento de fronteiras do ecossistema Agentevai.
- * Saneado para orquestração multi-reino e erradicação absoluta de radiação técnica.
+ * @version 3.0.0
+ * @protocol OEDP-V5.5.2 - Global Stabilization
+ * @description Constitución suprema de linting. Define las fronteras diplomáticas
+ * entre Reinos (Realms) y garantiza la pureza del ADN técnico (Zero Abbreviations).
  */
 
 import nx from '@nx/eslint-plugin';
@@ -25,7 +25,7 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      /* --- 🧬 ESTRATÉGIA ZERO-ANY (MANIFESTO 0005) --- */
+      /* --- 🛡️ SECCIÓN 1: SOBERANÍA DE TIPADO (ZERO ANY) --- */
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
@@ -36,11 +36,7 @@ export default [
       ],
       'prefer-const': 'error',
 
-      /**
-       * @section NX MODULE BOUNDARIES
-       * @description Define as leis de importação entre Reinos, Integrações e Alicerces.
-       * Hierarquia de Soberania: Apps -> Orchestration -> Realms -> Integrations -> Foundation.
-       */
+      /* --- 🧱 SECCIÓN 2: POLICIAMIENTO DE FRONTERAS (NX BOUNDARIES) --- */
       '@nx/enforce-module-boundaries': [
         'error',
         {
@@ -48,12 +44,10 @@ export default [
           allow: [],
           depConstraints: [
             {
-              /** ALICERCE (Foundation): Pureza absoluta. Não depende de ninguém. */
               sourceTag: 'scope:foundation',
               onlyDependOnLibsWithTags: ['scope:foundation'],
             },
             {
-              /** INTEGRAÇÕES: Adaptadores Hexagonais. Dependem apenas da base. */
               sourceTag: 'scope:integrations',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
@@ -61,7 +55,6 @@ export default [
               ],
             },
             {
-              /** REINO GEOGRAFIA: Inteligência territorial. */
               sourceTag: 'scope:geography',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
@@ -69,7 +62,6 @@ export default [
               ],
             },
             {
-              /** REINO IDENTIDADE: Gestão de Cidadania e Autoridade. */
               sourceTag: 'scope:identity',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
@@ -77,40 +69,6 @@ export default [
               ],
             },
             {
-              /** REINO NOTÍCIAS: Fluxo editorial regional. */
-              sourceTag: 'scope:news',
-              onlyDependOnLibsWithTags: [
-                'scope:foundation',
-                'scope:integrations',
-                'scope:geography',
-              ],
-            },
-            {
-              /** 
-               * REINO DENÚNCIAS: O Coração da fiscalização. 
-               * @section NIVELAMENTO_V5.5.2: Autorizado a consumir Identidade e Governança.
-               */
-              sourceTag: 'scope:complaints',
-              onlyDependOnLibsWithTags: [
-                'scope:foundation',
-                'scope:integrations',
-                'scope:geography',
-                'scope:community', // Para CitizenAuraCard
-                'scope:governance' // Para PopularSupportTrigger
-              ],
-            },
-            {
-              /** REINO GOVERNANÇA: Selagem de fé pública e imutabilidade. */
-              sourceTag: 'scope:governance',
-              onlyDependOnLibsWithTags: [
-                'scope:foundation',
-                'scope:integrations',
-                'scope:complaints',
-                'scope:geography',
-              ],
-            },
-            {
-              /** REINO COMUNIDADE: Interação Social e Engajamento. */
               sourceTag: 'scope:community',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
@@ -119,7 +77,37 @@ export default [
               ],
             },
             {
-              /** REINO MARKETING & ADVERTISING: Conversão e Sustentabilidade. */
+              sourceTag: 'scope:news',
+              onlyDependOnLibsWithTags: [
+                'scope:foundation',
+                'scope:integrations',
+                'scope:geography',
+                'scope:identity',
+              ],
+            },
+            {
+              sourceTag: 'scope:complaints',
+              onlyDependOnLibsWithTags: [
+                'scope:foundation',
+                'scope:integrations',
+                'scope:geography',
+                'scope:community',
+                'scope:governance',
+                'scope:identity'
+              ],
+            },
+            {
+              sourceTag: 'scope:governance',
+              onlyDependOnLibsWithTags: [
+                'scope:foundation',
+                'scope:integrations',
+                'scope:complaints',
+                'scope:geography',
+                'scope:identity',
+                'scope:community'
+              ],
+            },
+            {
               sourceTag: 'scope:marketing',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
@@ -127,35 +115,10 @@ export default [
               ],
             },
             {
-              /** FERRAMENTARIA (Tools): Automação de engenharia. */
-              sourceTag: 'scope:tools',
-              onlyDependOnLibsWithTags: [
-                'scope:foundation',
-                'scope:integrations',
-              ],
-            },
-            {
-              /** BÓVEDA DE PERÍCIA (QA): Auditoria Forense Total. */
-              sourceTag: 'scope:qa',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-            {
-              /** ORQUESTRAÇÃO: Sistema Nervoso Central. Consome todos os Reinos. */
               sourceTag: 'scope:orchestration',
-              onlyDependOnLibsWithTags: [
-                'scope:foundation',
-                'scope:integrations',
-                'scope:geography',
-                'scope:news',
-                'scope:complaints',
-                'scope:governance',
-                'scope:community',
-                'scope:marketing',
-                'scope:identity',
-              ],
+              onlyDependOnLibsWithTags: ['*'], // Inteligencia transversal
             },
             {
-              /** APLICAÇÕES: Pontas de lança. Consumidores finais da malha. */
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: ['*'],
             },
@@ -163,12 +126,13 @@ export default [
         },
       ],
 
-      /* --- 📜 POLÍTICA ZERO-ABBREVIATIONS (MANIFESTO 0002) --- */
+      /* --- 💎 SECCIÓN 3: HIGIENE FORENSE (ZERO ABBREVIATIONS) --- */
       'no-restricted-syntax': [
         'error',
+        /* Erradicación de identificadores técnicos cortos */
         {
-          selector: "VariableDeclarator[id.name='id'], Parameter[name='id'], Property[key.name='id']",
-          message: "Abreviação proibida: Use 'identifier' em vez de 'id' (exceto em UUIDs técnicos internos).",
+          selector: "VariableDeclarator[id.name='id'], Parameter[name='id'], Property[key.name='id'], AssignmentProperty[key.name='id']",
+          message: "Abreviação proibida: Use 'identifier' em vez de 'id'.",
         },
         {
           selector: "VariableDeclarator[id.name='req'], Parameter[name='req']",
@@ -195,24 +159,25 @@ export default [
           message: "Abreviação proibida: Use 'message' em vez de 'msg'.",
         },
         {
-          selector: "VariableDeclarator[id.name='props'], Parameter[name='props']",
+          selector: "VariableDeclarator[id.name='props'], Parameter[name='props'], Property[key.name='props']",
           message: "Abreviação proibida: Use 'properties' em vez de 'props'.",
         },
         {
           selector: "VariableDeclarator[id.name='ctx'], Parameter[name='ctx']",
           message: "Abreviação proibida: Use 'context' em vez de 'ctx'.",
         },
+        /* Erradicación de términos UI genéricos */
         {
-          selector: "VariableDeclarator[id.name='ref'], Parameter[name='ref']",
-          message: "Abreviação proibida: Use 'reference' em vez de 'ref'.",
+          selector: "VariableDeclarator[id.name='btn'], Parameter[name='btn']",
+          message: "Abreviação proibida: Use 'button' o 'actionTrigger'.",
         },
         {
-          selector: "VariableDeclarator[id.name='intl'], Parameter[name='intl']",
-          message: "Abreviação proibida: Use 'internationalization' em vez de 'intl'.",
+          selector: "VariableDeclarator[id.name='alt'], Parameter[name='alt']",
+          message: "Abreviação proibida: Use 'alternateText' para accesibilidad.",
         },
         {
-          selector: "VariableDeclarator[id.name='auth'], Parameter[name='auth']",
-          message: "Abreviação proibida: Use 'authentication' em vez de 'auth'.",
+          selector: "VariableDeclarator[id.name='cb'], Parameter[name='cb']",
+          message: "Abreviação proibida: Use 'callback' o 'handler'.",
         },
       ],
     },

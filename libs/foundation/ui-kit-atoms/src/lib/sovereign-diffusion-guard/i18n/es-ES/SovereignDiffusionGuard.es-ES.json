@@ -1,10 +1,9 @@
 {
   "SovereignDiffusionGuard": {
     "confirmationTitle": "Confirmar Difusión Soberana",
-    "confirmationDescription": "Estás a punto de publicar esta denuncia en {platform}. El rastro incluirá la prueba blockchain inalterable que garantiza la veracidad del contenido.",
-    "bypassLabel": "No volver a preguntar en este dispositivo.",
-    "confirmButton": "Publicar Ahora",
-    "cancelButton": "Revisar Contenido",
-    "logConsentBypass": "El usuario ha activado el bypass de consentimiento para la plataforma {platform}."
+    "confirmationDescription": "Está a punto de propagar este hecho técnico en el enjambre {platform}. El rastro incluirá la prueba de inmutabilidad blockchain que sella la veracidad del evento.",
+    "bypassLabel": "No solicitar confirmación en este dispositivo",
+    "confirmButton": "Autorizar Difusión",
+    "cancelButton": "Revisar Rastro"
   }
 }

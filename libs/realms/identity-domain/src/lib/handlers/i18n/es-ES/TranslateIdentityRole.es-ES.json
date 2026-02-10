@@ -1,6 +1,8 @@
 {
   "TranslateIdentityRole": {
-    "errorMissingRole": "Incapacidad de localizar la traducción para el rol {role} en el idioma {locale}.",
-    "logAuditSuccess": "Rastro semántico sellado para el ciudadano en el territorio {locale}."
+    "errorMissingRole": "El rol {targetIdentityRole} no posee traducción para el territorio {activeSovereignLocale}.",
+    "logAuditSuccess": "Sincronía léxica de identidad sellada con éxito.",
+    "GEOPOLITICAL_VOID": "La localidad informada no es reconocida por el sistema.",
+    "SEMANTIC_VOID": "El rol del usuario no posee un correspondiente humanizado."
   }
 }

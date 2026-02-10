@@ -1,73 +1,72 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignErrorSchema
- * @version 2.1.0
- * @description Contrato mestre imutável para telemetria de falhas sistêmicas.
- * Centraliza a taxonomia de erros e provê o ADN necessário para a autocura da IA.
- * @protocol OEDP-V5.5 - Standard MetaShark
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - Forensic Integrity SSOT
+ * @description ADN mestre imutável para telemetria de falhas. Define a taxonomia
+ * para que a IA de Autocura possa diagnosticar a causa raiz sem intervenção humana.
  */
 
 import { z } from 'zod';
 
 /**
  * @section Tipagem Nominal (Branded Types)
- * Blindagem de tipos primitivos para evitar confusão entre identificadores técnicos.
  */
 export const SovereignErrorCodeSchema = z.string()
   .regex(/^OS-[A-Z]+-\d{4}$/)
-  .describe('Código taxonômico obrigatório: OS-[CAMADA]-[SEQUENCIAL]. Ex: OS-CORE-0001.')
+  .describe('Código taxonômico obrigatório: OS-[CAMADA]-[SEQUENCIAL].')
   .brand<'SovereignErrorCode'>();
 
 export type SovereignErrorCode = z.infer<typeof SovereignErrorCodeSchema>;
 
 /**
- * @name SovereignErrorSchema
- * @description Definição estrutural de uma falha soberana.
- * Projetado para ser serializável e compatível com OpenTelemetry.
+ * @name SovereignErrorBaseSchema
+ * @description Estrutura fundamental para a captura de falhas.
+ * Aberta para extensões de Reinos antes da selagem final.
  */
-export const SovereignErrorSchema = z.object({
-  /** Identificador técnico único do erro para catalogação no manual de crise. */
+export const SovereignErrorBaseSchema = z.object({
   uniqueErrorCode: SovereignErrorCodeSchema,
 
-  /** Chave semântica que aponta para o silo i18n correspondente. */
   i18nMappingKey: z.string()
     .min(5)
-    .describe('Mapeamento para libs/foundation/sovereign-error-observability/src/lib/i18n/'),
+    .describe('Chave semântica para os silos de tradução regionais.'),
 
-  /** Nível de severidade para priorização de resposta da IA. */
   severity: z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL', 'FATAL'])
-    .describe('FATAL e CRITICAL disparam o protocolo de emergência imediata.'),
+    .describe('Nível de impacto para priorização de resposta neural.'),
 
-  /** Metadados do aparato (Lego) que originou a falha. */
   apparatusMetadata: z.object({
-    name: z.string().min(3).describe('Nome PascalCase do componente ou função.'),
-    version: z.string().describe('Versão semântica (SemVer) do código emissor.'),
-    fileLocation: z.string().describe('Caminho físico no monorepo para auditoria forense.'),
+    name: z.string().min(3).describe('Nome PascalCase do aparato emissor.'),
+    version: z.string().describe('Versão semântica (SemVer) do código.'),
+    fileLocation: z.string().describe('Caminho físico para perícia forense.'),
   }),
 
-  /** Instantâneo operacional para reprodução da falha em laboratório. */
   runtimeSnapshot: z.object({
     inputPayload: z.unknown().describe('Snapshot anonimizado dos dados de entrada.'),
-    correlationIdentifier: z.string().uuid().describe('UUID de correlação gerado na ignição do contexto.'),
-    /**
-     * @description Inclusão estratégica de Issues do Zod.
-     * Resolve o erro de compilação TS2353.
-     */
+
+    /** Sincronia Zod v4: Uso de z.uuid() direto no topo */
+    correlationIdentifier: z.uuid()
+      .describe('Identificador inalterável da jornada operativa.'),
+
     validationIssues: z.array(z.unknown()).optional()
-      .describe('Lista detalhada de violações de ADN detectadas pelo SafeParse.'),
-    memoryUsage: z.number().optional().describe('Estado do heap em MB no momento da falha.'),
+      .describe('Rastro de violações de ADN detectadas via Zod.'),
+
+    memoryUsageInMegabytes: z.number().optional()
+      .describe('Estado do heap no momento da captura.'),
   }),
 
-  /** Rastro técnico para engenheiros humanos e IA. */
   forensicTrace: z.object({
     timestamp: z.string().datetime().describe('Marca temporal precisa ISO-8601.'),
-    stack: z.string().describe('Stack trace bruto capturado no constructor do erro.'),
+    stack: z.string().describe('Stack trace bruto para análise de profundidade.'),
   }),
 
-  /** Instrução determinística para guiar o Neural-Auditor. */
-  recoverySuggestion: z.string().min(20).optional()
-    .describe('Prompt técnico para o motor de autocura tentar o patch automático.'),
-}).readonly();
+  recoverySuggestion: z.string().min(10).optional()
+    .describe('Diretiva determinística para guiar o motor de Self-Healing.'),
+});
 
-/** Interface imutável para uso em todo o Monorepo. */
+/**
+ * @name SovereignErrorSchema
+ * @description O contrato SELADO e IMUTÁVEL para despacho sistêmico.
+ */
+export const SovereignErrorSchema = SovereignErrorBaseSchema.readonly();
+
 export type ISovereignError = z.infer<typeof SovereignErrorSchema>;

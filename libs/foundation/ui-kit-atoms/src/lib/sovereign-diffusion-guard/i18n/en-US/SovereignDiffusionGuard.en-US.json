@@ -1,10 +1,9 @@
 {
   "SovereignDiffusionGuard": {
     "confirmationTitle": "Confirm Sovereign Diffusion",
-    "confirmationDescription": "You are about to publish this complaint on {platform}. The trace will include the unalterable blockchain proof that guarantees content veracity.",
-    "bypassLabel": "Do not ask me again on this device.",
-    "confirmButton": "Publish Now",
-    "cancelButton": "Review Content",
-    "logConsentBypass": "User has activated the consent bypass for the {platform} platform."
+    "confirmationDescription": "You are about to propagate this technical fact into the {platform} swarm. The trace will include the blockchain immutability proof that seals the event's veracity.",
+    "bypassLabel": "Do not request confirmation on this device",
+    "confirmButton": "Authorize Diffusion",
+    "cancelButton": "Review Trace"
   }
 }

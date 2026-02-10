@@ -1,7 +1,7 @@
 {
   "SovereignLogger": {
-    "systemPulse": "System pulse successfully recorded.",
-    "criticalFailure": "Critical failure detected in apparatus {apparatus}.",
-    "invalidAduana": "Log integrity violation detected."
+    "TELEMETRY_ADN_VIOLATION": "The sent log does not respect the technical integrity contract.",
+    "ORPHAN_TRACE_ALERT": "Alert: Telemetry pulse without a correlation identifier.",
+    "CRITICAL_ENGINE_SHUTDOWN": "Catastrophic failure in the data output engine."
   }
 }

@@ -1,7 +1,7 @@
 {
   "GeographicContextManager": {
-    "territorialIgnitionSuccess": "Conciencia geográfica establecida para {cityName} [ {stateCode} ].",
-    "errorIbgeContractViolation": "Falla crítica: El payload del IBGE no respeta el ADN estructural.",
-    "logTransmutationLatency": "Transmutación territorial completada en {latency}ms."
+    "TERRITORIAL_TRANSMUTATION_SUCCESS": "Conciencia geográfica sellada para {name} [ {stateCode} ].",
+    "ERROR_IBGE_CONTRACT": "Fallo de ADN: El rastro del IBGE violó el contrato estructural.",
+    "LOG_FORENSIC_CORRELATION": "Transmutación regional concluida para el rastro {correlationIdentifier}."
   }
 }

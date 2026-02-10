@@ -1,20 +1,23 @@
 {
   "name": "@agentevai/sovereign-logger",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Sistema Nervoso Periférico: Motor de telemetria estruturada e rastro forense para IA.",
   "private": true,
   "type": "module",
-  "author": "Raz Podestá - MetaShark Tech",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.0"
+  },
   "metadata": {
     "tier": "FOUNDATION_UTIL",
-    "protocol": "OEDP-V5.5",
-    "role": "TELEMETRY_ENGINE"
+    "role": "TELEMETRY_ENGINE",
+    "performance": "ULTRA_LOW_LATENCY"
   },
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "pino": "^10.3.0",
-    "tslib": "^2.3.0"
+    "pino": "^10.3.0"
   },
   "peerDependencies": {
     "zod": "^4.3.6"

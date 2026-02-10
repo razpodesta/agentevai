@@ -1,23 +1,37 @@
-// libs/realms/identity-domain/src/index.ts
-
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus IdentityDomainHub
- * @version 1.3.0
- * @protocol OEDP-V5.5 - Standard MetaShark
- * @description Ponto único de exposição e SSOT para o domínio de Identidade Soberana.
- * Centraliza a validação de ADN, motores de reputação algorítmica, níveis de garantia 
- * de identidade (IAL) e resolução de privilégios dinâmicos.
+ * @version 1.5.0
+ * @protocol OEDP-V5.5.2 - Flat Export Sovereignty & Bridge Pattern
+ * @description Ponto único de exposição (SSOT) para o domínio de Identidade Soberana.
+ * Centraliza a validação de ADN, motores de mérito social e tradução de papéis.
+ * Atua como ponte para os contratos geopolíticos da fundação.
  * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
  * @policy ZERO-ABBREVIATIONS: Exportações nomeadas baseadas em prosa técnica.
+ * @policy ESM-STRICT: Uso de extensões .js para compatibilidade total com NodeNext.
  */
 
-/**
- * @section Camada de Definição (ADN Estrutural)
- * Esquemas Zod para validação estrutural e Tipagem Nominal (Branded Types).
+/* --- 🌍 DIMENSÃO GEOPOLÍTICA (SOVEREIGN BRIDGE) --- */
+
+/** 
+ * @section Cura_Erro_TS2305 
+ * Re-exportação dos contratos de soberania nacional e cultural.
+ * Permite que reinos de UI validem Locales sem acoplamento direto com a fundação.
  */
 export {
-  // --- Esquemas de Validação (Aduanas de ADN) ---
+  SovereignLocaleSchema,
+  SovereignCountrySchema,
+  SovereignRouteSchema,
+  type SovereignLocale,
+  type SovereignCountry,
+  type SovereignRoute
+} from '@agentevai/types-common';
+
+
+/* --- 🧬 DIMENSÃO DE ADN (SCHEMAS E TIPAGEM NOMINAL) --- */
+
+export {
+  // Aduanas de ADN de Identidade
   UserIdentitySchema,
   IdentityRoleSchema,
   ReputationScoreSchema,
@@ -26,7 +40,7 @@ export {
   IdentityAssuranceLevelSchema,
   DigitalPresenceFingerprintSchema,
 
-  // --- Interfaces de Dados (Contratos de Elite) ---
+  // Interfaces de Dados (Contratos Selados)
   type IUserIdentity,
   type IIdentityRole,
   type IIdentityAttributes,
@@ -34,38 +48,49 @@ export {
   type CitizenIdentifier,
   type IIdentityAssuranceLevel,
   type DigitalPresenceFingerprint
-} from './lib/schemas/UserIdentity.schema';
+} from './lib/schemas/UserIdentity.schema.js';
 
-/**
- * @section Camada Operativa (Motores Lógicos de Governança)
- * Algoritmos atômicos que processam a vida social e técnica do cidadão.
- */
 
-/**
- * @apparatus CalculateCitizenStanding
- * @description Motor de alta precisão que transmuta interações em evolução de standing social.
+/* --- 🗣️ DIMENSÃO SEMÂNTICA (HANDLERS LINGUÍSTICOS) --- */
+
+/** 
+ * @apparatus TranslateIdentityRole 
+ * @description Motor de humanização trilingue para papéis de autoridade.
  */
+export { TranslateIdentityRole } from './lib/handlers/TranslateIdentityRole.js';
+export { 
+  TranslateIdentityRoleInputSchema,
+  type ITranslateIdentityRoleInput 
+} from './lib/handlers/schemas/TranslateIdentityRole.schema.js';
+
+
+/* --- 📊 DIMENSÃO DE MÉRITO (CALCULADORES ATÔMICOS) --- */
+
+/** 
+ * @apparatus CalculateCitizenStanding 
+ * @description Algoritmo de progressão e evolução de reputação cidadã.
+ */
+export { CalculateCitizenStanding } from './lib/calculators/CalculateCitizenStanding.js';
 export {
-  CalculateCitizenStanding,
-  type CalculateCitizenStandingParameters,
-  type IImpactEvent
-} from './lib/calculators/CalculateCitizenStanding';
+  CalculateCitizenStandingInputSchema,
+  type ICalculateCitizenStandingInput,
+  type ImpactTypeSchema 
+} from './lib/calculators/schemas/CalculateCitizenStanding.schema.js';
 
-/**
- * @apparatus ResolveIdentityPrivileges
- * @description Cérebro de autoridade que resolve a tríade (Papel, Standing, Garantia) em permissões reais.
+
+/* --- 🧠 DIMENSÃO DE AUTORIDADE (RESOLVERS) --- */
+
+/** 
+ * @apparatus ResolveIdentityPrivileges 
+ * @description Cérebro de autoridade que resolve a tríade (Papel, Standing, Garantia).
  */
+export { ResolveIdentityPrivileges } from './lib/resolvers/ResolveIdentityPrivileges.js';
 export {
-  ResolveIdentityPrivileges,
-  type ResolveIdentityPrivilegesParameters
-} from './lib/resolvers/ResolveIdentityPrivileges';
+  ResolveIdentityPrivilegesInputSchema,
+  type IResolveIdentityPrivilegesInput
+} from './lib/resolvers/schemas/ResolveIdentityPrivileges.schema.js';
 
 /**
- * @note Este Reino (Realm) é a fundação da confiança do ecossistema Agentevai.
- * Suas exportações alimentam:
- * 1. O Authority-Bridge: Para selagem de assinaturas eletrônicas com base no IAL.
- * 2. O AI-Neural-Auditor: Para detecção de anomalias via Digital Presence Fingerprint.
- * 3. O web-portal: Para orquestração cinética de UI baseada em mérito e reputação.
- * 
- * Auditoria Neural: Rastro forense e telemetria ativos em cada ponto de consumo.
+ * @note Auditoria Neural: Este Hub agora provê o rastro geopolítico completo.
+ * Rastro Forense: Monitoramento ativo via SovereignLogger.
  */

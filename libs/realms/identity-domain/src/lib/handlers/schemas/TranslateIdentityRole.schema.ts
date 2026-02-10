@@ -1,10 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TranslateIdentityRoleSchema
- * @version 1.1.0
- * @protocol OEDP-V5.5.1 - High Precision
- * @description ADN de fronteira para o motor de tradução de papéis sociais.
- * @policy ZERO-ABBREVIATIONS: Prosa técnica militar.
+ * @version 3.1.0
+ * @protocol OEDP-V6.0 - Forensic Integrity
+ * @description ADN de fronteira para transmutação semântica de papéis.
  */
 
 import { z } from 'zod';
@@ -13,19 +12,19 @@ import { IdentityRoleSchema } from '../../schemas/UserIdentity.schema.js';
 
 /**
  * @name TranslateIdentityRoleInputSchema
- * @description Aduana de entrada para garantir a integridade da solicitação de tradução.
+ * @description Aduana de entrada estrita. Define a tríade nominal para tradução regional.
  */
 export const TranslateIdentityRoleInputSchema = z.object({
-  /** O papel técnico a ser humanizado (ex: PLATFORM_ENGINEER) */
-  targetIdentityRole: IdentityRoleSchema,
+  targetIdentityRole: IdentityRoleSchema
+    .describe('O papel funcional do cidadão a ser transmutado.'),
 
-  /** A identidade cultural de destino (pt-BR, es-ES, en-US) */
   activeSovereignLocale: SovereignLocaleSchema
-    .describe('Identidade cultural validada para transmutação.'),
+    .describe('A identidade cultural ativa (BCP 47) para localização.'),
 
-  /** UUID de jornada para rastreabilidade cruzada */
   correlationIdentifier: z.uuid()
-    .describe('Rastro forense inalterável da jornada operativa.')
-}).readonly();
+    .describe('Identificador inalterável da jornada forense atual.')
+})
+.brand<'TranslateIdentityRoleInput'>()
+.readonly();
 
 export type ITranslateIdentityRoleInput = z.infer<typeof TranslateIdentityRoleInputSchema>;

@@ -1,10 +1,12 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextManager
- * @version 2.5.0
- * @protocol OEDP-V5.5 - High Precision & Neural Integrity
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - High Precision & Neural Integrity
  * @description Fábrica imutável de elite para ignição da consciência sistêmica.
- * Integra a Trindade Geopolítica (Manifesto 0018) e sela o rastro forense de borda.
+ * Orquestra a transmutação de rastro de borda em realidade operacional.
+ * @policy ZERO-ANY: Saneamento absoluto via ADN nominal.
+ * @policy ESM-STRICT: Uso de extensões explícitas (.js).
  */
 
 import { z } from 'zod';
@@ -36,28 +38,28 @@ export interface ISovereignConsciousnessPacket extends ISovereignContext {
 /**
  * @name CreateSovereignContext
  * @function
- * @description Ponto de ignição mestre. Valida o ADN territorial e estabelece a Soberania.
+ * @description Ponto de ignição mestre. Erradica o erro TS2554 ao exigir
+ * explicitamente o rastro de correlação gerado na borda.
  *
  * @param {unknown} infrastructureSnapshot - Dados brutos (Request, Geo, Headers).
+ * @param {string} correlationIdentifier - UUID obrigatório para rastro forense.
  * @param {ISovereignConsciousnessPacket['ignitionPoint']} origin - Contexto de nascimento.
  * @returns {ISovereignConsciousnessPacket} Realidade purificada e ancorada.
  */
 export const CreateSovereignContext = (
   infrastructureSnapshot: unknown,
+  correlationIdentifier: string, // CURA TS2554: Agora o rastro é injetado pelo Middleware
   origin: ISovereignConsciousnessPacket['ignitionPoint'] = 'EDGE_RUNTIME'
 ): ISovereignConsciousnessPacket => {
   const startTimestamp = performance.now();
   const apparatusName = 'SovereignContextManager';
-  const apparatusVersion = '2.5.0';
+  const apparatusVersion = '3.0.0';
   const fileLocation = 'libs/foundation/sovereign-context/src/lib/SovereignContextManager.ts';
 
-  // 1. Geração de Ancoragem Forense
-  const correlationIdentifier = crypto.randomUUID();
-
-  // 2. Aduana de ADN (Sincronia com Manifesto 0018)
+  // 1. Aduana de ADN (Sincronia com Manifesto 0018)
   const validationResult = SovereignContextSchema.safeParse(infrastructureSnapshot);
 
-  // 3. Protocolo de Resiliência: Tratamento de Colapso de Consciência
+  // 2. Protocolo de Resiliência: Tratamento de Colapso
   if (!validationResult.success) {
     throw handleConsciousnessCollapse({
       snapshot: infrastructureSnapshot,
@@ -72,29 +74,26 @@ export const CreateSovereignContext = (
 
   const contextData = validationResult.data;
 
-  // 4. Sincronia de Soberania (Trindade Geopolítica)
-  // Garante que o país (BR) e o locale (pt-BR) estão em ressonância harmônica.
+  // 3. Sincronia de Soberania (Trindade Geopolítica)
   const countryCode = contextData.geography.countryCode;
   const activeLocale = SovereignTranslationEngine.resolveLocale(contextData.language.activeLocale);
-  const routeSlug = TransmuteGeopoliticalId.countryToRoute(countryCode);
+  const routeSlug = TransmuteGeopoliticalId.countryToRoute(countryCode, correlationIdentifier);
 
-  // 5. Cálculo de Latência de Ignição (Swiss Precision)
+  // 4. Cálculo de Latência de Ignição (Swiss Precision)
   const endTimestamp = performance.now();
   const ignitionLatencyInMilliseconds = parseFloat((endTimestamp - startTimestamp).toFixed(4));
 
-  // 6. Telemetria de Sucesso Enriquecida para IA
+  // 5. Telemetria de Sucesso (Cura TS2353: correlationIdentifier)
   SovereignLogger({
     severity: 'INFO',
     apparatus: apparatusName,
     operation: 'IGNITION_SUCCESS',
     message: `Soberania [${countryCode}] estabelecida em ${ignitionLatencyInMilliseconds}ms via ${routeSlug}.`,
-    traceIdentifier: correlationIdentifier,
+    correlationIdentifier: correlationIdentifier,
     metadata: {
       region: contextData.geography.regionName,
-      city: contextData.geography.citySlug,
       locale: activeLocale,
-      latency: ignitionLatencyInMilliseconds,
-      healthScore: contextData.systemStatus.healthScore,
+      health: contextData.systemStatus.healthScore,
       origin
     }
   });
@@ -123,13 +122,12 @@ function handleConsciousnessCollapse(parameters: {
 }): SovereignError {
   const { snapshot, errors, origin, correlationIdentifier, apparatusName, fileLocation, version } = parameters;
 
-  // Log de Pânico Técnico para o AI-Neural-Auditor
   SovereignLogger({
     severity: 'CRITICAL',
     apparatus: apparatusName,
     operation: 'IGNITION_FAILURE',
-    message: `Violación de ADN: Colapso de consciência em ${origin}. Território ilegível.`,
-    traceIdentifier: correlationIdentifier,
+    message: `Violação de ADN: Colapso de consciência em ${origin}. Território ilegível.`,
+    correlationIdentifier: correlationIdentifier,
     metadata: {
       validationIssues: errors.flatten(),
       providedSnapshot: snapshot
@@ -150,6 +148,6 @@ function handleConsciousnessCollapse(parameters: {
       timestamp: new Date().toISOString(),
       stack: new Error().stack || 'ST_UNAVAILABLE'
     },
-    recoverySuggestion: 'Falha crítica na resolução geográfica. Verifique o rastro do TerritorialAnchor e os limites de Geofencing.'
+    recoverySuggestion: 'Falha crítica na resolução geográfica. Verifique o rastro do TerritorialAnchor.'
   });
 }

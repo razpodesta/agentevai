@@ -1,0 +1,6 @@
+{
+  "PulseIndicator": {
+    "statusStable": "Pulso regional operando en estado estable.",
+    "statusCritical": "Alerta: Actividad crítica detectada en esta localidad."
+  }
+}
