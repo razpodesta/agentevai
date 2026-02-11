@@ -1,0 +1,14 @@
+{
+  "AnonymizeSovereignData": {
+    "logSuccess": "Rastro anonimizado com sucesso. Identidade civil protegida via SHA-256.",
+    "errorSaltMissing": "Sal de soberania não localizado. Falha na integridade da anonimização."
+  },
+  "ProtectSovereignData": {
+    "logSuccess": "Carga de informação sensível de contexto {context} cifrada e selada no Vault.",
+    "errorMasterKey": "Chave mestre de soberania (AES-GCM) não localizada no ambiente."
+  },
+  "UnprotectSovereignData": {
+    "logSuccess": "Acesso autorizado: Dado decifrado para perícia técnica da jornada {correlationIdentifier}.",
+    "errorTampering": "ALERTA CRÍTICO: Tentativa de violação de integridade detectada. O rastro criptográfico foi adulterado."
+  }
+}

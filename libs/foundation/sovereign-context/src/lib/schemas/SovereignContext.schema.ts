@@ -1,11 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextSchema
- * @version 3.0.0
- * @protocol OEDP-V6.0 - Standard MetaShark
- * @description Define o ADN da realidade operacional (Geografia, Idioma, Estética e Saúde).
- * Sincronizado para Zod V4 e unificação de rastro forense.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica absoluta.
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - Standard MetaShark Zenith
+ * @description Define o ADN da realidade operacional. Sincronizado para Zod V4.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
  */
 
 import { z } from 'zod';
@@ -17,17 +16,26 @@ import {
 /**
  * @section Tipagem Nominal (Branded Types)
  */
-export const RegionSlugSchema = z.string().toLowerCase().brand<'RegionSlug'>();
+export const RegionSlugSchema = z.string()
+  .toLowerCase()
+  .describe('Identificador único de ruteamento geográfico.')
+  .brand<'RegionSlug'>();
+
 export type RegionSlug = z.infer<typeof RegionSlugSchema>;
 
-export const HealthScoreSchema = z.number().min(0).max(100).brand<'HealthScore'>();
+export const HealthScoreSchema = z.number()
+  .min(0)
+  .max(100)
+  .describe('Índice de integridade sistêmica (0-100).')
+  .brand<'HealthScore'>();
+
 export type HealthScore = z.infer<typeof HealthScoreSchema>;
 
 /**
- * @name SovereignContextSchema
- * @description Aduana de ADN para o estado global do sistema em runtime.
+ * @name SovereignContextBaseSchema
+ * @description Estrutura pura para mutações controladas antes da selagem.
  */
-export const SovereignContextSchema = z.object({
+export const SovereignContextBaseSchema = z.object({
   geography: z.object({
     countryCode: SovereignCountrySchema
       .describe('Código ISO 3166-1 alpha-2 da soberania nacional ativa.'),
@@ -36,7 +44,7 @@ export const SovereignContextSchema = z.object({
       .length(2)
       .toUpperCase()
       .trim()
-      .describe('Sigla da Unidade Federativa (UF).'),
+      .describe('Sigla da Unidade Federativa correspondente.'),
 
     citySlug: RegionSlugSchema
       .describe('Slug de ruteamento para o Jornal Local.'),
@@ -57,12 +65,12 @@ export const SovereignContextSchema = z.object({
 
     direction: z.enum(['ltr', 'rtl'])
       .default('ltr')
-      .describe('Direção semântica do texto.'),
+      .describe('Direção semântica do texto (Left-to-Right).'),
   }),
 
   appearance: z.object({
     themeMode: z.enum(['OBSIDIAN', 'MILK'])
-      .describe('Fase lumínica do ecossistema.'),
+      .describe('Fase lumínica do ecossistema (Dark/Light).'),
 
     motionProfile: z.enum(['FULL', 'REDUCED', 'NONE'])
       .default('FULL')
@@ -70,28 +78,33 @@ export const SovereignContextSchema = z.object({
   }),
 
   systemStatus: z.object({
-    healthScore: HealthScoreSchema
-      .describe('Índice de integridade sistêmica (0-100).'),
+    healthScore: HealthScoreSchema,
 
     isDegradedModeActive: z.boolean()
       .default(false)
-      .describe('Flag de resiliência neural para sobrevivência operativa.'),
+      .describe('Sinalizador de resiliência neural para sobrevivência operativa.'),
 
     lastSyncTimestamp: z.string()
       .datetime()
-      .describe('Marca temporal da ancoragem de consciência.'),
+      .describe('Marca temporal ISO-8601 da ancoragem de consciência.'),
   }),
-})
-.refine((data) => {
-  // Validação de Soberania: Brasil exige pt-BR
-  if (data.geography.countryCode === 'BR' && data.language.activeLocale !== 'pt-BR') {
-    return false;
-  }
-  return true;
-}, {
-  message: 'GEOPOLITICAL_INCONSISTENCY: Locale mismatch with Country Sovereignty.',
-  path: ['language', 'activeLocale']
-})
-.readonly();
+});
+
+/**
+ * @name SovereignContextSchema
+ * @description O contrato SELADO e IMUTÁVEL da realidade sistêmica.
+ */
+export const SovereignContextSchema = SovereignContextBaseSchema
+  .refine((data) => {
+    // Validação de Soberania Nacional: Brasil exige pt-BR
+    if (data.geography.countryCode === 'BR' && data.language.activeLocale !== 'pt-BR') {
+      return false;
+    }
+    return true;
+  }, {
+    message: 'GEOPOLITICAL_INCONSISTENCY: Locale mismatch with Country Sovereignty.',
+    path: ['language', 'activeLocale']
+  })
+  .readonly();
 
 export type ISovereignContext = z.infer<typeof SovereignContextSchema>;

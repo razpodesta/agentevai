@@ -1,8 +1,8 @@
 {
-  "SovereignContext": {
-    "initializationError": "Error while attempting to establish system consciousness in the territory.",
-    "regionActive": "System operating under the sovereignty of {region}.",
-    "degradedAlert": "Warning: System operating in neural resilience mode.",
-    "CONSCIOUSNESS_COLLAPSE": "Catastrophic failure: The system could not anchor its geographic identity."
+  "SovereignContextManager": {
+    "regionActive": "Regional sovereignty established for the territory: {region}.",
+    "degradedAlert": "SECURITY ALERT: System health below elite threshold ({health}%). Activating Graceful Degradation Mode (Kinetic Amputation).",
+    "logIgnitionSuccess": "Consciousness [{countryCode}] anchored in {latency}ms via {routeSlug}.",
+    "CONSCIOUSNESS_COLLAPSE": "Consciousness Collapse: Geographic DNA has been violated or is unreadable for journey {correlationIdentifier}."
   }
 }

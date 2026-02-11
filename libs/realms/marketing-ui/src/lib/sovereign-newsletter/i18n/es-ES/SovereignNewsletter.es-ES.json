@@ -1,12 +1,12 @@
 {
-  "AdVantagePreviewUI": {
-    "labTitle": "Ad-Vantage Intelligence Lab",
-    "labSubtitle": "Simulador de Impacto Regional",
-    "formatSelectorLabel": "Seleccione el Formato del Aviso",
-    "format_EDITORIAL_BANNER": "Banner Editorial",
-    "format_NATIVE_INJECTION": "Inserción Nativa",
-    "format_REGIONAL_STORY": "Story Regional",
-    "previewModeLabel": "Modo de Previsualización en Tiempo Real",
-    "ethicsDeclaration": "ANUNCIO ÉTICO CERTIFICADO: Sin rastreo invasivo."
+  "SovereignNewsletter": {
+    "mainTitle": "EL PULSO DE LA SOBERANÍA.",
+    "actionSuffix": "DIRECTO EN SU E-MAIL.",
+    "bodyText": "Reciba resúmenes de inteligencia regional, denuncias verificadas y auditorías de fe pública antes de que lleguen al gran enjambre social.",
+    "inputPlaceholder": "su@email-soberano.com",
+    "submitLabel": "Garantizar Acceso Seguro",
+    "successTitle": "Conciencia Sincronizada",
+    "successMessage": "Su rastro ha sido integrado a la red de transparencia territorial.",
+    "errorValidation": "Violación de ADN: Formato de e-mail no válido para el territorio soberano."
   }
 }

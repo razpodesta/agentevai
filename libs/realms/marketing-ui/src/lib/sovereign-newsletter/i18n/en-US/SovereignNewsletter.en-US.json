@@ -1,12 +1,12 @@
 {
   "SovereignNewsletter": {
-    "mainTitle": "SOVEREIGNTY IN REAL TIME.",
-    "bodyText": "Get notified about critical audits and verified complaints before they reach the main swarm.",
+    "mainTitle": "THE PULSE OF SOVEREIGNTY.",
+    "actionSuffix": "STRAIGHT TO YOUR INBOX.",
+    "bodyText": "Receive regional intelligence summaries, verified complaints, and public trust audits before they reach the main social swarm.",
     "inputPlaceholder": "your@sovereign-email.com",
     "submitLabel": "Secure Access Guarantee",
-    "loadingLabel": "Syncing trace...",
-    "successTitle": "Trace Sealed",
-    "successMessage": "Your institutional consciousness has been integrated into our trust network.",
-    "errorValidation": "Invalid email format for the sovereign territory."
+    "successTitle": "Consciousness Synced",
+    "successMessage": "Your trace has been integrated into the territorial transparency network.",
+    "errorValidation": "DNA Violation: Invalid email format for the sovereign territory."
   }
 }

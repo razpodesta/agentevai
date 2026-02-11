@@ -1,11 +1,7 @@
 {
   "EditorialWorkflowEngine": {
-    "label_DRAFT": "Draft",
-    "label_AI_ANALYSIS": "Under Neural Forensic",
-    "label_MANUAL_REVIEW": "Engineer Review",
-    "label_BLOCKCHAIN_SEALED": "Mathematical Sovereignty Guaranteed",
-    "label_PUBLISHED": "Published",
-    "error_ILLEGAL_TRANSITION": "Transition denied: Action {action} is not allowed in state {state}.",
-    "log_TRACE_SEALED": "Editorial trace verified for news item {id}."
+    "logStateTransmuted": "Zenith Editorial Synchrony: The news trace has evolved from stage {origin} to stage {target} with DNA integrity.",
+    "ILLEGAL_WORKFLOW_TRANSITION": "Editorial Protocol Violation: The transmutation action [{action}] was denied. The current state [{state}] does not allow this sovereignty jump.",
+    "errorAduanaFailed": "Editorial Aduana Failure: Transition parameters carry technical radiation or invalid nominal brands."
   }
 }

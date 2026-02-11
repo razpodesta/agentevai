@@ -1,8 +1,8 @@
 {
-  "SovereignContext": {
-    "initializationError": "Error al intentar establecer la conciencia del sistema en el territorio.",
-    "regionActive": "Sistema operando bajo la soberanía de {region}.",
-    "degradedAlert": "Atención: Sistema operando en modo de resiliencia neural.",
-    "CONSCIOUSNESS_COLLAPSE": "Falla catastrófica: El sistema no pudo anclar su identidad geográfica."
+  "SovereignContextManager": {
+    "regionActive": "Soberanía regional establecida para el territorio: {region}.",
+    "degradedAlert": "ALERTA DE SEGURIDAD: Salud sistémica por debajo del nivel de élite ({health}%). Activando Modo de Degradación Graciosa (Cinética Amputada).",
+    "logIgnitionSuccess": "Conciencia [{countryCode}] anclada en {latency}ms vía {routeSlug}.",
+    "CONSCIOUSNESS_COLLAPSE": "Colapso de Conciencia: El ADN geográfico fue violado o es ilegible para la jornada {correlationIdentifier}."
   }
 }

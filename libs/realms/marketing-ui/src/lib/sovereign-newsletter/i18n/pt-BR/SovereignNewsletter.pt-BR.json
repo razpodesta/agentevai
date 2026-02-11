@@ -1,12 +1,12 @@
 {
   "SovereignNewsletter": {
-    "mainTitle": "A SOBERANIA EM TEMPO REAL.",
-    "bodyText": "Seja notificado sobre auditorias críticas e denúncias verificadas antes que elas atinjam o grande enxame.",
+    "mainTitle": "O PULSO DA SOBERANIA.",
+    "actionSuffix": "DIRETO NO SEU E-MAIL.",
+    "bodyText": "Receba resumos de inteligência regional, denúncias verificadas e auditorias de fé pública antes que atinjam o grande enxame social.",
     "inputPlaceholder": "seu@email-soberano.com",
     "submitLabel": "Garantir Acesso Seguro",
-    "loadingLabel": "Sincronizando rastro...",
-    "successTitle": "Rastro Selado",
-    "successMessage": "Sua consciência institucional foi integrada à nossa malha de confiança.",
-    "errorValidation": "Formato de e-mail inválido para o território brasileiro."
+    "successTitle": "Consciência Sincronizada",
+    "successMessage": "Seu rastro foi integrado à malha de transparência territorial. Aguarde o primeiro despacho.",
+    "errorValidation": "Violação de ADN: Formato de e-mail inválido para o território brasileiro."
   }
 }

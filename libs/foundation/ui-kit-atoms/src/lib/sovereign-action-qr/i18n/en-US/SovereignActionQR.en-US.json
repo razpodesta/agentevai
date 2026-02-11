@@ -1,0 +1,7 @@
+{
+  "SovereignActionQR": {
+    "accessibilityInstruction": "Point your camera to join this cause.",
+    "logGenerationSuccess": "O2O Bridge successfully generated for trace {correlationIdentifier}.",
+    "errorInvalidUrl": "DNA Violation: The Quick Response Code target URL is invalid."
+  }
+}

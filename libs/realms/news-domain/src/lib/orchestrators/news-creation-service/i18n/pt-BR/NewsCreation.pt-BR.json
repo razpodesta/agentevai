@@ -1,7 +1,7 @@
 {
   "NewsCreationService": {
-    "logIgnition": "Processo de criação de notícia iniciado para o rastro {id}.",
-    "errorValidation": "Violação de ADN detectada nos dados da notícia.",
-    "statusBlockchain": "Selo de veracidade matemática aplicado com sucesso."
+    "logIgnition": "Sincronia de Ignição: Iniciando rastro de criação para a notícia {identifier}.",
+    "statusBlockchain": "Soberania Garantida: Notícia [{identifier}] selada com fé pública e enviada para perícia neural.",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros de criação da notícia violaram o contrato de integridade técnica."
   }
 }

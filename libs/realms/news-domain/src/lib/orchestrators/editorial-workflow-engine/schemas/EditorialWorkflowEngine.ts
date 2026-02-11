@@ -1,83 +1,57 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus EditorialWorkflowEngine
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - Finite State Sovereignty
- * @description Motor lógico que gerencia as transições de estado de uma notícia.
- * Garante que o rastro editorial respeite a hierarquia de confiança.
+ * @apparatus EditorialWorkflowSchema
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - Forensic Integrity
+ * @description Única Fonte de Verdade (SSOT) para o ciclo de vida da verdade jornalística.
+ * Sincronizado para Zod V4 com descrições densas para o Auditor Neural.
  */
 
-import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
-import {
-  EditorialStateSchema,
-  WorkflowActionSchema,
-  type IEditorialWorkflowInput
-} from '../../schemas/EditorialWorkflow.schema.js';
+import { z } from 'zod';
 
-/**
- * @section Matriz de Transições de Estado (Imutável)
- * Define quais ações são permitidas em cada estado.
- */
-const WORKFLOW_MATRIX: Record<string, string> = {
-  'DRAFT:SUBMIT_FOR_REVIEW': 'AI_ANALYSIS',
-  'AI_ANALYSIS:AI_APPROVE': 'BLOCKCHAIN_SEALED',
-  'AI_ANALYSIS:AI_ESCALATE': 'MANUAL_REVIEW',
-  'MANUAL_REVIEW:MANUAL_APPROVE': 'BLOCKCHAIN_SEALED',
-  'MANUAL_REVIEW:MANUAL_REJECT': 'REJECTED',
-  'AI_ANALYSIS:MANUAL_REJECT': 'REJECTED',
-  'REJECTED:EDIT_CONTENT': 'DRAFT',
-  'BLOCKCHAIN_SEALED:TRIGGER_PUBLICATION': 'PUBLISHED',
-  'PUBLISHED:EDIT_CONTENT': 'MANUAL_REVIEW', // Re-auditoria se editado após publicado
-  'ANY:SOFT_DELETE': 'DELETED'
-};
+/** @section Taxonomia de Estado */
+export const EditorialStateSchema = z.enum([
+  'DRAFT',              // Composição bruta
+  'AI_ANALYSIS',        // Perícia neural ativa
+  'MANUAL_REVIEW',      // Intervenção de Engenheiro
+  'REJECTED',           // ADN corrompido ou fato refutado
+  'BLOCKCHAIN_SEALED',  // Imutabilidade garantida
+  'PUBLISHED',          // Enxame público ativo
+  'DELETED'             // Rastro removido
+])
+.describe('O estágio inalterável da notícia no rastro de confiança.')
+.brand<'EditorialState'>();
 
-/**
- * @name EditorialWorkflowEngine
- * @class
- * @description Orquestrador funcional para operações de CRUD e Transições.
- */
-export class EditorialWorkflowEngine {
-  private static readonly apparatusName = 'EditorialWorkflowEngine';
+export type EditorialState = z.infer<typeof EditorialStateSchema>;
 
-  /**
-   * @method calculateNextState
-   * @description Calcula o próximo estágio do rastro baseado na matriz de soberania.
-   *
-   * @param {IEditorialWorkflowInput} input - O par Estado Atual + Ação solicitada.
-   * @returns {string} O novo estado validado.
-   */
-  public static calculateNextState(input: IEditorialWorkflowInput): string {
-    const transitionKey = input.requestedAction === 'SOFT_DELETE'
-      ? `ANY:SOFT_DELETE`
-      : `${input.currentState}:${input.requestedAction}`;
+/** @section Taxonomia de Ação */
+export const WorkflowActionSchema = z.enum([
+  'SUBMIT_FOR_REVIEW',
+  'AI_APPROVE',
+  'AI_ESCALATE',
+  'MANUAL_APPROVE',
+  'MANUAL_REJECT',
+  'EDIT_CONTENT',
+  'TRIGGER_PUBLICATION',
+  'SOFT_DELETE'
+])
+.describe('Comandos autorizados que provocam a transmutação do rastro editorial.')
+.brand<'WorkflowAction'>();
 
-    const nextState = WORKFLOW_MATRIX[transitionKey];
+export type WorkflowAction = z.infer<typeof WorkflowActionSchema>;
 
-    if (!nextState) {
-      throw new SovereignError({
-        uniqueErrorCode: 'OS-ED-2001' as any,
-        i18nMappingKey: 'ILLEGAL_WORKFLOW_TRANSITION',
-        severity: 'MEDIUM',
-        apparatusMetadata: {
-          name: this.apparatusName,
-          version: '1.0.0',
-          fileLocation: 'libs/realms/news-domain/src/lib/orchestrators/EditorialWorkflowEngine.ts'
-        },
-        runtimeSnapshot: { transitionAttempted: transitionKey, correlationIdentifier: input.correlationIdentifier },
-        forensicTrace: { timestamp: new Date().toISOString(), stack: 'ENGINE_INTERNAL' }
-      });
-    }
+/** @name EditorialWorkflowInputSchema */
+export const EditorialWorkflowInputSchema = z.object({
+  currentState: EditorialStateSchema
+    .describe('O selo de estado atual extraído do cofre relacional.'),
 
-    // Telemetria de Transição
-    SovereignLogger({
-      severity: 'INFO',
-      apparatus: this.apparatusName,
-      operation: 'STATE_TRANSITION',
-      message: `Notícia evoluiu de ${input.currentState} para ${nextState} via ${input.requestedAction}.`,
-      traceIdentifier: input.correlationIdentifier
-    });
+  requestedAction: WorkflowActionSchema
+    .describe('A intenção de transmutação solicitada pelo agente.'),
 
-    return nextState;
-  }
-}
+  correlationIdentifier: z.uuid()
+    .describe('Identificador inalterável da jornada forense para correlação de telemetria.')
+})
+.brand<'EditorialWorkflowInput'>()
+.readonly();
+
+export type IEditorialWorkflowInput = z.infer<typeof EditorialWorkflowInputSchema>;

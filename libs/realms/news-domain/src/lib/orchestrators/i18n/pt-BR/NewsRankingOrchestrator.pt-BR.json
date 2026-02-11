@@ -1,9 +1,9 @@
 {
   "NewsRankingOrchestrator": {
-    "logRankingComplete": "Ranking editorial consolidado para {count} notícias no território ativo.",
-    "logZenithAssigned": "A notícia [{identifier}] atingiu o Índice de Relevância Soberana para o Zênite Nacional.",
-    "errorAduanaFailed": "Violação de ADN: O enxame de notícias para processamento de ranking porta radiação técnica.",
-    "auditImpactBonus": "Bônus de veracidade matemática (Blockchain Proof) aplicado ao identificador {identifier}.",
-    "logDecayApplied": "Penalidade de decaimento temporal aplicada ao rastro informativo: {identifier}."
+    "logRankingComplete": "Curadoria Matemática: Ranking editorial consolidado para {count} notícias no território ativo.",
+    "logZenithAssigned": "Ascensão Soberana: A notícia [{identifier}] atingiu o Índice de Relevância para o Zênite Nacional.",
+    "errorAduanaFailed": "Violação de ADN: O enxame de notícias porta radiação técnica ou marcas nominais inválidas.",
+    "auditImpactBonus": "Fé Pública Aplicada: Bônus de veracidade blockchain injetado no rastro {identifier}.",
+    "logDecayApplied": "Entropia Temporal: Penalidade de frescura aplicada ao rastro informativo: {identifier}."
   }
 }

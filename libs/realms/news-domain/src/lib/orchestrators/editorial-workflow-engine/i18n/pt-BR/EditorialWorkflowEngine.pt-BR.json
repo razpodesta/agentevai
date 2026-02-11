@@ -1,11 +1,7 @@
 {
   "EditorialWorkflowEngine": {
-    "label_DRAFT": "Rascunho",
-    "label_AI_ANALYSIS": "Em Perícia Neural",
-    "label_MANUAL_REVIEW": "Revisão por Engenheiro",
-    "label_BLOCKCHAIN_SEALED": "Soberania Matemática Garantida",
-    "label_PUBLISHED": "Publicado",
-    "error_ILLEGAL_TRANSITION": "Transição negada: Ação {action} não é permitida no estado {state}.",
-    "log_TRACE_SEALED": "Rastro editorial verificado para a notícia {id}."
+    "logStateTransmuted": "Sincronia Editorial Zenith: O rastro de notícia evoluiu do estágio {origin} para o estágio {target} com integridade de ADN.",
+    "ILLEGAL_WORKFLOW_TRANSITION": "Violação de Protocolo Editorial: A ação de transmutação [{action}] foi negada. O estado atual [{state}] não permite este salto de soberania.",
+    "errorAduanaFailed": "Falha na Aduana Editorial: Os parâmetros de transição portam radiação técnica ou marcas nominais inválidas."
   }
 }

@@ -1,0 +1,7 @@
+{
+  "SovereignActionQR": {
+    "accessibilityInstruction": "Aponte a câmera para autenticar este rastro.",
+    "errorInvalidUrl": "Violação de ADN: A URL de destino do rastro visual é inválida.",
+    "logGenerationSuccess": "Ponte O2O (Online-to-Offline) selada para a jornada {correlationIdentifier}."
+  }
+}

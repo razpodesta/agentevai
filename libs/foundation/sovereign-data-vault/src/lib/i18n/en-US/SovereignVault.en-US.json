@@ -1,0 +1,14 @@
+{
+  "AnonymizeSovereignData": {
+    "logSuccess": "Trace successfully anonymized. Civil identity protected via SHA-256.",
+    "errorSaltMissing": "Sovereignty salt missing. Anonymization integrity failure."
+  },
+  "ProtectSovereignData": {
+    "logSuccess": "Sensitive information payload of context {context} encrypted and sealed in the Vault.",
+    "errorMasterKey": "Sovereignty master key (AES-GCM) not located in the environment."
+  },
+  "UnprotectSovereignData": {
+    "logSuccess": "Authorized access: Data decrypted for forensic examination of journey {correlationIdentifier}.",
+    "errorTampering": "CRITICAL ALERT: Integrity violation attempt detected. The cryptographic trace has been tampered with."
+  }
+}

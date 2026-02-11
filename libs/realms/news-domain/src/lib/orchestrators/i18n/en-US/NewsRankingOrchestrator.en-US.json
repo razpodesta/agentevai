@@ -1,9 +1,9 @@
 {
   "NewsRankingOrchestrator": {
-    "logRankingComplete": "Editorial ranking consolidated for {count} news items in the active territory.",
-    "logZenithAssigned": "News item [{identifier}] reached the Sovereign Relevance Index for the National Zenith.",
-    "errorAduanaFailed": "DNA Violation: The news swarm for ranking processing carries technical radiation.",
-    "auditImpactBonus": "Mathematical veracity bonus (Blockchain Proof) applied to identifier {identifier}.",
-    "logDecayApplied": "Temporal decay penalty applied to the informative trace: {identifier}."
+    "logRankingComplete": "Mathematical Curatorship: Editorial ranking consolidated for {count} news items in the active territory.",
+    "logZenithAssigned": "Sovereign Ascension: News item [{identifier}] reached the Relevance Index for the National Zenith.",
+    "errorAduanaFailed": "DNA Violation: The news swarm carries technical radiation or invalid nominal brands.",
+    "auditImpactBonus": "Public Trust Applied: Blockchain veracity bonus injected into trace {identifier}.",
+    "logDecayApplied": "Temporal Entropy: Freshness penalty applied to the informative trace: {identifier}."
   }
 }

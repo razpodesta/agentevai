@@ -1,27 +1,25 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextManager
- * @version 3.0.0
- * @protocol OEDP-V6.0 - High Precision & Neural Integrity
- * @description Fábrica imutável de elite para ignição da consciência sistêmica.
- * Orquestra a transmutação de rastro de borda em realidade operacional.
- * @policy ZERO-ANY: Saneamento absoluto via ADN nominal.
+ * @version 4.1.0
+ * @protocol OEDP-V6.0 - High Performance & Neural Resilience
+ * @description Fábrica de elite para ignição da consciência sistêmica.
+ * Implementa Atuador de Degradação Graciosa e Selagem de ADN.
  * @policy ESM-STRICT: Uso de extensões explícitas (.js).
  */
 
-import { z } from 'zod';
 import {
   SovereignContextSchema,
-  type ISovereignContext
+  SovereignContextBaseSchema,
+  type ISovereignContext,
+  HealthScoreSchema
 } from './schemas/SovereignContext.schema.js';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import {
-  SovereignError,
-  SovereignErrorCodeSchema
-} from '@agentevai/sovereign-error-observability';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
 import {
   SovereignTranslationEngine,
-  TransmuteGeopoliticalId
+  TransmuteGeopoliticalId,
+  type ISovereignDictionary
 } from '@agentevai/internationalization-engine';
 
 /**
@@ -38,62 +36,64 @@ export interface ISovereignConsciousnessPacket extends ISovereignContext {
 /**
  * @name CreateSovereignContext
  * @function
- * @description Ponto de ignição mestre. Erradica o erro TS2554 ao exigir
- * explicitamente o rastro de correlação gerado na borda.
- *
- * @param {unknown} infrastructureSnapshot - Dados brutos (Request, Geo, Headers).
- * @param {string} correlationIdentifier - UUID obrigatório para rastro forense.
- * @param {ISovereignConsciousnessPacket['ignitionPoint']} origin - Contexto de nascimento.
- * @returns {ISovereignConsciousnessPacket} Realidade purificada e ancorada.
+ * @description Ponto de ignição mestre. Orquestra a transmutação do rastro.
  */
 export const CreateSovereignContext = (
   infrastructureSnapshot: unknown,
-  correlationIdentifier: string, // CURA TS2554: Agora o rastro é injetado pelo Middleware
-  origin: ISovereignConsciousnessPacket['ignitionPoint'] = 'EDGE_RUNTIME'
+  correlationIdentifier: string,
+  origin: ISovereignConsciousnessPacket['ignitionPoint'] = 'EDGE_RUNTIME',
+  dictionary: ISovereignDictionary
 ): ISovereignConsciousnessPacket => {
   const startTimestamp = performance.now();
   const apparatusName = 'SovereignContextManager';
-  const apparatusVersion = '3.0.0';
-  const fileLocation = 'libs/foundation/sovereign-context/src/lib/SovereignContextManager.ts';
+  const apparatusVersion = '4.1.0';
 
-  // 1. Aduana de ADN (Sincronia com Manifesto 0018)
-  const validationResult = SovereignContextSchema.safeParse(infrastructureSnapshot);
+  // 1. ADUANA DE ADN (Validação Estrutural)
+  const initialValidation = SovereignContextBaseSchema.safeParse(infrastructureSnapshot);
 
-  // 2. Protocolo de Resiliência: Tratamento de Colapso
-  if (!validationResult.success) {
-    throw handleConsciousnessCollapse({
-      snapshot: infrastructureSnapshot,
-      errors: validationResult.error,
-      origin,
-      correlationIdentifier,
-      apparatusName,
-      fileLocation,
-      version: apparatusVersion
+  if (!initialValidation.success) {
+    throw new SovereignError({
+      uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-CORE-0001'),
+      i18nMappingKey: 'CONSCIOUSNESS_COLLAPSE',
+      severity: 'FATAL',
+      apparatusMetadata: {
+        name: apparatusName,
+        version: apparatusVersion,
+        fileLocation: 'libs/foundation/sovereign-context/src/lib/SovereignContextManager.ts'
+      },
+      runtimeSnapshot: {
+        inputPayload: infrastructureSnapshot,
+        correlationIdentifier,
+        validationIssues: initialValidation.error.issues
+      },
+      forensicTrace: {
+        timestamp: new Date().toISOString(),
+        stack: new Error().stack || 'ST_UNAVAILABLE'
+      }
     });
   }
 
-  const contextData = validationResult.data;
+  // 2. ATUADOR DE DEGRADAÇÃO GRACIOSA (Manobra de Resiliência)
+  const contextData = ExecuteGracefulDegradation(initialValidation.data, dictionary, correlationIdentifier);
 
-  // 3. Sincronia de Soberania (Trindade Geopolítica)
+  // 3. SINCRONIA GEOPOLÍTICA (Pilar 5)
   const countryCode = contextData.geography.countryCode;
-  const activeLocale = SovereignTranslationEngine.resolveLocale(contextData.language.activeLocale);
-  const routeSlug = TransmuteGeopoliticalId.countryToRoute(countryCode, correlationIdentifier);
+  const routeSlug = TransmuteGeopoliticalId.countryToRoute(countryCode, correlationIdentifier, dictionary);
 
-  // 4. Cálculo de Latência de Ignição (Swiss Precision)
+  // 4. CÁLCULO DE LATÊNCIA (Swiss Precision)
   const endTimestamp = performance.now();
   const ignitionLatencyInMilliseconds = parseFloat((endTimestamp - startTimestamp).toFixed(4));
 
-  // 5. Telemetria de Sucesso (Cura TS2353: correlationIdentifier)
+  // 5. TELEMETRIA DE SUCESSO
   SovereignLogger({
-    severity: 'INFO',
+    severity: contextData.systemStatus.isDegradedModeActive ? 'WARN' : 'INFO',
     apparatus: apparatusName,
     operation: 'IGNITION_SUCCESS',
-    message: `Soberania [${countryCode}] estabelecida em ${ignitionLatencyInMilliseconds}ms via ${routeSlug}.`,
-    correlationIdentifier: correlationIdentifier,
+    message: `Consciência [${countryCode}] ancorada em ${ignitionLatencyInMilliseconds}ms.`,
+    correlationIdentifier,
     metadata: {
-      region: contextData.geography.regionName,
-      locale: activeLocale,
       health: contextData.systemStatus.healthScore,
+      isDegraded: contextData.systemStatus.isDegradedModeActive,
       origin
     }
   });
@@ -108,46 +108,44 @@ export const CreateSovereignContext = (
 };
 
 /**
- * @name handleConsciousnessCollapse
+ * @name ExecuteGracefulDegradation
+ * @function
  * @private
+ * @description Atuador ativo que protege o sistema sob estresse térmico/lógico.
  */
-function handleConsciousnessCollapse(parameters: {
-  readonly snapshot: unknown;
-  readonly errors: z.ZodError;
-  readonly origin: string;
-  readonly correlationIdentifier: string;
-  readonly apparatusName: string;
-  readonly fileLocation: string;
-  readonly version: string;
-}): SovereignError {
-  const { snapshot, errors, origin, correlationIdentifier, apparatusName, fileLocation, version } = parameters;
+function ExecuteGracefulDegradation(
+  context: ISovereignContext,
+  dictionary: ISovereignDictionary,
+  correlationIdentifier: string
+): ISovereignContext {
+  const apparatusName = 'SovereignContextManager';
+  const CRITICAL_HEALTH_THRESHOLD = 40;
 
-  SovereignLogger({
-    severity: 'CRITICAL',
-    apparatus: apparatusName,
-    operation: 'IGNITION_FAILURE',
-    message: `Violação de ADN: Colapso de consciência em ${origin}. Território ilegível.`,
-    correlationIdentifier: correlationIdentifier,
-    metadata: {
-      validationIssues: errors.flatten(),
-      providedSnapshot: snapshot
-    }
-  });
-
-  return new SovereignError({
-    uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-CORE-0001'),
-    i18nMappingKey: 'CONSCIOUSNESS_COLLAPSE',
-    severity: 'FATAL',
-    apparatusMetadata: { name: apparatusName, version, fileLocation },
-    runtimeSnapshot: {
-      inputPayload: snapshot,
+  if (context.systemStatus.healthScore < CRITICAL_HEALTH_THRESHOLD) {
+    SovereignLogger({
+      severity: 'CRITICAL',
+      apparatus: apparatusName,
+      operation: 'GRACEFUL_DEGRADATION_ACTIVE',
+      message: SovereignTranslationEngine.translate(
+        dictionary, apparatusName, 'degradedAlert', {}, correlationIdentifier
+      ),
       correlationIdentifier,
-      validationIssues: errors.issues
-    },
-    forensicTrace: {
-      timestamp: new Date().toISOString(),
-      stack: new Error().stack || 'ST_UNAVAILABLE'
-    },
-    recoverySuggestion: 'Falha crítica na resolução geográfica. Verifique o rastro do TerritorialAnchor.'
-  });
+      metadata: { health: context.systemStatus.healthScore }
+    });
+
+    // Mutação Segura: Desativa rastro cinético para preservar CPU
+    return SovereignContextSchema.parse({
+      ...context,
+      appearance: {
+        ...context.appearance,
+        motionProfile: 'NONE'
+      },
+      systemStatus: {
+        ...context.systemStatus,
+        isDegradedModeActive: true
+      }
+    });
+  }
+
+  return context;
 }

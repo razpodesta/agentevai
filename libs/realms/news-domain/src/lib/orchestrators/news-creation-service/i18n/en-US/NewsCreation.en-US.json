@@ -1,7 +1,7 @@
 {
   "NewsCreationService": {
-    "logIgnition": "News creation process initiated for trace {id}.",
-    "errorValidation": "DNA violation detected in news data.",
-    "statusBlockchain": "Mathematical veracity seal applied successfully."
+    "logIgnition": "Ignition Synchrony: Initiating creation trace for news item {identifier}.",
+    "statusBlockchain": "Sovereignty Guaranteed: News item [{identifier}] sealed with public trust and despatched for neural forensics.",
+    "errorAduanaFailed": "DNA Failure: News creation parameters violated the technical integrity contract."
   }
 }

@@ -1,0 +1,7 @@
+{
+  "SovereignActionQR": {
+    "accessibilityInstruction": "Apunte la cámara para unirse a esta causa.",
+    "logGenerationSuccess": "Puente O2O generado con éxito para el rastro {correlationIdentifier}.",
+    "errorInvalidUrl": "Violación de ADN: La URL de destino del Quick Response Code no es válida."
+  }
+}

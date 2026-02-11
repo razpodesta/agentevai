@@ -1,57 +1,82 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignNewsletterSchema
- * @version 2.2.0
- * @protocol OEDP-V5.5.2 - High Precision & Conversional Integrity
- * @description ADN mestre para o aparato de captura de e-mails. 
- * Sincronizado para Zod V4 com suporte total a rastro forense e internacionalização.
+ * @version 4.3.0
+ * @protocol OEDP-V6.0 - Forensic Precision
+ * @description ADN mestre estabilizado. Erradicados erros TS2769/TS2339 via Object Pattern.
+ * Sincronizado para Zod V4 com selagem nominal e imutabilidade total.
  */
 
 import { z } from 'zod';
 
-/**
- * @name SovereignNewsletterInputSchema
- * @description Aduana de entrada estrita. Define a estrutura de dados, 
- * comportamentos de callback e rastro linguístico para a conversão.
+/** 
+ * @section Contrato de Subscrição 
+ * Define o rastro de e-mail institucional validado.
  */
-export const SovereignNewsletterInputSchema = z.object({
+export const SubscriberEmailSchema = z.string()
+  .email({ message: 'INVALID_EMAIL_FORMAT' })
+  .toLowerCase()
+  .trim()
+  .describe('Endereço de e-mail institucional do cidadão para selagem de rastro.')
+  .brand<'SubscriberEmail'>();
+
+export type SubscriberEmail = z.infer<typeof SubscriberEmailSchema>;
+
+/** 
+ * @section Zonas de Responsabilidade Atômica 
+ */
+
+/** @name NewsletterEditorialInputSchema */
+export const NewsletterEditorialInputSchema = z.object({
+  title: z.string().min(5).describe('Título de impacto narrativo para o broadcast.'),
+  actionSuffix: z.string().describe('Sufixo regionalizado (ex: em ação).'),
+  bodyText: z.string().min(20).describe('Corpo semântico do convite editorial.'),
+  correlationIdentifier: z.uuid().describe('Identificador inalterável da jornada operativa.')
+}).readonly();
+
+/** @name NewsletterFormInputSchema */
+export const NewsletterFormInputSchema = z.object({
+  placeholder: z.string().describe('Rótulo de instrução para entrada de dados.'),
+  submitLabel: z.string().describe('Comando de ativação da vontade de subscrição.'),
+  isLoading: z.boolean().describe('Sinalizador de estado cinético de processamento.'),
+  
   /** 
-   * Título de impacto visual. 
-   * Caso ausente, o componente utilizará a chave 'mainTitle' do dicionário.
+   * @section CURA_TS2769_TS2339 
+   * Zod V4 Object Pattern: Definição atômica de Entrada e Saída.
    */
-  title: z.string()
+  onSubscribe: z.function({
+    input: z.tuple([z.string().email()]),
+    output: z.promise(z.void())
+  }).describe('Callback atômico para persistência do rastro de e-mail.'),
+
+  correlationIdentifier: z.uuid()
+    .describe('Vínculo forense com o SovereignLogger.')
+}).readonly();
+
+/** @name SovereignNewsletterInputSchema - O Orquestrador */
+export const SovereignNewsletterInputSchema = z.object({
+  /** Título opcional para sobrescrever o padrão determinado pelo território */
+  titleOverride: z.string()
     .min(5)
     .optional()
-    .describe('Título editorial customizado para a seção de captura.'),
+    .describe('Sobrescrita editorial do título principal.'),
 
   /** 
-   * @section Sincronia Zod V4 
-   * Definição estrutural de função para orquestração de subscrição.
+   * @section CURA_TS2769_TS2339 
+   * Interface agnóstica configurada via Object Pattern para máxima resiliência.
    */
   onSubscribeIntent: z.function({
-    input: z.tuple([
-      z.string().email().describe('Endereço de e-mail institucional validado do cidadão.')
-    ]),
-    output: z.promise(z.void()).describe('Promessa de conclusão da selagem no Data Vault.')
-  }).describe('Gatilho de alta prioridade invocado após a manifestação de vontade do usuário.'),
+    input: z.tuple([z.string().email()]),
+    output: z.promise(z.void())
+  }).describe('Gatilho de intenção de subscrição agnóstico ao provedor de transporte.'),
 
-  /** 
-   * @section Soberania Linguística
-   * Cura do erro TS2339: Injeção do rastro de dicionário regional.
-   */
   dictionary: z.record(z.string(), z.unknown())
-    .describe('Fragmento de dicionário regional injetado para humanização da interface.'),
+    .describe('Silo linguístico regionalizado para o aparato de marketing.'),
 
-  /** Identificador único da jornada para correlação com o SovereignLogger */
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
-
 })
-.brand<'SovereignNewsletterInput'>() // Selo de Identidade de Elite
-.readonly(); // Imutabilidade forçada para proteção de rastro
+.brand<'SovereignNewsletterInput'>()
+.readonly();
 
-/**
- * @interface ISovereignNewsletterInput
- * @description Contrato imutável resultante da selagem de ADN.
- */
 export type ISovereignNewsletterInput = z.infer<typeof SovereignNewsletterInputSchema>;

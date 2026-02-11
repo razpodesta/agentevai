@@ -1,13 +1,14 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus NewsRankingOrchestratorSchema
- * @version 2.0.0
+ * @version 3.0.0
  * @protocol OEDP-V6.0 - Mathematical Curatorship
- * @description ADN que define os critérios de entrada e saída para o motor de ranking.
+ * @description ADN que define a soberania do ranking editorial.
  */
 
 import { z } from 'zod';
 
+/** @section Tipagem Nominal (Branded) */
 export const RelevanceScoreSchema = z.number()
   .describe('Pontuação algorítmica de relevância editorial (IRS).')
   .brand<'RelevanceScore'>();
@@ -15,31 +16,27 @@ export const RelevanceScoreSchema = z.number()
 export type RelevanceScore = z.infer<typeof RelevanceScoreSchema>;
 
 /**
- * @name RankedArticleSchema
- * @description ADN de saída contendo a recomendação de posicionamento.
+ * @name RankingCandidateSchema
+ * @description ADN individual de uma notícia para processamento de mérito.
  */
+export const RankingCandidateSchema = z.object({
+  identifier: z.uuid().describe('ID inalterável da notícia.'),
+  supportCount: z.number().int().nonnegative().describe('Volume de assinaturas.'),
+  isBlockchainVerified: z.boolean().describe('Sinalizador de fé pública digital.'),
+  publishedAt: z.string().datetime().describe('Timestamp de ignição pública.'),
+  severityWeight: z.number().min(1).max(10).default(1),
+}).readonly();
+
+export type IRankingCandidate = z.infer<typeof RankingCandidateSchema>;
+
+/** @name RankedArticleSchema */
 export const RankedArticleSchema = z.object({
-  identifier: z.uuid()
-    .describe('Identificador inalterável do rastro de notícia.'),
-  
+  identifier: z.uuid(),
   rankingScore: RelevanceScoreSchema,
-  
   recommendedSection: z.enum(['NATIONAL_ZENITH', 'REGIONAL_PULSE', 'INVESTIGATIVE_VAULT'])
-    .describe('Seção editorial sugerida baseada no impacto calculado.')
 }).readonly();
 
 export type IRankedArticle = z.infer<typeof RankedArticleSchema>;
 
-/**
- * @name NewsRankingInputSchema
- * @description Aduana para o enxame de artigos candidatos ao feed.
- */
-export const NewsRankingInputSchema = z.array(z.object({
-  identifier: z.uuid(),
-  supportCount: z.number().int().nonnegative(),
-  isBlockchainVerified: z.boolean(),
-  publishedAt: z.string().datetime(),
-  severityWeight: z.number().min(1).max(10).default(1),
-})).min(1).readonly();
-
-export type INewsRankingInput = z.infer<typeof NewsRankingInputSchema>;
+/** @name NewsRankingInputSchema */
+export const NewsRankingInputSchema = z.array(RankingCandidateSchema).min(1).readonly();
