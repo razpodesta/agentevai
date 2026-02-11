@@ -1,8 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CitizenFactorySchema
- * @version 1.0.0
- * @protocol OEDP-V6.0 - High Precision ADN
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Precision DNA
+ * @description ADN de elite para a fábrica de cidadãos. 
+ * Implementa técnica de re-selagem para compatibilidade com orquestradores.
  */
 
 import { z } from 'zod';
@@ -12,20 +14,27 @@ import {
 } from '../../../schemas/UserIdentity.schema.js';
 
 /**
- * @name CitizenFactoryInputSchema
- * @description Aduana de entrada para a fábrica de autoridade do cidadão.
+ * @name CitizenFactoryBaseSchema
+ * @description Estrutura fundamental sem marca nominal. 
+ * Usada para validar a ponte entre o orquestrador e a fábrica.
  */
-export const CitizenFactoryInputSchema = z.object({
+export const CitizenFactoryBaseSchema = z.object({
   reputationStanding: ReputationScoreSchema
-    .describe('O mérito social acumulado pelo cidadão.'),
+    .describe('O mérito social do cidadão extraído do snapshot de identidade.'),
 
   identityAssuranceLevel: IdentityAssuranceLevelSchema
-    .describe('O nível de prova de identidade (IAL) verificado.'),
+    .describe('O nível de prova NIST verificado para cálculo de autoridade.'),
 
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
-})
-.brand<'CitizenFactoryInput'>()
-.readonly();
+});
+
+/**
+ * @name CitizenFactoryInputSchema
+ * @description O contrato SELADO para uso interno estrito da fábrica.
+ */
+export const CitizenFactoryInputSchema = CitizenFactoryBaseSchema
+  .brand<'CitizenFactoryInput'>()
+  .readonly();
 
 export type ICitizenFactoryInput = z.infer<typeof CitizenFactoryInputSchema>;

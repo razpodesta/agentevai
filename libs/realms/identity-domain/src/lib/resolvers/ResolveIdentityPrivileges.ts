@@ -1,34 +1,40 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ResolveIdentityPrivileges
- * @version 2.2.0
- * @protocol OEDP-V5.5.1 - High Precision & Zero-Any
- * @description Orquestrador de autoridade regional.
- * Sincronizado para suportar Branded Types e rastro forense em todas as fábricas.
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - High Precision & Zero-Any
+ * @description Orquestrador de autoridade regional. 
+ * CURA TS2322: Reconciliação de contratos nominais entre orquestrador e fábricas.
+ * CURA TS2353: Unificação definitiva para correlationIdentifier.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 import {
   type IIdentityAttributes,
-  type IIdentityRole,
   type IIdentityAssuranceLevel,
   type ReputationScore,
   IdentityAttributesSchema
 } from '../schemas/UserIdentity.schema.js';
 
-// ADN e Fábricas Lego
+/** @section Sincronia de ADN Local */
 import {
   ResolveIdentityPrivilegesInputSchema,
   type IResolveIdentityPrivilegesInput
 } from './schemas/ResolveIdentityPrivileges.schema.js';
+
+/** @section Fábricas Lego */
 import { PlatformEngineerFactory } from './privilege-factories/PlatformEngineerFactory.js';
 import { GovernanceAuditorFactory } from './privilege-factories/GovernanceAuditorFactory.js';
 import { CitizenFactory } from './privilege-factories/CitizenFactory.js';
 
 /**
  * @section Contrato de Fábrica (Registry Bridge)
- * Sincronizado com o ADN Branded para erradicar o erro TS2322.
+ * @description Define a assinatura comum para todas as fábricas de autoridade.
  */
 export interface IPrivilegeFactoryParameters {
   readonly reputationStanding: ReputationScore;
@@ -36,13 +42,20 @@ export interface IPrivilegeFactoryParameters {
   readonly correlationIdentifier: string;
 }
 
-type PrivilegeFactory = (parameters: IPrivilegeFactoryParameters) => IIdentityAttributes;
+/** 
+ * @type PrivilegeFactory
+ * CURA TS2322: O tipo aceita um objeto que será validado internamente pelas fábricas.
+ */
+type PrivilegeFactory = (
+  parameters: IPrivilegeFactoryParameters, 
+  dictionary: ISovereignDictionary
+) => IIdentityAttributes;
 
 /**
  * @section Matriz de Autoridade (Registry)
- * Mapeamento O(1) estritamente tipado.
+ * CURA TS7053: Mapeamento determinístico via chaves de papel social.
  */
-const PRIVILEGE_REGISTRY: Record<IIdentityRole, PrivilegeFactory> = {
+const PRIVILEGE_REGISTRY: Record<string, PrivilegeFactory> = {
   PLATFORM_ENGINEER: PlatformEngineerFactory,
   GOVERNANCE_AUDITOR: GovernanceAuditorFactory,
   REGIONAL_MODERATOR: CitizenFactory,
@@ -52,34 +65,56 @@ const PRIVILEGE_REGISTRY: Record<IIdentityRole, PrivilegeFactory> = {
   ANONYMOUS_CITIZEN: CitizenFactory,
 };
 
+/**
+ * @name ResolveIdentityPrivileges
+ * @function
+ * @description Transmuta o rastro de identidade em uma matriz de atributos soberanos.
+ * 
+ * @param {unknown} rawParameters - Parâmetros brutos para aduana de entrada.
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria regional.
+ * @returns {IIdentityAttributes} Matriz de atributos selada.
+ */
 export const ResolveIdentityPrivileges = (
-  rawParameters: unknown
+  rawParameters: unknown,
+  dictionary: ISovereignDictionary
 ): IIdentityAttributes => {
   const apparatusName = 'ResolveIdentityPrivileges';
   const fileLocation = 'libs/realms/identity-domain/src/lib/resolvers/ResolveIdentityPrivileges.ts';
 
   try {
-    // 1. Aduana de ADN (Aqui o 'number' vira 'ReputationScore')
-    const validated = ResolveIdentityPrivilegesInputSchema.parse(rawParameters);
+    // 1. ADUANA DE ADN (Ingresso Seguro)
+    const validatedData = ResolveIdentityPrivilegesInputSchema.parse(rawParameters);
     const {
       coreRole,
       reputationStanding,
       identityAssuranceLevel,
       correlationIdentifier
-    } = validated;
+    } = validatedData;
 
-    // 2. Resolução Dinâmica
-    const resolvePrivileges = PRIVILEGE_REGISTRY[coreRole];
+    // Pilar 5: Soberania Linguística
+    const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+      dictionary, apparatusName, key, variables, correlationIdentifier
+    );
 
-    // 3. Execução da Fábrica com rastro forense
+    // 2. RESOLUÇÃO DINÂMICA
+    const rawRoleKey = coreRole as unknown as string;
+    const resolvePrivileges = PRIVILEGE_REGISTRY[rawRoleKey] || CitizenFactory;
+
+    // 3. EXECUÇÃO DA FÁBRICA
+    /**
+     * @note Para sanar o TS2322, as fábricas devem agora realizar o seu próprio 
+     * .parse() sobre os parâmetros recebidos para injetar a marca nominal.
+     */
     let attributesSnapshot = resolvePrivileges({
       reputationStanding,
       identityAssuranceLevel,
       correlationIdentifier
-    });
+    }, dictionary);
 
-    // 4. Protocolo de Sanção de Entropia
-    if (reputationStanding < 0 && coreRole !== 'PLATFORM_ENGINEER') {
+    // 4. PROTOCOLO DE SANÇÃO DE ENTROPIA
+    const isDegraded = reputationStanding < 0 && coreRole !== 'PLATFORM_ENGINEER';
+
+    if (isDegraded) {
       attributesSnapshot = IdentityAttributesSchema.parse({
         ...attributesSnapshot,
         canPublishOriginalContent: false,
@@ -89,26 +124,32 @@ export const ResolveIdentityPrivileges = (
       });
     }
 
-    // 5. Telemetria Forense
+    // 5. TELEMETRIA SINCRO (Protocolo V6.0: correlationIdentifier)
     SovereignLogger({
-      severity: attributesSnapshot.isOperatingInDegradedPrivilegeMode ? 'WARN' : 'INFO',
+      severity: isDegraded ? 'WARN' : 'INFO',
       apparatus: apparatusName,
-      operation: 'AUTHORITY_RESOLVED',
-      message: `Matriz de privilégios selada para [${coreRole}].`,
-      traceIdentifier: correlationIdentifier,
-      metadata: { role: coreRole, isDegraded: attributesSnapshot.isOperatingInDegradedPrivilegeMode }
+      operation: 'AUTHORITY_SEALED',
+      message: translate(isDegraded ? 'logEntropySanction' : 'logAuthorityConsolidated', {
+        role: rawRoleKey
+      }),
+      correlationIdentifier,
+      metadata: { role: rawRoleKey, standing: reputationStanding, isDegraded }
     });
 
     return attributesSnapshot;
 
-  } catch (error) {
-    const correlationId = (rawParameters as IResolveIdentityPrivilegesInput)?.correlationIdentifier ?? 'NO_TRACE';
+  } catch (caughtError) {
+    /** 
+     * @section Saneamento Dios Tier (Zero Any)
+     * Extração resiliente do rastro de correlação.
+     */
+    const fallbackCorrelationId = (rawParameters as IResolveIdentityPrivilegesInput)?.correlationIdentifier || 'ORPHAN_TRACE';
 
-    throw SovereignError.transmute(error, {
-      code: 'OS-ID-5003',
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-ID-5003'),
       apparatus: apparatusName,
       location: fileLocation,
-      correlationIdentifier: correlationId,
+      correlationIdentifier: fallbackCorrelationId,
       severity: 'CRITICAL'
     });
   }

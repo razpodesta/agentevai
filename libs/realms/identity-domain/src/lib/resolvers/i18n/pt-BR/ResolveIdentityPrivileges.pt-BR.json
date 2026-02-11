@@ -1,7 +1,7 @@
 {
   "ResolveIdentityPrivileges": {
-    "logAuthorityConsolidated": "Matriz de privilégios selada para o papel técnico: {role}.",
-    "logEntropySanction": "ALERTA: Privilégios degradados por standing negativo para o rastro {role}.",
-    "errorResolutionFailure": "Falha crítica na orquestração de autoridade regional."
+    "logAuthorityConsolidated": "Matriz de privilégios selada com sucesso para o papel técnico: {role}.",
+    "logEntropySanction": "ALERTA SOBERANO: Privilégios degradados devido ao standing social negativo do rastro {role}.",
+    "errorResolutionFailure": "Incapacidade Operativa: Falha crítica na orquestração de autoridade regional."
   }
 }

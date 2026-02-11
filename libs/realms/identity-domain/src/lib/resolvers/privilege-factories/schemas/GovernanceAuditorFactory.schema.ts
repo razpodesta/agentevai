@@ -1,9 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GovernanceAuditorFactorySchema
- * @version 2.0.0
- * @protocol OEDP-V6.0 - High Precision ADN
- * @description ADN de fronteira para a fábrica de auditores governamentais.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - Institutional Sovereignty
+ * @description ADN de elite para a fábrica de auditores. 
+ * Implementa a técnica de Selagem Tardia para compatibilidade de Reinos.
  */
 
 import { z } from 'zod';
@@ -13,20 +14,26 @@ import {
 } from '../../../schemas/UserIdentity.schema.js';
 
 /**
- * @name GovernanceAuditorFactoryInputSchema
- * @description Aduana de entrada estrita para validação do rastro institucional.
+ * @name GovernanceAuditorFactoryBaseSchema
+ * @description Estrutura fundamental sem marca nominal para a ponte de orquestração.
  */
-export const GovernanceAuditorFactoryInputSchema = z.object({
+export const GovernanceAuditorFactoryBaseSchema = z.object({
   reputationStanding: ReputationScoreSchema
-    .describe('O mérito social acumulado necessário para o exercício da auditoria.'),
+    .describe('O mérito social necessário para o exercício da moderação.'),
 
   identityAssuranceLevel: IdentityAssuranceLevelSchema
-    .describe('O nível de prova NIST exigido para autoridade institucional.'),
+    .describe('O nível de prova NIST verificado para autoridade institucional.'),
 
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
-})
-.brand<'GovernanceAuditorFactoryInput'>()
-.readonly();
+});
+
+/**
+ * @name GovernanceAuditorFactoryInputSchema
+ * @description O contrato SELADO para uso interno estrito da fábrica.
+ */
+export const GovernanceAuditorFactoryInputSchema = GovernanceAuditorFactoryBaseSchema
+  .brand<'GovernanceAuditorFactoryInput'>()
+  .readonly();
 
 export type IGovernanceAuditorFactoryInput = z.infer<typeof GovernanceAuditorFactoryInputSchema>;

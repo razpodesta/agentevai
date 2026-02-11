@@ -1,7 +1,8 @@
 {
   "CitizenFactory": {
-    "logAuthorityResolved": "Autoridade calculada para o cidadão. Peso de Voto: {weight}x.",
-    "logHostileStatus": "ALERTA: Cidadão operando em modo degradado devido ao standing de {standing}.",
-    "errorAduanaFailed": "Falha de ADN: Os parâmetros de cidadania estão corrompidos."
+    "logAuthorityResolved": "Autoridade de cidadania selada com sucesso. Multiplicador de Voto: {weight}x.",
+    "logHostileStatus": "ALERTA SOBERANO: Cidadão sob restrição por comportamento hostil (Standing: {standing}).",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros de nascimento de privilégio estão corrompidos.",
+    "statusDegradedActive": "MODO DE PRIVILÉGIO DEGRADADO ATIVO"
   }
 }

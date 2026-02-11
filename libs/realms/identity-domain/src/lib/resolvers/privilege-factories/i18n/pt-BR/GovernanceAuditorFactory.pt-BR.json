@@ -1,7 +1,8 @@
 {
   "GovernanceAuditorFactory": {
-    "logAuditPrivilegesSealed": "Autoridade de auditoria selada para o nível {level}. Imunidade: {immunity}.",
-    "logIntegritySanction": "ALERTA: Auditor com standing insuficiente ({standing}). Aplicando modo degradado.",
-    "errorAduanaFailed": "Falha de ADN: Atributos institucionais do auditor estão corrompidos."
+    "logAuditPrivilegesSealed": "Autoridade de auditoria selada. Nível: {level}. Imunidade: {immunity}.",
+    "logIntegritySanction": "ALERTA SOBERANO: Auditor com mérito social insuficiente ({standing}). Aplicando restrição.",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros de autoridade institucional estão corrompidos.",
+    "statusSovereignActive": "ACESSO SOBERANO (IAL3) CONFIRMADO"
   }
 }

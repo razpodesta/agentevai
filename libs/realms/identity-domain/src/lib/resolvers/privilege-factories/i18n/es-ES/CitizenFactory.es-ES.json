@@ -1,7 +1,0 @@
-{
-  "CitizenFactory": {
-    "logAuthorityResolved": "Autoridad calculada para el ciudadano. Peso de Voto: {weight}x.",
-    "logHostileStatus": "ALERTA: Ciudadano operando en modo degradado debido al standing de {standing}.",
-    "errorAduanaFailed": "Falla de ADN: Los parámetros de ciudadanía están corrompidos."
-  }
-}

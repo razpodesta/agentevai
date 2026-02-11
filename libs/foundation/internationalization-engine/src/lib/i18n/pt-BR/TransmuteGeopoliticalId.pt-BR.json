@@ -1,8 +1,8 @@
 {
   "TransmuteGeopoliticalId": {
-    "errorRouteNotMapped": "A rota {input} não possui mapeamento cultural no território ativo.",
-    "errorLocaleCorrupted": "O rastro de localidade {input} está corrompido ou é ilegível.",
-    "logTransmutationSuccess": "Transmutação geopolítica concluída para {input}.",
-    "auditEntropyDetected": "Entropia detectada no rastro geopolítico: {input}."
+    "errorRouteNotMapped": "Incapacidade Geopolítica: A rota {input} não possui mapeamento cultural no território ativo.",
+    "errorLocaleCorrupted": "Rastro Corrompido: A localidade {input} é ilegível ou violou o ADN de soberania.",
+    "logTransmutationSuccess": "Sincronia Geopolítica: Transmutação concluída para {input}.",
+    "auditEntropyDetected": "Entropia Detectada: Inconsistência no rastro geopolítico do visitante: {input}."
   }
 }

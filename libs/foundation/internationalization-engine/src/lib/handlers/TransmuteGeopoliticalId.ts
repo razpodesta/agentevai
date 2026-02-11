@@ -1,27 +1,34 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TransmuteGeopoliticalId
- * @version 2.0.0
- * @protocol OEDP-V5.5.2 - High Performance Geopolitical Logic
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - High Performance Geopolitical Logic
  * @description Motor atômico de conversão entre Locale, Country e Route.
- * Erradica falhas de indexação e garante a integridade da Trindade Geopolítica.
- * @policy ZERO-ANY: Saneamento total via ADN Zod.
- * @policy ESM-STRICT: Extensões .js obrigatórias.
+ * Saneado contra TS2459 e TS2353. Garante a integridade da Trindade Geopolítica.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ZERO-ANY: Saneamento total via ADN Zod V4.
  */
 
 import {
-  SovereignLocale,
-  SovereignCountry,
-  SovereignRoute,
+  type SovereignLocale,
+  type SovereignCountry,
+  type SovereignRoute,
   SovereignLocaleSchema,
   SovereignCountrySchema,
   SovereignRouteSchema
 } from '@agentevai/types-common';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { TransmutationInputSchema } from '../schemas/TransmuteGeopoliticalId.schema.js';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from './SovereignTranslationEngine.js';
+import { 
+  TransmutationInputSchema 
+} from '../schemas/TransmuteGeopoliticalId.schema.js';
 
-/**
- * @section Mapas de Soberania (O(1) Access)
+/** 
+ * @section Mapas de Soberania (O(1) Access) 
+ * Mapeamentos imutáveis para garantir latência zero na borda.
  */
 const ROUTE_TO_LOCALE_MAP: Readonly<Record<string, SovereignLocale>> = Object.freeze({
   'br': 'pt-BR' as SovereignLocale,
@@ -37,22 +44,34 @@ const LOCALE_TO_COUNTRY_MAP: Readonly<Record<string, SovereignCountry>> = Object
 
 /**
  * @class TransmuteGeopoliticalId
- * @description Central de inteligência para normalização de identificadores nacionais.
+ * @description Central de inteligência para normalização de identificadores territoriais.
  */
 export class TransmuteGeopoliticalId {
   private static readonly apparatusName = 'TransmuteGeopoliticalId';
 
   /**
    * @method routeToLocale
-   * @description Transmuta um slug de rota URL em um Locale BCP 47 validado.
+   * @description Transmuta um slug de rota URL (br) em um Locale BCP 47 (pt-BR).
+   * 
+   * @param {string} routeSlug - O fragmento de navegação da URL.
+   * @param {string} correlationIdentifier - UUID de rastro forense.
+   * @param {ISovereignDictionary} dictionary - Dicionário para logs de entropia.
    */
-  public static routeToLocale(routeSlug: string, correlationIdentifier: string): SovereignLocale {
-    const input = TransmutationInputSchema.parse({ rawInput: routeSlug, correlationIdentifier });
-    const normalizedRoute = input.rawInput.toLowerCase();
+  public static routeToLocale(
+    routeSlug: string, 
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
+  ): SovereignLocale {
+    const validatedInput = TransmutationInputSchema.parse({ 
+      rawInput: routeSlug, 
+      correlationIdentifier 
+    });
+
+    const normalizedRoute = validatedInput.rawInput.toLowerCase();
     const resolvedLocale = ROUTE_TO_LOCALE_MAP[normalizedRoute];
 
     if (!resolvedLocale) {
-      this.reportEntropy('errorRouteNotMapped', normalizedRoute, correlationIdentifier);
+      this.reportGeopoliticalEntropy('errorRouteNotMapped', normalizedRoute, correlationIdentifier, dictionary);
       return SovereignLocaleSchema.parse('pt-BR');
     }
 
@@ -61,22 +80,34 @@ export class TransmuteGeopoliticalId {
 
   /**
    * @method localeToCountry
-   * @description Extrai a Soberania Nacional de uma Identidade Cultural.
+   * @description Extrai o código de Soberania Nacional (BR) de uma Identidade Cultural.
    */
-  public static localeToCountry(sovereignLocale: string, correlationIdentifier: string): SovereignCountry {
-    const input = TransmutationInputSchema.parse({ rawInput: sovereignLocale, correlationIdentifier });
-    const resolvedCountry = LOCALE_TO_COUNTRY_MAP[input.rawInput];
+  public static localeToCountry(
+    sovereignLocale: string, 
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
+  ): SovereignCountry {
+    const validatedInput = TransmutationInputSchema.parse({ 
+      rawInput: sovereignLocale, 
+      correlationIdentifier 
+    });
+
+    const resolvedCountry = LOCALE_TO_COUNTRY_MAP[validatedInput.rawInput];
 
     if (!resolvedCountry) {
-      // Resiliência: Tentativa de extração por sufixo ISO
-      const parts = input.rawInput.split('-');
-      if (parts.length === 2) {
-        const inferredCountry = parts[1].toUpperCase();
-        const validation = SovereignCountrySchema.safeParse(inferredCountry);
-        if (validation.success) return validation.data;
+      // Protocolo de Resiliência: Extração via sufixo ISO-3166
+      const localeSegments = validatedInput.rawInput.split('-');
+      
+      if (localeSegments.length === 2) {
+        const inferredCountryCode = localeSegments[1].toUpperCase();
+        const validationResult = SovereignCountrySchema.safeParse(inferredCountryCode);
+        
+        if (validationResult.success) {
+          return validationResult.data;
+        }
       }
 
-      this.reportEntropy('errorLocaleCorrupted', input.rawInput, correlationIdentifier);
+      this.reportGeopoliticalEntropy('errorLocaleCorrupted', validatedInput.rawInput, correlationIdentifier, dictionary);
       return SovereignCountrySchema.parse('BR');
     }
 
@@ -85,41 +116,58 @@ export class TransmuteGeopoliticalId {
 
   /**
    * @method countryToRoute
-   * @description Converte o Código do País em um slug de navegação amigável.
+   * @description Converte o Código do País (BR) em um slug de navegação (br).
    */
-  public static countryToRoute(sovereignCountry: string, correlationIdentifier: string): SovereignRoute {
-    const input = TransmutationInputSchema.parse({ rawInput: sovereignCountry, correlationIdentifier });
-    const normalizedRoute = input.rawInput.toLowerCase();
+  public static countryToRoute(
+    sovereignCountry: string, 
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
+  ): SovereignRoute {
+    const validatedInput = TransmutationInputSchema.parse({ 
+      rawInput: sovereignCountry, 
+      correlationIdentifier 
+    });
 
-    const validation = SovereignRouteSchema.safeParse(normalizedRoute);
+    const normalizedRouteSlug = validatedInput.rawInput.toLowerCase();
+    const validationResult = SovereignRouteSchema.safeParse(normalizedRouteSlug);
 
-    if (!validation.success) {
-      this.reportEntropy('errorRouteNotMapped', input.rawInput, correlationIdentifier);
+    if (!validationResult.success) {
+      this.reportGeopoliticalEntropy('errorRouteNotMapped', validatedInput.rawInput, correlationIdentifier, dictionary);
       return SovereignRouteSchema.parse('br');
     }
 
-    return validation.data;
+    return validationResult.data;
   }
 
   /**
-   * @method reportEntropy
+   * @method reportGeopoliticalEntropy
    * @private
-   * @description Registra falhas de mapeamento com metadados estritos.
-   * Resolve o Erro TS2322 garantindo rastro técnico Record<string, unknown>.
+   * @description Registra falhas de mapeamento territorial no rastro forense.
    */
-  private static reportEntropy(key: string, input: string, correlationIdentifier: string): void {
-    const forensicMetadata: Record<string, unknown> = {
-      faultyInput: input,
-      apparatusVersion: '2.0.0'
-    };
+  private static reportGeopoliticalEntropy(
+    semanticKey: string, 
+    faultyInput: string, 
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
+  ): void {
+    const semanticMessage = SovereignTranslationEngine.translate(
+      dictionary, 
+      this.apparatusName, 
+      semanticKey, 
+      { input: faultyInput }, 
+      correlationIdentifier
+    );
 
     SovereignLogger({
       severity: 'WARN',
       apparatus: this.apparatusName,
-      operation: 'GEOPOLITICAL_ENTROPY',
-      message: `Falha na transmutação: ${key} para a entrada ${input}`,
-      traceIdentifier: correlationIdentifier,
-      metadata: forensicMetadata
+      operation: 'GEOPOLITICAL_ENTROPY_DETECTED',
+      message: semanticMessage,
+      correlationIdentifier, // Protocolo V6.0: Unificação de Rastro
+      metadata: { 
+        inputTrace: faultyInput, 
+        apparatusVersion: '4.0.0' 
+      }
     });
   }
 }

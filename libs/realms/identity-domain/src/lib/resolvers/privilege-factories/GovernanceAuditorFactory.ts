@@ -1,25 +1,28 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GovernanceAuditorFactory
- * @version 2.0.0
+ * @version 3.0.0
  * @protocol OEDP-V6.0 - Institutional Sovereignty
  * @description Fábrica atômica para resolução de privilégios de auditores de governança.
- * Saneado contra radiação técnica, abreviações e números mágicos.
+ * CURA TS2322: Reconciliação nominal via re-selagem interna de ADN.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
-import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 
-/** @section Sincronia de ADN */
+/** @section Sincronia de ADN e Domínio */
 import {
   IdentityAttributesSchema,
   IIdentityAttributes
 } from '../../schemas/UserIdentity.schema.js';
 import { 
-  GovernanceAuditorFactoryInputSchema,
-  type IGovernanceAuditorFactoryInput
-} from './schemas/GovernanceAuditorFactory.schema.js';
+  GovernanceAuditorFactoryBaseSchema,
+} from './schemas/GovernanceAuditorFactory.schema.ts';
+import { type IPrivilegeFactoryParameters } from '../ResolveIdentityPrivileges.js';
 
 /**
  * @section Constantes de Soberania Institucional
@@ -34,23 +37,27 @@ const VOTING_WEIGHT_SOVEREIGN_AUDITOR = 5;
  * @function
  * @description Transmuta o rastro institucional em uma matriz de privilégios de auditoria.
  * 
- * @param {unknown} parameters - Parâmetros brutos para aduana.
- * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria.
+ * @param {IPrivilegeFactoryParameters} parameters - Parâmetros brutos da ponte (Pai).
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria de autoridade.
  * @returns {IIdentityAttributes} Matriz de atributos selada.
  */
 export const GovernanceAuditorFactory = (
-  parameters: unknown,
+  parameters: IPrivilegeFactoryParameters,
   dictionary: ISovereignDictionary
 ): IIdentityAttributes => {
   const apparatusName = 'GovernanceAuditorFactory';
   const fileLocation = 'libs/realms/identity-domain/src/lib/resolvers/privilege-factories/GovernanceAuditorFactory.ts';
 
   try {
-    // 1. ADUANA DE ADN (Ingresso Seguro)
-    const data = GovernanceAuditorFactoryInputSchema.parse(parameters);
+    // 1. ADUANA DE ADN (CURA TS2322: Re-selagem interna injeta a marca nominal)
+    const data = GovernanceAuditorFactoryBaseSchema.parse(parameters);
 
     const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
-      dictionary, apparatusName, key, variables, data.correlationIdentifier
+      dictionary, 
+      apparatusName, 
+      key, 
+      variables, 
+      data.correlationIdentifier
     );
 
     // 2. DETERMINAÇÃO DE PODER INSTITUCIONAL
@@ -60,7 +67,7 @@ export const GovernanceAuditorFactory = (
 
     /**
      * @section Selagem de Atributos
-     * Retorno estritamente tipado e validado pelo ADN mestre.
+     * Retorno validado pelo ADN mestre de atributos de identidade.
      */
     const attributes = IdentityAttributesSchema.parse({
       canPublishOriginalContent: isIntegrityMaintained,
@@ -71,7 +78,7 @@ export const GovernanceAuditorFactory = (
       isOperatingInDegradedPrivilegeMode: data.reputationStanding < 0
     });
 
-    // 3. TELEMETRIA SOBERANA
+    // 3. TELEMETRIA SOBERANA (Protocolo V6.0: correlationIdentifier)
     const isSanctioned = attributes.isOperatingInDegradedPrivilegeMode;
 
     SovereignLogger({
@@ -80,7 +87,10 @@ export const GovernanceAuditorFactory = (
       operation: 'AUDITOR_AUTHORITY_SEALED',
       message: isSanctioned 
         ? translate('logIntegritySanction', { standing: data.reputationStanding })
-        : translate('logAuditPrivilegesSealed', { level: data.identityAssuranceLevel, immunity: isImmune }),
+        : translate('logAuditPrivilegesSealed', { 
+            level: data.identityAssuranceLevel, 
+            immunity: isImmune ? 'ACTIVE' : 'INACTIVE' 
+          }),
       correlationIdentifier: data.correlationIdentifier,
       metadata: { 
         assurance: data.identityAssuranceLevel, 
@@ -92,17 +102,11 @@ export const GovernanceAuditorFactory = (
     return attributes;
 
   } catch (caughtError) {
-    /** 
-     * @section Cura de Rastro Forense 
-     * Extração resiliente do correlationIdentifier para o erro.
-     */
-    const fallbackCorrelationIdentifier = (parameters as IGovernanceAuditorFactoryInput)?.correlationIdentifier || 'ORPHAN_TRACE';
-
     throw SovereignError.transmute(caughtError, {
       code: SovereignErrorCodeSchema.parse('OS-ID-4003'),
       apparatus: apparatusName,
       location: fileLocation,
-      correlationIdentifier: fallbackCorrelationIdentifier,
+      correlationIdentifier: parameters.correlationIdentifier,
       severity: 'CRITICAL'
     });
   }

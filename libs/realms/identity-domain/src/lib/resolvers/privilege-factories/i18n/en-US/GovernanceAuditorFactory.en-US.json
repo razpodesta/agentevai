@@ -1,7 +1,8 @@
 {
   "GovernanceAuditorFactory": {
-    "logAuditPrivilegesSealed": "Audit authority sealed for level {level}. Immunity: {immunity}.",
-    "logIntegritySanction": "ALERT: Auditor with insufficient standing ({standing}). Applying degraded mode.",
-    "errorAduanaFailed": "DNA Failure: Institutional auditor attributes are corrupted."
+    "logAuditPrivilegesSealed": "Audit authority sealed. Level: {level}. Immunity: {immunity}.",
+    "logIntegritySanction": "SOVEREIGN ALERT: Auditor with insufficient social standing ({standing}). Applying restriction.",
+    "errorAduanaFailed": "DNA Failure: Institutional authority parameters are corrupted.",
+    "statusSovereignActive": "SOVEREIGN ACCESS (IAL3) CONFIRMED"
   }
 }

@@ -1,25 +1,28 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CitizenFactory
- * @version 2.0.0
- * @protocol OEDP-V6.0 - High Performance & Zero-Entropy
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - High Performance & Nominal Integrity
  * @description Fábrica atômica que transmuta rastro de cidadania em atributos de autoridade.
- * Saneado contra radiação técnica, abreviações e silêncio de telemetria.
+ * CURA TS2322: Reconciliação de contratos nominais via re-selagem interna de ADN.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
-import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 
-/** @section Sincronia de ADN */
+/** @section Sincronia de ADN e Domínio */
 import {
   IdentityAttributesSchema,
-  type IIdentityAttributes
+  IIdentityAttributes
 } from '../../schemas/UserIdentity.schema.js';
 import { 
-  CitizenFactoryInputSchema, 
-  type ICitizenFactoryInput 
+  CitizenFactoryBaseSchema,
 } from './schemas/CitizenFactory.schema.js';
+import { type IPrivilegeFactoryParameters } from '../ResolveIdentityPrivileges.js';
 
 /**
  * @section Constantes Semânticas de Soberania
@@ -35,42 +38,46 @@ const WEIGHT_IAL3_SOVEREIGN = 3;
  * @function
  * @description Orquestra a distribuição de poder baseada no mérito social e prova de identidade.
  * 
- * @param {ICitizenFactoryInput} parameters - O ADN de entrada validado.
- * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria.
- * @returns {IIdentityAttributes} Matriz de privilégios selada.
+ * @param {IPrivilegeFactoryParameters} parameters - Parâmetros brutos do orquestrador (Ponte).
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria de autoridade.
+ * @returns {IIdentityAttributes} Matriz de atributos selada e imutável.
  */
 export const CitizenFactory = (
-  parameters: ICitizenFactoryInput,
+  parameters: IPrivilegeFactoryParameters,
   dictionary: ISovereignDictionary
 ): IIdentityAttributes => {
   const apparatusName = 'CitizenFactory';
   const fileLocation = 'libs/realms/identity-domain/src/lib/resolvers/privilege-factories/CitizenFactory.ts';
 
   try {
-    // 1. ADUANA DE ADN (Validando integridade e rastro)
-    const { reputationStanding, identityAssuranceLevel, correlationIdentifier } = CitizenFactoryInputSchema.parse(parameters);
+    // 1. ADUANA DE ADN (CURA TS2322: Re-selagem interna injeta a marca nominal)
+    const data = CitizenFactoryBaseSchema.parse(parameters);
 
     const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
-      dictionary, apparatusName, key, variables, correlationIdentifier
+      dictionary, 
+      apparatusName, 
+      key, 
+      variables, 
+      data.correlationIdentifier
     );
 
-    // 2. LÓGICA DE DETERMINAÇÃO DE PODER
-    const isHealthyStanding = reputationStanding >= 0;
-    const isHostileStanding = reputationStanding < THRESHOLD_FOR_HOSTILE_BEHAVIOR;
-    const isVerifiedAccount = identityAssuranceLevel !== 'IAL1_UNVERIFIED';
-    const isSovereignAccount = identityAssuranceLevel === 'IAL3_SOVEREIGN';
+    // 2. LÓGICA DE DETERMINAÇÃO DE PODER (Sincronia NIST)
+    const isHealthyStanding = data.reputationStanding >= 0;
+    const isHostileStanding = data.reputationStanding < THRESHOLD_FOR_HOSTILE_BEHAVIOR;
+    const isVerifiedAccount = data.identityAssuranceLevel !== 'IAL1_UNVERIFIED';
+    const isSovereignAccount = data.identityAssuranceLevel === 'IAL3_SOVEREIGN';
 
-    // 3. CÁLCULO DE PESO DE VOTO (Determinismo NIST)
+    // 3. CÁLCULO DE PESO DE VOTO (Determinismo NIST 800-63A)
     let calculatedVotingWeight = WEIGHT_IAL1_ANONYMOUS;
     if (isSovereignAccount) calculatedVotingWeight = WEIGHT_IAL3_SOVEREIGN;
     else if (isVerifiedAccount) calculatedVotingWeight = WEIGHT_IAL2_VERIFIED;
 
     /**
      * @section Selagem de Atributos
-     * Utilizamos o Schema de Identidade para carimbar a imutabilidade.
+     * Retorno validado pelo ADN mestre de atributos de identidade.
      */
     const attributes = IdentityAttributesSchema.parse({
-      canPublishOriginalContent: !isHostileStanding && isVerifiedAccount && reputationStanding > THRESHOLD_FOR_CONTENT_CREATION,
+      canPublishOriginalContent: !isHostileStanding && isVerifiedAccount && data.reputationStanding > THRESHOLD_FOR_CONTENT_CREATION,
       canEndorsePublicComplaints: !isHostileStanding && isHealthyStanding,
       canModerateRegionalEntropy: false,
       isImmuneToAutoModeration: false,
@@ -78,18 +85,18 @@ export const CitizenFactory = (
       isOperatingInDegradedPrivilegeMode: isHostileStanding
     });
 
-    // 4. TELEMETRIA SOBERANA (Protocolo V6.0)
+    // 4. TELEMETRIA NEURAL SINCRO (Protocolo V6.0: correlationIdentifier)
     SovereignLogger({
       severity: isHostileStanding ? 'WARN' : 'INFO',
       apparatus: apparatusName,
       operation: 'CITIZEN_AUTHORITY_SEALED',
       message: isHostileStanding 
-        ? translate('logHostileStatus', { standing: reputationStanding })
+        ? translate('logHostileStatus', { standing: data.reputationStanding })
         : translate('logAuthorityResolved', { weight: attributes.votingWeightMultiplier }),
-      correlationIdentifier,
+      correlationIdentifier: data.correlationIdentifier,
       metadata: { 
-        assurance: identityAssuranceLevel, 
-        standing: reputationStanding,
+        assurance: data.identityAssuranceLevel, 
+        standing: data.reputationStanding,
         isDegraded: attributes.isOperatingInDegradedPrivilegeMode
       }
     });
