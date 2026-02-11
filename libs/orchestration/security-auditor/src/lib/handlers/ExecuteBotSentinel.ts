@@ -1,74 +1,98 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ExecuteBotSentinel
- * @version 4.0.0
- * @protocol OEDP-V6.0 - Sovereign Defense
- * @description Orquestrador de segurança de borda.
- * Erradicada radiação técnica de variáveis órfãs e mensagens hardcoded.
+ * @version 5.0.0
+ * @protocol OEDP-V6.0 - Sovereign Defense Zenith
+ * @description Orquestrador de segurança de borda. 
+ * CURA TS2353: Sincronização definitiva do rastro de telemetria.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ZERO-ANY: Saneamento total via Aduana Zod.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
 import { SovereignDataVault } from '@agentevai/sovereign-data-vault';
-import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de ADN e Handlers */
 import { NeuralBotAnalyzer } from './NeuralBotAnalyzer.js';
 import { UserAgentFingerprintSchema } from '../schemas/ExecuteBotSentinel.schema.js';
 
 /**
  * @name ExecuteBotSentinel
  * @function
- * @description Inspeciona a requisição e sela o rastro técnico contra ameaças.
- *
- * @param {Request} incomingRequest - A petição bruta de borda.
- * @param {ISovereignDictionary} dictionary - Silo linguístico regionalizado.
- * @returns {boolean} True se a ameaça exigir bloqueio imediato.
+ * @description Inspeciona a petição de rede e sela o veredito behaviorista.
+ * 
+ * @param {Request} incomingRequest - A petição bruta capturada na borda (Middleware).
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria de segurança.
+ * @returns {boolean} TRUE se a ameaça exigir interrupção imediata do fluxo.
  */
 export const ExecuteBotSentinel = (
   incomingRequest: Request,
   dictionary: ISovereignDictionary
 ): boolean => {
   const apparatusName = 'ExecuteBotSentinel';
+  const fileLocation = 'libs/orchestration/security-auditor/src/lib/handlers/ExecuteBotSentinel.ts';
+  
+  /** 
+   * @section Rastro_Forense 
+   * Extração do identificador de correlação injetado no rastro de rede.
+   */
   const correlationIdentifier = incomingRequest.headers.get('x-agv-correlation-id') || crypto.randomUUID();
 
-  // Pilar 5: Soberania Linguística
-  const t = (key: string, vars = {}) => SovereignTranslationEngine.translate(
-    dictionary, apparatusName, key, vars, correlationIdentifier
+  // Pilar 5: Soberania Linguística (Higiene Militar: sem abreviações)
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, 
+    apparatusName, 
+    key, 
+    variables, 
+    correlationIdentifier
   );
 
   try {
-    const userAgentRaw = incomingRequest.headers.get('user-agent') || 'UNDEFINED_AGENT';
+    const userAgentRawText = incomingRequest.headers.get('user-agent') || 'UNDEFINED_AGENT';
 
-    // 1. Geração de Identidade Criptográfica (Vault Bridge)
-    const rawFingerprint = SovereignDataVault.anonymize(userAgentRaw, correlationIdentifier);
+    // 1. GERAÇÃO DE IDENTIDADE CRIPTOGRÁFICA (Vault Bridge)
+    const rawFingerprint = SovereignDataVault.anonymize(userAgentRawText, correlationIdentifier);
     const validatedFingerprint = UserAgentFingerprintSchema.parse(rawFingerprint);
 
-    // 2. Análise Behaviorista (Neural Actuator)
-    const verdict = NeuralBotAnalyzer(userAgentRaw, validatedFingerprint, correlationIdentifier);
+    // 2. ANÁLISE BEHAVIORISTA (Neural Actuator)
+    const verdict = NeuralBotAnalyzer(userAgentRawText, validatedFingerprint, correlationIdentifier);
 
-    // 3. Telemetria Forense Sincronizada
+    // 3. TELEMETRIA FORENSE SINCRO (Cura TS2353)
     SovereignLogger({
       severity: verdict.isSuspicious ? 'WARN' : 'INFO',
       apparatus: apparatusName,
       operation: 'EDGE_INSPECTION_COMPLETE',
-      message: t('logInspectionComplete', {
+      message: translate('logInspectionComplete', {
         category: verdict.threatCategory,
         score: verdict.botReputationScore
       }),
-      correlationIdentifier,
+      correlationIdentifier, // Protocolo V6.0: Unificação de Rastro
       metadata: {
         fingerprint: verdict.userAgentFingerprint,
-        category: verdict.threatCategory
+        category: verdict.threatCategory,
+        reputation: verdict.botReputationScore
       }
     });
 
     return verdict.isSuspicious;
 
   } catch (caughtError) {
-    // 4. CURA FORENSE: Transmuta e Reporta a Falha antes do bloqueio fail-safe
+    /** 
+     * @section Protocolo_de_Colapso 
+     * Em caso de falha na aduana, aplicamos o bloqueio preventivo (Default Deny).
+     */
     const diagnostic = SovereignError.transmute(caughtError, {
       code: SovereignErrorCodeSchema.parse('OS-SEC-4001'),
       apparatus: apparatusName,
-      location: 'libs/orchestration/security-auditor/src/lib/handlers/ExecuteBotSentinel.ts',
+      location: fileLocation,
       correlationIdentifier,
       severity: 'CRITICAL'
     });
@@ -77,11 +101,11 @@ export const ExecuteBotSentinel = (
       severity: 'CRITICAL',
       apparatus: apparatusName,
       operation: 'SECURITY_ADUANA_COLLAPSE',
-      message: t('logSecurityFailure'),
+      message: translate('logSecurityFailure'),
       correlationIdentifier,
       metadata: { diagnosticReport: diagnostic.getDiagnosticReport() }
     });
 
-    return true; // Bloqueio preventivo (Default Deny)
+    return true; 
   }
 };

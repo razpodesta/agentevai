@@ -1,8 +1,17 @@
 {
   "SovereignArticleTeaser": {
-    "readingTimeSuffix": "{minutes} MIN DE LEITURA",
-    "category_INFRASTRUCTURE": "Infraestrutura",
-    "category_SECURITY": "Segurança Pública",
-    "logTeaserImpression": "Impressão visual registrada para o teaser {id}."
+    "readingTimeSuffix": "{minutes} MINUTOS DE LEITURA",
+    "category_INFRASTRUCTURE": "INFRAESTRUTURA E MOBILIDADE",
+    "category_SECURITY": "SEGURANÇA PÚBLICA",
+    "category_HEALTH": "SAÚDE COLETIVA",
+    "category_ECONOMY": "ECONOMIA REGIONAL",
+    "category_GOVERNANCE": "GOVERNANÇA SOBERANA",
+    "logTeaserImpression": "Impressão visual da unidade editorial {identifier} capturada com sucesso.",
+    "accessibilityAction": "Acessar rastro completo da notícia: {title}"
+  },
+  "TeaserMediaZone": {
+    "mediaAriaLabel": "Recurso multimídia do tipo {type} para a categoria editorial {category}.",
+    "playActionLabel": "Acionar atuador cinético para reprodução do rastro visual.",
+    "logMediaRendered": "Zona de mídia selada para o recurso persistido em: {url}."
   }
 }

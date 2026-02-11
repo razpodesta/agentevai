@@ -1,0 +1,7 @@
+{
+  "CitizenAuraAvatar": {
+    "avatarAlternateText": "Assinatura biométrica visual de {name}.",
+    "initialsPlaceholder": "Iniciais da identidade: {initial}",
+    "logAvatarRendered": "Unidade visual do avatar selada para o cidadão {name}."
+  }
+}

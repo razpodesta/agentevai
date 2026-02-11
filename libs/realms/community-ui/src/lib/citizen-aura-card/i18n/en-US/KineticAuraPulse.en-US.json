@@ -2,6 +2,7 @@
   "KineticAuraPulse": {
     "auraDescription_GOLD": "Sovereign Prestige Aura: High-merit citizen.",
     "auraDescription_CYAN": "Active Vital Pulse: Identity in nominal state.",
-    "auraDescription_RED": "Restriction Alert: Identity under behavioral audit."
+    "auraDescription_RED": "Restriction Alert: Identity under behavioral audit.",
+    "logVisualIgnition": "Kinetic aura particle ignited for trace {identifier}."
   }
 }

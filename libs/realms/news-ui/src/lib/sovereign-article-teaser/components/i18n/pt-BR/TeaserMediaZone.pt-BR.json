@@ -1,0 +1,7 @@
+{
+  "TeaserMediaZone": {
+    "mediaAriaLabel": "Recurso multimídia do tipo {type} para a categoria editorial {category}.",
+    "playActionLabel": "Acionar atuador cinético para reprodução do rastro visual.",
+    "logMediaRendered": "Zona de mídia selada para o recurso persistido em: {url}."
+  }
+}

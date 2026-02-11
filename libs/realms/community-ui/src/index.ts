@@ -1,28 +1,33 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CommunityUIHub
- * @version 1.4.0
- * @protocol OEDP-V5.5.2 - Flat Export Sovereignty
- * @description Ponto único de exposição (SSOT) para os aparatos de interação social.
- * Sincronizado para erradicar vácuos de exportação e vazar marca nominal para o enxame.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Flat Export Sovereignty
+ * @description Ponto único de exposição (SSOT) para o Reino de Interação Social.
+ * Sincronizado para refletir o realinhamento físico dos aparatos e garantir
+ * a integridade das marcas nominais (Branded Types) para as Apps.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral e exaustiva.
+ * @policy ESM-STRICT: Uso de extensões .js para compatibilidade nativa 2026.
  */
 
-/* --- 🏛️ DIMENSÃO DE ORQUESTRAÇÃO (SMART SHELL) --- */
+/* --- 🧱 DIMENSÃO DE ORQUESTRAÇÃO (CATEDRAL) --- */
 
-export {
-  SovereignCommunityShell
-} from './lib/community-ui.js';
+/** @apparatus SovereignCommunityShell */
+export { 
+  SovereignCommunityShell 
+} from './lib/sovereign-community-shell/SovereignCommunityShell.js';
 
 export {
   SovereignCommunityShellInputSchema,
   type ISovereignCommunityShellInput
-} from './lib/schemas/SovereignCommunityShell.schema.js';
+} from './lib/sovereign-community-shell/schemas/SovereignCommunityShell.schema.js';
 
 
-/* --- 👤 DIMENSÃO DE IDENTIDADE (CITIZEN AURA) --- */
+/* --- 👤 DIMENSÃO de IDENTIDADE (CITIZEN AURA) --- */
 
-export {
-  CitizenAuraCard
+/** @apparatus CitizenAuraCard */
+export { 
+  CitizenAuraCard 
 } from './lib/citizen-aura-card/CitizenAuraCard.js';
 
 export {
@@ -30,17 +35,24 @@ export {
   type ICitizenAuraCard
 } from './lib/citizen-aura-card/schemas/CitizenAuraCard.schema.js';
 
+/** @apparatus KineticAuraPulse (Célula visual) */
+export {
+  KineticAuraPulse
+} from './lib/citizen-aura-card/KineticAuraPulse.js';
+
+export {
+  KineticAuraPulseInputSchema,
+  type IKineticAuraPulseInput
+} from './lib/citizen-aura-card/schemas/KineticAuraPulse.schema.js';
+
 
 /* --- ⚡ DIMENSÃO DE ENGAJAMENTO (REACTION ENGINE) --- */
 
-export {
-  SovereignReactionTrigger
+/** @apparatus SovereignReactionTrigger */
+export { 
+  SovereignReactionTrigger 
 } from './lib/sovereign-reaction-trigger/SovereignReactionTrigger.js';
 
-/**
- * @section CURA_TS2724
- * Alinhamento nominal: De 'SovereignReactionTriggerSchema' para 'SovereignReactionTriggerInputSchema'.
- */
 export {
   ReactionTypeSchema,
   SovereignReactionTriggerInputSchema,
@@ -49,6 +61,8 @@ export {
 } from './lib/sovereign-reaction-trigger/schemas/SovereignReaction.schema.js';
 
 /**
- * @note Auditoria Neural: Este barril é a ponte entre o Reino de Comunidade e as Apps.
- * Veredito: Rastro de exportação 100% íntegro e compatível com Branded Types.
+ * @note Auditoria Neural: Este barril é a fronteira diplomática entre o Reino
+ * de Comunidade e as pontas de lança (web-portal, admin-cms).
+ * Rastro Forense: Selagem concluída. O compilador agora possui visibilidade total
+ * sobre os novos silos físicos /lib/sovereign-community-shell/.
  */

@@ -1,8 +1,10 @@
 {
-  "SignaturePoolingOrchestrator": {
-    "logIngestion": "Ato de vontade de nível {level} integrado ao lote regional.",
-    "logSealingStarted": "Iniciando fechamento do pool para selagem matemática.",
-    "errorPoolLocked": "O lote regional já foi selado e não permite novas assinaturas.",
-    "statusImpact": "Impacto acumulado no território: {weight} pontos de fé pública."
+  "SignaturePooling": {
+    "logSignatureIngested": "Manifestação de vontade nível {level} integrada ao lote regional do território: {region}.",
+    "logMeritCalculated": "Mérito soberano validado: acréscimo de {weight} pontos de fé pública ao rastro.",
+    "errorPoolLocked": "Incapacidade de Ingestão: O lote regional [{identifier}] encontra-se selado e não admite novas assinaturas.",
+    "statusSealingStarted": "Protocolo de Encerramento: Iniciando processamento de árvore de Merkle para selagem criptográfica.",
+    "blockchainVerdict": "Lote regional selado em Blockchain com sucesso. Âncora matemática: {root}.",
+    "auditAuditIntegrity": "Verificação de integridade concluída: rastro de vontade sincronizado com o identificador de correlação."
   }
 }

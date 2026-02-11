@@ -2,6 +2,7 @@
   "KineticAuraPulse": {
     "auraDescription_GOLD": "Aura de Prestígio Soberano: Cidadão de alto mérito.",
     "auraDescription_CYAN": "Pulso Vital Ativo: Identidade em estado nominal.",
-    "auraDescription_RED": "Alerta de Restrição: Identidade sob auditoria comportamental."
+    "auraDescription_RED": "Alerta de Restrição: Identidade sob auditoria comportamental.",
+    "logVisualIgnition": "Partícula cinética de aura ignificada para o rastro {identifier}."
   }
 }

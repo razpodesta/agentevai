@@ -1,91 +1,119 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus NewsRankingOrchestrator
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - High Performance Logic
- * @description Cérebro editorial que calcula a hierarquia das notícias.
- * Implementa o algoritmo de Decaimento Temporal e Bônus de Fé Pública.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica absoluta.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Performance Curatorship
+ * @description Cérebro editorial que calcula a hierarquia do enxame de notícias.
+ * Saneado contra TS2353 e radiação de números mágicos.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de ADN e Parâmetros */
 import {
   NewsRankingInputSchema,
   RankedArticleSchema,
-  type INewsRankingInput,
-  type IRankedArticle,
-  type RelevanceScore
+  RelevanceScoreSchema,
+  type IRankedArticle
 } from './schemas/NewsRankingOrchestrator.schema.js';
-
-/**
- * @section Constantes de Soberania Matemática
- */
-const BLOCKCHAIN_VERACITY_BOOST = 500; // Peso da verdade inalterável
-const SUPPORT_WEIGHT_MULTIPLIER = 5;    // Peso da voz do cidadão
-const HOURLY_DECAY_PENALTY = 10;        // Perda de relevância por hora
+import { SOVEREIGN_RANKING_PARAMETERS } from './constants/SovereignRankingParameters.js';
 
 /**
  * @name OrchestrateNewsRanking
  * @function
- * @description Transmuta uma lista bruta de notícias em um feed hierarquizado.
+ * @description Transmuta um pacote bruto de notícias em um feed hierarquizado por mérito.
+ * 
+ * @param {unknown} rawArticleBundle - Lista de candidatos para processamento.
+ * @param {string} correlationIdentifier - UUID obrigatório para rastro forense.
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria semântica.
+ * @returns {IRankedArticle[]} Lista de notícias rankeadas e seladas.
  */
 export const OrchestrateNewsRanking = (
-  rawNewsList: unknown,
-  correlationIdentifier: string
+  rawArticleBundle: unknown,
+  correlationIdentifier: string,
+  dictionary: ISovereignDictionary
 ): IRankedArticle[] => {
   const apparatusName = 'NewsRankingOrchestrator';
   const fileLocation = 'libs/realms/news-domain/src/lib/orchestrators/NewsRankingOrchestrator.ts';
 
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, apparatusName, key, variables, correlationIdentifier
+  );
+
   try {
-    // 1. Aduana de ADN
-    const newsItems = NewsRankingInputSchema.parse(rawNewsList);
+    // 1. ADUANA DE ADN (Ingresso Seguro)
+    const candidateArticles = NewsRankingInputSchema.parse(rawArticleBundle);
 
-    // 2. Processamento de Ranking (IRS - Índice de Relevância Soberana)
-    const rankedResults = newsItems.map(item => {
-      const hoursSincePublished = (Date.now() - new Date(item.publishedAt).getTime()) / (1000 * 60 * 60);
+    // 2. ORQUESTRAÇÃO DE RANKING (Soberania Matemática)
+    const rankedCollection = candidateArticles.map(candidateArticle => {
+      const millisecondsSincePublished = Date.now() - new Date(candidateArticle.publishedAt).getTime();
+      const hoursSincePublished = millisecondsSincePublished / (1000 * 60 * 60);
 
-      // Algoritmo: (Apoio * Peso) + (Selo Blockchain) + (Gravidade) - (Decaimento)
-      const calculatedScore =
-        (item.supportCount * SUPPORT_WEIGHT_MULTIPLIER) +
-        (item.isBlockchainVerified ? BLOCKCHAIN_VERACITY_BOOST : 0) +
-        (item.severityWeight * 20) -
-        (hoursSincePublished * HOURLY_DECAY_PENALTY);
+      /**
+       * @formula Índice de Relevância Soberana (IRS)
+       * (Apoio * Peso) + (Boost Blockchain) + (Peso Gravidade) - (Decaimento Temporal)
+       */
+      const rawRelevanceScore =
+        (candidateArticle.supportCount * SOVEREIGN_RANKING_PARAMETERS.CITIZEN_SUPPORT_MULTIPLIER) +
+        (candidateArticle.isBlockchainVerified ? SOVEREIGN_RANKING_PARAMETERS.BLOCKCHAIN_VERACITY_BOOST : 0) +
+        (candidateArticle.severityWeight * SOVEREIGN_RANKING_PARAMETERS.IA_SEVERITY_WEIGHT_BASE) -
+        (hoursSincePublished * SOVEREIGN_RANKING_PARAMETERS.HOURLY_DECAY_PENALTY);
 
-      // 3. Recomendação de Seção baseada em Patamares (Thresholds)
-      let section: IRankedArticle['recommendedSection'] = 'REGIONAL_PULSE';
-      if (calculatedScore > 1000) section = 'NATIONAL_ZENITH';
-      else if (item.isBlockchainVerified && calculatedScore > 500) section = 'INVESTIGATIVE_VAULT';
+      const validatedScore = RelevanceScoreSchema.parse(rawRelevanceScore);
+
+      // 3. DETERMINAÇÃO DE SEÇÃO (Lógica de Patamares)
+      let recommendedSection: IRankedArticle['recommendedSection'] = 'REGIONAL_PULSE';
+
+      if (validatedScore > SOVEREIGN_RANKING_PARAMETERS.THRESHOLDS.NATIONAL_ZENITH) {
+        recommendedSection = 'NATIONAL_ZENITH';
+        SovereignLogger({
+          severity: 'INFO',
+          apparatus: apparatusName,
+          operation: 'ZENITH_REACHED',
+          message: translate('logZenithAssigned', { identifier: candidateArticle.identifier }),
+          correlationIdentifier
+        });
+      } else if (candidateArticle.isBlockchainVerified && validatedScore > SOVEREIGN_RANKING_PARAMETERS.THRESHOLDS.INVESTIGATIVE_VAULT) {
+        recommendedSection = 'INVESTIGATIVE_VAULT';
+      }
 
       return RankedArticleSchema.parse({
-        identifier: item.identifier,
-        rankingScore: calculatedScore,
-        recommendedSection: section
+        identifier: candidateArticle.identifier,
+        rankingScore: validatedScore,
+        recommendedSection
       });
     });
 
-    // 4. Ordenação Final (Maior Score Primeiro)
-    const sortedRanking = [...rankedResults].sort((a, b) => b.rankingScore - a.rankingScore);
+    // 4. ORDENAÇÃO DE ELITE (Maior IRS primeiro)
+    const finalSortedRanking = [...rankedCollection].sort((alpha, beta) => beta.rankingScore - alpha.rankingScore);
 
-    // 5. Telemetria Editorial
+    // 5. TELEMETRIA SOBERANA (CURA TS2353: correlationIdentifier)
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
-      operation: 'RANKING_CONSOLIDATED',
-      message: `Ranking processado para ${sortedRanking.length} itens. Destaque: ${sortedRanking[0].identifier}`,
-      traceIdentifier: correlationIdentifier
+      operation: 'RANKING_PROCESS_SEALED',
+      message: translate('logRankingComplete', { count: finalSortedRanking.length }),
+      correlationIdentifier,
+      metadata: { 
+        totalProcessed: finalSortedRanking.length,
+        zenithCount: finalSortedRanking.filter(item => item.recommendedSection === 'NATIONAL_ZENITH').length
+      }
     });
 
-    return sortedRanking;
+    return finalSortedRanking;
 
-  } catch (error) {
-    throw SovereignError.transmute(error, {
-      code: 'OS-ED-1001',
+  } catch (caughtError) {
+    // 6. CAPTURA FORENSE DE FALHA ALGORÍTMICA
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-ED-1001'),
       apparatus: apparatusName,
       location: fileLocation,
       correlationIdentifier,
       severity: 'HIGH',
-      recoverySuggestion: 'Falha no algoritmo de ranking. Verificar integridade dos timestamps e contadores de apoio.'
+      recoverySuggestion: 'Validar integridade dos timestamps de publicação e contadores de apoio popular.'
     });
   }
 };

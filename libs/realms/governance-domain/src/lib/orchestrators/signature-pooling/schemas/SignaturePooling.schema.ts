@@ -1,11 +1,13 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SignaturePoolingSchema
- * @version 1.1.0
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Forensic Precision
+ * @description ADN mestre para orquestração de lotes de assinaturas.
  */
 
 import { z } from 'zod';
-import { PopularSupportSignatureSchema } from '../../schemas/PopularSupportSignature.schema.js';
+import { PopularSupportSignatureSchema } from '../../../schemas/PopularSupportSignature.schema.js';
 
 export const WeightedImpactSchema = z.number()
   .min(1)
@@ -16,12 +18,20 @@ export type WeightedImpact = z.infer<typeof WeightedImpactSchema>;
 
 /**
  * @name SignatureIngestionInputSchema
- * @description Aduana para entrada de novas assinaturas no pooling.
+ * @description Aduana de entrada estrita para a malha de pooling.
  */
 export const SignatureIngestionInputSchema = z.object({
-  signature: PopularSupportSignatureSchema,
-  regionalSlug: z.string().min(2),
+  signature: PopularSupportSignatureSchema
+    .describe('Snapshot da assinatura individual capturada na interface.'),
+
+  regionalSlug: z.string()
+    .min(2)
+    .describe('Âncora geográfica da manifestação de vontade.'),
+
   correlationIdentifier: z.uuid()
-}).readonly();
+    .describe('Identificador inalterável da jornada forense atual.')
+})
+.brand<'SignatureIngestionInput'>()
+.readonly();
 
 export type ISignatureIngestionInput = z.infer<typeof SignatureIngestionInputSchema>;

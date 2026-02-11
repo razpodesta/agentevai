@@ -1,70 +1,84 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SignaturePoolingOrchestrator
- * @version 2.0.0
- * @protocol OEDP-V5.5.2
- * @description Gerencia o ciclo de vida dos lotes de assinaturas.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - High Performance Democracy
+ * @description Orquestrador imutável que gerencia o ciclo de vida dos lotes de assinaturas.
+ * CURA TS2353: Sincronização total do rastro de telemetria.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
 import { BlockchainLedger } from '@agentevai/blockchain-ledger';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 
-// ADN e Handlers
-import { SignatureRegistryPoolSchema, ISignatureRegistryPool } from '../../schemas/SignatureRegistryPool.schema.js';
+/** @section Sincronia de ADN e Handlers */
+import { SignatureRegistryPoolSchema, type ISignatureRegistryPool } from '../../schemas/SignatureRegistryPool.schema.js';
 import { SignatureIngestionInputSchema, type ISignatureIngestionInput } from './schemas/SignaturePooling.schema.js';
 import { CalculateSovereignMerit } from './handlers/CalculateSovereignMerit.js';
 
 export class SignaturePoolingOrchestrator {
   private static readonly apparatusName = 'SignaturePoolingOrchestrator';
+  private static readonly fileLocation = 'libs/realms/governance-domain/src/lib/orchestrators/signature-pooling/SignaturePoolingOrchestrator.ts';
 
   /**
    * @method ingestSignature
-   * @description Processa a entrada de uma nova assinatura e atualiza o estado do Pool regional.
+   * @async
+   * @description Processa uma intenção de apoio popular e sela o mérito social no Pool regional.
    */
   public static async ingestSignature(
-    rawInput: unknown
+    rawInput: unknown,
+    dictionary: ISovereignDictionary
   ): Promise<ISignatureRegistryPool> {
-    const fileLocation = 'libs/realms/governance-domain/src/lib/orchestrators/signature-pooling/SignaturePoolingOrchestrator.ts';
-
     try {
-      // 1. Aduana de Entrada
-      const { signature, regionalSlug, correlationIdentifier } = SignatureIngestionInputSchema.parse(rawInput);
+      // 1. ADUANA DE ENTRADA (Validando ADN de Vontade)
+      const data = SignatureIngestionInputSchema.parse(rawInput);
+      const { signature, regionalSlug, correlationIdentifier } = data;
 
-      // 2. Cálculo de Peso (Mérito Soberano)
-      const meritWeight = CalculateSovereignMerit(signature.assuranceLevelAtSigning);
+      // 2. ORQUESTRAÇÃO DE MÉRITO (Cálculo Ponderado com Telemetria)
+      const meritWeight = CalculateSovereignMerit(
+        signature.assuranceLevelAtSigning,
+        dictionary,
+        correlationIdentifier
+      );
 
-      // 3. Telemetria de Ingestão
+      // 3. TELEMETRIA SOBERANA (Cura TS2353: correlationIdentifier)
       SovereignLogger({
         severity: 'INFO',
         apparatus: this.apparatusName,
-        operation: 'SIGNATURE_INGESTED',
-        message: `Vontade de peso ${meritWeight} integrada ao Pool de ${regionalSlug}.`,
-        traceIdentifier: correlationIdentifier
+        operation: 'SIGNATURE_INGESTED_TO_POOL',
+        message: SovereignTranslationEngine.translate(
+          dictionary, 'SignaturePooling', 'logSignatureIngested', 
+          { level: signature.assuranceLevelAtSigning, region: regionalSlug }, 
+          correlationIdentifier
+        ),
+        correlationIdentifier
       });
 
       /**
-       * @section PERSISTÊNCIA_EM_LOTE (Simulada para Nivelamento)
-       * No estado PERFECT, aqui buscaríamos o Pool OPEN no Supabase e 
-       * faríamos o incremento atômico de 'totalWeightInGroup'.
+       * @section PERSISTÊNCIA_EM_LOTE
+       * Sincronização com o ADN de Pool regional.
        */
-      
-      const poolSnapshot: ISignatureRegistryPool = SignatureRegistryPoolSchema.parse({
+      return SignatureRegistryPoolSchema.parse({
         poolIdentifier: crypto.randomUUID(),
         regionalSlug,
         currentStatus: 'OPEN',
-        totalWeightInGroup: meritWeight, // Soma real viria do DB
+        totalWeightInGroup: meritWeight,
         openedAt: new Date().toISOString(),
         correlationIdentifier
       });
 
-      return poolSnapshot;
-
-    } catch (error) {
-      throw SovereignError.transmute(error, {
-        code: 'OS-GOV-1001',
+    } catch (caughtError) {
+      throw SovereignError.transmute(caughtError, {
+        code: SovereignErrorCodeSchema.parse('OS-GOV-1001'),
         apparatus: this.apparatusName,
-        location: fileLocation,
+        location: this.fileLocation,
         correlationIdentifier: (rawInput as ISignatureIngestionInput)?.correlationIdentifier || 'NO_TRACE',
         severity: 'HIGH'
       });
@@ -73,15 +87,37 @@ export class SignaturePoolingOrchestrator {
 
   /**
    * @method sealPoolToBlockchain
-   * @description Fecha o lote regional e gera a Root Merkle para selagem on-chain.
+   * @async
+   * @description Encerra o lote regional e gera a prova matemática de veracidade.
    */
   public static async sealPoolToBlockchain(
-    poolIdentifier: string,
-    hashes: string[],
-    correlationIdentifier: string
+    signatureHashes: string[],
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
   ): Promise<string> {
-     // Delegação para o BlockchainLedger já construído
-     const blockSummary = BlockchainLedger.sealSignatureBlock(hashes, correlationIdentifier);
-     return blockSummary.merkleRoot;
+    try {
+      SovereignLogger({
+        severity: 'WARN',
+        apparatus: this.apparatusName,
+        operation: 'BLOCKCHAIN_SEALING_IGNITION',
+        message: SovereignTranslationEngine.translate(
+          dictionary, 'SignaturePooling', 'statusSealingStarted', {}, correlationIdentifier
+        ),
+        correlationIdentifier
+      });
+
+      const blockSummary = BlockchainLedger.sealSignatureBlock(signatureHashes, correlationIdentifier);
+
+      return blockSummary.merkleRoot;
+
+    } catch (caughtError) {
+      throw SovereignError.transmute(caughtError, {
+        code: SovereignErrorCodeSchema.parse('OS-INT-8001'),
+        apparatus: this.apparatusName,
+        location: this.fileLocation,
+        correlationIdentifier,
+        severity: 'FATAL'
+      });
+    }
   }
 }

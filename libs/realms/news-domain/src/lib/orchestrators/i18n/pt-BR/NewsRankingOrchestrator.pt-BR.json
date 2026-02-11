@@ -1,8 +1,9 @@
 {
   "NewsRankingOrchestrator": {
-    "logRankingComplete": "Ranking editorial consolidado com sucesso para {count} notícias.",
-    "logZenithAssigned": "A notícia {id} atingiu o Índice de Relevância Soberana para o Zênite Nacional.",
-    "errorAduanaFailed": "Violação de ADN: A lista de notícias para ranking possui campos corrompidos.",
-    "auditBlockchainBonus": "Bônus de veracidade blockchain aplicado ao identificador {id}."
+    "logRankingComplete": "Ranking editorial consolidado para {count} notícias no território ativo.",
+    "logZenithAssigned": "A notícia [{identifier}] atingiu o Índice de Relevância Soberana para o Zênite Nacional.",
+    "errorAduanaFailed": "Violação de ADN: O enxame de notícias para processamento de ranking porta radiação técnica.",
+    "auditImpactBonus": "Bônus de veracidade matemática (Blockchain Proof) aplicado ao identificador {identifier}.",
+    "logDecayApplied": "Penalidade de decaimento temporal aplicada ao rastro informativo: {identifier}."
   }
 }

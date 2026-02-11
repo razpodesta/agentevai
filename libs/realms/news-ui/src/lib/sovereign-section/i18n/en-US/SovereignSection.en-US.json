@@ -1,9 +1,11 @@
 {
   "SovereignSection": {
-    "intent_NATIONAL_ZENITH": "National Zenith",
-    "intent_REGIONAL_PULSE": "Regional Pulse",
-    "intent_INVESTIGATIVE_VAULT": "Investigative Vault",
-    "intent_COMMUNITY_THREAD": "Community Thread",
-    "logSectionIgnited": "Section {title} ignited on trace {id}."
+    "intent_NATIONAL_ZENITH": "National Zenith: Supreme Authority",
+    "intent_REGIONAL_PULSE": "Regional Pulse: Territory Flow",
+    "intent_INVESTIGATIVE_VAULT": "Investigative Vault: Truth Trace",
+    "intent_COMMUNITY_THREAD": "Community Thread: Collective Voice",
+    "logSectionIgnited": "Editorial section {title} successfully sealed in the viewport with forensic integrity.",
+    "ariaSectionLabel": "Journalistic content section: {title}",
+    "errorAduanaViolation": "DNA Failure: Section geometry for {identifier} is corrupted."
   }
 }

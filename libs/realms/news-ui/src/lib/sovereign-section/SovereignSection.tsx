@@ -1,15 +1,17 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignSection
- * @version 2.2.0
- * @protocol OEDP-V5.5.2 - High Performance RSC
- * @description Orquestrador de layout adaptativo para o enxame de notícias. 
- * Implementa inteligência geométrica baseada na intenção semântica da seção.
- * @policy ZERO-ANY: Erradicação total de tipagem anárquica e casting inseguro.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - God Tier Layout Orchestration
+ * @description Orquestrador de layout adaptativo. 
+ * Erradicado erro TS7053 e implementada telemetria neural de impacto visual.
  */
 
-import React, { useMemo, useCallback } from 'react';
+'use client';
+
+import React, { useMemo, useCallback, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { SovereignLogger } from '@agentevai/sovereign-logger';
 import { 
   SovereignError, 
   SovereignErrorCodeSchema 
@@ -19,103 +21,99 @@ import {
   type ISovereignDictionary 
 } from '@agentevai/internationalization-engine';
 
-// ADN e Componentes Atômicos
+/** @section Sincronia de ADN e Constantes */
 import { 
   SovereignSectionInputSchema, 
-  type ISovereignSectionInput,
-  type SemanticIntent
+  type ISovereignSectionInput 
 } from './schemas/SovereignSection.schema.js';
+import { SECTION_GEOMETRY_MATRIX } from './constants/SectionGeometryMatrix.js';
 import { SectionHeader } from './components/SectionHeader.js';
-
-/**
- * @section Registro de Geometria (Visual Intelligence)
- * Mapeamento determinístico de malhas CSS por intenção.
- * Sincronizado com o ADN para evitar o erro de indexação TS7053.
- */
-const GRID_GEOMETRY_REGISTRY: Record<SemanticIntent, string> = {
-  NATIONAL_ZENITH: "grid-cols-1",
-  REGIONAL_PULSE: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  INVESTIGATIVE_VAULT: "grid-cols-1 lg:grid-cols-12 gap-12",
-  COMMUNITY_THREAD: "flex flex-col gap-4"
-};
 
 /**
  * @name SovereignSection
  * @component
- * @description Define a moldura editorial e a disposição dos aparatos filhos na malha regional.
+ * @description Define a moldura editorial e a geometria dos aparatos filhos.
  */
 export const SovereignSection: React.FC<ISovereignSectionInput> = (properties) => {
   const apparatusName = 'SovereignSection';
   const fileLocation = 'libs/realms/news-ui/src/lib/sovereign-section/SovereignSection.tsx';
 
-  // 1. ADUANA DE ADN (Garante integridade e fixa o rastro forense)
-  const validatedData = useMemo(() => {
+  // 1. ADUANA DE ADN (Fixação do Rastro Forense)
+  const data = useMemo(() => {
     const result = SovereignSectionInputSchema.safeParse(properties);
-
     if (!result.success) {
       throw new SovereignError({
         uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-APP-7003'),
         i18nMappingKey: 'INVALID_SECTION_PROPERTIES',
         severity: 'MEDIUM',
-        apparatusMetadata: { 
-          name: apparatusName, 
-          version: '2.2.0', 
-          fileLocation 
-        },
+        apparatusMetadata: { name: apparatusName, version: '3.0.0', fileLocation },
         runtimeSnapshot: { 
-          inputPayload: properties, // Correção de rastro técnico
-          correlationIdentifier: properties.correlationIdentifier,
-          validationIssues: result.error.issues
+          inputPayload: properties, 
+          correlationIdentifier: properties.correlationIdentifier, 
+          validationIssues: result.error.issues 
         },
-        forensicTrace: { 
-          timestamp: new Date().toISOString(), 
-          stack: 'UI_RENDER_ADUANA' 
-        }
+        forensicTrace: { timestamp: new Date().toISOString(), stack: 'UI_SECTION_IGNITION' }
       });
     }
     return result.data;
   }, [properties]);
 
-  // 2. RESOLUÇÃO SEMÂNTICA (Tradução via Engine)
-  const translateKey = useCallback((key: string, variables = {}) => {
+  // 2. RESOLUÇÃO SEMÂNTICA (Pilar 5)
+  const translate = useCallback((semanticKey: string, variables = {}) => {
     return SovereignTranslationEngine.translate(
-      validatedData.dictionary as unknown as ISovereignDictionary,
+      data.dictionary as unknown as ISovereignDictionary,
       apparatusName,
-      key,
+      semanticKey,
       variables,
-      validatedData.correlationIdentifier
+      data.correlationIdentifier
     );
-  }, [validatedData.dictionary, validatedData.correlationIdentifier]);
+  }, [data.dictionary, data.correlationIdentifier]);
 
   // 3. DETERMINAÇÃO DE TÍTULO SOBERANO
   const resolvedSectionTitle = useMemo(() => {
-    // Se o título for uma chave de intenção (ex: intent_...), resolve via i18n.
-    if (validatedData.sectionTitle.startsWith('intent_')) {
-      return translateKey(validatedData.sectionTitle);
+    if (data.sectionTitle.startsWith('intent_')) {
+      return translate(data.sectionTitle);
     }
-    return validatedData.sectionTitle;
-  }, [validatedData.sectionTitle, translateKey]);
+    return data.sectionTitle;
+  }, [data.sectionTitle, translate]);
 
-  // 4. RESOLUÇÃO DE ESTILO DE MALHA (Fix TS7053)
-  const activeGridClass = GRID_GEOMETRY_REGISTRY[validatedData.semanticIntent];
+  // 4. TELEMETRIA DE IMPACTO (Pilar 6)
+  useEffect(() => {
+    SovereignLogger({
+      severity: 'INFO',
+      apparatus: apparatusName,
+      operation: 'SECTION_VIEWPORT_SEALED',
+      message: translate('logSectionIgnited', { title: resolvedSectionTitle }),
+      correlationIdentifier: data.correlationIdentifier
+    });
+  }, [resolvedSectionTitle, data.correlationIdentifier, translate]);
+
+  /** 
+   * @section Resolução Geométrica 
+   * CURA TS7053: Un-branding controlado para acesso à matriz.
+   */
+  const activeGridClass = SECTION_GEOMETRY_MATRIX[data.semanticIntent as unknown as string] 
+    || SECTION_GEOMETRY_MATRIX['REGIONAL_PULSE'];
 
   return (
-    <section 
-      className="w-full py-12 border-b border-neutral-100 dark:border-white/5 last:border-0 transition-colors duration-700"
-      aria-label={resolvedSectionTitle}
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full py-16 border-b border-neutral-100 dark:border-white/5 last:border-0 transition-colors duration-1000"
+      aria-label={translate('ariaSectionLabel', { title: resolvedSectionTitle })}
     >
       
-      {/* Cabeçalho Atômico de Seção */}
       <SectionHeader 
         title={resolvedSectionTitle} 
-        hierarchy={validatedData.visualHierarchy} 
+        hierarchy={data.visualHierarchy} 
       />
 
-      {/* Malha de Conteúdo Cinética */}
-      <div className={`grid gap-10 ${activeGridClass}`}>
-        {validatedData.children}
+      <div className={`grid gap-12 ${activeGridClass}`}>
+        {data.children}
       </div>
 
-    </section>
+    </motion.section>
   );
 };

@@ -1,42 +1,51 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ExecuteBotSentinelSchema
- * @version 3.0.0
- * @protocol OEDP-V6.0 - High Precision Defense
- * @description ADN para inspeção behaviorista e selagem de vereditos de segurança.
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - Forensic Precision
+ * @description ADN para inspeção behaviorista de borda. 
+ * Implementa técnica de selagem nominal para erradicar falhas de contrato.
  */
 
 import { z } from 'zod';
 
-/** Identificador nominal para o rastro do Agente */
+/** 
+ * @section Dimensões Nominais 
+ */
 export const UserAgentFingerprintSchema = z.string()
   .length(64)
   .regex(/^[a-f0-9]+$/)
-  .describe('Assinatura SHA-256 única gerada pelo SovereignDataVault para o User-Agent.')
+  .describe('Assinatura SHA-256 única gerada no cofre para o rastro do agente.')
   .brand<'UserAgentFingerprint'>();
 
 export type UserAgentFingerprint = z.infer<typeof UserAgentFingerprintSchema>;
 
 /**
- * @name BotDetectionResultSchema
- * @description Veredito selado da análise comportamental para consumo neural.
+ * @name BotDetectionResultBaseSchema
+ * @description Estrutura fundamental do veredito para auditoria parcial.
  */
-export const BotDetectionResultSchema = z.object({
+export const BotDetectionResultBaseSchema = z.object({
   isSuspicious: z.boolean()
-    .describe('Sinalizador booleano de ameaça ativa detectada na borda.'),
+    .describe('Sinalizador booleano de ameaça detectada na aduana.'),
 
   botReputationScore: z.number().min(0).max(100)
     .describe('Índice de hostilidade (0 = Cidadão, 100 = Ameaça Imediata).'),
 
   threatCategory: z.enum(['CLEAN_BROWSER', 'KNOWN_CRAWLER', 'MALICIOUS_AUTOMATION', 'HEADLESS_SNEAK'])
-    .describe('Classificação taxonômica do agente para ruteamento de defesa.'),
+    .describe('Classificação taxonômica da ameaça para ruteamento de defesa.'),
 
   userAgentFingerprint: UserAgentFingerprintSchema,
 
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
-})
-.brand<'BotDetectionResult'>()
-.readonly();
+});
+
+/**
+ * @name BotDetectionResultSchema
+ * @description O contrato SELADO para despacho institucional.
+ */
+export const BotDetectionResultSchema = BotDetectionResultBaseSchema
+  .brand<'BotDetectionResult'>()
+  .readonly();
 
 export type IBotDetectionResult = z.infer<typeof BotDetectionResultSchema>;

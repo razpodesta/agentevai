@@ -1,9 +1,11 @@
 {
   "SovereignSection": {
-    "intent_NATIONAL_ZENITH": "Cenit Nacional",
-    "intent_REGIONAL_PULSE": "Pulso Regional",
-    "intent_INVESTIGATIVE_VAULT": "Bóveda Investigativa",
-    "intent_COMMUNITY_THREAD": "Hilo Comunitario",
-    "logSectionIgnited": "Sección {title} cargada en el rastro {id}."
+    "intent_NATIONAL_ZENITH": "Cenit Nacional: Autoridad Suprema",
+    "intent_REGIONAL_PULSE": "Pulso Regional: Flujo del Territorio",
+    "intent_INVESTIGATIVE_VAULT": "Bóveda Investigativa: Rastro de la Verdad",
+    "intent_COMMUNITY_THREAD": "Hilo de la Comunidad: Voz Colectiva",
+    "logSectionIgnited": "Sección editorial {title} sellada en el viewport con integridad forense.",
+    "ariaSectionLabel": "Sección de contenido periodístico: {title}",
+    "errorAduanaViolation": "Falla de ADN: Geometría de la sección {identifier} corrompida."
   }
 }

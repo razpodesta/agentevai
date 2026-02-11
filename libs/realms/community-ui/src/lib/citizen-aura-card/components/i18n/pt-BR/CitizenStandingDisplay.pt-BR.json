@@ -1,6 +1,8 @@
 {
   "CitizenStandingDisplay": {
-    "standingPointsSuffix": "PONTOS DE STANDING",
-    "suspendedStatusAlert": "IDENTIDADE SOB RESTRIÇÃO TÉCNICA"
+    "standingPointsLabel": "PONTOS DE STANDING",
+    "suspendedStatusAlert": "IDENTIDADE SOB RESTRIÇÃO TÉCNICA",
+    "prestigeAuraTitle": "Mérito Social Verificado",
+    "logDisplayIgnited": "Display de mérito selado para o cidadão {name}."
   }
 }

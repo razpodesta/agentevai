@@ -1,8 +1,17 @@
 {
   "SovereignArticleTeaser": {
-    "readingTimeSuffix": "{minutes} MIN READ",
-    "category_INFRASTRUCTURE": "Infrastructure",
-    "category_SECURITY": "Public Security",
-    "logTeaserImpression": "Visual impression recorded for teaser {id}."
+    "readingTimeSuffix": "{minutes} MINUTES READ",
+    "category_INFRASTRUCTURE": "INFRASTRUCTURE AND MOBILITY",
+    "category_SECURITY": "PUBLIC SECURITY",
+    "category_HEALTH": "PUBLIC HEALTH",
+    "category_ECONOMY": "REGIONAL ECONOMY",
+    "category_GOVERNANCE": "SOVEREIGN GOVERNANCE",
+    "logTeaserImpression": "Visual impression for editorial unit {identifier} successfully captured.",
+    "accessibilityAction": "Access full news trace: {title}"
+  },
+  "TeaserMediaZone": {
+    "mediaAriaLabel": "Multimedia resource of type {type} for the editorial category {category}.",
+    "playActionLabel": "Activate kinetic actuator for visual trace playback.",
+    "logMediaRendered": "Media zone sealed for the resource persisted at: {url}."
   }
 }
