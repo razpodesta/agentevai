@@ -1,7 +1,7 @@
 {
   "GovernanceAuditorFactory": {
-    "logAuditPrivilegesSealed": "Audit authority sealed for level {level}.",
-    "errorIntegrityViolation": "Integrity Violation: The auditor has insufficient standing to exercise moderation.",
-    "statusSovereignActive": "Sovereign access detected: Algorithmic immunity enabled."
+    "logAuditPrivilegesSealed": "Audit authority sealed for level {level}. Immunity: {immunity}.",
+    "logIntegritySanction": "ALERT: Auditor with insufficient standing ({standing}). Applying degraded mode.",
+    "errorAduanaFailed": "DNA Failure: Institutional auditor attributes are corrupted."
   }
 }

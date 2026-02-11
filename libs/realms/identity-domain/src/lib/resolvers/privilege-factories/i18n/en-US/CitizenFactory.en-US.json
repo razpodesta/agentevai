@@ -1,7 +1,7 @@
 {
   "CitizenFactory": {
-    "logAuthorityResolved": "Authority calculated for assurance level {level} with a social standing of {standing}.",
-    "errorHostileStatus": "Sovereignty Alert: Citizen operating in degraded privilege mode due to a hostile behavior trace.",
-    "auditWeightApplied": "Democratic influence multiplier set to {weight}x for this identity trace."
+    "logAuthorityResolved": "Authority calculated for the citizen. Voting Weight: {weight}x.",
+    "logHostileStatus": "ALERT: Citizen operating in degraded mode due to a standing of {standing}.",
+    "errorAduanaFailed": "DNA Failure: Citizenship parameters are corrupted."
   }
 }

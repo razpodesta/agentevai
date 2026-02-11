@@ -1,8 +1,7 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CitizenAuraAvatar
- * @protocol OEDP-V5.5.2
- * @description Unidade visual que orquestra o rastro biométrico (foto/inicial) e a aura cinética.
+ * @protocol OEDP-V6.0
  */
 
 'use client';
@@ -10,38 +9,34 @@
 import React from 'react';
 import { KineticAuraPulse } from '../KineticAuraPulse.js';
 
-interface ICitizenAuraAvatar {
+/** 
+ * @section Sincronia de ADN 
+ * CURA TS2322: Alinhamento de propriedade para standingPoints.
+ */
+export interface ICitizenAuraAvatar {
   readonly citizenName: string;
   readonly profilePictureUrl?: string;
-  readonly reputationScore: number;
+  readonly standingPoints: number; // Nivelado com o novo padrão
   readonly isSuspended: boolean;
+  readonly dictionary: Record<string, unknown>;
+  readonly correlationIdentifier: string;
 }
 
-export const CitizenAuraAvatar: React.FC<ICitizenAuraAvatar> = ({
-  citizenName,
-  profilePictureUrl,
-  reputationScore,
-  isSuspended
-}) => {
+export const CitizenAuraAvatar: React.FC<ICitizenAuraAvatar> = (properties) => {
   return (
     <div className="relative shrink-0">
-      {/* 🎇 Pulso Neural de Reputação */}
       <KineticAuraPulse
-        reputationScore={reputationScore}
-        isSuspended={isSuspended}
+        standingPoints={properties.standingPoints}
+        isSuspended={properties.isSuspended}
+        dictionary={properties.dictionary}
+        correlationIdentifier={properties.correlationIdentifier}
       />
       
-      <div className="w-16 h-16 rounded-full overflow-hidden bg-brand-primary border-2 border-white dark:border-neutral-900 shadow-inner flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-        {profilePictureUrl ? (
-          <img 
-            src={profilePictureUrl} 
-            alt={citizenName} 
-            className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" 
-          />
+      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white dark:border-neutral-900 shadow-inner bg-brand-primary flex items-center justify-center">
+        {properties.profilePictureUrl ? (
+          <img src={properties.profilePictureUrl} alt={properties.citizenName} className="w-full h-full object-cover" />
         ) : (
-          <span className="text-white font-serif font-black text-2xl uppercase select-none">
-            {citizenName.substring(0, 1)}
-          </span>
+          <span className="text-white font-serif font-black text-2xl">{properties.citizenName.substring(0, 1)}</span>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "@agentevai/identity-domain",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Reino de Soberania de Identidade: Orquestra a transmutação de papéis, mérito social e autoridade NIST.",
   "private": true,
   "type": "module",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@agentevai/types-common": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
     "@agentevai/sovereign-logger": "workspace:*",
     "@agentevai/sovereign-error-observability": "workspace:*"
   },

@@ -1,76 +1,108 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus CitizenFactory
- * @version 1.2.0
- * @protocol OEDP-V5.5.1 - High Precision & Zero-Entropy
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Performance & Zero-Entropy
  * @description Fábrica atômica que transmuta rastro de cidadania em atributos de autoridade.
- * Saneado contra erros de inferência trivial e variáveis órfãs de importação.
- * @policy ZERO-ANY: Saneamento total de tipos via Zod.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica.
- * @policy IMMUTABILITY-FIRST: Construção via selagem final de ADN.
+ * Saneado contra radiação técnica, abreviações e silêncio de telemetria.
  */
 
-import { z } from 'zod';
+import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de ADN */
 import {
   IdentityAttributesSchema,
-  IIdentityAttributes,
-  IdentityAssuranceLevelSchema,
-  ReputationScoreSchema
+  type IIdentityAttributes
 } from '../../schemas/UserIdentity.schema.js';
+import { 
+  CitizenFactoryInputSchema, 
+  type ICitizenFactoryInput 
+} from './schemas/CitizenFactory.schema.js';
 
 /**
- * @name CitizenFactoryParametersSchema
- * @description Aduana de ADN local para validação dos parâmetros de entrada da fábrica.
+ * @section Constantes Semânticas de Soberania
  */
-const CitizenFactoryParametersSchema = z.object({
-  reputationStanding: ReputationScoreSchema,
-  identityAssuranceLevel: IdentityAssuranceLevelSchema
-}).readonly();
-
-export type ICitizenFactoryParameters = z.infer<typeof CitizenFactoryParametersSchema>;
+const THRESHOLD_FOR_HOSTILE_BEHAVIOR = -100;
+const THRESHOLD_FOR_CONTENT_CREATION = 100;
+const WEIGHT_IAL1_ANONYMOUS = 1;
+const WEIGHT_IAL2_VERIFIED = 2;
+const WEIGHT_IAL3_SOVEREIGN = 3;
 
 /**
  * @name CitizenFactory
  * @function
- * @description Orquestra a distribuição de autoridade baseada no mérito social e prova de identidade.
- *
- * @param {ICitizenFactoryParameters} parameters - Snapshot de vida social do cidadão.
- * @returns {IIdentityAttributes} Matriz de privilégios selada e imutável.
+ * @description Orquestra a distribuição de poder baseada no mérito social e prova de identidade.
+ * 
+ * @param {ICitizenFactoryInput} parameters - O ADN de entrada validado.
+ * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria.
+ * @returns {IIdentityAttributes} Matriz de privilégios selada.
  */
 export const CitizenFactory = (
-  parameters: ICitizenFactoryParameters
+  parameters: ICitizenFactoryInput,
+  dictionary: ISovereignDictionary
 ): IIdentityAttributes => {
-  // 1. Validação de Fronteira (Aduana Lego)
-  const { reputationStanding, identityAssuranceLevel } = CitizenFactoryParametersSchema.parse(parameters);
+  const apparatusName = 'CitizenFactory';
+  const fileLocation = 'libs/realms/identity-domain/src/lib/resolvers/privilege-factories/CitizenFactory.ts';
 
-  /**
-   * @section Lógica de Determinação de Poder
-   * Variáveis intermediárias para manter a clareza semântica e evitar mutações.
-   */
+  try {
+    // 1. ADUANA DE ADN (Validando integridade e rastro)
+    const { reputationStanding, identityAssuranceLevel, correlationIdentifier } = CitizenFactoryInputSchema.parse(parameters);
 
-  const isHealthyStanding = reputationStanding >= 0;
-  const isHostileStanding = reputationStanding < -100;
-  const isVerifiedAccount = identityAssuranceLevel !== 'IAL1_UNVERIFIED';
-  const isSovereignAccount = identityAssuranceLevel === 'IAL3_SOVEREIGN';
+    const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+      dictionary, apparatusName, key, variables, correlationIdentifier
+    );
 
-  // 2. Cálculo de Peso de Voto (Otimizado: Inferência Automática)
-  let calculatedWeight = 1;
-  if (isSovereignAccount) {
-    calculatedWeight = 3;
-  } else if (isVerifiedAccount) {
-    calculatedWeight = 2;
+    // 2. LÓGICA DE DETERMINAÇÃO DE PODER
+    const isHealthyStanding = reputationStanding >= 0;
+    const isHostileStanding = reputationStanding < THRESHOLD_FOR_HOSTILE_BEHAVIOR;
+    const isVerifiedAccount = identityAssuranceLevel !== 'IAL1_UNVERIFIED';
+    const isSovereignAccount = identityAssuranceLevel === 'IAL3_SOVEREIGN';
+
+    // 3. CÁLCULO DE PESO DE VOTO (Determinismo NIST)
+    let calculatedVotingWeight = WEIGHT_IAL1_ANONYMOUS;
+    if (isSovereignAccount) calculatedVotingWeight = WEIGHT_IAL3_SOVEREIGN;
+    else if (isVerifiedAccount) calculatedVotingWeight = WEIGHT_IAL2_VERIFIED;
+
+    /**
+     * @section Selagem de Atributos
+     * Utilizamos o Schema de Identidade para carimbar a imutabilidade.
+     */
+    const attributes = IdentityAttributesSchema.parse({
+      canPublishOriginalContent: !isHostileStanding && isVerifiedAccount && reputationStanding > THRESHOLD_FOR_CONTENT_CREATION,
+      canEndorsePublicComplaints: !isHostileStanding && isHealthyStanding,
+      canModerateRegionalEntropy: false,
+      isImmuneToAutoModeration: false,
+      votingWeightMultiplier: isHostileStanding ? WEIGHT_IAL1_ANONYMOUS : calculatedVotingWeight,
+      isOperatingInDegradedPrivilegeMode: isHostileStanding
+    });
+
+    // 4. TELEMETRIA SOBERANA (Protocolo V6.0)
+    SovereignLogger({
+      severity: isHostileStanding ? 'WARN' : 'INFO',
+      apparatus: apparatusName,
+      operation: 'CITIZEN_AUTHORITY_SEALED',
+      message: isHostileStanding 
+        ? translate('logHostileStatus', { standing: reputationStanding })
+        : translate('logAuthorityResolved', { weight: attributes.votingWeightMultiplier }),
+      correlationIdentifier,
+      metadata: { 
+        assurance: identityAssuranceLevel, 
+        standing: reputationStanding,
+        isDegraded: attributes.isOperatingInDegradedPrivilegeMode
+      }
+    });
+
+    return attributes;
+
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-ID-4002'),
+      apparatus: apparatusName,
+      location: fileLocation,
+      correlationIdentifier: parameters.correlationIdentifier,
+      severity: 'HIGH'
+    });
   }
-
-  /**
-   * @section Composição Final e Selagem
-   * O output é validado e selado pelo ADN mestre de atributos.
-   */
-  return IdentityAttributesSchema.parse({
-    canPublishOriginalContent: !isHostileStanding && isVerifiedAccount && reputationStanding > 100,
-    canEndorsePublicComplaints: !isHostileStanding && isHealthyStanding,
-    canModerateRegionalEntropy: false,
-    isImmuneToAutoModeration: false,
-    votingWeightMultiplier: isHostileStanding ? 1 : calculatedWeight,
-    isOperatingInDegradedPrivilegeMode: isHostileStanding
-  });
 };

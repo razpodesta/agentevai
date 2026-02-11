@@ -1,18 +1,17 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TypesCommonHub
- * @version 1.3.1
- * @protocol OEDP-V5.5 - Standard MetaShark
- * @description Ponto único de exposição (SSOT) para contratos de tipagem nominal e utilitários atômicos.
- * Centraliza os Branded Types geopolíticos, postais e motores de formatação de ruteamento.
- * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
- * @policy ZERO-ABBREVIATIONS: Prosa técnica militar em todas as exportações.
- * @policy ESM-STRICT: Uso de exportações nomeadas com extensões explícitas.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Master Sovereignty SSOT
+ * @description Ponto único de exposição para contratos nominais e utilitários atômicos.
+ * Centraliza a inteligência de tipagem e motores de formatação inalteráveis.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ESM-STRICT: Uso de exportações nomeadas com extensões .js explícitas.
  */
 
 /**
  * @section Dimensão Geopolítica (Manifesto 0018)
- * Exporta a Trindade: Locale (Cultura), Country (Nação) e Route (Navegação).
+ * Exporta a Trindade de Soberania: Locale, Country e Route.
  */
 export {
   SovereignLocaleSchema,
@@ -25,8 +24,7 @@ export {
 
 /**
  * @section Dimensão de Soberania Postal
- * Contratos para validação de CEP e localização territorial brasileira.
- * Nivelado: ibgeCode agora é processado como Branded number.
+ * Contratos para validação de rastro territorial e postal brasileiro.
  */
 export {
   PostalCodeSchema,
@@ -37,16 +35,15 @@ export {
 
 /**
  * @section Dimensão de Formatação Atômica (Utility)
- * Motores puros para transmutação e higienização de rastro textual.
+ * Motor mestre para transmutação de strings em rastro de ruteamento.
+ * CONSUMIDO POR: GeographicContextManager.
  */
 export {
   TransmuteTextToSlug
 } from './lib/formatters/TransmuteTextToSlug.js';
 
 /**
- * @note Este aparato reside na camada Foundation (Leaf Library).
- * Ele não possui dependências internas e deve ser consumido por todos os Realms
- * para garantir a integridade dos dados que cruzam as fronteiras do sistema.
- *
- * Auditoria Neural: Monitorado para evitar a inclusão de dependências externas (Zero Coupling).
+ * @note Este aparato é uma Leaf Library (Biblioteca Folha).
+ * Ele NÃO possui dependências internas para garantir acoplamento zero.
+ * Auditoria Neural: Selagem inquebrável concluída.
  */

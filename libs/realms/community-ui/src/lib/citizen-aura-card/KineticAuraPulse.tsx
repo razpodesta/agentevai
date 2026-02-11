@@ -1,39 +1,63 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus KineticAuraPulse (RCC)
- * @description Atuador visual que pulsa cores e brilho baseados na reputação do cidadão.
+ * @apparatus KineticAuraPulse
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - Visual Skin & Neural Resonance
+ * @description Atuador visual que pulsa cores baseadas na reputação. 
+ * Saneado com ADN Zod e suporte a Acessibilidade Soberana.
  */
 
 'use client';
 
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+import { KineticAuraPulseInputSchema, type IKineticAuraPulseInput } from './schemas/KineticAuraPulse.schema.js';
 
-interface IKineticAuraPulse {
-  reputationScore: number;
-  isSuspended: boolean;
-}
+/**
+ * @name KineticAuraPulse
+ * @component
+ */
+export const KineticAuraPulse: React.FC<IKineticAuraPulseInput> = (properties) => {
+  const apparatusName = 'KineticAuraPulse';
 
-export const KineticAuraPulse: React.FC<IKineticAuraPulse> = ({ reputationScore, isSuspended }) => {
-  // Determinação de cor baseada no standing
-  let auraColor = "rgba(0, 229, 255, 0.4)"; // Default: Action Cyan
-  if (isSuspended) auraColor = "rgba(220, 38, 38, 0.6)"; // Red Critical
-  else if (reputationScore > 5000) auraColor = "rgba(255, 215, 0, 0.5)"; // Gold Prestige
+  // 1. ADUANA DE ADN
+  const data = useMemo(() => KineticAuraPulseInputSchema.parse(properties), [properties]);
+
+  // 2. RESOLUÇÃO SEMÂNTICA (Acessibilidade Visual)
+  const translate = useCallback((key: string) => {
+    return SovereignTranslationEngine.translate(
+      data.dictionary as unknown as ISovereignDictionary,
+      apparatusName,
+      key,
+      {},
+      data.correlationIdentifier
+    );
+  }, [data.dictionary, data.correlationIdentifier]);
+
+  // 3. MATRIZ CROMÁTICA DE PRESTÍGIO
+  const auraTheme = useMemo(() => {
+    if (data.isSuspended) return { color: "rgba(220, 38, 38, 0.6)", label: 'auraDescription_RED' };
+    if (data.standingPoints > 5000) return { color: "rgba(255, 215, 0, 0.5)", label: 'auraDescription_GOLD' };
+    return { color: "rgba(0, 229, 253, 0.4)", label: 'auraDescription_CYAN' };
+  }, [data.standingPoints, data.isSuspended]);
 
   return (
     <motion.div
+      role="status"
+      aria-label={translate(auraTheme.label)}
       initial={{ opacity: 0.2, scale: 1 }}
       animate={{
         opacity: [0.2, 0.5, 0.2],
-        scale: [1, 1.15, 1],
+        scale: [1, 1.25, 1],
       }}
       transition={{
         repeat: Infinity,
-        duration: isSuspended ? 1 : 4, // Pulsar mais rápido se for hostil
+        duration: data.isSuspended ? 1.5 : 4,
         ease: "easeInOut"
       }}
-      style={{ backgroundColor: auraColor }}
-      className="absolute inset-0 rounded-full blur-md -z-10"
+      style={{ backgroundColor: auraTheme.color }}
+      className="absolute inset-0 rounded-full blur-xl -z-10 shadow-[0_0_30px_rgba(0,0,0,0.1)]"
     />
   );
 };

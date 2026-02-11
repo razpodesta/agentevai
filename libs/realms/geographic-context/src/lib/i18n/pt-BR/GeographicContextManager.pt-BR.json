@@ -1,7 +1,8 @@
 {
   "GeographicContextManager": {
-    "TERRITORIAL_TRANSMUTATION_SUCCESS": "Consciência geográfica selada para {name} [ {stateCode} ].",
-    "ERROR_IBGE_CONTRACT": "Falha de ADN: O rastro do IBGE violou o contrato estrutural.",
-    "LOG_FORENSIC_CORRELATION": "Transmutaçâo regional concluída para o rastro {correlationIdentifier}."
+    "logTransmutationSuccess": "Soberania territorial selada para {name} [{stateCode}].",
+    "logTransmutationStarted": "Iniciando transmutação de ADN para o rastro IBGE: {identifier}.",
+    "errorAduanaFailed": "Falha de ADN: O rastro do IBGE violou o contrato estrutural.",
+    "errorSlugGeneration": "Erro Crítico: Incapacidade de gerar rastro de ruteamento para {name}."
   }
 }

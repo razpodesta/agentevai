@@ -1,25 +1,32 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GovernanceAuditorFactorySchema
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - High Precision
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Precision ADN
  * @description ADN de fronteira para a fábrica de auditores governamentais.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica.
  */
 
 import { z } from 'zod';
-import {
-  IdentityAssuranceLevelSchema,
-  ReputationScoreSchema
+import { 
+  ReputationScoreSchema, 
+  IdentityAssuranceLevelSchema 
 } from '../../../schemas/UserIdentity.schema.js';
 
 /**
- * @name GovernanceAuditorFactoryParametersSchema
- * @description Aduana de entrada para validação do rastro institucional.
+ * @name GovernanceAuditorFactoryInputSchema
+ * @description Aduana de entrada estrita para validação do rastro institucional.
  */
-export const GovernanceAuditorFactoryParametersSchema = z.object({
-  reputationStanding: ReputationScoreSchema,
-  identityAssuranceLevel: IdentityAssuranceLevelSchema
-}).readonly();
+export const GovernanceAuditorFactoryInputSchema = z.object({
+  reputationStanding: ReputationScoreSchema
+    .describe('O mérito social acumulado necessário para o exercício da auditoria.'),
 
-export type IGovernanceAuditorFactoryParameters = z.infer<typeof GovernanceAuditorFactoryParametersSchema>;
+  identityAssuranceLevel: IdentityAssuranceLevelSchema
+    .describe('O nível de prova NIST exigido para autoridade institucional.'),
+
+  correlationIdentifier: z.uuid()
+    .describe('Identificador inalterável da jornada forense atual.')
+})
+.brand<'GovernanceAuditorFactoryInput'>()
+.readonly();
+
+export type IGovernanceAuditorFactoryInput = z.infer<typeof GovernanceAuditorFactoryInputSchema>;

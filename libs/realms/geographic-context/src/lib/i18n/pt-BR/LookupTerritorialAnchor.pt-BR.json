@@ -1,8 +1,8 @@
 {
   "LookupTerritorialAnchor": {
-    "localAnchorIgnited": "Ambiente de desenvolvimento detectado. Ancoragem local ativada.",
-    "externalNationDetected": "Acesso originado fora da soberania brasileira: {countryCode}.",
-    "externalServiceFailure": "Falha na comunicação com a infraestrutura de geolocalização externa.",
-    "fallbackActivated": "Protocolo de resiliência ativado: Retornando ao rastro nacional padrão."
+    "logLocalAnchor": "Development environment detected. Local anchoring ignited.",
+    "logExternalNation": "Access originated outside Brazilian sovereignty: {countryCode}.",
+    "logFallbackActive": "Resilience protocol activated: Returning to default national trace.",
+    "errorExternalService": "Technical inability to communicate with external geolocation infrastructure."
   }
 }

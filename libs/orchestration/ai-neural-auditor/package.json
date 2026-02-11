@@ -1,6 +1,6 @@
 {
   "name": "@agentevai/ai-neural-auditor",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Juiz Sistêmico: Orquestrador de diplomacia neural para diagnóstico forense e vereditos de autocura.",
   "private": true,
   "type": "module",
@@ -20,6 +20,7 @@
     "zod": "^4.3.6",
     "@agentevai/sovereign-logger": "workspace:*",
     "@agentevai/sovereign-error-observability": "workspace:*",
-    "@agentevai/ai-model-orchestrator": "workspace:*"
+    "@agentevai/ai-model-orchestrator": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*"
   }
 }

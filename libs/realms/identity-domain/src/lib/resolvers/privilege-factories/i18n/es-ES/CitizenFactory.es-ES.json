@@ -1,7 +1,7 @@
 {
   "CitizenFactory": {
-    "logAuthorityResolved": "Autoridad calculada para el nivel de garantía {level} con standing social de {standing}.",
-    "errorHostileStatus": "Alerta de Soberanía: Ciudadano operando en modo de privilegios degradados debido al rastro de comportamiento hostil.",
-    "auditWeightApplied": "Multiplicador de influencia democrática definido en {weight}x para este rastro de identidad."
+    "logAuthorityResolved": "Autoridad calculada para el ciudadano. Peso de Voto: {weight}x.",
+    "logHostileStatus": "ALERTA: Ciudadano operando en modo degradado debido al standing de {standing}.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros de ciudadanía están corrompidos."
   }
 }
