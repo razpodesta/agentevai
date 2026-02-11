@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GovernanceAuditorFactory
- * @version 3.0.0
+ * @version 3.1.0
  * @protocol OEDP-V6.0 - Institutional Sovereignty
- * @description Fábrica atômica para resolução de privilégios de auditores de governança.
- * CURA TS2322: Reconciliação nominal via re-selagem interna de ADN.
+ * @description Fábrica atômica para resolução de privilégios de auditores.
+ * CURA TS5097: Sincronização de extensões ESM para .js.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
@@ -19,9 +19,15 @@ import {
   IdentityAttributesSchema,
   IIdentityAttributes
 } from '../../schemas/UserIdentity.schema.js';
+
+/** 
+ * @section CURA TS5097
+ * Transmutado de .ts para .js para conformidade com moduleResolution: NodeNext.
+ */
 import { 
   GovernanceAuditorFactoryBaseSchema,
-} from './schemas/GovernanceAuditorFactory.schema.ts';
+} from './schemas/GovernanceAuditorFactory.schema.js';
+
 import { type IPrivilegeFactoryParameters } from '../ResolveIdentityPrivileges.js';
 
 /**
@@ -36,10 +42,6 @@ const VOTING_WEIGHT_SOVEREIGN_AUDITOR = 5;
  * @name GovernanceAuditorFactory
  * @function
  * @description Transmuta o rastro institucional em uma matriz de privilégios de auditoria.
- * 
- * @param {IPrivilegeFactoryParameters} parameters - Parâmetros brutos da ponte (Pai).
- * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria de autoridade.
- * @returns {IIdentityAttributes} Matriz de atributos selada.
  */
 export const GovernanceAuditorFactory = (
   parameters: IPrivilegeFactoryParameters,
@@ -49,7 +51,7 @@ export const GovernanceAuditorFactory = (
   const fileLocation = 'libs/realms/identity-domain/src/lib/resolvers/privilege-factories/GovernanceAuditorFactory.ts';
 
   try {
-    // 1. ADUANA DE ADN (CURA TS2322: Re-selagem interna injeta a marca nominal)
+    // 1. ADUANA DE ADN (Re-selagem interna injeta a marca nominal)
     const data = GovernanceAuditorFactoryBaseSchema.parse(parameters);
 
     const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
@@ -67,7 +69,6 @@ export const GovernanceAuditorFactory = (
 
     /**
      * @section Selagem de Atributos
-     * Retorno validado pelo ADN mestre de atributos de identidade.
      */
     const attributes = IdentityAttributesSchema.parse({
       canPublishOriginalContent: isIntegrityMaintained,
@@ -78,7 +79,7 @@ export const GovernanceAuditorFactory = (
       isOperatingInDegradedPrivilegeMode: data.reputationStanding < 0
     });
 
-    // 3. TELEMETRIA SOBERANA (Protocolo V6.0: correlationIdentifier)
+    // 3. TELEMETRIA SOBERANA
     const isSanctioned = attributes.isOperatingInDegradedPrivilegeMode;
 
     SovereignLogger({
