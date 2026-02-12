@@ -1,8 +1,8 @@
 {
   "GeographicContextManager": {
-    "logTransmutationSuccess": "Geographical sovereignty sealed for {name} [{stateCode}].",
-    "logTransmutationStarted": "Initiating DNA transmutation for IBGE trace: {identifier}.",
-    "errorAduanaFailed": "DNA Failure: The IBGE trace violated the structural contract.",
+    "logTransmutationSuccess": "Geographic Synchrony: Municipality {name} [{stateCode}] successfully anchored.",
+    "logTransmutationStarted": "Initiating IBGE trace transmutation for forensic record: {identifier}.",
+    "errorAduanaFailed": "DNA Failure: The IBGE trace violated the structural contract and was rejected.",
     "errorSlugGeneration": "Critical Error: Inability to generate routing trace for {name}."
   }
 }

@@ -1,0 +1,8 @@
+{
+  "UnprotectSovereignData": {
+    "logSuccess": "Acceso Autorizado: Rastro PII descifrado con integridad para la jornada {correlationIdentifier}.",
+    "errorTampering": "ALERTA CRÍTICA: Intento de violación detectado. El rastro criptográfico fue adulterado o la llave maestra es inválida.",
+    "errorMasterKey": "Incapacidad Criptográfica: Llave maestra de soberanía no localizada en el entorno.",
+    "errorVersion": "Violación de Protocolo: La versión del algoritmo de cifrado es incompatible."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ProtectSovereignData": {
+    "logSuccess": "Protection Complete: Sensitive payload of context {context} encrypted and sealed in the Vault.",
+    "errorMasterKey": "Cryptographic Inability: Sovereignty master key not located in the environment.",
+    "errorAduanaFailed": "DNA Failure: Protection parameters violated the structural contract."
+  }
+}

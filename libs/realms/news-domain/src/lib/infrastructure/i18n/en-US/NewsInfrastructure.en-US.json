@@ -1,8 +1,11 @@
 {
-  "NewsInfrastructure": {
-    "logArticlePersisted": "News article {id} successfully persisted in {region} territory.",
-    "logStateTransmuted": "Editorial state changed to {state} via audit trace.",
-    "errorPersistViolation": "Inability to write to news vault: Zod integrity violation.",
-    "errorConnectionLost": "Data bridge to Supabase interrupted on trace {traceId}."
+  "NewsArticleCommand": {
+    "logArticleSealed": "Persistence Seal: The informative article {identifier} was successfully recorded in the relational vault.",
+    "errorIntegrityViolation": "DNA Violation: The editorial trace carried technical radiation and was rejected by the PostgreSQL aduana.",
+    "errorVaultAccess": "Operational Inability: Critical failure while establishing a handshake with the news vault in Supabase."
+  },
+  "NewsArticleQuery": {
+    "QUERY_SUCCESS": "Read Synchrony: Regionalized editorial mesh successfully resolved via forensic trace.",
+    "logQueryEmpty": "Void Warning: No news articles located for the provided territorial parameters."
   }
 }

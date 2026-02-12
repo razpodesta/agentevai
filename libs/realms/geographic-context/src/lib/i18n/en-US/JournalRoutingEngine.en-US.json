@@ -1,0 +1,7 @@
+{
+  "JournalRoutingEngine": {
+    "logRoutingDecision": "Routing Decision: Destination [ {path} ] established via [ {reason} ].",
+    "errorIllegalRedirect": "Route Violation: Attempted redirection to non-sovereign zone.",
+    "statusZenithActive": "The routing trace has reached the Editorial Zenith."
+  }
+}

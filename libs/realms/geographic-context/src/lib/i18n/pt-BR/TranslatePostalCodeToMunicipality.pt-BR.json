@@ -1,8 +1,8 @@
 {
   "TranslatePostalCodeToMunicipality": {
-    "resolutionStarted": "Iniciando tradução territorial para o rastro postal: {postalCode}",
-    "resolutionSuccess": "Município [ {cityName} ] identificado com sucesso via CEP.",
-    "errorInvalidFormat": "O código postal fornecido possui um formato inválido para a soberania brasileira.",
-    "errorNotFound": "Nenhum território correspondente foi localizado para o CEP informado."
+    "logResolutionStarted": "Sincronia Postal: Iniciando tradução territorial para o rastro: {postalCode}",
+    "logResolutionSuccess": "Território Identificado: Município {cityName} ancorado com sucesso via CEP.",
+    "errorInvalidFormat": "Violação de ADN: O formato do rastro postal é incompatível com a soberania brasileira.",
+    "errorNotFound": "Vácuo Territorial: Nenhum município localizado para o CEP informado."
   }
 }

@@ -1,0 +1,33 @@
+{
+  "name": "syndication-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/syndication-engine/src",
+  "projectType": "library",
+  "tags": [
+    "type:infrastructure",
+    "scope:integrations",
+    "role:syndication-engine"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/syndication-engine",
+        "main": "libs/integrations/syndication-engine/src/index.ts",
+        "tsConfig": "libs/integrations/syndication-engine/tsconfig.lib.json",
+        "assets": ["libs/integrations/syndication-engine/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/integrations/syndication-engine/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

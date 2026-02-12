@@ -1,7 +1,8 @@
 {
   "NewsCreationService": {
-    "logIgnition": "Sincronía de Ignición: Iniciando rastro de creación para la noticia {identifier}.",
-    "statusBlockchain": "Soberanía Garantizada: Noticia [{identifier}] sellada con fe pública y enviada para peritaje neural.",
-    "errorAduanaFailed": "Falla de ADN: Los parámetros de creación de la noticia violaron el contrato de integridad técnica."
+    "logIgnition": "Sincronía de Ignición: Iniciando rastro para la noticia {identifier}.",
+    "statusBlockchain": "Soberanía Garantizada: Noticia [{identifier}] sellada con fe pública.",
+    "errorAduanaFailed": "Falla de ADN: Parámetros de creación violaron el contrato técnico.",
+    "logManualOverride": "Alerta: Intervención manual en el rastro {correlationIdentifier}."
   }
 }

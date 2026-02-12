@@ -1,9 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus NewsCreationInputSchema
- * @version 3.0.0
- * @protocol OEDP-V6.0 - Structural Integrity
- * @description ADN de entrada para o motor de criação de notícias.
+ * @version 5.4.0
+ * @protocol OEDP-V6.0 - High Precision DNA
+ * @description ADN de entrada para a ignição de novas notícias.
+ * CURA DEFINITIVA TS2322: Omissão realizada sobre a base unbranded.
  */
 
 import { z } from 'zod';
@@ -11,25 +12,27 @@ import { NewsArticleBaseSchema } from '../../../infrastructure/schemas/NewsArtic
 
 /**
  * @name NewsCreationInputSchema
- * @description Aduana de entrada purificada. Remove campos automáticos e injeta diretivas.
- * Sincronizado para Zod V4 com descrições densas para o Auditor Neural.
+ * @description Aduana de entrada para criação. Remove campos infraestruturais e injeta diretivas.
  */
 export const NewsCreationInputSchema = NewsArticleBaseSchema
   .omit({
     updatedAt: true,
     editorialStatus: true,
-    publishedAt: true,
     viewCount: true
+    // Note: publishedAt não constava no Base, se existir no seu banco, adicione no Base primeiro.
   })
   .extend({
     forceBlockchainSealing: z.boolean()
       .default(false)
-      .describe('Diretiva de comando para forçar a geração imediata da prova de imutabilidade.'),
+      .describe('Diretiva para forçar a selagem matemática imediata.'),
 
     internalSubmissionNote: z.string()
       .min(10)
       .optional()
-      .describe('Nota técnica opcional para o rastro de auditoria neural.')
+      .describe('Nota técnica para auditoria neural.'),
+
+    correlationIdentifier: z.uuid()
+      .describe('Identificador exigido para rastro forense total.')
   })
   .brand<'NewsCreationInput'>()
   .readonly();

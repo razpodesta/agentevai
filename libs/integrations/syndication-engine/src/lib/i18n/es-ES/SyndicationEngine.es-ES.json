@@ -1,0 +1,10 @@
+{
+  "SovereignSyndicationEngine": {
+    "logFeedGenerated": "Sincronía Editorial: Rastro XML (RSS 2.0) generado con {count} ítems para el territorio {country}.",
+    "errorEmptyCollection": "Incapacidad de Sindicación: La colección de noticias candidatas está vacía. El feed no fue iniciado.",
+    "auditBlockchainSeal": "Sello de Fe Pública: Ancla Merkle {identifier} inyectada en los metadatos del rastro XML.",
+    "namespaceDescription": "Extensión Agentevai para metadatos forenses y soberanía informativa.",
+    "logHandshakeSuccess": "Handshake de Sindicación: El agregador externo inició la lectura del rastro territorial.",
+    "errorInvalidMetadata": "Falla de ADN: Los metadatos del canal de sindicación violaron el contrato de integridad."
+  }
+}

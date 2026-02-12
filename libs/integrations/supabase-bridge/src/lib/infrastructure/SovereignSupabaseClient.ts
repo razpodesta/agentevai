@@ -1,9 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignSupabaseClient
- * @version 1.1.0
- * @protocol OEDP-V6.0
- * @description Singleton de infraestrutura. Saneado contra TS2307.
+ * @version 3.0.0
+ * @protocol OEDP-V6.0 - High Performance Persistence
+ * @description Ponto de ignição mestre para o cliente Supabase. 
+ * Implementa Singleton e orquestração de chaves de ambiente.
  */
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
@@ -11,24 +12,22 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 export class SovereignSupabaseClient {
   private static clientInstance: SupabaseClient | null = null;
 
-  public static getInstance(): SupabaseClient {
+  /**
+   * @method getClient
+   * @static
+   * @description Resolve o handshake com o cofre relacional.
+   */
+  public static getClient(): SupabaseClient {
     if (this.clientInstance) return this.clientInstance;
 
-    const supabaseUrl = process.env['SUPABASE_URL'];
+    const endpointUrl = process.env['SUPABASE_URL'];
     const serviceRoleKey = process.env['SUPABASE_SERVICE_ROLE_KEY'];
 
-    if (!supabaseUrl || !serviceRoleKey) {
-      throw new Error('SUPABASE_BRIDGE_KEYS_MISSING');
+    if (!endpointUrl || !serviceRoleKey) {
+      throw new Error('MISSING_SUPABASE_INFRASTRUCTURE_KEYS');
     }
 
-    /**
-     * @section Configuração de Elite
-     * Desativamos persistência de sessão para contextos de integração pura.
-     */
-    this.clientInstance = createClient(supabaseUrl, serviceRoleKey, {
-      auth: { persistSession: false }
-    });
-
+    this.clientInstance = createClient(endpointUrl, serviceRoleKey);
     return this.clientInstance;
   }
 }

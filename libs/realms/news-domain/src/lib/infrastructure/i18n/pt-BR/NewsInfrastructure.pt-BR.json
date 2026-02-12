@@ -1,8 +1,11 @@
 {
-  "NewsInfrastructure": {
-    "logArticlePersisted": "Artigo jornalístico {id} persistido com sucesso no território {region}.",
-    "logStateTransmuted": "Estado editorial alterado para {state} via rastro de auditoria.",
-    "errorPersistViolation": "Incapacidade de gravar no cofre de notícias: Violação de integridade Zod.",
-    "errorConnectionLost": "Ponte de dados com o Supabase interrompida no rastro {traceId}."
+  "NewsArticleCommand": {
+    "logArticleSealed": "Selo de Persistência: O artigo informativo {identifier} foi gravado com sucesso no cofre relacional.",
+    "errorIntegrityViolation": "Violação de ADN: O rastro editorial portava radiação técnica e foi rejeitado pela aduana do PostgreSQL.",
+    "errorVaultAccess": "Incapacidade Operativa: Falha crítica ao estabelecer handshake com o cofre de notícias no Supabase."
+  },
+  "NewsArticleQuery": {
+    "QUERY_SUCCESS": "Sincronia de Leitura: Malha editorial regionalizada resolvida com sucesso via rastro forense.",
+    "logQueryEmpty": "Aviso de Vácuo: Nenhuma notícia localizada para os parâmetros territoriais informados."
   }
 }

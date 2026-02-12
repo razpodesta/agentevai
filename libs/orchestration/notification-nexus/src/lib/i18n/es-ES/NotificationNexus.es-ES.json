@@ -1,0 +1,7 @@
+{
+  "NotificationNexus": {
+    "logMessageDispatched": "Sincronía de Comunicación: Mensaje {identifier} enviado vía Nexus.",
+    "errorConnectionLost": "Incapacidad de Red: El túnel de comunicación instantánea se ha interrumpido.",
+    "logDirectiveCreated": "Directiva de soberanía sellada para el destinatario."
+  }
+}

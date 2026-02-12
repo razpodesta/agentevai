@@ -1,0 +1,29 @@
+{
+  "name": "@agentevai/syndication-engine",
+  "version": "1.0.0",
+  "description": "Vetor de Distribuição Soberana: Transmuta coleções de notícias em rastro XML universal (RSS 2.0).",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.0"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "SYNDICATION_PROVIDER",
+    "standard": "RSS_2.0"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "rss": "^1.2.2"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "@agentevai/types-common": "workspace:*"
+  }
+}

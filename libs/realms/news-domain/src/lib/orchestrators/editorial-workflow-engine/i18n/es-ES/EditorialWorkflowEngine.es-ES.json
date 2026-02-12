@@ -1,7 +1,8 @@
 {
   "EditorialWorkflowEngine": {
-    "logStateTransmuted": "Sincronía Editorial Zenith: El rastro de noticia evolucionó del estadio {origin} al estadio {target} con integridad de ADN.",
-    "ILLEGAL_WORKFLOW_TRANSITION": "Violación de Protocolo Editorial: La acción de transmutación [{action}] fue denegada. El estado actual [{state}] no permite este salto de soberanía.",
-    "errorAduanaFailed": "Falla en la Aduana Editorial: Los parámetros de transición portan radiación técnica o marcas nominales inválidas."
+    "logStateTransmuted": "Sincronía Editorial: El rastro de noticia evolucionó del estadio {origin} al {target} con integridad de ADN.",
+    "ILLEGAL_WORKFLOW_TRANSITION": "Violación de Protocolo Editorial: La acción no está permitida para el estado actual.",
+    "statusAwaitingSeal": "Protocolo de Inmutabilidad: Esperando sellado vía Blockchain Ledger.",
+    "errorAduanaFailed": "Falla en la Aduana Editorial: Los parámetros portaban radiación técnica."
   }
 }

@@ -1,11 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GeographicContextManager
- * @version 4.1.0
+ * @version 5.0.0
  * @protocol OEDP-V6.0 - Forensic Sovereignty
- * @description Orquestrador de inteligência geográfica brasileira.
- * CURA TS2305: Realinhamento de importação do TransmuteTextToSlug para a types-common.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @description Orquestrador de inteligência geográfica.
+ * CURA TS4111: Implementada desestruturação imediata do rastro validado.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
@@ -17,21 +16,13 @@ import {
   RegionSlugSchema, 
   SovereignCountrySchema 
 } from '@agentevai/sovereign-context';
-
-/** 
- * @section Sincronia de Borda (Cura de Roteamento)
- * TransmuteTextToSlug é um alicerce de tipos comuns.
- */
-import { 
-  TransmuteTextToSlug 
-} from '@agentevai/types-common';
-
+import { TransmuteTextToSlug } from '@agentevai/types-common';
 import { 
   SovereignTranslationEngine,
   type ISovereignDictionary
 } from '@agentevai/internationalization-engine';
 
-/** @section ADN Local e Aduana */
+/** @section Sincronia de ADN Local */
 import {
   BrazilianMunicipalitySchema,
   IbgeCodeSchema,
@@ -43,7 +34,7 @@ import { IbgeMunicipalityAduanaSchema } from './schemas/GeographicContextManager
 /**
  * @name TransmuteIbgeToMunicipality
  * @function
- * @description Transmuta o rastro bruto do IBGE no ADN estrutural Agentevai.
+ * @description Transmuta o rastro bruto do IBGE no ADN estrutural Agentevai com Zero Entropia.
  */
 export const TransmuteIbgeToMunicipality = (
   rawPayload: unknown,
@@ -58,20 +49,18 @@ export const TransmuteIbgeToMunicipality = (
   );
 
   try {
-    // 1. ADUANA DE BORDA (Purificação via ADN Zod)
+    // 1. ADUANA DE BORDA (Purificação de Rastro Externo)
     const externalSnapshot = IbgeMunicipalityAduanaSchema.parse(rawPayload);
 
-    // 2. ORQUESTRAÇÃO DE TRANSMUTAÇÃO (Consumo correto do alicerce types-common)
+    // 2. GERAÇÃO DE RASTRO DE RUTEAMENTO
     const generatedSlug = TransmuteTextToSlug(externalSnapshot.name);
     
     if (!generatedSlug) {
       throw new Error('SLUG_GENERATION_COLLAPSE');
     }
 
-    /**
-     * @section Composição de Snapshot Territorial
-     */
-    const municipalitySnapshot = {
+    // 3. COMPOSIÇÃO DE SNAPSHOT TERRITORIAL
+    const municipalityData = {
       identifier: IbgeCodeSchema.parse(externalSnapshot.identifier),
       name: externalSnapshot.name.trim(),
       slug: RegionSlugSchema.parse(generatedSlug),
@@ -79,22 +68,25 @@ export const TransmuteIbgeToMunicipality = (
       countryCode: SovereignCountrySchema.parse('BR')
     };
 
-    // 3. SELAGEM FINAL (Imutabilidade)
-    const validatedMunicipality = BrazilianMunicipalitySchema.parse(municipalitySnapshot);
+    /**
+     * @section CURA_TS4111
+     * Realizamos o parse e desestruturamos IMEDIATAMENTE.
+     * Isso extrai constantes nominais puras, ignorando assinaturas de índice do brand.
+     */
+    const validatedMunicipality = BrazilianMunicipalitySchema.parse(municipalityData);
+    const { identifier, name, slug, stateCode } = validatedMunicipality;
 
-    // 4. TELEMETRIA SOBERANA
+    // 4. TELEMETRIA SOBERANA (Utilizando constantes locais resolvidas)
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'TERRITORIAL_TRANSMUTATION_COMPLETE',
-      message: translate('logTransmutationSuccess', { 
-        name: validatedMunicipality.name, 
-        stateCode: validatedMunicipality.stateCode 
-      }),
+      message: translate('logTransmutationSuccess', { name, stateCode }),
       correlationIdentifier,
       metadata: {
-        ibgeIdentifier: validatedMunicipality.identifier,
-        regionalSlug: validatedMunicipality.slug
+        ibgeIdentifier: identifier,
+        regionalSlug: slug,
+        territorialName: name
       }
     });
 

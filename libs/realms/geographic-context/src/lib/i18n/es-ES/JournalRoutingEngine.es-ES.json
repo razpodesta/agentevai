@@ -1,0 +1,7 @@
+{
+  "JournalRoutingEngine": {
+    "logRoutingDecision": "Decisión de Enrutamiento: Destino [ {path} ] establecido vía [ {reason} ].",
+    "errorIllegalRedirect": "Violación de Ruta: Intento de redireccionamiento a zona no soberana.",
+    "statusZenithActive": "El rastro de enrutamiento alcanzó el Cenit Editorial."
+  }
+}

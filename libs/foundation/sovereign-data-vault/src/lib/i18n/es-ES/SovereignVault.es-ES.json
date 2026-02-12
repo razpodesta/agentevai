@@ -1,14 +1,16 @@
 {
   "AnonymizeSovereignData": {
-    "logSuccess": "Rastro anonimizado con éxito. Identidad civil protegida vía SHA-256.",
-    "errorSaltMissing": "Sal de soberanía no localizado. Fallo en la integridad de anonimización."
+    "logSuccess": "Rastro anonimizado con éxito. Identidad civil protegida vía SHA-256 y sellada en el cofre.",
+    "errorSaltMissing": "Incapacidad Criptográfica: Sal de soberanía no localizado en el entorno de ejecución.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros de anonimización portaban radiación técnica o vacío de rastro."
   },
   "ProtectSovereignData": {
-    "logSuccess": "Carga de información sensible de contexto {context} cifrada y sellada en el Vault.",
-    "errorMasterKey": "Llave maestra de soberanía (AES-GCM) no localizada en el entorno."
+    "logSuccess": "Protección Concluida: Carga sensible de contexto {context} cifrada y sellada en el Vault.",
+    "errorMasterKey": "Incapacidad Criptográfica: Llave maestra de soberanía no localizada en el entorno.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros de protección violaron el contrato estructural."
   },
   "UnprotectSovereignData": {
-    "logSuccess": "Acceso autorizado: Dato descifrado para peritaje técnico de la jornada {correlationIdentifier}.",
+    "logSuccess": "Acceso Autorizado: Dato descifrado para peritaje técnico de la jornada {correlationIdentifier}.",
     "errorTampering": "ALERTA CRÍTICA: Intento de violación de integridad detectado. El rastro criptográfico fue adulterado."
   }
 }

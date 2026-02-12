@@ -1,8 +1,7 @@
 {
   "SovereignContextManager": {
-    "regionActive": "Regional sovereignty established for the territory: {region}.",
-    "degradedAlert": "SECURITY ALERT: System health below elite threshold ({health}%). Activating Graceful Degradation Mode (Kinetic Amputation).",
-    "logIgnitionSuccess": "Consciousness [{countryCode}] anchored in {latency}ms via {routeSlug}.",
-    "CONSCIOUSNESS_COLLAPSE": "Consciousness Collapse: Geographic DNA has been violated or is unreadable for journey {correlationIdentifier}."
+    "logIgnitionSuccess": "Consciousness anchored via route {routeSlug} in {latency}ms.",
+    "degradedAlert": "SECURITY ALERT: System health below 40%. Activating Degradation Mode (Kinetic Amputation).",
+    "CONSCIOUSNESS_COLLAPSE": "Consciousness Collapse: Infrastructure DNA has been violated."
   }
 }

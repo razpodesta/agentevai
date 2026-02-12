@@ -1,15 +1,17 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus LookupTerritorialAnchor
- * @version 5.0.0
+ * @version 6.1.0
  * @protocol OEDP-V6.0 - High Precision Orchestration
  * @description Ponto de controle mestre para determinação de soberania territorial.
- * Pulverizado: Consome ExecuteExternalGeographicLookup para I/O.
- * @policy ZERO-ANY: Saneamento total via ADN nominal.
+ * CURA TS2554: Sincronização de rastro forense com ExecuteExternalGeographicLookup.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
 import { 
   SovereignTranslationEngine, 
   type ISovereignDictionary 
@@ -20,12 +22,12 @@ import {
 } from '@agentevai/sovereign-context';
 
 /** @section Sincronia de ADN Local */
-import {
-  BrazilianMunicipalityBaseSchema,
-  BrazilianStateCodeSchema,
-  type IBrazilianMunicipality
-} from '../schemas/GeographicRegion.schema.js';
-import { LookupTerritorialAnchorInputSchema } from '../schemas/LookupTerritorialAnchor.schema.js';
+import { BrazilianStateCodeSchema } from '../schemas/GeographicRegion.schema.js';
+import { 
+  LookupTerritorialAnchorInputSchema, 
+  TerritorialAnchorResultSchema,
+  type ITerritorialAnchorResult 
+} from '../schemas/LookupTerritorialAnchor.schema.js';
 
 /** @section Handlers Atômicos */
 import { ExecuteExternalGeographicLookup } from './ExecuteExternalGeographicLookup.js';
@@ -34,13 +36,13 @@ import { ExecuteExternalGeographicLookup } from './ExecuteExternalGeographicLook
  * @name LookupTerritorialAnchor
  * @function
  * @async
- * @description Determina a localização baseada no IP com fallback de soberania nacional.
+ * @description Determina a localização baseada no IP com fallback de soberania nacional automática.
  */
 export const LookupTerritorialAnchor = async (
   internetProtocolAddress: string,
   correlationIdentifier: string,
   dictionary: ISovereignDictionary
-): Promise<Partial<IBrazilianMunicipality>> => {
+): Promise<ITerritorialAnchorResult> => {
   const apparatusName = 'LookupTerritorialAnchor';
   const fileLocation = 'libs/realms/geographic-context/src/lib/handlers/LookupTerritorialAnchor.ts';
 
@@ -49,11 +51,12 @@ export const LookupTerritorialAnchor = async (
   );
 
   // 1. ADUANA DE ENTRADA (Validando rastro técnico)
-  LookupTerritorialAnchorInputSchema.parse({ internetProtocolAddress, correlationIdentifier });
+  LookupTerritorialAnchorInputSchema.parse({ 
+    internetProtocolAddress, 
+    correlationIdentifier 
+  });
 
-  const certifySovereignty = (data: object) => BrazilianMunicipalityBaseSchema.partial().parse(data);
-
-  // 2. PROTOCOLO LOCALHOST (Ambiente Controlado)
+  // 2. PROTOCOLO LOCALHOST (Ambiente de Desenvolvimento)
   if (internetProtocolAddress === '::1' || internetProtocolAddress === '127.0.0.1') {
     SovereignLogger({
       severity: 'INFO',
@@ -63,7 +66,7 @@ export const LookupTerritorialAnchor = async (
       correlationIdentifier
     });
 
-    return certifySovereignty({
+    return TerritorialAnchorResultSchema.parse({
       name: 'Nacional (Localhost)',
       stateCode: BrazilianStateCodeSchema.parse('BR'),
       countryCode: SovereignCountrySchema.parse('BR'),
@@ -72,20 +75,25 @@ export const LookupTerritorialAnchor = async (
   }
 
   try {
-    // 3. EXECUÇÃO DE I/O ATÔMICO
-    const externalSnapshot = await ExecuteExternalGeographicLookup(internetProtocolAddress);
+    // 3. EXECUÇÃO DE I/O ATÔMICO (CURA TS2554: Injeção de Rastro)
+    const externalSnapshot = await ExecuteExternalGeographicLookup(
+      internetProtocolAddress,
+      correlationIdentifier
+    );
 
-    // 4. DETECÇÃO DE SOBERANIA INTERNACIONAL
+    // 4. DETECÇÃO DE SOBERANIA INTERNACIONAL (Fronteira Externa)
     if (externalSnapshot.country_code !== 'BR') {
       SovereignLogger({
         severity: 'INFO',
         apparatus: apparatusName,
         operation: 'EXTERNAL_NATION_DETECTED',
-        message: translate('logExternalNation', { countryCode: externalSnapshot.country_code }),
+        message: translate('logExternalNation', { 
+          countryCode: externalSnapshot.country_code || 'EX' 
+        }),
         correlationIdentifier
       });
 
-      return certifySovereignty({
+      return TerritorialAnchorResultSchema.parse({
         name: externalSnapshot.country_name || 'International',
         stateCode: BrazilianStateCodeSchema.parse('EX'),
         countryCode: SovereignCountrySchema.parse(externalSnapshot.country_code || 'US'),
@@ -94,14 +102,15 @@ export const LookupTerritorialAnchor = async (
     }
 
     // 5. ANCORAGEM NACIONAL (Brasil)
-    return certifySovereignty({
-      name: externalSnapshot.city ?? 'Localidade Desconhecida',
-      stateCode: BrazilianStateCodeSchema.parse(externalSnapshot.region_code ?? 'BR'),
+    return TerritorialAnchorResultSchema.parse({
+      name: externalSnapshot.city || 'Brasil',
+      city: externalSnapshot.city,
+      stateCode: BrazilianStateCodeSchema.parse(externalSnapshot.region_code || 'BR'),
       countryCode: SovereignCountrySchema.parse('BR'),
     });
 
   } catch (caughtError) {
-    // 6. PROTOCOLO DE RESILIÊNCIA NEURAL
+    // 6. PROTOCOLO DE RESILIÊNCIA NEURAL (Cura de Colapso)
     const diagnostic = SovereignError.transmute(caughtError, {
       code: SovereignErrorCodeSchema.parse('OS-GEO-5001'),
       apparatus: apparatusName,
@@ -119,7 +128,7 @@ export const LookupTerritorialAnchor = async (
       metadata: { diagnosticReport: diagnostic.getDiagnosticReport() }
     });
 
-    return certifySovereignty({
+    return TerritorialAnchorResultSchema.parse({
       name: 'Brasil',
       stateCode: BrazilianStateCodeSchema.parse('BR'),
       countryCode: SovereignCountrySchema.parse('BR'),

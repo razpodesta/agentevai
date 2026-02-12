@@ -1,0 +1,8 @@
+{
+  "UnprotectSovereignData": {
+    "logSuccess": "Authorized Access: PII trace decrypted with integrity for journey {correlationIdentifier}.",
+    "errorTampering": "CRITICAL ALERT: Tampering attempt detected. The cryptographic trace was altered or the master key is invalid.",
+    "errorMasterKey": "Cryptographic Inability: Sovereignty master key not located in the environment.",
+    "errorVersion": "Protocol Violation: Cipher algorithm version is incompatible."
+  }
+}

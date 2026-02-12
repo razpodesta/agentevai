@@ -1,112 +1,148 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus JournalRoutingEngine
- * @version 2.1.0
- * @protocol OEDP-V5.5 - High Precision Routing
- * @description Motor de decisão hierárquica para ruteamento de Jornal Nacional vs Local.
- * Refatorado para erradicação de variáveis órfãs e alinhamento de rastro forense.
+ * @version 3.1.0
+ * @protocol OEDP-V6.0 - High Performance Deterministic Logic
+ * @description Motor que orquestra a hierarquia de ruteamento nacional vs regional.
+ * CURA TS2345: Injeção de marca nominal via Schema Parsing nas chamadas de selagem.
  */
 
-import { z } from 'zod';
-import {
-  SovereignLocaleSchema,
-  SovereignCountrySchema,
-  type SovereignLocale,
-  type SovereignCountry
-} from '@agentevai/types-common';
-import { TransmuteGeopoliticalId } from '@agentevai/internationalization-engine';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignTranslationEngine, 
+  TransmuteGeopoliticalId,
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 
-/**
- * @name JournalRoutingParametersSchema
- * @description Aduana de ADN.
- * @section CORREÇÃO_HOLÍSTICA: Utilizamos os tipos importados explicitamente
- * na interface para garantir que a 'types-common' seja consumida de fato.
- */
-export interface IJournalRoutingParameters {
-  readonly activeLocale: SovereignLocale;
-  readonly targetCountry: SovereignCountry;
-  readonly stateCode?: string;
-  readonly citySlug?: string;
-  readonly preferredDestination?: string;
-}
-
-const JournalRoutingParametersSchema = z.object({
-  activeLocale: SovereignLocaleSchema,
-  targetCountry: SovereignCountrySchema,
-  stateCode: z.string().length(2).toUpperCase().optional(),
-  citySlug: z.string().min(2).toLowerCase().optional(),
-  preferredDestination: z.string().optional(),
-}).readonly();
-
-export interface IRoutingDecision {
-  readonly destinationPath: string;
-  readonly decisionReason: 'GEO_DETECTION' | 'FALLBACK_NATIONAL' | 'USER_PREFERENCE_VAULT';
-  readonly requiresExternalRedirect: boolean;
-}
+/** @section Sincronia de ADN */
+import { 
+  JournalRoutingParametersSchema,
+  RoutingDecisionSchema,
+  RoutingDecisionReasonSchema,
+  type IJournalRoutingParameters,
+  type IRoutingDecision,
+  type RoutingDecisionReason
+} from './schemas/JournalRoutingEngine.schema.js';
 
 export class JournalRoutingEngine {
+  private static readonly apparatusName = 'JournalRoutingEngine';
   private static readonly NATIONAL_SLUG = 'nacional';
-  private static readonly APPARATUS_NAME = 'JournalRoutingEngine';
+  private static readonly fileLocation = 'libs/realms/geographic-context/src/lib/JournalRoutingEngine.ts';
 
   /**
    * @method resolveInitialDestination
-   * @description Calcula o destino soberano com base no rastro geográfico.
+   * @static
+   * @description Resolve o destino soberano baseando-se no rastro geográfico e preferências.
    */
   public static resolveInitialDestination(
     parameters: IJournalRoutingParameters,
-    correlationIdentifier: string
+    dictionary: ISovereignDictionary
   ): IRoutingDecision {
-    // 1. Validação Aduaneira (ADN Check)
-    const data = JournalRoutingParametersSchema.parse(parameters);
+    const apparatusName = this.apparatusName;
 
-    // 2. Extração de Rota Soberana
-    const routeSlug = TransmuteGeopoliticalId.countryToRoute(data.targetCountry);
+    try {
+      // 1. ADUANA DE ENTRADA (Validando rastro e ADN)
+      const data = JournalRoutingParametersSchema.parse(parameters);
+      const { correlationIdentifier } = data;
 
-    // 3. Orquestração de Decisão (Hierarquia de Pesos)
+      // 2. EXTRAÇÃO DE ROTA NACIONAL SINCRO (Protocolo V6.0)
+      const countryRouteSlug = TransmuteGeopoliticalId.countryToRoute(
+        data.targetSovereignCountry,
+        correlationIdentifier,
+        dictionary
+      );
 
-    if (data.preferredDestination) {
-      return this.sealDecision(data.preferredDestination, 'USER_PREFERENCE_VAULT', true, correlationIdentifier);
+      // 3. ORQUESTRAÇÃO DE DECISÃO (Hierarquia de Soberania)
+      
+      // Nível I: Preferência do Cidadão (Cofre)
+      if (data.preferredDestination) {
+        return this.sealDecision(
+          data.preferredDestination, 
+          RoutingDecisionReasonSchema.parse('USER_PREFERENCE_VAULT'), // CURA TS2345
+          true, 
+          correlationIdentifier, 
+          dictionary
+        );
+      }
+
+      // Nível II: Localidade Detectada (IP/GPS)
+      if (data.stateCode && data.citySlug) {
+        const localPath = `/${data.activeSovereignLocale}/${countryRouteSlug}/${data.stateCode.toLowerCase()}/${data.citySlug}`;
+        return this.sealDecision(
+          localPath, 
+          RoutingDecisionReasonSchema.parse('GEO_DETECTION'), // CURA TS2345
+          true, 
+          correlationIdentifier, 
+          dictionary
+        );
+      }
+
+      // Nível III: Fallback Nacional (Segurança Editorial)
+      const nationalPath = `/${data.activeSovereignLocale}/${countryRouteSlug}/${this.NATIONAL_SLUG}`;
+      return this.sealDecision(
+        nationalPath, 
+        RoutingDecisionReasonSchema.parse('FALLBACK_NATIONAL'), // CURA TS2345
+        false, 
+        correlationIdentifier, 
+        dictionary
+      );
+
+    } catch (caughtError) {
+      throw SovereignError.transmute(caughtError, {
+        code: SovereignErrorCodeSchema.parse('OS-GEO-6001'),
+        apparatus: apparatusName,
+        location: this.fileLocation,
+        correlationIdentifier: parameters.correlationIdentifier,
+        severity: 'CRITICAL',
+        recoverySuggestion: 'Falha ao processar rastro geográfico. Forçar ruteamento para zona nacional segura.'
+      });
     }
-
-    if (data.stateCode && data.citySlug) {
-      const localPath = `/${data.activeLocale}/${routeSlug}/${data.stateCode.toLowerCase()}/${data.citySlug}`;
-      return this.sealDecision(localPath, 'GEO_DETECTION', true, correlationIdentifier);
-    }
-
-    const nationalPath = `/${data.activeLocale}/${routeSlug}/${this.NATIONAL_SLUG}`;
-    return this.sealDecision(nationalPath, 'FALLBACK_NATIONAL', false, correlationIdentifier);
   }
 
   /**
    * @method sealDecision
-   * @private Selagem e registro de telemetria.
-   * @section CORREÇÃO_ESLINT: apparatusName integrado via static constant.
+   * @private Selagem de ADN e Telemetria Neural.
    */
   private static sealDecision(
-    path: string,
-    reason: IRoutingDecision['decisionReason'],
-    isRedirect: boolean,
-    correlationIdentifier: string
+    destinationPath: string,
+    decisionReason: RoutingDecisionReason,
+    requiresExternalRedirect: boolean,
+    correlationIdentifier: string,
+    dictionary: ISovereignDictionary
   ): IRoutingDecision {
+    const apparatusName = this.apparatusName;
+
+    // Pilar V: Soberania Linguística
+    const semanticMessage = SovereignTranslationEngine.translate(
+      dictionary,
+      apparatusName,
+      'logRoutingDecision',
+      { path: destinationPath, reason: decisionReason as unknown as string },
+      correlationIdentifier
+    );
+
+    // Pilar VI: Telemetria Unificada
     SovereignLogger({
       severity: 'INFO',
-      apparatus: this.APPARATUS_NAME, // Uso explícito da constante
+      apparatus: apparatusName,
       operation: 'ROUTING_DECISION_SEALED',
-      message: `Ruteamento definido para [${path}] via [${reason}].`,
-      traceIdentifier: correlationIdentifier,
-      metadata: {
-        path,
-        reason,
-        isRedirect,
-        engineVersion: '2.1.0'
+      message: semanticMessage,
+      correlationIdentifier,
+      metadata: { 
+        destinationPath, 
+        reason: decisionReason, 
+        redirect: requiresExternalRedirect 
       }
     });
 
-    return Object.freeze({
-      destinationPath: path,
-      decisionReason: reason,
-      requiresExternalRedirect: isRedirect
+    return RoutingDecisionSchema.parse({
+      destinationPath,
+      decisionReason,
+      requiresExternalRedirect
     });
   }
 }

@@ -1,0 +1,10 @@
+{
+  "SovereignSyndicationEngine": {
+    "logFeedGenerated": "Editorial Synchrony: XML trace (RSS 2.0) generated with {count} items for territory {country}.",
+    "errorEmptyCollection": "Syndication Inability: The candidate news collection is empty. The feed was not ignited.",
+    "auditBlockchainSeal": "Public Trust Seal: Merkle anchor {identifier} injected into the XML trace metadata.",
+    "namespaceDescription": "Agentevai extension for forensic metadata and informative sovereignty.",
+    "logHandshakeSuccess": "Syndication Handshake: The external aggregator initiated the reading of the territorial trace.",
+    "errorInvalidMetadata": "DNA Failure: The syndication channel metadata violated the integrity contract."
+  }
+}

@@ -1,10 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus GeographicRegionSchema
- * @version 2.0.0
+ * @version 3.0.0
  * @protocol OEDP-V6.0 - High Precision & Territorial Sovereignty
- * @description ADN mestre para territórios soberanos brasileiros.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica.
+ * @description ADN mestre para territórios brasileiros. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
@@ -17,7 +16,7 @@ import { SovereignCountrySchema } from '@agentevai/types-common';
 export const IbgeCodeSchema = z.number()
   .int()
   .positive()
-  .describe('Código numérico oficial do IBGE para identificação de municípios.')
+  .describe('Código numérico oficial do IBGE.')
   .brand<'IbgeCode'>();
 
 export type IbgeCode = z.infer<typeof IbgeCodeSchema>;
@@ -25,13 +24,13 @@ export type IbgeCode = z.infer<typeof IbgeCodeSchema>;
 export const BrazilianStateCodeSchema = z.string()
   .length(2)
   .toUpperCase()
-  .describe('Identificador alfabético da Unidade Federativa.')
   .brand<'BrazilianStateCode'>();
 
 export type BrazilianStateCode = z.infer<typeof BrazilianStateCodeSchema>;
 
 /**
  * @name BrazilianMunicipalityBaseSchema
+ * @description Estrutura pura para permitir desestruturação segura (un-branded properties).
  */
 export const BrazilianMunicipalityBaseSchema = z.object({
   countryCode: SovereignCountrySchema
@@ -43,8 +42,7 @@ export const BrazilianMunicipalityBaseSchema = z.object({
   name: z.string()
     .min(2)
     .trim()
-    .transform(value => value.normalize('NFC'))
-    .describe('Nome canônico da localidade.'),
+    .transform(value => value.normalize('NFC')),
 
   slug: RegionSlugSchema
     .describe('Slug de ruteamento gerado via TransmuteTextToSlug.'),
@@ -55,13 +53,15 @@ export const BrazilianMunicipalityBaseSchema = z.object({
     latitude: z.number().min(-90).max(90),
     longitude: z.number().min(-180).max(180),
     radiusInMeters: z.number().default(5000)
-  }).optional().describe('Coordenadas e perímetros de autoridade.'),
+  }).optional(),
 });
 
 /**
  * @name BrazilianMunicipalitySchema
- * @description Contrato selado e imutável (SSOT).
+ * @description Contrato SELADO e NOMINAL para trânsito no Reino Geográfico.
  */
-export const BrazilianMunicipalitySchema = BrazilianMunicipalityBaseSchema.readonly();
+export const BrazilianMunicipalitySchema = BrazilianMunicipalityBaseSchema
+  .brand<'BrazilianMunicipality'>()
+  .readonly();
 
 export type IBrazilianMunicipality = z.infer<typeof BrazilianMunicipalitySchema>;

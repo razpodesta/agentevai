@@ -1,8 +1,7 @@
 {
   "SovereignContextManager": {
-    "regionActive": "Soberania regional estabelecida para o território: {region}.",
-    "degradedAlert": "ALERTA DE SEGURANÇA: Saúde sistêmica abaixo do patamar de elite ({health}%). Ativando Modo de Degradação Graciosa (Cinética Amputada).",
-    "logIgnitionSuccess": "Consciência [{countryCode}] ancorada em {latency}ms via {routeSlug}.",
-    "CONSCIOUSNESS_COLLAPSE": "Colapso de Consciência: O ADN geográfico foi violado ou está ilegível para a jornada {correlationIdentifier}."
+    "logIgnitionSuccess": "Consciência ancorada via rota {routeSlug} em {latency}ms.",
+    "degradedAlert": "ALERTA DE SEGURANÇA: Saúde sistêmica abaixo de 40%. Ativando Modo de Degradação (Amputação Cinética).",
+    "CONSCIOUSNESS_COLLAPSE": "Colapso de Consciência: O ADN de infraestrutura foi violado."
   }
 }

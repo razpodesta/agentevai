@@ -1,0 +1,8 @@
+{
+  "ExecuteExternalGeographicLookup": {
+    "logFetchStarted": "Initiating trace capture for IP address: {ip}.",
+    "logFetchSuccess": "Geographic Success: Infrastructure trace successfully retrieved.",
+    "errorInfrastructureDown": "Technical Inability: External geolocation cluster is unreachable.",
+    "errorAduanaFailed": "DNA Failure: External trace carried technical radiation and was rejected."
+  }
+}

@@ -1,8 +1,8 @@
 {
   "GeographicContextManager": {
-    "logTransmutationSuccess": "Soberanía territorial sellada para {name} [{stateCode}].",
-    "logTransmutationStarted": "Iniciando transmutación de ADN para el rastro IBGE: {identifier}.",
-    "errorAduanaFailed": "Falla de ADN: El rastro del IBGE violó el contrato estructural.",
-    "errorSlugGeneration": "Error Crítico: Incapacidad de generar rastro de ruteo para {name}."
+    "logTransmutationSuccess": "Sincronía Geográfica: Municipio {name} [{stateCode}] anclado con éxito.",
+    "logTransmutationStarted": "Iniciando transmutación de rastro IBGE para el rastro forense: {identifier}.",
+    "errorAduanaFailed": "Falla de ADN: El rastro del IBGE violó el contrato estructural y fue rechazado.",
+    "errorSlugGeneration": "Error Crítico: Incapacidad de generar rastro de enrutamiento para {name}."
   }
 }

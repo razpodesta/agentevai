@@ -1,0 +1,7 @@
+{
+  "AnonymizeSovereignData": {
+    "logSuccess": "Rastro anonimizado con éxito. Identidad civil protegida vía SHA-256 y sellada en el cofre.",
+    "errorSaltMissing": "Incapacidad Criptográfica: Sal de soberanía no localizado en el entorno de ejecución.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros de anonimización portaban radiación técnica o vacío de rastro."
+  }
+}

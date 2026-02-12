@@ -1,0 +1,8 @@
+{
+  "ExecuteExternalGeographicLookup": {
+    "logFetchStarted": "Iniciando captura de rastro para o endereço IP: {ip}.",
+    "logFetchSuccess": "Sucesso Geográfico: Rastro de infraestrutura recuperado com integridade.",
+    "errorInfrastructureDown": "Incapacidade Técnica: O cluster de geolocalização externo está inacessível.",
+    "errorAduanaFailed": "Falha de ADN: O rastro externo portava radiação técnica e foi rejeitado."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ProtectSovereignData": {
+    "logSuccess": "Proteção Concluída: Carga sensível de contexto {context} cifrada e selada no Vault.",
+    "errorMasterKey": "Incapacidade Criptográfica: Chave mestre de soberania não localizada no ambiente.",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros de proteção violaram o contrato estrutural."
+  }
+}

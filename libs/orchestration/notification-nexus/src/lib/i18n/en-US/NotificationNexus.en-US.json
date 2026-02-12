@@ -1,0 +1,7 @@
+{
+  "NotificationNexus": {
+    "logMessageDispatched": "Communication Synchrony: Message {identifier} despatched via Nexus.",
+    "errorConnectionLost": "Network Inability: The instant communication tunnel has been interrupted.",
+    "logDirectiveCreated": "Sovereignty directive sealed for the recipient."
+  }
+}

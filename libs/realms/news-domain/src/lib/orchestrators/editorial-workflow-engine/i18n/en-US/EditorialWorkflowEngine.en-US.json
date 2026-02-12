@@ -1,7 +1,7 @@
 {
   "EditorialWorkflowEngine": {
-    "logStateTransmuted": "Zenith Editorial Synchrony: The news trace has evolved from stage {origin} to stage {target} with DNA integrity.",
-    "ILLEGAL_WORKFLOW_TRANSITION": "Editorial Protocol Violation: The transmutation action [{action}] was denied. The current state [{state}] does not allow this sovereignty jump.",
-    "errorAduanaFailed": "Editorial Aduana Failure: Transition parameters carry technical radiation or invalid nominal brands."
+    "logStateTransmuted": "Editorial Synchrony: Trace evolved from {origin} to {target} with DNA integrity.",
+    "ILLEGAL_WORKFLOW_TRANSITION": "Editorial Protocol Violation: Action not permitted for current news state.",
+    "errorAduanaFailed": "Editorial Aduana Failure: Parameters carried technical radiation."
   }
 }

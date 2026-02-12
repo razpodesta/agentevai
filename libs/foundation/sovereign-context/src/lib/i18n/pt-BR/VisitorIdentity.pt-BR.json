@@ -1,0 +1,12 @@
+{
+  "VisitorIdentity": {
+    "device_MOBILE": "Dispositivo Móvel",
+    "device_TABLET": "Tablet",
+    "device_DESKTOP": "Estação de Trabalho",
+    "device_BOT": "Agente Automatizado",
+    "engine_WebKit": "Motor Apple WebKit",
+    "engine_Blink": "Motor Google Blink",
+    "engine_Gecko": "Motor Mozilla Gecko",
+    "logIdentityResolved": "Identidade técnica selada para o rastro {correlationIdentifier}."
+  }
+}

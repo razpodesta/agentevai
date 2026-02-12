@@ -1,28 +1,28 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TranslatePostalCodeToMunicipality
- * @version 2.1.0
- * @protocol OEDP-V5.5 - High Precision & Zero-Any
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - High Performance & Zero-Any
  * @description Transmuta um rastro postal (CEP) em um Município Soberano completo.
- * Implementa ruteamento dinâmico automático e resolve conflitos de importação de malha.
- * @policy ZERO-ANY: Saneamento total de tipos via aduana Zod.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em clareza técnica absoluta.
+ * CURA TS4111: Implementada desestruturação imediata do rastro validado.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
 import {
   PostalCodeSchema,
   TransmuteTextToSlug
 } from '@agentevai/types-common';
-
-/**
- * @section CORREÇÃO_TS2307
- * Alinhamento com o mapeamento de paths do tsconfig.base.json do Monorepo Nx.
- */
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 import { BrazilApiPostalDriver } from '@agentevai/search-engine';
 
-// Importação dos contratos de ADN local
+/** @section Sincronia de ADN Local */
 import {
   TranslatePostalCodeResultSchema,
   type ITranslatePostalCodeResult
@@ -32,21 +32,22 @@ import {
  * @name TranslatePostalCodeToMunicipality
  * @function
  * @async
- * @description Ponto de entrada de Reino para converter CEP em contexto geográfico auditável.
- *
- * @param {string} rawPostalCode - Texto bruto do código postal.
- * @param {string} correlationIdentifier - UUID para rastro forense.
- * @returns {Promise<ITranslatePostalCodeResult>} Município validado e pronto para ruteamento.
+ * @description Converte CEP em contexto geográfico auditável com telemetria Zenith.
  */
 export const TranslatePostalCodeToMunicipality = async (
   rawPostalCode: string,
-  correlationIdentifier: string
+  correlationIdentifier: string,
+  dictionary: ISovereignDictionary
 ): Promise<ITranslatePostalCodeResult> => {
   const apparatusName = 'TranslatePostalCodeToMunicipality';
   const fileLocation = 'libs/realms/geographic-context/src/lib/TranslatePostalCodeToMunicipality.ts';
 
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, apparatusName, key, variables, correlationIdentifier
+  );
+
   try {
-    // 1. Higienização e Validação do Rastro Postal
+    // 1. HIGIENIZAÇÃO E ADUANA DE ENTRADA
     const numericPostalCode = rawPostalCode.replace(/\D/g, '');
     const validatedPostalCode = PostalCodeSchema.parse(numericPostalCode);
 
@@ -54,53 +55,59 @@ export const TranslatePostalCodeToMunicipality = async (
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'POSTAL_RESOLUTION_STARTED',
-      message: `Iniciando tradução territorial para o CEP: ${validatedPostalCode}`,
-      traceIdentifier: correlationIdentifier
+      message: translate('logResolutionStarted', { postalCode: validatedPostalCode }),
+      correlationIdentifier
     });
 
-    // 2. Execução via Driver de Integração (Nivelado para number-branded)
+    // 2. EXECUÇÃO VIA DRIVER DE INFRAESTRUTURA
     const postalLocationSnapshot = await BrazilApiPostalDriver.resolve(
       validatedPostalCode,
       correlationIdentifier
     );
 
-    // 3. Orquestração de Ruteamento (Geração de Slug Soberano)
+    // 3. ORQUESTRAÇÃO DE RUTEAMENTO (Geração de Slug)
     const regionalSlug = TransmuteTextToSlug(postalLocationSnapshot.city);
 
-    // 4. Composição e Mapeamento de ADN (Erradicação do 'as any')
-    const translatedResult: ITranslatePostalCodeResult = TranslatePostalCodeResultSchema.parse({
+    // 4. COMPOSIÇÃO E SELAGEM DE ADN
+    const rawResult = {
       identifier: postalLocationSnapshot.ibgeCode,
       name: postalLocationSnapshot.city,
       stateCode: postalLocationSnapshot.stateCode,
       slug: regionalSlug
-    });
+    };
 
+    /**
+     * @section CURA_TS4111
+     * Realizamos o parse e desestruturamos IMEDIATAMENTE.
+     * Isso converte o tipo branded em constantes nominais puras no escopo.
+     */
+    const validatedResult = TranslatePostalCodeResultSchema.parse(rawResult);
+    const { identifier, name, stateCode, slug } = validatedResult;
+
+    // 5. TELEMETRIA NEURAL SINCRO (Utilizando constantes locais resolvidas)
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'POSTAL_RESOLUTION_SUCCESS',
-      message: `CEP ${validatedPostalCode} transmutado para o slug: ${translatedResult.slug}`,
-      traceIdentifier: correlationIdentifier,
+      message: translate('logResolutionSuccess', { cityName: name }),
+      correlationIdentifier,
       metadata: {
-        cityName: translatedResult.name,
-        stateCode: translatedResult.stateCode
+        municipalityIdentifier: identifier,
+        regionalSlug: slug,
+        territorialState: stateCode
       }
     });
 
-    return translatedResult;
+    return validatedResult;
 
-  } catch (error) {
-    /**
-     * @section Protocolo de Falha Geográfica
-     * Captura erros de formato ou de localização inexistente e transmuta para falha de Reino.
-     */
-    throw SovereignError.transmute(error, {
-      code: 'OS-GEO-4001',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-GEO-4001'),
       apparatus: apparatusName,
       location: fileLocation,
       correlationIdentifier,
       severity: 'MEDIUM',
-      recoverySuggestion: 'Verificar se o CEP informado pertence ao território brasileiro ativo.'
+      recoverySuggestion: 'Validar integridade da conexão com o driver BrasilAPI ou formato do rastro postal.'
     });
   }
 };

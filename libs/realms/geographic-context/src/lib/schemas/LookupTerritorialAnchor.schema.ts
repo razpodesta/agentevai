@@ -1,30 +1,17 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus LookupTerritorialAnchorSchema
- * @version 3.0.0
- * @protocol OEDP-V6.0 - High Precision DNA
- * @description ADN de fronteira para ancoragem territorial e perícia de rede.
+ * @version 5.0.0
+ * @protocol OEDP-V6.0 - Forensic Integrity SSOT
  */
 
 import { z } from 'zod';
-
-/**
- * @name LookupTerritorialAnchorInputSchema
- * @description Aduana de entrada estrita para rastro de rede.
- */
-export const LookupTerritorialAnchorInputSchema = z.object({
-  internetProtocolAddress: z.ipv4()
-    .describe('Endereço IP do visitante para geofencing e rastro de soberania.'),
-
-  correlationIdentifier: z.uuid()
-    .describe('Identificador inalterável da jornada forense atual.')
-})
-.brand<'LookupTerritorialAnchorInput'>()
-.readonly();
+import { SovereignCountrySchema, RegionSlugSchema } from '@agentevai/sovereign-context';
+import { BrazilianStateCodeSchema } from './GeographicRegion.schema.js';
 
 /**
  * @name ExternalGeographicPulseSchema
- * @description ADN para validação do rastro bruto vindo de provedores externos.
+ * @description Aduana para o rastro bruto vindo de provedores IP-API.
  */
 export const ExternalGeographicPulseSchema = z.object({
   country_code: z.string().length(2).optional(),
@@ -35,5 +22,30 @@ export const ExternalGeographicPulseSchema = z.object({
   longitude: z.number().optional()
 }).loose().readonly();
 
-export type ILookupTerritorialAnchorInput = z.infer<typeof LookupTerritorialAnchorInputSchema>;
 export type IExternalGeographicPulse = z.infer<typeof ExternalGeographicPulseSchema>;
+
+/**
+ * @name LookupTerritorialAnchorInputSchema
+ */
+export const LookupTerritorialAnchorInputSchema = z.object({
+  internetProtocolAddress: z.ipv4(),
+  correlationIdentifier: z.uuid()
+})
+.brand<'LookupTerritorialAnchorInput'>()
+.readonly();
+
+/**
+ * @name TerritorialAnchorResultSchema
+ * @description Contrato de saída SELADO para garantir a consciência geográfica.
+ */
+export const TerritorialAnchorResultSchema = z.object({
+  name: z.string().min(2),
+  stateCode: BrazilianStateCodeSchema,
+  countryCode: SovereignCountrySchema,
+  slug: RegionSlugSchema.optional(),
+  city: z.string().optional()
+})
+.brand<'TerritorialAnchorResult'>()
+.readonly();
+
+export type ITerritorialAnchorResult = z.infer<typeof TerritorialAnchorResultSchema>;

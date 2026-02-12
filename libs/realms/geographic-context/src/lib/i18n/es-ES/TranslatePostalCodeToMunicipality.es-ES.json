@@ -1,8 +1,8 @@
 {
   "TranslatePostalCodeToMunicipality": {
-    "resolutionStarted": "Iniciando la traducción territorial para el rastro postal: {postalCode}",
-    "resolutionSuccess": "Municipio [ {cityName} ] identificado con éxito mediante el código postal.",
-    "errorInvalidFormat": "El código postal proporcionado tiene un formato no válido para la soberanía brasileña.",
-    "errorNotFound": "No se localizó ningún territorio correspondiente para el código postal informado."
+    "logResolutionStarted": "Sincronía Postal: Iniciando traducción territorial para el rastro: {postalCode}",
+    "logResolutionSuccess": "Territorio Identificado: Municipio {cityName} anclado con éxito vía código postal.",
+    "errorInvalidFormat": "Violación de ADN: El formato del rastro postal es incompatible con la soberanía brasileña.",
+    "errorNotFound": "Vacío Territorial: Ningún municipio localizado para el código postal informado."
   }
 }

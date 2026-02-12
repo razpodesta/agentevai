@@ -1,8 +1,8 @@
 {
   "TranslatePostalCodeToMunicipality": {
-    "resolutionStarted": "Initiating territorial translation for postal trace: {postalCode}",
-    "resolutionSuccess": "Municipality [ {cityName} ] successfully identified via postal code.",
-    "errorInvalidFormat": "The provided postal code has an invalid format for Brazilian sovereignty.",
-    "errorNotFound": "No matching territory was found for the provided postal code."
+    "logResolutionStarted": "Postal Synchrony: Initiating territorial translation for trace: {postalCode}",
+    "logResolutionSuccess": "Territory Identified: Municipality {cityName} successfully anchored via postal code.",
+    "errorInvalidFormat": "DNA Violation: Postal trace format is incompatible with Brazilian sovereignty.",
+    "errorNotFound": "Territorial Void: No municipality located for the provided postal code."
   }
 }

@@ -1,0 +1,7 @@
+{
+  "JournalRoutingEngine": {
+    "logRoutingDecision": "Decisão de Ruteamento: Destino [ {path} ] estabelecido via [ {reason} ].",
+    "errorIllegalRedirect": "Violação de Roteiro: Tentativa de redirecionamento para zona não soberana.",
+    "statusZenithActive": "O rastro de ruteamento atingiu o Zênite Editorial."
+  }
+}
