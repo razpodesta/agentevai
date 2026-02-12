@@ -1,8 +1,16 @@
 {
   "AdVantagePreviewUI": {
-    "labTitle": "Ad-Vantage Intelligence Lab",
-    "labSubtitle": "Simulador de Impacto Regional",
-    "previewModeLabel": "Modo de Visualização em Tempo Real",
-    "ethicsDeclaration": "ANÚNCIO ÉTICO CERTIFICADO: Sem rastreamento invasivo."
+    "labTitle": "Laboratório de Inteligência Ad-Vantage",
+    "labSubtitle": "Simulador de Impacto Regional: {scope}",
+    "previewMode_LIVE": "Modo de Visualização em Tempo Real",
+    "ethicsSeal": "PUBLICIDADE ÉTICA CERTIFICADA: Sem rastreamento invasivo.",
+    "advertiserLabel": "Patrocinado por: {brand}",
+    "format_EDITORIAL_NATIVE_BANNER": "Banner Editorial Nativo",
+    "format_SPONSORED_FORENSIC_REPORT": "Relatório Forense Patrocinado",
+    "format_CITIZEN_REWARD_AD": "Anúncio de Recompensa Cidadã",
+    "format_GOOGLE_ADSENSE_FALLBACK": "Google AdSense (Resiliência)",
+    "format_REGIONAL_STORY_INJECTION": "Injeção de Story Regional",
+    "logFormatSwitched": "Simulador transmutado para o formato {format} no território {region}.",
+    "logLabIgnition": "Rastro de publicidade soberana ignificado para o setor {sector}."
   }
 }

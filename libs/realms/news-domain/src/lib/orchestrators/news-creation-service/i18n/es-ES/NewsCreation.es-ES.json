@@ -1,8 +1,8 @@
 {
   "NewsCreationService": {
-    "logIgnition": "Sincronía de Ignición: Iniciando rastro para la noticia {identifier}.",
-    "statusBlockchain": "Soberanía Garantizada: Noticia [{identifier}] sellada con fe pública.",
-    "errorAduanaFailed": "Falla de ADN: Parámetros de creación violaron el contrato técnico.",
-    "logManualOverride": "Alerta: Intervención manual en el rastro {correlationIdentifier}."
+    "logIgnitionStarted": "Ignición Editorial: Iniciando rastro para la noticia {identifier} en el territorio regional.",
+    "statusBlockchainSealed": "Soberanía Garantizada: Veracidad matemática sellada para el rastro {identifier}.",
+    "logArticleStored": "Cofre Relacional: Artículo periodístico {identifier} persistido con integridad de ADN.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros de creación violaron el contrato técnico de la editoría."
   }
 }

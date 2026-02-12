@@ -1,8 +1,16 @@
 {
   "AdVantagePreviewUI": {
     "labTitle": "Ad-Vantage Intelligence Lab",
-    "labSubtitle": "Regional Impact Simulator",
-    "previewModeLabel": "Live Preview Mode",
-    "ethicsDeclaration": "CERTIFIED ETHICAL AD: No invasive tracking."
+    "labSubtitle": "Regional Impact Simulator: {scope}",
+    "previewMode_LIVE": "Live Preview Mode",
+    "ethicsSeal": "CERTIFIED ETHICAL ADVERTISING: No invasive tracking.",
+    "advertiserLabel": "Sponsored by: {brand}",
+    "format_EDITORIAL_NATIVE_BANNER": "Native Editorial Banner",
+    "format_SPONSORED_FORENSIC_REPORT": "Sponsored Forensic Report",
+    "format_CITIZEN_REWARD_AD": "Citizen Reward Ad",
+    "format_GOOGLE_ADSENSE_FALLBACK": "Google AdSense (Resilience)",
+    "format_REGIONAL_STORY_INJECTION": "Regional Story Injection",
+    "logFormatSwitched": "Simulator transmuted to format {format} in territory {region}.",
+    "logLabIgnition": "Sovereign advertising trace ignited for sector {sector}."
   }
 }

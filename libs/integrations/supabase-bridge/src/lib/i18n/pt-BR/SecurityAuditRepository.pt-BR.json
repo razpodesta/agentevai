@@ -1,0 +1,7 @@
+{
+  "SecurityAuditRepository": {
+    "logVerdictPersisted": "Selo de Auditoria: Veredito de segurança registrado para o rastro {correlationIdentifier}.",
+    "errorInsertFailed": "Incapacidade de Persistência: O cofre relacional recusou a selagem do rastro {identifier}.",
+    "logHandshakeSuccess": "Handshake de Infraestrutura: Conexão com o cofre Supabase estabelecida com sucesso."
+  }
+}

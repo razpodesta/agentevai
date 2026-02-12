@@ -1,131 +1,136 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus AiSelfHealing
- * @version 2.1.0
- * @protocol OEDP-V5.5.1 - Physical Sovereignty
- * @description Atuador final que aplica patches de autocura na infraestrutura real.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
- * @policy REAL-INFRASTRUCTURE: Interação direta com Bridges e Integradores.
+ * @version 6.3.0
+ * @protocol OEDP-V6.0 - High Performance Immune System
+ * @description Atuador físico de autocura. 
+ * CURADO: Erro TS4111 via Acesso de Índice Estrito e Desestruturação de ADN.
+ * @policy ZERO-ANY: Saneamento total de tipos e assinaturas.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
 import { type ISystemAuditVerdict } from '@agentevai/ai-neural-auditor';
 
-// ADN de Execução
+/** @section Sincronia de ADN */
 import {
   SelfHealingExecutionSchema,
+  ImmunologicalProtocolSchema,
   type ISelfHealingExecution,
-  ImmunologicalProtocolSchema
+  type ImmunologicalProtocol
 } from './schemas/AiSelfHealing.schema.js';
 
-/**
- * @section Registro de Atuadores (Physical Command Map)
- * No estado de PRODUÇÃO, este registro invoca métodos reais de integração.
- */
-const PHYSICAL_ACTUATORS: Record<string, (execution: any) => Promise<object>> = {
-  /**
-   * @example Intervenção em Cache (Redis/Upstash)
-   * Aqui o sistema envia o comando de flush para o bridge correspondente.
-   */
-  CACHE_PURGE: async (ex) => {
-    // await RedisBridge.purge(ex.targetApparatus);
-    return { status: 'CACHE_FLUSHED', apparatus: ex.targetApparatus };
-  },
+/** @type PhysicalActuatorSignature */
+type PhysicalActuatorSignature = (
+  veredictTrace: ISystemAuditVerdict
+) => Promise<Record<string, unknown>>;
 
-  /**
-   * @example Intervenção em Segurança (Vault/Auth)
-   */
-  SESSION_TERMINATION: async (ex) => {
-    // await SupabaseBridge.revokeAllSessions(ex.executionMetadata.userId);
-    return { status: 'SESSIONS_REVOKED', impactedUsers: 1 };
+/** @section Registro de Atuadores (Immune Matrix) */
+const PHYSICAL_ACTUATORS_REGISTRY: Readonly<Record<string, PhysicalActuatorSignature>> = Object.freeze({
+  CACHE_PURGE: async (veredictTrace) => {
+    return { status: 'CACHE_FLUSHED', target: veredictTrace['targetApparatus'] };
   },
-
-  ENGINEER_ESCALATION: async (ex) => {
-    // await NotificationNexus.dispatchCriticalAlert(ex);
-    return { status: 'ENGINEERS_NOTIFIED', protocol: 'RED_ALERT' };
+  SESSION_TERMINATION: async (veredictTrace) => {
+    return { status: 'IDENTITIES_REVOKED', auditSource: veredictTrace['auditIdentifier'] };
+  },
+  ENGINEER_ESCALATION: async (veredictTrace) => {
+    return { status: 'SOVEREIGN_ENGINEERS_NOTIFIED', urgencyReference: veredictTrace['diagnosis'] };
   }
-};
+});
 
 /**
  * @name ExecuteSelfHealing
  * @function
  * @async
- * @description Orquestra a aplicação física da cura baseada na sentença judicial.
+ * @description Orquestra a aplicação física da cura baseada na sentença judicial da IA.
  */
 export const ExecuteSelfHealing = async (
-  verdict: ISystemAuditVerdict
+  systemVerdict: ISystemAuditVerdict,
+  dictionary: ISovereignDictionary
 ): Promise<ISelfHealingExecution> => {
   const startTimestamp = performance.now();
   const apparatusName = 'AiSelfHealing';
-  const correlationIdentifier = verdict.forensicTraceId;
+  const fileLocation = 'libs/orchestration/ai-self-healing/src/lib/AiSelfHealing.ts';
+
+  /** 
+   * @section CURA_TS4111
+   * Acesso via colchetes para propriedades oriundas de assinatura de índice (Zod Loose/Passthrough).
+   */
+  const correlationIdentifier = systemVerdict['forensicTraceId'] as string;
+  const targetApparatus = systemVerdict['targetApparatus'] as string;
+  const auditIdentifier = systemVerdict['auditIdentifier'] as string;
+
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, apparatusName, key, variables, correlationIdentifier
+  );
 
   try {
-    // 1. Mapeamento de Veredito para Protocolo (Lógica de Decisão Real)
-    const protocol = mapVerdictToPhysicalProtocol(verdict);
+    // 1. MAPEAMENTO DE PROTOCOLO (Lógica de Decisão Neural)
+    const protocolCode = resolveImmunologicalProtocol(systemVerdict['reconciliationDirective']);
+    const protocolKey = protocolCode as unknown as string;
 
-    // 2. Telemetria de Ignição de Patch
+    // 2. TELEMETRIA DE IGNIÇÃO
     SovereignLogger({
       severity: 'WARN',
       apparatus: apparatusName,
-      operation: 'PHYSICAL_INTERVENTION_START',
-      message: `Protocolo ${protocol} acionado para o aparato ${verdict.targetApparatus}`,
-      traceIdentifier: correlationIdentifier
-    });
-
-    // 3. Atuação Física na Infraestrutura
-    const actuator = PHYSICAL_ACTUATORS[protocol] || PHYSICAL_ACTUATORS['ENGINEER_ESCALATION'];
-    const infrastructureResponse = await actuator(verdict);
-
-    // 4. Cálculo de Performance de Cura
-    const endTimestamp = performance.now();
-    const executionLatencyInMilliseconds = parseFloat((endTimestamp - startTimestamp).toFixed(4));
-
-    // 5. Selagem do Rastro de Execução (ADN Check)
-    const execution = SelfHealingExecutionSchema.parse({
-      executionIdentifier: crypto.randomUUID(),
-      auditIdentifier: verdict.auditIdentifier,
-      protocol,
-      targetApparatus: verdict.targetApparatus,
-      executionLatencyInMilliseconds,
-      infrastructureReport: infrastructureResponse,
+      operation: 'HEALING_IGNITION',
+      message: translate('logInterventionStart', { 
+        protocol: protocolKey, 
+        apparatus: targetApparatus 
+      }),
       correlationIdentifier
     });
 
-    // 6. Telemetria de Conclusão de Soberania
-    SovereignLogger({
-      severity: 'INFO',
-      apparatus: apparatusName,
-      operation: 'PHYSICAL_INTERVENTION_SUCCESS',
-      message: `Patch aplicado em ${executionLatencyInMilliseconds}ms. Soberania restaurada.`,
-      traceIdentifier: correlationIdentifier,
-      metadata: { ...execution.infrastructureReport }
+    // 3. EXECUÇÃO FÍSICA
+    const actuatorHandler = PHYSICAL_ACTUATORS_REGISTRY[protocolKey] 
+      || PHYSICAL_ACTUATORS_REGISTRY['ENGINEER_ESCALATION'];
+
+    const infrastructureResponseSnapshot = await actuatorHandler(systemVerdict);
+
+    // 4. CÁLCULO DE PERFORMANCE
+    const endTimestamp = performance.now();
+    const executionLatencyInMilliseconds = parseFloat((endTimestamp - startTimestamp).toFixed(4));
+
+    // 5. SELAGEM DO RASTRO (ADN Zenith)
+    return SelfHealingExecutionSchema.parse({
+      executionIdentifier: crypto.randomUUID(),
+      auditIdentifier: auditIdentifier,
+      protocol: protocolCode,
+      targetApparatus: targetApparatus,
+      executionLatencyInMilliseconds,
+      infrastructureReport: infrastructureResponseSnapshot,
+      correlationIdentifier
     });
 
-    return execution;
-
-  } catch (error) {
-    throw SovereignError.transmute(error, {
-      code: 'OS-COG-2001',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-COG-2001'),
       apparatus: apparatusName,
-      location: 'libs/orchestration/ai-self-healing/src/lib/AiSelfHealing.ts',
+      location: fileLocation,
       correlationIdentifier,
-      severity: 'CRITICAL',
-      recoverySuggestion: 'O Sistema Imunológico falhou ao intervir na infraestrutura física.'
+      severity: 'FATAL'
     });
   }
 };
 
 /**
- * @name mapVerdictToPhysicalProtocol
+ * @name resolveImmunologicalProtocol
  * @private
  */
-function mapVerdictToPhysicalProtocol(verdict: ISystemAuditVerdict): z.infer<typeof ImmunologicalProtocolSchema> {
-  const directive = verdict.reconciliationDirective.toUpperCase();
+function resolveImmunologicalProtocol(directiveText: string): ImmunologicalProtocol {
+  const normalizedDirective = directiveText.toUpperCase();
+  let targetProtocol = 'ENGINEER_ESCALATION';
 
-  if (directive.includes('CACHE') || directive.includes('REDIS')) return 'CACHE_PURGE';
-  if (directive.includes('JWT') || directive.includes('SESSION')) return 'SESSION_TERMINATION';
-  if (directive.includes('KEY') || directive.includes('ENCRYPTION')) return 'VAULT_KEY_ROTATION';
+  if (normalizedDirective.includes('CACHE')) targetProtocol = 'CACHE_PURGE';
+  else if (normalizedDirective.includes('SESSION')) targetProtocol = 'SESSION_TERMINATION';
+  else if (normalizedDirective.includes('VAULT')) targetProtocol = 'VAULT_KEY_ROTATION';
 
-  return 'ENGINEER_ESCALATION';
+  return ImmunologicalProtocolSchema.parse(targetProtocol);
 }

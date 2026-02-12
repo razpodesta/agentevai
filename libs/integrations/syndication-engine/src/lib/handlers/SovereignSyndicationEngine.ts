@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignSyndicationEngine
- * @version 1.1.0
- * @protocol OEDP-V6.0 - Universal Accessibility
- * @description Transmuta coleções de notícias em rastro XML (RSS 2.0).
- * Saneado: Resolvido erro TS2307 via ancoragem física da biblioteca 'rss'.
+ * @version 2.0.0
+ * @protocol OEDP-V6.0 - High Fidelity Integration
+ * @description Motor que transmuta coleções de notícias em rastro XML universal.
+ * Implementa injeção de namespaces customizados para metadados forenses.
  */
 
 import RSS from 'rss';
@@ -29,15 +29,18 @@ export class SovereignSyndicationEngine {
    * @method generateSovereignXmlFeed
    * @static
    * @description Orquestra a construção do documento XML com selagem de imutabilidade.
+   * 
+   * @param {ISyndicationFeedInput} parameters - O ADN de entrada contendo rastro e dados.
+   * @returns {SyndicationXmlRastro} XML purificado e validado.
    */
   public static generateSovereignXmlFeed(
     parameters: ISyndicationFeedInput
   ): SyndicationXmlRastro {
-    // 1. ADUANA DE ADN (Fixação do Rastro Forense)
+    // 1. ADUANA DE ADN (Garante integridade estrutural)
     const data = SyndicationFeedInputSchema.parse(parameters);
     const { channelMetadata, articles, dictionary, correlationIdentifier } = data;
 
-    // 2. CONFIGURAÇÃO DO CANAL (RSS 2.0 Standard)
+    // 2. CONFIGURAÇÃO DO CANAL SOBERANO
     const feedOrchestrator = new RSS({
       title: channelMetadata.title,
       description: channelMetadata.description,
@@ -45,6 +48,7 @@ export class SovereignSyndicationEngine {
       site_url: channelMetadata.siteUniversalResourceLocator,
       language: channelMetadata.activeLocale,
       pubDate: new Date().toUTCString(),
+      /** @section Namespace_Soberania */
       custom_namespaces: {
         'agv': 'https://agentevai.com.br/schema/syndication/1.0'
       }

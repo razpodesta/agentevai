@@ -1,40 +1,44 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SecurityAuditSchema
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - Forensic Data Integrity
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - Forensic Integrity SSOT
  * @description ADN que define a estrutura de persistência para eventos de segurança.
+ * Saneado: Erradicada a obsessão por primitivos e abreviações lexicais.
  */
 
 import { z } from 'zod';
 
 /**
  * @name SecurityAuditEntrySchema
- * @description Define o contrato para selagem de vereditos no banco de dados.
+ * @description Define o contrato para selagem de vereditos no cofre relacional.
  */
 export const SecurityAuditEntrySchema = z.object({
-  auditIdentifier: z.uuid()
-    .describe('Identificador único inalterável do registro de auditoria.'),
+  /** Identificador único inalterável do registro de auditoria. */
+  auditIdentifier: z.uuid(),
 
-  internetProtocolAddress: z.ipv4()
-    .describe('Endereço IP validado da origem do tráfego.'),
+  /** Endereço IP validado da origem do tráfego. */
+  internetProtocolAddress: z.ipv4(),
 
-  userAgentFingerprint: z.string().length(64)
-    .describe('Assinatura digital SHA-256 do agente detectado.'),
+  /** Assinatura digital SHA-256 do agente detectado. */
+  userAgentFingerprint: z.string().length(64),
 
+  /** Pontuação de 0 a 100 baseada no comportamento do agente. */
   botReputationScore: z.number().min(0).max(100),
 
-  securityVerdict: z.enum(['ALLOWED', 'BLOCKED', 'THROTTLED'])
-    .describe('Decisão final tomada pelos orquestradores de segurança.'),
+  /** Decisão final tomada pelos orquestradores de segurança. */
+  securityVerdict: z.enum(['ALLOWED', 'BLOCKED', 'THROTTLED']),
 
-  threatCategory: z.string().min(3)
-    .describe('Classificação taxonômica da ameaça (ex: MALICIOUS_AUTOMATION).'),
+  /** Classificação taxonômica da ameaça identificada. */
+  threatCategory: z.enum(['CLEAN_BROWSER', 'KNOWN_CRAWLER', 'MALICIOUS_AUTOMATION', 'HEADLESS_SNEAK']),
 
-  correlationIdentifier: z.uuid()
-    .describe('Rastro de jornada para perícia cruzada com logs neurais.'),
+  /** Rastro de jornada para correlação cross-platform. */
+  correlationIdentifier: z.uuid(),
 
+  /** Timestamp preciso da detecção em conformidade ISO-8601. */
   detectedAt: z.string().datetime()
-    .describe('Timestamp preciso da detecção em conformidade ISO-8601.')
-}).readonly();
+})
+.brand<'SecurityAuditEntry'>()
+.readonly();
 
 export type ISecurityAuditEntry = z.infer<typeof SecurityAuditEntrySchema>;

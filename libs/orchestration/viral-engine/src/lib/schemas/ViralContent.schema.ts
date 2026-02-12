@@ -1,12 +1,15 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ViralContentSchema
- * @version 1.0.0
- * @protocol OEDP-V5.5.1 - High Precision Virality
- * @description ADN que define a Cápsula de Mídia Soberana para difusão massiva.
+ * @version 6.1.0
+ * @protocol OEDP-V6.0 - Master DNA Integrity
+ * @description Única Fonte de Verdade (SSOT) para o enxame de difusão.
+ * Erradicada a radiação de tipos primitivos via nominal branding.
  */
 
 import { z } from 'zod';
+
+/* --- 🛡️ SEÇÃO 1: DIMENSÕES NOMINAIS (BRANDED TYPES) --- */
 
 export const ViralPlatformSchema = z.enum([
   'X_COM',
@@ -15,33 +18,57 @@ export const ViralPlatformSchema = z.enum([
   'META_THREADS',
   'TIKTOK',
   'WHATSAPP'
-]).describe('Plataformas homologadas para difusão de denúncias.');
+])
+.describe('Vetor de difusão social autorizado.')
+.brand<'ViralPlatform'>();
+
+export type ViralPlatform = z.infer<typeof ViralPlatformSchema>;
+
+/* --- 🧱 SEÇÃO 2: ESTRUTURAS FUNDAMENTAIS (BASE SCHEMAS) --- */
+
+export const MediaResourceAssetBaseSchema = z.object({
+  resourceUniversalResourceLocator: z.string()
+    .url()
+    .describe('URL canônica da prova visual.'),
+
+  assetType: z.enum(['IMAGE', 'VIDEO']),
+
+  pixelDimensions: z.object({
+    widthInPixels: z.number().int().positive(),
+    heightInPixels: z.number().int().positive()
+  }).optional()
+});
 
 /**
- * @name ViralCapsuleSchema
- * @description Define a integridade do rastro que será injetado nas redes sociais.
+ * @name ViralCapsuleBaseSchema
+ * @description Estrutura fundamental permitindo transformações parciais.
  */
-export const ViralCapsuleSchema = z.object({
-  title: z.string()
-    .min(10).max(100)
-    .describe('Título otimizado para engajamento social.'),
+export const ViralCapsuleBaseSchema = z.object({
+  editorialTitle: z.string()
+    .min(10).max(100),
 
-  sourceUrl: z.string().url()
-    .describe('Link canônico da notícia no portal Agentevai.'),
+  canonicalSourceUniversalResourceLocator: z.string()
+    .url()
+    .describe('Âncora de rastro original no portal.'),
 
-  shareMessage: z.string().max(280)
-    .describe('Texto curto contendo hashtags e call-to-action.'),
+  socialShareMessage: z.string()
+    .max(280)
+    .describe('Narrativa de impacto para redes sociais.'),
 
-  mediaAssets: z.array(z.object({
-    url: z.string().url(),
-    type: z.enum(['IMAGE', 'VIDEO']),
-    dimensions: z.object({ width: z.number(), height: z.number() }).optional()
-  })).min(1).describe('Recursos multimídia integrados ao Frame.'),
+  mediaResourceAssets: z.array(MediaResourceAssetBaseSchema).min(1),
 
   merkleRootProof: z.string().length(64)
-    .describe('Prova de imutabilidade blockchain para garantir a veracidade do rastro.'),
+    .describe('Selo de imutabilidade blockchain.'),
 
   correlationIdentifier: z.uuid()
-}).readonly();
+    .describe('Identificador Zenith para correlação forense total.')
+});
+
+/* --- 📥 SEÇÃO 3: CONTRATOS SELADOS (SEALED INPUTS) --- */
+
+/** @name ViralCapsuleSchema */
+export const ViralCapsuleSchema = ViralCapsuleBaseSchema
+  .brand<'ViralCapsule'>()
+  .readonly();
 
 export type IViralCapsule = z.infer<typeof ViralCapsuleSchema>;

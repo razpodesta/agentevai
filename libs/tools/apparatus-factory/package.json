@@ -14,8 +14,6 @@
     "role": "LEGO_GENERATOR",
     "automation": "NX_PLUGINS"
   },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
+  "dependencies": {},
   "peerDependencies": {}
 }

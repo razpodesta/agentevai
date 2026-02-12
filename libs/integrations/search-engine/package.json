@@ -17,10 +17,9 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
-    "@agentevai/sovereign-logger": "2.0.0",
-    "@agentevai/sovereign-error-observability": "2.2.0",
-    "@agentevai/types-common": "1.2.0"
+    "@agentevai/sovereign-logger": "3.0.0",
+    "@agentevai/sovereign-error-observability": "2.3.0",
+    "@agentevai/types-common": "1.3.0"
   },
   "peerDependencies": {}
 }

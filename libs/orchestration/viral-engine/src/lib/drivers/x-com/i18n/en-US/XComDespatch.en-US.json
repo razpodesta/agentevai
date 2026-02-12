@@ -1,7 +1,8 @@
 {
   "XComDespatch": {
-    "statusTemplate": "{message}\n\nDigital Proof: {root}\nRead more: {url}",
-    "logDespatchSuccess": "Post successfully published on X.com ID: {tweetId}",
-    "errorTextTooLong": "Complaint content exceeds X.com's textual sovereignty limits."
+    "statusTemplate": "{message}\n\nVeracity Anchor: {root}\nRead on portal: {url}",
+    "logDespatchSuccess": "Viral Synchrony: Post successfully published on X.com. Identifier: {tweetIdentifier}",
+    "errorTextTooLong": "Sovereignty Violation: Content exceeds X.com character limits.",
+    "errorAduanaFailed": "DNA Failure: X.com despatch parameters are corrupted."
   }
 }

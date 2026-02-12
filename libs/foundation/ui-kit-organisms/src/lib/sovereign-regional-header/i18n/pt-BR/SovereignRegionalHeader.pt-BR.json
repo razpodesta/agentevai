@@ -1,8 +1,8 @@
 {
   "SovereignRegionalHeader": {
     "actionSuffix": "em ação",
-    "headerAriaLabel": "Cabeçalho regional de autoridade para {region}",
-    "logImpression": "Impressão visual de soberania registrada para {region}.",
-    "statusIndicatorAria": "Estado do pulso neural regional: {status}"
+    "headerAriaLabel": "Cabeçalho de autoridade regional de {region}",
+    "logIgnitionSuccess": "Soberania regional ancorada com integridade para {region}.",
+    "errorAduanaFailed": "Falha de ADN: O cabeçalho regional portava radiação técnica."
   }
 }

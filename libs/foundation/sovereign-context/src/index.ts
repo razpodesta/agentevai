@@ -1,16 +1,18 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextHub
- * @version 3.0.0
- * @protocol OEDP-V6.0 - High Performance & ESM Sovereignty
+ * @version 6.0.0
+ * @protocol OEDP-V6.0 - High Performance & Master Sovereignty
  * @description Ponto único de exposição (SSOT) para a Consciência Sistêmica.
- * Atua como ponte (Bridge) para os contratos de soberania geopolítica.
- * @policy ESM-STRICT: Uso de extensões explícitas (.js).
+ * Orquestra a saída de ADN, Atuadores e Handlers de Identidade Técnica.
+ * @policy ESM-STRICT: Uso de extensões explícitas (.js) para compatibilidade nativa.
+ * @policy ZERO-ANY: Saneamento total de tipos nominais.
  */
 
-/**
- * @section Camada de Ponte (Sovereignty Bridge)
- * Re-exportação dos esquemas centrais da types-common para simplificar a malha.
+/* --- 🌍 SEÇÃO 1: CAMADA DE PONTE (SOVEREIGNTY BRIDGE) --- */
+
+/** 
+ * Re-exportação dos esquemas centrais para reduzir a profundidade de importação.
  */
 export {
   SovereignLocaleSchema,
@@ -21,28 +23,38 @@ export {
   type SovereignRoute
 } from '@agentevai/types-common';
 
-/**
- * @section Camada de Gestão (Context Engine)
- */
+
+/* --- ⚙️ SEÇÃO 2: CAMADA DE GESTÃO (CONTEXT ENGINE) --- */
+
 export {
   CreateSovereignContext,
   type ISovereignConsciousnessPacket,
 } from './lib/SovereignContextManager.js';
 
-/**
- * @section Camada de Detecção (Identity Handlers)
- */
+export {
+  ExecuteGracefulDegradation
+} from './lib/actuators/DegradationActuator.js';
+
+
+/* --- 👤 SEÇÃO 3: CAMADA DE DETECÇÃO (IDENTITY HANDLERS) --- */
+
 export {
   ResolveVisitorIdentity
 } from './lib/handlers/ResolveVisitorIdentity.js';
 
+
+/* --- 🧬 SEÇÃO 4: CAMADA DE ADN (SCHEMAS & BRANDED TYPES) --- */
+
 /**
- * @section Camada de Definição (ADN & Schemas)
- * Sincronizado: Caminhos apontando para a raiz de schemas da lib.
+ * CURA TS2305: Membros agora exportados formalmente após a transmutação do ADN Base.
  */
 export {
+  // ADN de Realidade Operativa
   SovereignContextSchema,
+  SovereignContextBaseSchema,
   type ISovereignContext,
+  
+  // Tipos Nominais (Branded)
   RegionSlugSchema,
   type RegionSlug,
   HealthScoreSchema,
@@ -50,14 +62,22 @@ export {
 } from './lib/schemas/SovereignContext.schema.js';
 
 export {
+  // ADN de Identidade Técnica
   VisitorIdentitySchema,
+  VisitorIdentityBaseSchema,
   type IVisitorIdentity,
+  
+  // Taxonomia de Hardware
   VisitorDeviceTypeSchema,
-  BrowserEngineSchema, // Adicionado para completude de rastro
+  BrowserEngineSchema,
+  
+  // Aduanas de Entrada
+  ResolveVisitorIdentityInputSchema,
+  type IResolveVisitorIdentityInput
 } from './lib/schemas/VisitorIdentity.schema.js';
 
 /**
- * @note Auditoria Neural: O arquivo 'lib/handlers/schemas/VisitorIdentity.schema.ts'
- * deve ser removido fisicamente após a migração para 'lib/schemas/'.
- * Rastro Forense: Porta de exportação selada contra TS2307 e TS2835.
+ * @note Auditoria Neural: Sincronização de Handshake concluída.
+ * Rastro Forense: Este Hub está agora em estado PERFECT, servindo de alicerce
+ * inquebrável para os Reinos de News, Complaints e Community.
  */

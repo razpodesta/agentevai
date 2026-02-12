@@ -1,87 +1,115 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SecurityAuditRepository
- * @version 3.3.0
- * @protocol OEDP-V6.0 - Forensic Integrity
- * @description Saneado: Reconciliação entre nomes de colunas físicas e prosa técnica militar.
- * @policy ZERO-ABBREVIATIONS: Erradicação absoluta de 'id' no rastro sintático.
+ * @version 4.0.0
+ * @protocol OEDP-V6.0 - High Performance Infrastructure
+ * @description Orquestrador de persistência para rastros de segurança.
+ * Saneado: Erradicados os erros TS2307 e TS2353.
+ * @policy ZERO-ABBREVIATIONS: Prosa técnica militar inalterável.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
+} from '@agentevai/internationalization-engine';
+
+/** @section Sincronia de Borda */
 import { SovereignSupabaseClient } from '../infrastructure/SovereignSupabaseClient.js';
-import {
-  SecurityAuditEntrySchema,
-  type ISecurityAuditEntry
+import { 
+  SecurityAuditEntrySchema, 
+  type ISecurityAuditEntry 
 } from '../schemas/SecurityAudit.schema.js';
 
 /**
  * @section Mapeamento de Persistência (Physical Layer)
- * Definimos os nomes das colunas do banco de dados como strings imutáveis.
- * Isso permite que o código use 'identifier' enquanto o banco recebe 'id'.
+ * Centralizamos os nomes das colunas físicas para evitar abreviações no código TypeScript.
  */
-const DATABASE_COLUMNS = {
+const POSTGRES_TABLE_NAME = 'agv_security_verdicts';
+const PHYSICAL_COLUMNS = {
   PRIMARY_KEY: 'id',
-  INTERNET_PROTOCOL: 'ip_address',
-  AGENT_FINGERPRINT: 'ua_fingerprint',
-  REPUTATION_SCORE: 'bot_score',
-  VERDICT_DECISION: 'verdict',
-  THREAT_TAXONOMY: 'threat_type',
-  CORRELATION_TRACE: 'correlation_id',
-  DETECTION_TIMESTAMP: 'created_at'
+  IP_ADDRESS: 'ip_address',
+  UA_FINGERPRINT: 'ua_fingerprint',
+  BOT_SCORE: 'bot_score',
+  VERDICT: 'verdict',
+  THREAT_TYPE: 'threat_type',
+  CORRELATION_ID: 'correlation_id',
+  CREATED_AT: 'created_at'
 } as const;
 
 export class SecurityAuditRepository {
   private static readonly apparatusName = 'SecurityAuditRepository';
+  private static readonly fileLocation = 'libs/integrations/supabase-bridge/src/lib/repositories/SecurityAuditRepository.ts';
 
   /**
    * @method sealSecurityVerdict
-   * @description Registra o veredito de segurança no cofre relacional.
+   * @static
+   * @async
+   * @description Registra permanentemente o veredito de segurança no cofre relacional.
+   * 
+   * @param {ISecurityAuditEntry} entry - Os dados da auditoria validados por ADN.
+   * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria.
    */
-  public static async sealSecurityVerdict(entry: ISecurityAuditEntry): Promise<void> {
-    const fileLocation = 'libs/integrations/supabase-bridge/src/lib/repositories/SecurityAuditRepository.ts';
+  public static async sealSecurityVerdict(
+    entry: ISecurityAuditEntry,
+    dictionary: ISovereignDictionary
+  ): Promise<void> {
+    const apparatusName = this.apparatusName;
 
     try {
       // 1. ADUANA DE ADN (Validando integridade de entrada)
       const validatedData = SecurityAuditEntrySchema.parse(entry);
-      const supabase = SovereignSupabaseClient.getInstance();
+      const { correlationIdentifier, auditIdentifier } = validatedData;
 
-      /**
-       * @section Transmutação de Persistência
-       * Usamos chaves computadas para mapear o ADN Soberano para o Schema Físico do PostgreSQL.
-       * Isso erradica o erro 'no-restricted-syntax' pois o termo 'id' não é um identificador TS.
-       */
+      // Pilar 5: Soberania Linguística
+      const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+        dictionary, apparatusName, key, variables, correlationIdentifier
+      );
+
+      // 2. HANDSHAKE COM INFRAESTRUTURA
+      const supabase = SovereignSupabaseClient.getClient();
+
+      // 3. EXECUÇÃO DE PERSISTÊNCIA (Mapeamento Nominal Sincronizado)
       const { error: databaseError } = await supabase
-        .from('agv_security_verdicts')
+        .from(POSTGRES_TABLE_NAME)
         .insert([{
-          [DATABASE_COLUMNS.PRIMARY_KEY]: validatedData.auditIdentifier,
-          [DATABASE_COLUMNS.INTERNET_PROTOCOL]: validatedData.internetProtocolAddress,
-          [DATABASE_COLUMNS.AGENT_FINGERPRINT]: validatedData.userAgentFingerprint,
-          [DATABASE_COLUMNS.REPUTATION_SCORE]: validatedData.botReputationScore,
-          [DATABASE_COLUMNS.VERDICT_DECISION]: validatedData.securityVerdict,
-          [DATABASE_COLUMNS.THREAT_TAXONOMY]: validatedData.threatCategory,
-          [DATABASE_COLUMNS.CORRELATION_TRACE]: validatedData.correlationIdentifier,
-          [DATABASE_COLUMNS.DETECTION_TIMESTAMP]: validatedData.detectedAt
+          [PHYSICAL_COLUMNS.PRIMARY_KEY]: auditIdentifier,
+          [PHYSICAL_COLUMNS.IP_ADDRESS]: validatedData.internetProtocolAddress,
+          [PHYSICAL_COLUMNS.UA_FINGERPRINT]: validatedData.userAgentFingerprint,
+          [PHYSICAL_COLUMNS.BOT_SCORE]: validatedData.botReputationScore,
+          [PHYSICAL_COLUMNS.VERDICT]: validatedData.securityVerdict,
+          [PHYSICAL_COLUMNS.THREAT_TYPE]: validatedData.threatCategory,
+          [PHYSICAL_COLUMNS.CORRELATION_ID]: correlationIdentifier,
+          [PHYSICAL_COLUMNS.CREATED_AT]: validatedData.detectedAt
         }]);
 
       if (databaseError) throw databaseError;
 
-      // 2. TELEMETRIA UNIFICADA (Neural Pulse)
+      // 4. TELEMETRIA FORENSE SINCRO (Protocolo V6.0)
       SovereignLogger({
         severity: 'INFO',
-        apparatus: this.apparatusName,
+        apparatus: apparatusName,
         operation: 'VERDICT_PERSISTED',
-        message: 'Veredito de segurança selado no cofre relacional com integridade forense.',
-        correlationIdentifier: validatedData.correlationIdentifier
+        message: translate('logVerdictPersisted'),
+        correlationIdentifier,
+        metadata: { 
+          targetTable: POSTGRES_TABLE_NAME,
+          auditIdentifier 
+        }
       });
 
     } catch (caughtError) {
       throw SovereignError.transmute(caughtError, {
         code: SovereignErrorCodeSchema.parse('OS-INT-1002'),
-        apparatus: this.apparatusName,
-        location: fileLocation,
+        apparatus: apparatusName,
+        location: this.fileLocation,
         correlationIdentifier: entry?.correlationIdentifier || 'ORPHAN_TRACE',
-        severity: 'CRITICAL'
+        severity: 'CRITICAL',
+        recoverySuggestion: 'Validar chaves de API do Supabase e existência da tabela agv_security_verdicts.'
       });
     }
   }

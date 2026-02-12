@@ -6,6 +6,8 @@
     "statusLabel_RESOLVED": "CAUSA RESOLVIDA",
     "blockchainVerifiedLabel": "FÉ PÚBLICA MATEMÁTICA",
     "locationAria": "Localização da ocorrência: {location}",
+    "logOrganismMounted": "Perícia Visual: Denúncia {identifier} renderizada no território regional.",
+    "traceLabel": "RASTRO FORENSE",
     "errorAduanaFailed": "Falha de ADN: Os dados da denúncia estão corrompidos."
   }
 }

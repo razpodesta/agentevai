@@ -6,6 +6,8 @@
     "statusLabel_RESOLVED": "CAUSE RESOLVED",
     "blockchainVerifiedLabel": "MATHEMATICAL PUBLIC TRUST",
     "locationAria": "Incident location: {location}",
+    "logOrganismMounted": "Visual Forensic: Complaint {identifier} rendered in the regional territory.",
+    "traceLabel": "FORENSIC TRACE",
     "errorAduanaFailed": "DNA Failure: The complaint data is corrupted."
   }
 }

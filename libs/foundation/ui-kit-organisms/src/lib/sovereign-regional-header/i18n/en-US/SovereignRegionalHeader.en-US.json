@@ -2,7 +2,7 @@
   "SovereignRegionalHeader": {
     "actionSuffix": "in action",
     "headerAriaLabel": "Regional authority header for {region}",
-    "logImpression": "Sovereignty visual impression recorded for {region}.",
-    "statusIndicatorAria": "Regional neural pulse status: {status}"
+    "logIgnitionSuccess": "Regional sovereignty successfully anchored for {region}.",
+    "errorAduanaFailed": "DNA Failure: The regional header carried technical radiation."
   }
 }

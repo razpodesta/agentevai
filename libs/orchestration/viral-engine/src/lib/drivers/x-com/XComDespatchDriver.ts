@@ -1,60 +1,64 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus XComDespatchDriver
- * @description Driver inteligente que realiza o post oficial no X.com.
- * Implementa auto-truncamento de texto para preservar o Link de Soberania.
+ * @version 6.1.0
+ * @description Driver de elite saneado. Erradicado erro de 'id' e 'unused vars'.
  */
 
 import { TwitterApi } from 'twitter-api-v2';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
-import { IViralCapsule } from '../../schemas/ViralContent.schema.js';
-import { XComDespatchSchema } from './schemas/XComDespatch.schema.js';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { SovereignTranslationEngine, type ISovereignDictionary } from '@agentevai/internationalization-engine';
+import { type IViralCapsule } from '../../schemas/ViralContent.schema.js';
+import { XComDespatchInputSchema } from './schemas/XComDespatch.schema.js';
 
 export const XComDespatchDriver = async (
-  capsule: IViralCapsule
+  capsule: IViralCapsule,
+  dictionary: ISovereignDictionary
 ): Promise<string> => {
   const apparatusName = 'XComDespatchDriver';
+  const { correlationIdentifier } = capsule;
+
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, 'XComDespatch', key, variables, correlationIdentifier
+  );
 
   try {
-    // 1. Formatação Inteligente do "Frame"
-    // Priorizamos: Prova Merkle > Link > Mensagem (Truncada se necessário)
-    const merkleShort = `Ref: ${capsule.merkleRootProof.substring(0, 8)}`;
-    const bodyText = capsule.shareMessage.substring(0, 180);
-    const finalStatus = `${bodyText}\n\n${merkleShort}\n\n${capsule.sourceUrl}`;
-
-    // 2. Validação de ADN Específico
-    const despatchData = XComDespatchSchema.parse({
-      processedStatusText: finalStatus,
-      canonicalSourceUrl: capsule.sourceUrl,
-      merkleRootDisplay: capsule.merkleRootProof,
-      mediaIdentifiers: [], // No estado PERFECT, aqui viria o upload de media
-      correlationIdentifier: capsule.correlationIdentifier
+    const finalStatusText = translate('statusTemplate', {
+      message: capsule.socialShareMessage.substring(0, 200),
+      root: capsule.merkleRootProof.substring(0, 12),
+      url: capsule.canonicalSourceUniversalResourceLocator
     });
 
-    // 3. Handshake com API Oficial
-    const client = new TwitterApi(process.env['X_API_BEARER_TOKEN'] || '');
+    const validatedDespatch = XComDespatchInputSchema.parse({
+      statusText: finalStatusText,
+      mediaResourceIdentifiers: [],
+      correlationIdentifier
+    });
 
-    // Simulação de execução real para produção
-    const tweetResponse = { data: { id: 'REAL_TWEET_ID' } };
-    // await client.v2.tweet(despatchData.processedStatusText);
+    const twitterClient = new TwitterApi(process.env['X_API_BEARER_TOKEN'] || '');
+    const tweetResponse = await twitterClient.v2.tweet(validatedDespatch.statusText);
+    
+    // CURA no-restricted-syntax: Mapeamento do 'id' externo para 'tweetIdentifier' soberano.
+    const tweetIdentifier = tweetResponse.data.id;
 
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'X_DESPATCH_SUCCESS',
-      message: `Denúncia viralizada no X.com: ${tweetResponse.data.id}`,
-      traceIdentifier: capsule.correlationIdentifier
+      message: translate('logDespatchSuccess', { tweetIdentifier }),
+      correlationIdentifier,
+      metadata: { tweetIdentifier, merkleRoot: capsule.merkleRootProof }
     });
 
-    return tweetResponse.data.id;
+    return tweetIdentifier;
 
-  } catch (error) {
-    throw SovereignError.transmute(error, {
-      code: 'OS-VIR-2001',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-VIR-2001'),
       apparatus: apparatusName,
       location: 'libs/orchestration/viral-engine/src/lib/drivers/x-com/XComDespatchDriver.ts',
-      correlationIdentifier: capsule.correlationIdentifier,
+      correlationIdentifier,
       severity: 'HIGH'
     });
   }

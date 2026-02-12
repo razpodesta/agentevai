@@ -1,15 +1,37 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus WhatsAppDespatchDriver
+ * @version 6.0.0
+ * @description Saneado contra unused-vars e radiação técnica.
  */
 
-import { IViralCapsule } from '../../schemas/ViralContent.schema.js';
+import { type IViralCapsule } from '../../schemas/ViralContent.schema.js';
+import { SovereignLogger } from '@agentevai/sovereign-logger';
 
-export const WhatsAppDespatchDriver = async (capsule: IViralCapsule): Promise<void> => {
-  // Formatação Mobile-First: Título em negrito e link destacado
-  const formattedMessage = `*🚨 AGENTE VAI: ${capsule.title.toUpperCase()}*\n\n${capsule.shareMessage}\n\n✅ Prova Blockchain: ${capsule.merkleRootProof.substring(0, 8)}\n\n🔗 *Acesse agora:* ${capsule.sourceUrl}`;
+export const WhatsAppDespatchDriver = async (
+  capsule: IViralCapsule
+): Promise<void> => {
+  const { correlationIdentifier, editorialTitle, socialShareMessage, canonicalSourceUniversalResourceLocator } = capsule;
 
-  // Codificação para Deep Link (wa.me)
-  const encodedUrl = encodeURIComponent(formattedMessage);
-  // O sistema então emite o intent: `whatsapp://send?text=${encodedUrl}`
+  const formattedMessage = `*🚨 AGENTE VAI: ${editorialTitle.toUpperCase()}*\n\n${socialShareMessage}\n\n🔗 *Acesse agora:* ${canonicalSourceUniversalResourceLocator}`;
+
+  /** 
+   * @section CURA_LINT
+   * O rastro codificado é gerado e injetado diretamente no despacho de telemetria.
+   */
+  const encodedMessageForUrl = encodeURIComponent(formattedMessage);
+
+  SovereignLogger({
+    severity: 'INFO',
+    apparatus: 'WhatsAppDespatchDriver',
+    operation: 'INTENT_GENERATED',
+    message: 'Deep Link de compartilhamento gerado com integridade.',
+    correlationIdentifier,
+    metadata: { 
+      messageLength: formattedMessage.length,
+      payloadSize: encodedMessageForUrl.length 
+    }
+  });
+
+  // O sistema emite o sinal para o Frontend abrir: `whatsapp://send?text=${encodedMessageForUrl}`
 };

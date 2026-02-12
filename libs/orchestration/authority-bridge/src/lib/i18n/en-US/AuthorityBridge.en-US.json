@@ -1,8 +1,9 @@
 {
   "AuthorityBridge": {
-    "logDespatchIgnited": "Official communication process initiated for authority {target}.",
-    "logDespatchSuccess": "Institutional Success: Document {identifier} sealed and despatched via {channel}.",
-    "errorProviderFailure": "Institutional bridge failure: Provider {provider} rejected document despatch.",
-    "auditImpactReport": "Regional impact in {region} consolidated with {count} verified signatures."
+    "logDespatchIgnited": "Institutional Synchrony: Despatch process via {channel} initiated for {target}.",
+    "logDespatchSuccess": "Sovereign Success: Document {identifier} sealed and delivered with integrity.",
+    "errorProviderFailure": "Delivery Collapse: Provider {provider} rejected the trace on channel {channel}.",
+    "auditImpactReport": "Regional Impact: {count} citizen acts of will sealed on Blockchain for territory {region}.",
+    "errorAduanaFailed": "DNA Failure: Institutional letter parameters are corrupted."
   }
 }

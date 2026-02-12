@@ -1,8 +1,9 @@
 {
   "ViralEngine": {
-    "logDiffusionStarted": "Enjambre de difusión iniciado para la cápsula {title}.",
-    "logDiffusionSuccess": "Éxito Viral: Denuncia propagada con integridad en {platform}.",
-    "errorApiViolation": "Violación de API: La plataforma {platform} rechazó el rastro de medios.",
-    "auditMerkleProof": "Sello de veracidad blockchain {root} inyectado en el metadato de compartición."
+    "logDiffusionStarted": "Iniciando enjambre para la cápsula: {title}.",
+    "logDiffusionSuccess": "Éxito Viral: Hecho periodístico propagado en {platform}.",
+    "errorUnsupportedPlatform": "Incapacidad Técnica: La plataforma {platform} no posee un driver homologado.",
+    "statusAwaitingConsent": "Esperando Acto de Voluntad del ciudadano para difusión masiva.",
+    "errorEnxameFailure": "Falla de Orquestación: El enjambre no pudo sellar el rastro en {platform}."
   }
 }

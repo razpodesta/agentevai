@@ -1,8 +1,9 @@
 {
   "ViralEngine": {
-    "logDiffusionStarted": "Diffusion swarm initiated for capsule {title}.",
-    "logDiffusionSuccess": "Viral Success: Complaint propagated with integrity on {platform}.",
-    "errorApiViolation": "API Violation: Platform {platform} rejected the media trace.",
-    "auditMerkleProof": "Blockchain veracity seal {root} injected into the sharing metadata."
+    "logDiffusionStarted": "Igniting swarm for capsule: {title}.",
+    "logDiffusionSuccess": "Viral Success: Journalistic fact propagated on {platform}.",
+    "errorUnsupportedPlatform": "Technical Inability: Platform {platform} has no certified driver.",
+    "statusAwaitingConsent": "Awaiting Citizen's Act of Will for massive diffusion.",
+    "errorEnxameFailure": "Orchestration Failure: The swarm could not seal the trace on {platform}."
   }
 }

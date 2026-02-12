@@ -17,10 +17,12 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0",
     "@agentevai/sovereign-data-vault": "2.2.0",
-    "@agentevai/sovereign-logger": "2.0.0",
-    "zod": "^4.3.6"
+    "@agentevai/sovereign-logger": "3.0.0",
+    "zod": "^4.3.6",
+    "next": "^16.1.6",
+    "@agentevai/sovereign-error-observability": "2.3.0",
+    "@agentevai/internationalization-engine": "2.6.0"
   },
   "peerDependencies": {}
 }

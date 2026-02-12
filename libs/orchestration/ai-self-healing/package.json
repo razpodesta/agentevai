@@ -17,7 +17,11 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "@agentevai/sovereign-logger": "3.0.0",
+    "@agentevai/sovereign-error-observability": "2.3.0",
+    "@agentevai/ai-neural-auditor": "2.1.0",
+    "zod": "^4.3.6",
+    "@agentevai/internationalization-engine": "2.6.0"
   },
   "peerDependencies": {}
 }

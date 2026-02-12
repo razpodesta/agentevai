@@ -1,8 +1,8 @@
 {
   "NewsCreationService": {
-    "logIgnition": "Ignition Synchrony: Initiating trace for news {identifier}.",
-    "statusBlockchain": "Sovereignty Guaranteed: News [{identifier}] sealed with public trust.",
-    "errorAduanaFailed": "DNA Failure: Creation parameters violated the technical contract.",
-    "logManualOverride": "Alert: Manual intervention detected in trace {correlationIdentifier}."
+    "logIgnitionStarted": "Editorial Ignition: Initiating trace for news {identifier} in the regional territory.",
+    "statusBlockchainSealed": "Sovereignty Guaranteed: Mathematical veracity sealed for trace {identifier}.",
+    "logArticleStored": "Relational Vault: Journalistic article {identifier} persisted with DNA integrity.",
+    "errorAduanaFailed": "DNA Failure: Creation parameters violated the editorial technical contract."
   }
 }

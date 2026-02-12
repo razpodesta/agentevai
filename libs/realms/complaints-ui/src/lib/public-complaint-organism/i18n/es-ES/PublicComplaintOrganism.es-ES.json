@@ -6,6 +6,8 @@
     "statusLabel_RESOLVED": "CAUSA RESUELTA",
     "blockchainVerifiedLabel": "FE PÚBLICA MATEMÁTICA",
     "locationAria": "Ubicación del incidente: {location}",
-    "errorAduanaFailed": "Fallo de ADN: Los datos del reporte están corrompidos."
+    "logOrganismMounted": "Peritaje Visual: Reporte {identifier} renderizado en el territorio regional.",
+    "traceLabel": "RASTRO FORENSE",
+    "errorAduanaFailed": "Falla de ADN: Los datos del reporte están corrompidos."
   }
 }

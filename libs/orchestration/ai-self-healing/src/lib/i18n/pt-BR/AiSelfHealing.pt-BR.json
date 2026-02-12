@@ -1,8 +1,8 @@
 {
   "AiSelfHealing": {
-    "logInterventionStart": "Intervenção física {protocol} iniciada para o aparato {apparatus}.",
-    "logHealingSuccess": "Patch aplicado com sucesso em {latency}ms. Estado nominal restaurado.",
-    "errorInfrastructureFailure": "Incapacidade crítica de atuar na infraestrutura: {error}.",
-    "auditReportSealed": "Relatório de infraestrutura selado para auditoria forense."
+    "logInterventionStart": "Protocolo de Homeostase: Intervenção física {protocol} iniciada para o aparato {apparatus}.",
+    "logHealingSuccess": "Cura Concluída: Patch aplicado em {latency}ms. Soberania restaurada.",
+    "errorInfrastructureFailure": "Incapacidade Crítica: A infraestrutura rejeitou a intervenção no rastro {id}.",
+    "auditReportSealed": "Relatório de Infraestrutura: Snapshot de saúde selado para perícia técnica."
   }
 }

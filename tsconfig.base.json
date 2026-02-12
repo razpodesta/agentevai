@@ -1,11 +1,3 @@
-/**
- * @author Raz Podestá - MetaShark Tech
- * @apparatus MasterTSConfigBase
- * @version 2.0.0
- * @protocol OEDP-V5.5.2 - Structural Integrity SSOT
- * @description A Única Fonte de Verdade para a malha de tipos do Agentevai.
- * Saneado para suportar ESM Nativo, NodeNext e Branded Types sem radiação técnica.
- */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -13,22 +5,13 @@
     "sourceMap": true,
     "declaration": false,
     "target": "es2022",
-
-    /** 
-     * @section Sincronia de Módulos (Cura de Borda)
-     * Transmutado para NodeNext para garantir suporte estrito a extensões .js 
-     * e resolução de pacotes de próxima geração.
-     */
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    
     "lib": ["esnext", "dom", "dom.iterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "forceConsistentCasingInFileNames": true,
-
-    /** @section Policiamento de Rigor e Higiene (Manifesto 0005) */
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -37,14 +20,14 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-
-    /** 
-     * @section Malha de Soberania (Lego-Matrix Paths) 
-     * Mapeamento nominal para erradicar o uso de caminhos relativos.
-     * Agrupado por Camadas de Soberania.
-     */
     "paths": {
-      /* --- FOUNDATION (Alicerces) --- */
+      /* --- 🛰️ MANIFESTO 0023: MALHA CONCÊNTRICA (SCHEMAS) --- */
+      "@agv/schemas/*": ["schemas/*"],
+
+      /* --- 🌍 MANIFESTO 0023: HUB SEMÂNTICO (LOCALES) --- */
+      "@agv/locales/*": ["locales/*"],
+
+      /* --- 🧱 FOUNDATION (Alicerces) --- */
       "@agentevai/ui-kit-atoms": ["libs/foundation/ui-kit-atoms/src/index.ts"],
       "@agentevai/ui-kit-molecules": ["libs/foundation/ui-kit-molecules/src/index.ts"],
       "@agentevai/ui-kit-organisms": ["libs/foundation/ui-kit-organisms/src/index.ts"],
@@ -57,7 +40,7 @@
       "@agentevai/sovereign-context": ["libs/foundation/sovereign-context/src/index.ts"],
       "@agentevai/sovereign-data-vault": ["libs/foundation/sovereign-data-vault/src/index.ts"],
 
-      /* --- REALMS (Domínios de Negócio) --- */
+      /* --- 🏰 REALMS (Domínios de Negócio) --- */
       "@agentevai/identity-domain": ["libs/realms/identity-domain/src/index.ts"],
       "@agentevai/news-domain": ["libs/realms/news-domain/src/index.ts"],
       "@agentevai/news-ui": ["libs/realms/news-ui/src/index.ts"],
@@ -71,7 +54,7 @@
       "@agentevai/geographic-context": ["libs/realms/geographic-context/src/index.ts"],
       "@agentevai/geography-infrastructure": ["libs/realms/geography-infrastructure/src/index.ts"],
 
-      /* --- INTEGRATIONS (Adaptadores Hexagonais) --- */
+      /* --- 🔌 INTEGRATIONS (Adaptadores) --- */
       "@agentevai/supabase-bridge": ["libs/integrations/supabase-bridge/src/index.ts"],
       "@agentevai/blockchain-ledger": ["libs/integrations/blockchain-ledger/src/index.ts"],
       "@agentevai/ai-oracle": ["libs/integrations/ai-oracle/src/index.ts"],
@@ -79,20 +62,16 @@
       "@agentevai/whatsapp-gateway": ["libs/integrations/whatsapp-gateway/src/index.ts"],
       "@agentevai/viral-social-bridge": ["libs/integrations/viral-social-bridge/src/index.ts"],
       "@agentevai/ai-model-orchestrator": ["libs/integrations/ai-model-orchestrator/src/index.ts"],
+      "@agentevai/syndication-engine": ["libs/integrations/syndication-engine/src/index.ts"],
 
-      /* --- ORCHESTRATION (Sistema Nervoso) --- */
+      /* --- 🧠 ORCHESTRATION (Inteligência) --- */
       "@agentevai/viral-engine": ["libs/orchestration/viral-engine/src/index.ts"],
       "@agentevai/security-auditor": ["libs/orchestration/security-auditor/src/index.ts"],
       "@agentevai/ai-self-healing": ["libs/orchestration/ai-self-healing/src/index.ts"],
       "@agentevai/ai-neural-auditor": ["libs/orchestration/ai-neural-auditor/src/index.ts"],
       "@agentevai/semantic-clustering": ["libs/orchestration/semantic-clustering/src/index.ts"],
       "@agentevai/authority-bridge": ["libs/orchestration/authority-bridge/src/index.ts"],
-      "@agentevai/notification-nexus": ["libs/orchestration/notification-nexus/src/index.ts"],
-
-      /* --- TOOLS & QA HUB --- */
-      "@agentevai/apparatus-factory": ["libs/tools/apparatus-factory/src/index.ts"],
-      "@agentevai/tests-hub": ["tests/src/index.ts"],
-      "@agentevai/syndication-engine": ["libs/integrations/syndication-engine/src/index.ts"]
+      "@agentevai/notification-nexus": ["libs/orchestration/notification-nexus/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "dist"]

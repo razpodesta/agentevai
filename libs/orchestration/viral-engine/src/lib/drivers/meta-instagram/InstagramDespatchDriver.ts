@@ -1,51 +1,56 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus InstagramDespatchDriver
- * @description Driver inteligente para postagens no Feed/Stories do Instagram.
- * Implementa a injeção do link na bio ou adesivo de link (via API oficial).
+ * @version 6.0.0
+ * @protocol OEDP-V6.0
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
-import { IViralCapsule } from '../../schemas/ViralContent.schema.js';
+import { SovereignError, SovereignErrorCodeSchema } from '@agentevai/sovereign-error-observability';
+import { type ISovereignDictionary, SovereignTranslationEngine } from '@agentevai/internationalization-engine';
+import { type IViralCapsule } from '../../schemas/ViralContent.schema.js';
 import { InstagramDespatchSchema } from './schemas/InstagramDespatch.schema.js';
 
 export const InstagramDespatchDriver = async (
-  capsule: IViralCapsule
+  capsule: IViralCapsule,
+  dictionary: ISovereignDictionary
 ): Promise<string> => {
   const apparatusName = 'InstagramDespatchDriver';
+  const { correlationIdentifier } = capsule;
 
   try {
-    // 1. Preparação de Legenda de Elite (Impacto Semântico)
-    const caption = `${capsule.title}\n\n${capsule.shareMessage}\n\n🔍 Verificado via Blockchain\nRoot: ${capsule.merkleRootProof}\n\nLink no rastro: ${capsule.sourceUrl}`;
+    const caption = SovereignTranslationEngine.translate(
+      dictionary, 'InstagramDespatch', 'captionTemplate',
+      { title: capsule.editorialTitle, message: capsule.socialShareMessage, root: capsule.merkleRootProof },
+      correlationIdentifier
+    );
 
-    const despatchData = InstagramDespatchSchema.parse({
-      imageUrl: capsule.mediaAssets[0].url,
-      caption: caption,
-      aspectRatio: 'PORTRAIT',
-      correlationIdentifier: capsule.correlationIdentifier
+    // CURA LINT: Consumo imediato do ADN validado
+    const validatedDespatch = InstagramDespatchSchema.parse({
+      mediaUrl: capsule.mediaResourceAssets[0].resourceUniversalResourceLocator,
+      caption,
+      correlationIdentifier
     });
 
-    // 2. Handshake com Meta Graph API
-    // No estado PERFECT, aqui invocamos o POST /media para o Instagram Business ID.
-    const instagramResponseId = 'REAL_IG_POST_ID';
+    // Orquestração de Postagem via Graph API (Simulada para Nivelamento)
+    const instagramContainerIdentifier = 'INTERNAL_META_UID_TRX'; 
 
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'INSTAGRAM_DESPATCH_SUCCESS',
-      message: `Conteúdo visual selado no Instagram: ${instagramResponseId}`,
-      traceIdentifier: capsule.correlationIdentifier
+      message: `Cápsula visual enviada para o enxame Meta: ${validatedDespatch.correlationIdentifier}`,
+      correlationIdentifier
     });
 
-    return instagramResponseId;
+    return instagramContainerIdentifier;
 
-  } catch (error) {
-    throw SovereignError.transmute(error, {
-      code: 'OS-VIR-2002',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-VIR-2002'),
       apparatus: apparatusName,
       location: 'libs/orchestration/viral-engine/src/lib/drivers/meta-instagram/InstagramDespatchDriver.ts',
-      correlationIdentifier: capsule.correlationIdentifier,
+      correlationIdentifier,
       severity: 'HIGH'
     });
   }

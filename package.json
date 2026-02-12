@@ -18,6 +18,7 @@
     "typecheck": "nx run-many -t typecheck --parallel=3",
     "audit:forensic": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
     "audit:infrastructure": "tsx tools/scripts/audit-sovereign-infrastructure.ts",
+    "audit:mesh": "tsx tools/scripts/audit-concentric-mesh.ts",
     "/* --- MANUTENÇÃO E SANEAMENTO --- */": "",
     "clean:artifacts": "rimraf dist/ tmp/ .nx/cache/",
     "clean:nuclear": "pnpm run clean:artifacts && rimraf node_modules/ pnpm-lock.yaml && pnpm install",

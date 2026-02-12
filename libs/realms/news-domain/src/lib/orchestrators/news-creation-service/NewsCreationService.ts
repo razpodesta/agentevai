@@ -1,44 +1,40 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus NewsCreationService
- * @version 5.0.0
+ * @version 6.0.0
  * @protocol OEDP-V6.0 - God Tier Orchestration
- * @description Orquestrador mestre para ignição de fatos jornalísticos.
- * Integra imutabilidade Blockchain, Workflow de Estado e Persistência Relacional.
+ * @description Orquestrador mestre para transmutação de fatos em rastro editorial.
+ * CURADO: Sincronização de Branded Types e Telemetria de Alta Performance.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import {
-  SovereignError,
-  SovereignErrorCodeSchema
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
 } from '@agentevai/sovereign-error-observability';
-import {
-  SovereignTranslationEngine,
-  type ISovereignDictionary
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
 } from '@agentevai/internationalization-engine';
 
 /** @section Sincronia de Borda (Infrastructure & Logic) */
 import { NewsArticleRepository } from '../../infrastructure/NewsArticleRepository.js';
-import {
-  NewsArticleSchema,
-  type INewsArticle
+import { 
+  NewsArticleSchema, 
+  type INewsArticle 
 } from '../../infrastructure/schemas/NewsArticle.schema.js';
 import { EditorialWorkflowEngine } from '../editorial-workflow-engine/EditorialWorkflowEngine.js';
-import {
-  EditorialStateSchema,
-  WorkflowActionSchema,
-  EditorialWorkflowInputSchema
+import { 
+  EditorialStateSchema, 
+  WorkflowActionSchema, 
+  EditorialWorkflowInputSchema 
 } from '../schemas/EditorialWorkflow.schema.js';
 
-/** @section ADN e Handlers Atômicos */
+/** @section ADN e Atuadores Atômicos */
 import { 
   NewsCreationInputSchema } from './schemas/NewsCreation.schema.js';
 import { SealNewsViaBlockchain } from './handlers/SealNewsViaBlockchain.js';
 
-/**
- * @class NewsCreationService
- * @description Gerencia o ciclo de vida inicial de uma notícia, desde a validação do ADN até a selagem no cofre.
- */
 export class NewsCreationService {
   private static readonly apparatusName = 'NewsCreationService';
   private static readonly fileLocation = 'libs/realms/news-domain/src/lib/orchestrators/news-creation-service/NewsCreationService.ts';
@@ -47,26 +43,16 @@ export class NewsCreationService {
    * @method igniteNewsArticleCreation
    * @static
    * @async
-   * @description Ponto de ignição soberano. Transmuta fatos brutos em rastro editorial selado.
-   * 
-   * @param {unknown} rawInputParameters - Dados brutos oriundos da interface ou gateway.
-   * @param {string} correlationIdentifier - Identificador inalterável da jornada forense.
-   * @param {ISovereignDictionary} dictionary - Silo linguístico regionalizado para telemetria.
-   * @returns {Promise<INewsArticle>} Artigo selado e persistido com sucesso.
-   * 
-   * @throws {SovereignError} Se o ADN for violado ou houver colapso na infraestrutura.
+   * @description Ponto de ignição soberano para novos artigos.
    */
   public static async igniteNewsArticleCreation(
     rawInputParameters: unknown,
     correlationIdentifier: string,
     dictionary: ISovereignDictionary
   ): Promise<INewsArticle> {
+    const startTimestamp = performance.now();
     const apparatusName = this.apparatusName;
 
-    /** 
-     * @section Soberania Linguística (Pilar V)
-     * Higiene Lexical: Tradução resolvida via motor de elite.
-     */
     const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
       dictionary, apparatusName, key, variables, correlationIdentifier
     );
@@ -74,60 +60,72 @@ export class NewsCreationService {
     try {
       // 1. ADUANA DE ADN (Ingresso Seguro no Domínio)
       const validatedCreationData = NewsCreationInputSchema.parse(rawInputParameters);
+      const { identifier, content, forceBlockchainSealing, internalSubmissionNote } = validatedCreationData;
 
       SovereignLogger({
         severity: 'INFO',
         apparatus: apparatusName,
         operation: 'ARTICLE_IGNITION_STARTED',
-        message: translate('logIgnition', { identifier: validatedCreationData.identifier }),
+        message: translate('logIgnitionStarted', { identifier }),
         correlationIdentifier
       });
 
       // 2. ORQUESTRAÇÃO DE IMUTABILIDADE (Fé Pública Digital)
-      let merkleRootVerificationAnchor = validatedCreationData.merkleRootAnchor;
+      let merkleRootAnchor: string | undefined;
 
-      if (!merkleRootVerificationAnchor && validatedCreationData.forceBlockchainSealing) {
-        merkleRootVerificationAnchor = SealNewsViaBlockchain(
-          validatedCreationData.content,
-          correlationIdentifier
-        );
+      if (forceBlockchainSealing) {
+        merkleRootAnchor = SealNewsViaBlockchain(content, correlationIdentifier);
+        
+        SovereignLogger({
+          severity: 'INFO',
+          apparatus: apparatusName,
+          operation: 'BLOCKCHAIN_SEAL_APPLIED',
+          message: translate('statusBlockchainSealed', { identifier }),
+          correlationIdentifier,
+          metadata: { merkleRootAnchor }
+        });
       }
 
-      // 3. RESOLUÇÃO DE WORKFLOW (Selagem Nominal de Transição)
-      const editorialTransitionParameters = EditorialWorkflowInputSchema.parse({
+      // 3. RESOLUÇÃO DE WORKFLOW (Transmuta de DRAFT para REVIEW)
+      const workflowInput = EditorialWorkflowInputSchema.parse({
         currentState: EditorialStateSchema.parse('DRAFT'),
         requestedAction: WorkflowActionSchema.parse('SUBMIT_FOR_REVIEW'),
         correlationIdentifier
       });
 
-      const targetEditorialStatus = EditorialWorkflowEngine.calculateNextState(
-        editorialTransitionParameters, 
-        dictionary
-      );
+      const targetEditorialStatus = EditorialWorkflowEngine.calculateNextState(workflowInput, dictionary);
 
       // 4. COMPOSIÇÃO DO ARTEFATO FINAL (Selagem de Domínio)
-      const finalNewsArticle = NewsArticleSchema.parse({
+      const newsArticleSnapshot = NewsArticleSchema.parse({
         ...validatedCreationData,
-        merkleRootAnchor: merkleRootVerificationAnchor,
+        merkleRootAnchor,
         editorialStatus: targetEditorialStatus,
         updatedAt: new Date().toISOString()
       });
 
-      // 5. SELAGEM NO COFRE RELACIONAL (Persistência Sincronizada)
-      await NewsArticleRepository.sealNewsArticleInVault(finalNewsArticle, dictionary);
+      // 5. SELAGEM NO COFRE RELACIONAL
+      await NewsArticleRepository.sealNewsArticleInVault(newsArticleSnapshot, dictionary);
+
+      // 6. TELEMETRIA ZENITH (Medição de Latência e Nota Interna)
+      const endTimestamp = performance.now();
+      const ignitionLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
 
       SovereignLogger({
         severity: 'INFO',
         apparatus: apparatusName,
-        operation: 'ARTICLE_SEALED_SUCCESSFULLY',
-        message: translate('statusBlockchain', { identifier: finalNewsArticle.identifier }),
-        correlationIdentifier
+        operation: 'ARTICLE_IGNITION_SUCCESS',
+        message: translate('logArticleStored', { identifier }),
+        correlationIdentifier,
+        metadata: { 
+          latencyMs: ignitionLatency, 
+          hasNote: !!internalSubmissionNote,
+          submissionNote: internalSubmissionNote // Rastro preservado para Auditoria Neural
+        }
       });
 
-      return Object.freeze(finalNewsArticle);
+      return Object.freeze(newsArticleSnapshot);
 
     } catch (caughtError) {
-      // 6. CAPTURA FORENSE DE FALHA (Pilar VI)
       throw SovereignError.transmute(caughtError, {
         code: SovereignErrorCodeSchema.parse('OS-ED-3001'),
         apparatus: apparatusName,

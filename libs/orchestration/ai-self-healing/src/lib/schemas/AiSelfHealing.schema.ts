@@ -1,34 +1,59 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus AiSelfHealingSchema
- * @version 1.2.0
- * @protocol OEDP-V5.5.1 - Physical Resilience
- * @description ADN para execução de patches. Sincronizado para produção real.
+ * @version 6.3.0
+ * @protocol OEDP-V6.0 - Physical Resilience DNA
  */
 
 import { z } from 'zod';
 
+/** 
+ * @section Taxonomia de Protocolos 
+ */
 export const ImmunologicalProtocolSchema = z.enum([
-  'CACHE_PURGE',          // Limpeza física no Upstash/Redis
-  'CIRCUIT_BREAKER_TRIP', // Bloqueio de tráfego no Gateway
-  'VAULT_KEY_ROTATION',   // Rotação de chaves no SovereignDataVault
-  'SESSION_TERMINATION',  // Revogação de JWT no Supabase Auth
-  'ENGINEER_ESCALATION'   // Despacho via Novu/PagerDuty
-]).describe('Protocolos de intervenção física em infraestrutura.');
+  'CACHE_PURGE',          
+  'CIRCUIT_BREAKER_TRIP', 
+  'VAULT_KEY_ROTATION',   
+  'SESSION_TERMINATION',  
+  'ENGINEER_ESCALATION'   
+])
+.describe('Protocolos de intervenção física controlados por IA.')
+.brand<'ImmunologicalProtocol'>();
 
-export const SelfHealingExecutionSchema = z.object({
-  executionIdentifier: z.uuid(),
-  auditIdentifier: z.uuid(),
+export type ImmunologicalProtocol = z.infer<typeof ImmunologicalProtocolSchema>;
+
+/**
+ * @name SelfHealingExecutionBaseSchema
+ */
+export const SelfHealingExecutionBaseSchema = z.object({
+  executionIdentifier: z.uuid()
+    .describe('Identificador inalterável da execução do patch.'),
+
+  auditIdentifier: z.uuid()
+    .describe('Vínculo forense com o veredito da IA.'),
+
   protocol: ImmunologicalProtocolSchema,
-  targetApparatus: z.string().min(3),
 
-  /** Rastro de produção: quanto tempo a infraestrutura demorou para responder ao patch */
-  executionLatencyInMilliseconds: z.number().nonnegative(),
+  targetApparatus: z.string()
+    .min(3)
+    .describe('Nome do aparato alvo da cura.'),
 
-  /** Snapshot do estado da infraestrutura pós-intervenção */
-  infrastructureReport: z.record(z.string(), z.unknown()).loose(),
+  executionLatencyInMilliseconds: z.number()
+    .nonnegative()
+    .describe('Latência física de resposta da infraestrutura.'),
+
+  infrastructureReport: z.record(z.string(), z.unknown())
+    .describe('Snapshot do estado da malha pós-intervenção.'),
 
   correlationIdentifier: z.uuid()
-}).readonly();
+    .describe('Identificador Zenith para correlação total do rastro.')
+});
+
+/**
+ * @name SelfHealingExecutionSchema
+ */
+export const SelfHealingExecutionSchema = SelfHealingExecutionBaseSchema
+  .brand<'SelfHealingExecution'>()
+  .readonly();
 
 export type ISelfHealingExecution = z.infer<typeof SelfHealingExecutionSchema>;

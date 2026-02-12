@@ -1,7 +1,8 @@
 {
   "XComDespatch": {
-    "statusTemplate": "{message}\n\nProva Digital: {root}\nLeia mais: {url}",
-    "logDespatchSuccess": "Postagem realizada com sucesso no X.com ID: {tweetId}",
-    "errorTextTooLong": "O conteúdo da denúncia excede os limites de soberania textual do X.com."
+    "statusTemplate": "{message}\n\nÂncora de Veracidade: {root}\nLeia no portal: {url}",
+    "logDespatchSuccess": "Sincronia Viral: Postagem realizada com sucesso no X.com. Identificador: {tweetIdentifier}",
+    "errorTextTooLong": "Violação de Soberania: O conteúdo da denúncia excede os limites de caracteres do X.com.",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros de despacho para o X.com estão corrompidos."
   }
 }

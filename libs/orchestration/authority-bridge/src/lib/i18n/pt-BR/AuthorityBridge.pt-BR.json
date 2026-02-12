@@ -1,8 +1,9 @@
 {
   "AuthorityBridge": {
-    "logDespatchIgnited": "Processo de comunicação oficial iniciado para a autoridade {target}.",
-    "logDespatchSuccess": "Sucesso Institucional: Documento {identifier} selado e despachado via {channel}.",
-    "errorProviderFailure": "Falha na ponte institucional: O provedor {provider} recusou o despacho do documento.",
-    "auditImpactReport": "Impacto regional em {region} consolidado com {count} assinaturas verificadas."
+    "logDespatchIgnited": "Sincronia Institucional: Processo de despacho via {channel} iniciado para {target}.",
+    "logDespatchSuccess": "Sucesso Soberano: Documento {identifier} selado e entregue com integridade.",
+    "errorProviderFailure": "Colapso de Entrega: O provedor {provider} rejeitou o rastro no canal {channel}.",
+    "auditImpactReport": "Impacto Regional: {count} vontades cidadãs seladas na Blockchain para o território {region}.",
+    "errorAduanaFailed": "Falha de ADN: Os parâmetros da carta institucional estão corrompidos."
   }
 }

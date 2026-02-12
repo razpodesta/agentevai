@@ -1,54 +1,74 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus InstitutionalLetterSchema
- * @version 2.0.0
- * @protocol OEDP-V5.5.1 - Institutional Authority
- * @description ADN para formalização de documentos de pressão pública.
- * Implementa rastro de despacho omnicanal e selagem blockchain.
+ * @version 6.0.0
+ * @protocol OEDP-V6.0 - Master DNA Integrity
+ * @description SSOT para formalização de documentos de pressão pública.
  */
 
 import { z } from 'zod';
 
+/** 
+ * @section Taxonomia de Canais 
+ */
 export const DespatchChannelSchema = z.enum([
-  'GOVERNMENT_EMAIL',   // Envio via Novu/SendGrid para órgãos oficiais
-  'SOCIAL_PUBLIC_POST', // Viralização via Twitter/X API v2
-  'OFFICIAL_API_BRIDGE',// Integração direta com portais de transparência
-  'POSTAL_SERVICE_API' // Despacho físico via integradores (Futuro)
-]).describe('Canal de comunicação institucional utilizado.');
+  'GOVERNMENT_EMAIL',   
+  'SOCIAL_PUBLIC_POST', 
+  'OFFICIAL_API_BRIDGE',
+  'POSTAL_SERVICE_API' 
+])
+.describe('Vetor institucional de entrega da vontade cidadã.')
+.brand<'DespatchChannel'>();
+
+export type DespatchChannel = z.infer<typeof DespatchChannelSchema>;
 
 /**
  * @name InstitutionalLetterBaseSchema
+ * @description Estrutura fundamental para auditoria forense.
  */
 export const InstitutionalLetterBaseSchema = z.object({
   documentIdentifier: z.uuid()
-    .describe('ID único do documento para consulta pública.'),
+    .describe('Identificador inalterável da carta para consulta pública.'),
 
-  targetAuthorityName: z.string().min(5),
+  targetAuthorityName: z.string()
+    .min(5)
+    .describe('Nome completo da autoridade destinatária.'),
 
   targetAuthorityIdentity: z.string()
-    .describe('Identificador institucional da autoridade (ex: CPF, Matrícula ou ID de Órgão).'),
+    .describe('Identificador funcional (ex: Matrícula, CPF ou ID de Órgão).'),
 
   complaintIdentifier: z.uuid()
-    .describe('Vínculo com o evento de mobilização unificado.'),
+    .describe('Vínculo com o evento de mobilização original.'),
 
-  merkleRootAnchor: z.string().length(64)
-    .describe('Raiz Merkle inalterável provando a validade das assinaturas.'),
+  merkleRootAnchor: z.string()
+    .length(64)
+    .describe('Âncora SHA-256 de fé pública gerada pelo Ledger.'),
 
-  signatureCount: z.number().int().positive(),
+  signatureCount: z.number()
+    .int()
+    .positive()
+    .describe('Volume consolidado de assinaturas seladas no bloco.'),
 
   despatchChannel: DespatchChannelSchema,
 
-  regionalSlug: z.string().min(2),
+  regionalSlug: z.string()
+    .min(2)
+    .describe('Identificador geográfico do território de emissão.'),
 
-  generatedAt: z.string().datetime(),
+  generatedAt: z.string()
+    .datetime()
+    .describe('Timestamp de ignição do documento.'),
 
   correlationIdentifier: z.uuid()
-}).loose();
+    .describe('Identificador Zenith para correlação total do rastro.')
+});
 
 /**
  * @name InstitutionalLetterSchema
- * @description Contrato SELADO para produção.
+ * @description Contrato SELADO e NOMINAL para trânsito entre Reinos.
  */
-export const InstitutionalLetterSchema = InstitutionalLetterBaseSchema.readonly();
+export const InstitutionalLetterSchema = InstitutionalLetterBaseSchema
+  .brand<'InstitutionalLetter'>()
+  .readonly();
 
 export type IInstitutionalLetter = z.infer<typeof InstitutionalLetterSchema>;

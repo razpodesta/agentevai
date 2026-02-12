@@ -16,9 +16,10 @@
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
   "dependencies": {
-    "@supabase/supabase-js": "2.48.1",
+    "@supabase/supabase-js": "^2.95.3",
     "zod": "^4.3.6",
     "@agentevai/sovereign-logger": "workspace:*",
-    "@agentevai/sovereign-error-observability": "workspace:*"
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "2.6.0"
   }
 }
