@@ -1,8 +1,9 @@
 {
   "CitizenAuraCard": {
-    "ariaLabel": "Citizen profile",
+    "ariaLabel": "Citizen identity profile",
     "standingPointsSuffix": "STANDING POINTS",
     "suspendedStatusAlert": "IDENTITY UNDER TECHNICAL RESTRICTION",
-    "verifiedLabel": "CERTIFIED SOVEREIGN IDENTITY"
+    "verifiedLabel": "CERTIFIED SOVEREIGN IDENTITY",
+    "logCardIgnited": "Visual identity trace successfully sealed."
   }
 }

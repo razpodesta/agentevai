@@ -1,12 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus CitizenAuraCardSchema
- * @version 1.2.0
- * @protocol OEDP-V5.5.2 - Visual Authority ADN
- * @description ADN mestre para a representação de autoridade e mérito do cidadão.
- * Sincronizado para erradicar falhas de visibilidade no CommunityUIHub.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura baseada em prosa técnica militar.
- * @policy ZOD-V4-SYNC: Uso de construtores de topo e descrições densas para IA.
+ * @apparatus CitizenAuraCard.schema
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN mestre para representação de autoridade do cidadão. Sincronizado para Zod V4.
+ * CURA TS2724: Alinhamento nominal para exportação no Hub de Comunidade.
  */
 
 import { z } from 'zod';
@@ -17,50 +15,43 @@ import {
 } from '@agentevai/identity-domain';
 
 /**
- * @name CitizenAuraCardSchema
- * @description Aduana de ADN para o aparato de identidade visual. 
- * Define a estrutura inalterável que ancora o prestígio do cidadão na interface.
+ * @name CitizenAuraCardBaseSchema
+ * @description Estrutura fundamental permitindo transformações de Reino (parciais ou extensões).
  */
-export const CitizenAuraCardSchema = z.object({
+export const CitizenAuraCardBaseSchema = z.object({
   citizenName: z.string()
-    .min(2)
-    .max(50)
-    .describe('Nome canônico ou alcunha soberana do cidadão para exibição editorial.'),
+    .min(2).max(50)
+    .describe('Identificador nominal ou alcunha soberana do cidadão.'),
 
   profilePictureUrl: z.string()
     .url()
     .optional()
-    .describe('Rastro visual do perfil hospedado em infraestrutura de armazenamento autorizada.'),
+    .describe('Localização do rastro visual no storage regional.'),
 
-  identityRole: IdentityRoleSchema
-    .describe('Papel fundamental que define a autoridade funcional do cidadão.'),
+  identityRole: IdentityRoleSchema,
 
-  assuranceLevel: IdentityAssuranceLevelSchema
-    .describe('Nível de garantia de identidade (IAL) verificado via rastro forense.'),
+  assuranceLevel: IdentityAssuranceLevelSchema,
 
-  reputationStandingScore: ReputationScoreSchema
-    .describe('Índice de mérito social acumulado no ecossistema.'),
+  reputationStandingScore: ReputationScoreSchema,
 
-  isProfileSuspended: z.boolean()
-    .default(false)
-    .describe('Sinalizador de restrição técnica ativa que degrada a visibilidade do perfil.'),
+  isProfileSuspended: z.boolean().default(false),
 
-  /** 
-   * @section Soberania Linguística
-   * Injeção de rastro semântico regional.
-   */
-  dictionary: z.record(z.string(), z.unknown())
-    .describe('Fragmento de dicionário regionalizado injetado para humanização de labels.'),
+  /** Silo linguístico validado pelo motor i18n */
+  dictionary: z.record(z.string(), z.record(z.string(), z.record(z.string(), z.string())))
+    .describe('Dicionário estruturado exaustivo (Apparatus -> Key -> Value).'),
 
-  /** Identificador único da jornada para correlação com o SovereignLogger */
+  /** Identificador Zenith para correlação forense total */
   correlationIdentifier: z.uuid()
-    .describe('Identificador inalterável da jornada forense atual para perícia técnica.')
-})
-.brand<'CitizenAuraCard'>() // Selo de Soberania de Tipo
-.readonly(); // Imutabilidade forçada para proteção de rastro
+    .describe('Identificador inalterável da jornada forense atual.')
+});
 
 /**
- * @interface ICitizenAuraCard
- * @description Contrato estrito e imutável para propriedades do componente de Aura.
+ * @name CitizenAuraCardSchema
+ * @section Selagem Nominal Zenith
+ * CURA: Renomeado de 'InputSchema' para 'Schema' para conformidade com o Hub.
  */
+export const CitizenAuraCardSchema = CitizenAuraCardBaseSchema
+  .brand<'CitizenAuraCard'>()
+  .readonly();
+
 export type ICitizenAuraCard = z.infer<typeof CitizenAuraCardSchema>;

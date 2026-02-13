@@ -1,17 +1,20 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus SovereignReactionSchema
- * @version 4.0.0
- * @protocol OEDP-V6.0 - High Precision DNA
- * @description ADN mestre para interações sociais. Sincronizado para Zod V4.
+ * @apparatus SovereignReaction.schema
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN mestre para interações sociais soberanas. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
 
+/** 
+ * @section Dimensões Nominais (Branded) 
+ */
 export const ReactionTypeSchema = z.enum([
-  'SUPPORT',
-  'REJECT',
-  'APPRECIATE'
+  'SUPPORT',    // Fé Pública
+  'REJECT',     // Flag de Entropia
+  'APPRECIATE'  // Afinidade
 ])
 .describe('Identificador nominal da natureza semântica do engajamento.')
 .brand<'ReactionType'>();
@@ -28,20 +31,22 @@ export const SovereignReactionTriggerInputSchema = z.object({
   interactionCount: z.number()
     .int()
     .nonnegative()
-    .describe('Volume total de interações detectadas no enxame regional.'),
+    .describe('Volume consolidado de interações no território.'),
 
   isUserActivelyEngaged: z.boolean()
-    .describe('Indica se o cidadão logado já emitiu este sinal de vontade.'),
+    .describe('Estado de engajamento do cidadão logado.'),
 
   /** Sincronia Zod v4: Definição estrutural de função */
   onInteractionIgnition: z.function({
     input: z.tuple([ReactionTypeSchema]),
     output: z.void()
-  }).describe('Callback de alta prioridade para selagem da vontade no cofre.'),
+  }).describe('Callback de alta prioridade para selagem da vontade.'),
 
-  dictionary: z.record(z.string(), z.unknown())
-    .describe('Silo linguístico regionalizado para transmutação do aparato.'),
+  /** Silo linguístico tipado para o aparato */
+  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
+    .describe('Fragmento de dicionário validado.'),
 
+  /** Identificador Zenith para correlação forense total */
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense atual.')
 })

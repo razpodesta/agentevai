@@ -5,6 +5,6 @@
     "label_APPRECIATE": "Like",
     "ariaReactionStatus": "Reaction {type} active with {count} interactions.",
     "logInteractionSuccess": "Act of will [{type}] sealed in the regional swarm.",
-    "REACTION_THEME_NOT_FOUND": "Rendering failure: Visual theme not located."
+    "errorAduanaFailed": "DNA Failure: The act of will trace carried technical radiation."
   }
 }

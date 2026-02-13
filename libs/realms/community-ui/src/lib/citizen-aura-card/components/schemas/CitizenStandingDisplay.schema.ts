@@ -1,9 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus CitizenStandingDisplaySchema
- * @version 2.1.0
- * @protocol OEDP-V6.0 - Forensic Precision
- * @description ADN de elite para exibição de mérito social.
+ * @apparatus CitizenStandingDisplay.schema
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN de elite para exibição de mérito social. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
@@ -11,20 +11,40 @@ import { ReputationScoreSchema } from '@agentevai/identity-domain';
 
 /**
  * @name CitizenStandingDisplayBaseSchema
- * @description Estrutura fundamental para composição.
+ * @description Estrutura fundamental permitindo transformações de Reino.
  */
 export const CitizenStandingDisplayBaseSchema = z.object({
-  citizenName: z.string().min(2).max(50),
-  humanizedRole: z.string().min(3),
-  reputationScore: ReputationScoreSchema,
-  isSuspended: z.boolean().default(false),
-  dictionary: z.record(z.string(), z.unknown()),
+  citizenName: z.string()
+    .min(2)
+    .max(50)
+    .describe('Identificador nominal do cidadão para exibição editorial.'),
+
+  humanizedRole: z.string()
+    .min(3)
+    .describe('Papel funcional traduzido pela matriz de autoridade.'),
+
+  reputationScore: ReputationScoreSchema
+    .describe('O standing social carimbado com marca nominal.'),
+
+  isSuspended: z.boolean()
+    .default(false)
+    .describe('Sinalizador de restrição operativa ativa.'),
+
+  /** 
+   * @section CURA_ANY 
+   * Silo linguístico tipado para o aparato.
+   */
+  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
+    .describe('Fragmento de dicionário validado.'),
+
+  /** Identificador Zenith para correlação forense total */
   correlationIdentifier: z.uuid()
+    .describe('Identificador inalterável da jornada forense atual.')
 });
 
 /**
  * @name CitizenStandingDisplayInputSchema
- * @description CURA TS2724: Exportação nominal selada para uso no orquestrador.
+ * @section Selagem Nominal Zenith
  */
 export const CitizenStandingDisplayInputSchema = CitizenStandingDisplayBaseSchema
   .brand<'CitizenStandingDisplayInput'>()

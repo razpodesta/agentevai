@@ -1,18 +1,19 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignCommunityShell
- * @version 3.0.0
- * @protocol OEDP-V6.0 - Prestige Editorial Architecture
- * @description Orquestrador de layout saneado contra TS2724 e TS2353.
- * @policy ATOMIC-RESOLUTION: Separação estrita entre ADN e Componentes.
- * @policy ZERO-ANY: Saneamento total via ISovereignDictionary casting.
+ * @version 6.5.2
+ * @protocol OEDP-V6.5 - Prestige Editorial Architecture
+ * @description Orquestrador de layout saneado. 
+ * CURADO: Erradicado TS2307 via ancoragem direta em arquivos de lógica e ADN.
+ * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
+ * @policy ZERO-ANY: Saneamento total via ISovereignDictionary.
  */
 
 'use client';
 
 import React, { useMemo, useCallback, useEffect, memo } from 'react';
-import { motion } from 'framer-motion';
-import { Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, LayoutDashboard } from 'lucide-react';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
 import { 
   SovereignError, 
@@ -30,8 +31,9 @@ import {
 } from './schemas/SovereignCommunityShell.schema.js';
 
 /** 
- * @section CURA TS2724 
- * Importação segregada: UI do .tsx e ADN do .schema.ts. 
+ * @section CURA TS2307 
+ * Rastro corrigido: Aponta diretamente para os arquivos físicos, 
+ * ignorando o vácuo de index.js no subdiretório.
  */
 import { CitizenAuraCard } from '../citizen-aura-card/CitizenAuraCard.js';
 import { CitizenAuraCardSchema } from '../citizen-aura-card/schemas/CitizenAuraCard.schema.js';
@@ -40,103 +42,121 @@ import { ImpactMetricCard } from './components/ImpactMetricCard.js';
 const SovereignCommunityShellComponent: React.FC<ISovereignCommunityShellInput> = (properties) => {
   const apparatusName = 'SovereignCommunityShell';
   const fileLocation = 'libs/realms/community-ui/src/lib/sovereign-community-shell/SovereignCommunityShell.tsx';
+  const startTimestamp = performance.now();
 
-  // 1. ADUANA DE ADN (Validando integridade e rastro)
+  // 1. ADUANA DE ADN (Ingresso Seguro e Fixação de Rastro)
   const data = useMemo(() => {
-    const result = SovereignCommunityShellInputSchema.safeParse(properties);
-    if (!result.success) {
-      throw new SovereignError({
-        uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-APP-4001'),
-        i18nMappingKey: 'COMMUNITY_SHELL_ADN_CORRUPTED',
-        severity: 'HIGH',
-        apparatusMetadata: { name: apparatusName, version: '3.0.0', fileLocation },
-        runtimeSnapshot: { 
-          inputPayload: properties, 
-          correlationIdentifier: properties.correlationIdentifier, 
-          validationIssues: result.error.issues 
-        },
-        forensicTrace: { 
-          timestamp: new Date().toISOString(), 
-          stack: 'SHELL_IGNITION_FAILURE' 
-        }
+    try {
+      return SovereignCommunityShellInputSchema.parse(properties);
+    } catch (caughtError) {
+      throw SovereignError.transmute(caughtError, {
+        code: SovereignErrorCodeSchema.parse('OS-APP-4001'),
+        apparatus: apparatusName,
+        location: fileLocation,
+        correlationIdentifier: properties.correlationIdentifier,
+        severity: 'CRITICAL'
       });
     }
-    return result.data;
   }, [properties]);
 
-  // 2. RESOLUÇÃO SEMÂNTICA
-  const translate = useCallback((key: string, variables = {}) => {
-    return SovereignTranslationEngine.translate(
-      data.dictionary as unknown as ISovereignDictionary,
-      apparatusName,
-      key,
-      variables,
-      data.correlationIdentifier
-    );
-  }, [data.dictionary, data.correlationIdentifier]);
+  const { activeCitizen, children, dictionary, correlationIdentifier } = data;
 
-  // 3. TELEMETRIA DE IGNIÇÃO (CURA TS2353: correlationIdentifier unificado)
+  // 2. RESOLUÇÃO SEMÂNTICA (Pilar 5)
+  const translateLabel = useCallback((semanticKey: string, variables = {}) => {
+    return SovereignTranslationEngine.translate(
+      dictionary as unknown as ISovereignDictionary,
+      apparatusName,
+      semanticKey,
+      variables,
+      correlationIdentifier
+    );
+  }, [dictionary, correlationIdentifier]);
+
+  // 3. TELEMETRIA SINCRO E PERFORMANCE (Pilar 6)
   useEffect(() => {
+    const endTimestamp = performance.now();
+    const mountingLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
+
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'SHELL_IGNITION_SUCCESS',
-      message: `Cidadão [${data.activeCitizen.citizenName}] ancorado na zona comunitária.`,
-      correlationIdentifier: data.correlationIdentifier // Sincronia Protocolo V6.0
+      message: translateLabel('logShellIgnition', { correlationIdentifier }),
+      correlationIdentifier,
+      metadata: { 
+        latencyMs: mountingLatency,
+        citizenRole: activeCitizen.identityRole 
+      }
     });
-  }, [data.activeCitizen.citizenName, data.correlationIdentifier]);
+  }, [activeCitizen.identityRole, correlationIdentifier, translateLabel, startTimestamp]);
 
-  // 4. SELAGEM DE ADN PARA O FILHO (Cura TS2741)
+  // 4. RE-SELAGEM DE ADN PARA FILHOS (Cura TS2741)
   const citizenAuraProperties = useMemo(() => {
     return CitizenAuraCardSchema.parse({
-      ...data.activeCitizen,
-      dictionary: data.dictionary,
-      correlationIdentifier: data.correlationIdentifier,
+      ...activeCitizen,
+      dictionary,
+      correlationIdentifier,
     });
-  }, [data]);
+  }, [activeCitizen, dictionary, correlationIdentifier]);
 
   return (
-    <div className="w-full min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-1000 font-sans">
+    <div className="w-full min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-1000 antialiased font-sans">
       <div className="container mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
         
-        {/* 🧱 BARRA LATERAL DE AUTORIDADE */}
-        <aside className="lg:col-span-4">
+        {/* 🧱 SIDEBAR DE AUTORIDADE */}
+        <motion.aside 
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="lg:col-span-4"
+        >
           <section className="sticky top-32 flex flex-col gap-10">
             <header className="flex items-center gap-4 border-b border-neutral-100 dark:border-white/5 pb-4">
                 <Users size={24} className="text-brand-action" />
                 <h2 className="font-serif font-black text-sm uppercase tracking-[0.3em] text-neutral-400">
-                    {translate('citizenAuthorityTitle')}
+                    {translateLabel('citizenAuthorityTitle')}
                 </h2>
             </header>
 
+            {/* Aparato de Identidade Selado via ADN Nominal */}
             <CitizenAuraCard {...citizenAuraProperties} />
 
             <ImpactMetricCard 
-              reputationScore={data.activeCitizen.reputationStandingScore}
-              metricLabel={translate('impactMetricLabel')}
-              statusMessage={translate('sovereignStatusMessage')}
+              reputationScore={activeCitizen.reputationStandingScore}
+              metricLabel={translateLabel('impactMetricLabel')}
+              statusMessage={translateLabel('sovereignStatusMessage')}
             />
           </section>
-        </aside>
+        </motion.aside>
 
         {/* 🏛️ ÁREA DE CONTEÚDO SOBERANO */}
         <main className="lg:col-span-8 flex flex-col gap-12">
-          <header className="border-l-4 border-brand-action pl-8">
-             <h1 className="text-5xl md:text-6xl font-serif font-black tracking-tighter text-brand-primary dark:text-white leading-tight">
-                {translate('communityFeedTitle')}
-             </h1>
-          </header>
-
-          <motion.section 
-            initial={{ opacity: 0, y: 20 }}
+          <motion.header 
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full"
+            transition={{ delay: 0.2 }}
+            className="border-l-4 border-brand-action pl-8 flex items-center gap-4"
           >
-            {data.children}
-          </motion.section>
-        </main>
+             <div className="p-3 bg-neutral-100 dark:bg-white/5 rounded-xs shadow-sm">
+                <LayoutDashboard size={24} className="text-brand-primary dark:text-white" />
+             </div>
+             <h1 className="text-5xl md:text-6xl font-serif font-black tracking-tighter text-brand-primary dark:text-white leading-tight">
+                {translateLabel('communityFeedTitle')}
+             </h1>
+          </motion.header>
 
+          <AnimatePresence mode="wait">
+            <motion.section 
+              key="community_feed_stream"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full"
+            >
+              {children}
+            </motion.section>
+          </AnimatePresence>
+        </main>
       </div>
     </div>
   );

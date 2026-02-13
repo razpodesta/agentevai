@@ -1,10 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus SovereignCommunityShellSchema
- * @version 1.1.0
- * @protocol OEDP-V5.5.2 - Structural Integrity
- * @description ADN que define a moldura de interação comunitária. 
- * Sincronizado para sustentar o rastro de identidade e fé pública dos sub-aparatos.
+ * @apparatus SovereignCommunityShell.schema
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN que define a moldura de autoridade comunitária. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
@@ -15,43 +14,39 @@ import {
 } from '@agentevai/identity-domain';
 
 /**
- * @name SovereignCommunityShellInputSchema
- * @description Aduana de entrada estrita para o orquestrador de dashboard comunitário.
+ * @name SovereignCommunityShellBaseSchema
+ * @description Estrutura fundamental permitindo transformações de Reino.
  */
-export const SovereignCommunityShellInputSchema = z.object({
-  /** 
-   * Dados do Cidadão Ativo.
-   * @section Sincronia de Identidade (Cura do Erro TS2739)
-   */
+export const SovereignCommunityShellBaseSchema = z.object({
+  /** Snapshot de identidade do Cidadão Soberano */
   activeCitizen: z.object({
-    citizenName: z.string().min(2),
+    citizenName: z.string().min(2).max(50),
     identityRole: IdentityRoleSchema,
     assuranceLevel: IdentityAssuranceLevelSchema,
     reputationStandingScore: ReputationScoreSchema,
-    isProfileSuspended: z.boolean()
-      .default(false)
-      .describe('Sinalizador de restrição operativa para o cidadão atual.'),
-    profilePictureUrl: z.string()
-      .url()
-      .optional()
-      .describe('URL canônica do rastro visual do cidadão.')
+    isProfileSuspended: z.boolean().default(false),
+    profilePictureUrl: z.string().url().optional()
   }).readonly(),
 
-  /** Conteúdo dinâmico injetado (Feed de atividade ou Hilos) */
+  /** Nodos React para injeção de hilos ou feeds */
   children: z.custom<React.ReactNode>()
-    .describe('Nodos React que serão injetados na malha de interação.'),
+    .describe('Nodos funcionais da malha de interação.'),
 
-  /** 
-   * @section Soberania Linguística
-   * Silo de tradução regional injetado pelo motor de i18n.
-   */
-  dictionary: z.record(z.string(), z.unknown())
-    .describe('Dicionário regional validado para transmutação léxica.'),
+  /** Silo linguístico regionalizado e validado */
+  dictionary: z.record(z.string(), z.record(z.string(), z.record(z.string(), z.string())))
+    .describe('Dicionário estruturado (Apparatus -> Key -> Value).'),
 
+  /** Identificador Zenith para correlação forense total */
   correlationIdentifier: z.uuid()
-    .describe('Identificador inalterável da jornada forense atual para correlação de logs.')
-})
-.brand<'SovereignCommunityShellInput'>()
-.readonly();
+    .describe('Identificador inalterável da jornada forense atual.')
+});
+
+/**
+ * @name SovereignCommunityShellInputSchema
+ * @section Selagem Nominal Zenith
+ */
+export const SovereignCommunityShellInputSchema = SovereignCommunityShellBaseSchema
+  .brand<'SovereignCommunityShellInput'>()
+  .readonly();
 
 export type ISovereignCommunityShellInput = z.infer<typeof SovereignCommunityShellInputSchema>;

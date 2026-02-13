@@ -1,7 +1,10 @@
 {
   "BlockchainLedger": {
     "logBlockSealed": "Selo de Imutabilidade: Bloco de assinaturas selado via Merkle Tree com sucesso.",
-    "errorEmptyBlock": "Incapacidade de Selagem: O bloco de assinaturas não contém dados processáveis.",
-    "auditRootGenerated": "Raiz Mestre Gerada: {merkleRoot}. Total de vontades cidadãs: {count}."
+    "errorEmptyBlock": "Incapacidade de Selagem: O bloco de assinaturas não contém dados processáveis ou o rastro está vazio.",
+    "auditRootGenerated": "Raiz Mestre Gerada: {merkleRoot}. Total de vontades cidadãs seladas: {count}.",
+    "handshakeSuccess": "Handshake Criptográfico: Conexão com o cluster de imutabilidade estabelecida com sucesso.",
+    "integrityViolation": "ALERTA DE SEGURANÇA: Tentativa de violação de integridade detectada no rastro do bloco.",
+    "recoverySuggestion": "Verifique a sincronia do carimbo de tempo (NTP) e a chave de selagem regional."
   }
 }

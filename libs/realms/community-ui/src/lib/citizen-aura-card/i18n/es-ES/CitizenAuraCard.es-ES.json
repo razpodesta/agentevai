@@ -1,8 +1,9 @@
 {
   "CitizenAuraCard": {
-    "ariaLabel": "Perfil del ciudadano",
+    "ariaLabel": "Perfil de identidad ciudadana",
     "standingPointsSuffix": "PUNTOS DE STANDING",
     "suspendedStatusAlert": "IDENTIDAD BAJO RESTRICCIÓN TÉCNICA",
-    "verifiedLabel": "IDENTIDAD SOBERANA CERTIFICADA"
+    "verifiedLabel": "IDENTIDAD SOBERANA CERTIFICADA",
+    "logCardIgnited": "Rastro visual de identidad sellado con éxito."
   }
 }

@@ -5,6 +5,6 @@
     "label_APPRECIATE": "Me gusta",
     "ariaReactionStatus": "Reacción {type} activa con {count} interacciones.",
     "logInteractionSuccess": "Acto de voluntad [{type}] sellado en el enjambre regional.",
-    "REACTION_THEME_NOT_FOUND": "Fallo de renderizado: Tema visual no localizado."
+    "errorAduanaFailed": "Falla de integridad: El rastro de voluntad portaba radiación técnica."
   }
 }

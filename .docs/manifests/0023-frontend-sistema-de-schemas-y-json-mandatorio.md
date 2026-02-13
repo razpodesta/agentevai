@@ -1,17 +1,16 @@
- ARQUITETURA ATÔMICA UNITÁRIA (ZENITH EDITION)
-Status: SUPREMO / MANDATÓRIO
-Protocolo: OEDP-V6.5 - Self-Contained Sovereignty
-I. A ANATOMIA DO APARATO
-Todo "Lego" (Frontend ou Backend) deve residir em uma pasta própria com a seguinte hierarquia obrigatória:
-A Lógica (Nome.tsx / Nome.ts): Execução pura do componente ou serviço.
-O ADN (Nome.schema.ts): Validação Zod V4 com Branded Types e descrições para IA.
-A Trindade Linguística:
-Nome.pt-BR.json: Alma em Português.
-Nome.es-ES.json: Alma em Espanhol.
-Nome.en-US.json: Alma em Inglês.
-A Porta (index.ts): Barrel export para manter a limpeza das importações.
-II. REGRAS DE OURO DE ENGENHARIA
-Zero Any Policy: Proibido o uso de any. Use unknown com schema.parse().
-Higiene Lexical: Proibido abreviações. O código deve ser uma narrativa técnica militar.
-Injeção de Telemetria: Todo aparato deve invocar o SovereignLogger no seu ciclo de vida.
-Resiliência Forense: Uso obrigatório de SovereignError para capturar falhas estruturais.
+(ESTRATÉGIA HÍBRIDA)
+Conforme sua diretriz, alteramos a constituição para tratar as Apps e o Backend/Libs como reinos com anatomias distintas.
+Status: SUPREMO / EM VIGOR
+Protocolo: OEDP-V6.5 - Hybrid Mirroring Strategy
+I. REINO DE BIBLIOTECAS E BACKEND (Self-Contained)
+Fica mantida a Doutrina de Auto-Suficiência. Cada aparato em libs/ é um átomo completo.
+ADN e Alma: Devem residir dentro da pasta do aparato.
+Hierarquia: libs/realms/domain/src/lib/Apparatus/ -> .tsx, .schema.ts, .json.
+II. REINO DE APLICAÇÕES FRONTEND (Concentric Mirroring)
+Apenas para apps/web-portal (e futuras apps), adotamos o Espelhamento Concêntrico para otimizar o SEO, ruteamento Next.js e cache de borda.
+O CORPO (Lógica): Reside em apps/web-portal/src/app/....
+O ADN (Schemas): Reside na raiz do workspace: /schemas/apps/web-portal/....
+A ALMA (Locales): Reside na raiz do workspace: /locales/[lang]/apps/web-portal/....
+
+---
+

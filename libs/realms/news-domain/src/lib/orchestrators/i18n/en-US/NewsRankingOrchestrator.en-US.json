@@ -2,7 +2,7 @@
   "NewsRankingOrchestrator": {
     "logRankingComplete": "Mathematical Curatorship: Editorial ranking consolidated for {count} news items in the active territory.",
     "logZenithAssigned": "Sovereign Ascension: News item [{identifier}] reached the Relevance Index for the National Zenith.",
-    "errorAduanaFailed": "DNA Violation: The news swarm carries technical radiation or invalid nominal brands.",
+    "errorAduanaFailed": "DNA Failure: The news swarm carries technical radiation or invalid nominal brands.",
     "auditImpactBonus": "Public Trust Applied: Blockchain veracity bonus injected into trace {identifier}.",
     "logDecayApplied": "Temporal Entropy: Freshness penalty applied to the informative trace: {identifier}."
   }

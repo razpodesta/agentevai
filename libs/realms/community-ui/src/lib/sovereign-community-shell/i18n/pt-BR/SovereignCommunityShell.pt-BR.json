@@ -4,6 +4,7 @@
     "impactMetricLabel": "Impacto Social Consolidado",
     "sovereignStatusMessage": "Identidade Soberana Protegida por Blockchain",
     "communityFeedTitle": "O Pulso da Comunidade",
-    "logShellIgnition": "Soberania Comunitária estabelecida para o rastro {correlationIdentifier}."
+    "logShellIgnition": "Soberania Comunitária estabelecida para o rastro {correlationIdentifier}.",
+    "errorAduanaFailed": "Falha de ADN: O rastro comunitário portava radiação técnica."
   }
 }

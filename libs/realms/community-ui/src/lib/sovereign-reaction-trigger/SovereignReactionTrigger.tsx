@@ -1,10 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignReactionTrigger
- * @version 4.0.0
- * @protocol OEDP-V6.0 - High Performance Kinetic UI
- * @description Atuador de vontade cidadã. 
- * Implementa animação de contador incremental e resolução de tema via matriz nominal.
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - High Performance Kinetic UI
+ * @description Atuador de vontade cidadã. Saneado contra falhas de indexação e telemetria.
  */
 
 'use client';
@@ -24,112 +23,140 @@ import {
 /** @section Sincronia de ADN e Matriz */
 import { 
   SovereignReactionTriggerInputSchema, 
-  type ISovereignReactionTrigger 
+  type ISovereignReactionTrigger
 } from './schemas/SovereignReaction.schema.js';
 import { REACTION_VISUAL_MATRIX } from './constants/ReactionVisualMatrix.js';
 
 const SovereignReactionTriggerComponent: React.FC<ISovereignReactionTrigger> = (properties) => {
   const apparatusName = 'SovereignReactionTrigger';
   const fileLocation = 'libs/realms/community-ui/src/lib/sovereign-reaction-trigger/SovereignReactionTrigger.tsx';
+  const startTimestamp = performance.now();
 
-  // 1. ADUANA DE ADN (Fixação do Rastro de Soberania)
-  const data = useMemo(() => {
-    const result = SovereignReactionTriggerInputSchema.safeParse(properties);
-    if (!result.success) {
-      throw new SovereignError({
-        uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-APP-7054'),
-        i18nMappingKey: 'REACTION_TRIGGER_ADN_CORRUPTED',
-        severity: 'MEDIUM',
-        apparatusMetadata: { name: apparatusName, version: '4.0.0', fileLocation },
-        runtimeSnapshot: { inputPayload: properties, correlationIdentifier: properties.correlationIdentifier, validationIssues: result.error.issues },
-        forensicTrace: { timestamp: new Date().toISOString(), stack: 'UI_REACTION_IGNITION' }
+  try {
+    // 1. ADUANA DE ADN (Ingresso Seguro e Fixação de Rastro)
+    const data = SovereignReactionTriggerInputSchema.parse(properties);
+    const { correlationIdentifier, dictionary, reactionType, interactionCount, isUserActivelyEngaged } = data;
+
+    // 2. RESOLUÇÃO DETERMINÍSTICA DE TEMA (Cura TS7053)
+    const visualTheme = useMemo(() => {
+      const typeKey = reactionType as unknown as string;
+      return REACTION_VISUAL_MATRIX[typeKey] || REACTION_VISUAL_MATRIX['APPRECIATE'];
+    }, [reactionType]);
+
+    // 3. RESOLUÇÃO SEMÂNTICA (Pilar 5)
+    const translateLabel = useCallback((semanticKey: string, variables = {}) => {
+      const sovereignDictionary = {
+        metadata: { locale: 'pt-BR', version: '1.0.0' },
+        content: dictionary
+      } as unknown as ISovereignDictionary;
+
+      return SovereignTranslationEngine.translate(
+        sovereignDictionary,
+        apparatusName,
+        semanticKey,
+        variables,
+        correlationIdentifier
+      );
+    }, [dictionary, correlationIdentifier]);
+
+    // 4. TELEMETRIA SINCRO E PERFORMANCE (Pilar 6)
+    useEffect(() => {
+      const endTimestamp = performance.now();
+      const mountingLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
+
+      SovereignLogger({
+        severity: 'INFO',
+        apparatus: apparatusName,
+        operation: 'INTERACTION_NODE_MOUNTED',
+        message: `Atuador de [${reactionType}] selado no rastro forense.`,
+        correlationIdentifier,
+        metadata: { latencyMs: mountingLatency }
       });
-    }
-    return result.data;
-  }, [properties]);
+    }, [reactionType, correlationIdentifier, startTimestamp]);
 
-  // 2. RESOLUÇÃO DETERMINÍSTICA DE TEMA (Cura TS7053)
-  const visualTheme = useMemo(() => {
-    const theme = REACTION_VISUAL_MATRIX[data.reactionType as unknown as string];
-    return theme || REACTION_VISUAL_MATRIX['APPRECIATE'];
-  }, [data.reactionType]);
+    // 5. HANDLER DE DISPARO DE VONTADE
+    const handleInteractionIgnition = useCallback(() => {
+      const interactionStart = performance.now();
+      
+      data.onInteractionIgnition(reactionType);
 
-  // 3. TELEMETRIA DE POSICIONAMENTO
-  useEffect(() => {
-    SovereignLogger({
-      severity: 'INFO',
-      apparatus: apparatusName,
-      operation: 'INTERACTION_NODE_MOUNTED',
-      message: `Atuador [${data.reactionType}] selado para a jornada.`,
-      correlationIdentifier: data.correlationIdentifier
-    });
-  }, [data.reactionType, data.correlationIdentifier]);
+      const interactionEnd = performance.now();
+      const interactionLatency = parseFloat((interactionEnd - interactionStart).toFixed(4));
 
-  // 4. RESOLUÇÃO SEMÂNTICA
-  const translate = useCallback((semanticKey: string, variables = {}) => {
-    return SovereignTranslationEngine.translate(
-      data.dictionary as unknown as ISovereignDictionary,
-      apparatusName,
-      semanticKey,
-      variables,
-      data.correlationIdentifier
+      SovereignLogger({
+        severity: 'INFO',
+        apparatus: apparatusName,
+        operation: 'WILL_ACT_DISPATCHED',
+        message: translateLabel('logInteractionSuccess', { type: reactionType }),
+        correlationIdentifier,
+        metadata: { latencyMs: interactionLatency, type: reactionType }
+      });
+    }, [data, reactionType, correlationIdentifier, translateLabel]);
+
+    return (
+      <motion.button
+        whileTap={{ scale: 0.95, y: 1 }}
+        whileHover={{ scale: 1.02 }}
+        onClick={handleInteractionIgnition}
+        aria-label={translateLabel('ariaReactionStatus', {
+          type: reactionType,
+          count: interactionCount
+        })}
+        className={`
+          relative flex items-center gap-5 px-8 py-4 rounded-xs border-2 transition-all duration-700
+          font-serif font-black uppercase tracking-[0.2em] text-[10px] group
+          ${isUserActivelyEngaged
+            ? `${visualTheme.backgroundClass} ${visualTheme.colorClass} border-current shadow-2xl ring-1 ring-current/20`
+            : 'border-neutral-100 dark:border-white/5 text-neutral-400 hover:border-brand-action/30 hover:text-brand-action'}
+        `}
+      >
+        <div className="relative">
+          <visualTheme.icon
+            size={18}
+            strokeWidth={isUserActivelyEngaged ? 3 : 2}
+            className={isUserActivelyEngaged ? 'animate-pulse' : 'opacity-60 group-hover:opacity-100 transition-opacity'}
+          />
+        </div>
+
+        <span className="leading-none select-none tracking-tighter">
+          {translateLabel(visualTheme.labelKey)}
+        </span>
+
+        <div className="h-4 w-[2px] bg-current opacity-10" />
+
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            key={interactionCount}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            className="font-mono font-black tabular-nums text-sm"
+          >
+            {interactionCount}
+          </motion.span>
+        </AnimatePresence>
+
+        {/* 🎇 AURA CINÉTICA DE ATIVAÇÃO */}
+        {isUserActivelyEngaged && (
+          <motion.div 
+            layoutId="reaction_active_glow"
+            className="absolute inset-0 border-2 border-current opacity-30 rounded-xs"
+            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+      </motion.button>
     );
-  }, [data.dictionary, data.correlationIdentifier]);
 
-  return (
-    <motion.button
-      whileTap={{ scale: 0.95, y: 1 }}
-      whileHover={{ scale: 1.02, x: 2 }}
-      onClick={() => data.onInteractionIgnition(data.reactionType)}
-      aria-label={translate('ariaReactionStatus', {
-        type: data.reactionType,
-        count: data.interactionCount
-      })}
-      className={`
-        relative flex items-center gap-5 px-8 py-4 rounded-xs border-2 transition-all duration-700
-        font-serif font-black uppercase tracking-[0.2em] text-[10px] group
-        ${data.isUserActivelyEngaged
-          ? `${visualTheme.backgroundClass} ${visualTheme.colorClass} border-current shadow-[0_10px_30px_rgba(0,0,0,0.1)]`
-          : 'border-neutral-100 dark:border-white/5 text-neutral-400 hover:border-brand-action/30 hover:text-brand-action'}
-      `}
-    >
-      <div className="relative">
-        <visualTheme.icon
-          size={18}
-          strokeWidth={data.isUserActivelyEngaged ? 3 : 2}
-          className={data.isUserActivelyEngaged ? 'animate-pulse' : 'opacity-60 group-hover:opacity-100 transition-opacity'}
-        />
-      </div>
-
-      <span className="leading-none select-none tracking-tighter">
-        {translate(visualTheme.labelKey)}
-      </span>
-
-      <div className="h-4 w-[2px] bg-current opacity-10" />
-
-      {/* 🔢 CONTADOR CINÉTICO (Animação de Valor) */}
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={data.interactionCount}
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -5 }}
-          className="font-mono font-black tabular-nums text-sm"
-        >
-          {data.interactionCount}
-        </motion.span>
-      </AnimatePresence>
-
-      {/* Brilho de Ativação Soberana */}
-      {data.isUserActivelyEngaged && (
-        <motion.div 
-          layoutId="active_glow"
-          className="absolute inset-0 border-2 border-brand-action/40 rounded-xs"
-          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-        />
-      )}
-    </motion.button>
-  );
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-APP-7054'),
+      apparatus: apparatusName,
+      location: fileLocation,
+      correlationIdentifier: properties.correlationIdentifier,
+      severity: 'CRITICAL',
+      recoverySuggestion: 'Validar a integridade da REACTION_VISUAL_MATRIX ou o rastro de ADN do cidadão.'
+    });
+  }
 };
 
 export const SovereignReactionTrigger = memo(SovereignReactionTriggerComponent);

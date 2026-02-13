@@ -1,10 +1,9 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus KineticAuraPulseSchema
- * @version 2.0.0
- * @protocol OEDP-V6.0 - High Precision DNA
- * @description ADN de elite para a partícula visual de reputação. 
- * Implementa a técnica de Selagem Tardia para erradicar o erro TS2741.
+ * @apparatus KineticAuraPulse.schema
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN de elite para a partícula visual de reputação. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
@@ -13,7 +12,6 @@ import { ReputationScoreSchema } from '@agentevai/identity-domain';
 /**
  * @name KineticAuraPulseBaseSchema
  * @description Estrutura bruta dos dados antes da selagem nominal.
- * Permite que o componente pai realize a composição sem violar a marca.
  */
 export const KineticAuraPulseBaseSchema = z.object({
   standingPoints: ReputationScoreSchema
@@ -23,19 +21,22 @@ export const KineticAuraPulseBaseSchema = z.object({
     .default(false)
     .describe('Sinalizador de colapso de reputação (Restrição técnica).'),
 
-  dictionary: z.record(z.string(), z.unknown())
-    .describe('Silo linguístico regionalizado para labels de acessibilidade neural.'),
+  /** Silo linguístico tipado para o aparato */
+  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
+    .describe('Fragmento de dicionário validado para labels de acessibilidade.'),
 
+  /** Identificador Zenith para correlação forense total */
   correlationIdentifier: z.uuid()
     .describe('Identificador inalterável da jornada forense para rastro de telemetria.')
 });
 
 /**
- * @name KineticAuraPulseInputSchema
- * @description O contrato SELADO e IMUTÁVEL carimbado com marca nominal.
+ * @name KineticAuraPulseSchema
+ * @section Selagem Nominal Zenith
+ * CURA: Alinhamento nominal para exportação consistente.
  */
-export const KineticAuraPulseInputSchema = KineticAuraPulseBaseSchema
-  .brand<'KineticAuraPulseInput'>()
+export const KineticAuraPulseSchema = KineticAuraPulseBaseSchema
+  .brand<'KineticAuraPulse'>()
   .readonly();
 
-export type IKineticAuraPulseInput = z.infer<typeof KineticAuraPulseInputSchema>;
+export type IKineticAuraPulse = z.infer<typeof KineticAuraPulseSchema>;

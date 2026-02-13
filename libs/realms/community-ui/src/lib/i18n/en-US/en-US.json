@@ -1,0 +1,17 @@
+{
+  "SovereignCommunityShell": {
+    "citizenAuthorityTitle": "CITIZEN AUTHORITY",
+    "impactMetricLabel": "CONSOLIDATED SOCIAL IMPACT",
+    "sovereignStatusMessage": "Sovereign Identity Protected by Blockchain",
+    "communityFeedTitle": "THE COMMUNITY PULSE",
+    "logShellIgnition": "Community Sovereignty established for trace {correlationIdentifier}.",
+    "emptyFeedMessage": "The regional swarm is currently silent. Be the first voice of truth.",
+    "meritTooltip": "Your standing points represent your historical commitment to public truth."
+  },
+  "CitizenInteraction": {
+    "actionEndorse": "Support this cause",
+    "actionReport": "Flag entropy",
+    "actionShare": "Trigger viral swarm",
+    "statusVerified": "NIST IAL3 CERTIFIED"
+  }
+}
