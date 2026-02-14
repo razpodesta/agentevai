@@ -5,9 +5,9 @@
     "statusLabel_INFORMATIVE": "RELATO COMUNITÁRIO",
     "statusLabel_RESOLVED": "CAUSA RESOLVIDA",
     "blockchainVerifiedLabel": "FÉ PÚBLICA MATEMÁTICA",
-    "locationAria": "Localização da ocorrência: {location}",
-    "logOrganismMounted": "Perícia Visual: Denúncia {identifier} renderizada no território regional.",
+    "locationAria": "Incidente ancorado em {location}",
+    "logOrganismMounted": "Perícia Visual: Denúncia {identifier} selada no território regional.",
     "traceLabel": "RASTRO FORENSE",
-    "errorAduanaFailed": "Falha de ADN: Os dados da denúncia estão corrompidos."
+    "errorAduanaFailed": "Falha de ADN: O rastro da denúncia portava radiação técnica."
   }
 }

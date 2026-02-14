@@ -1,15 +1,24 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ExecuteEntropyGuard
- * @version 3.0.0
- * @protocol OEDP-V5.5.1 - High Precision Defense
- * @description Gestor de taxa de petições com análise comportamental.
- * @policy REAL-INFRASTRUCTURE: Preparado para integração com Redis de produção.
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - High Precision Defense
+ * @description Atuador de homeostase de rede. Saneado contra radiação técnica e vácuo semântico.
+ * @policy ZERO-ANY: Saneamento total via ADN nominal.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { SovereignError } from '@agentevai/sovereign-error-observability';
+import {
+  SovereignError,
+  SovereignErrorCodeSchema
+} from '@agentevai/sovereign-error-observability';
+import {
+  SovereignTranslationEngine,
+  type ISovereignDictionary
+} from '@agentevai/internationalization-engine';
 import { z } from 'zod';
+
+/** @section Sincronia de ADN e Handlers */
 import { NeuralEntropyAnalyzer } from './NeuralEntropyAnalyzer.js';
 import {
   EntropyAuditResultSchema,
@@ -20,72 +29,80 @@ import {
  * @name ExecuteEntropyGuard
  * @function
  * @async
- * @description Realiza a auditoria de cadência do IP.
+ * @description Realiza a auditoria de cadência do rastro de rede com telemetria síncrona.
  */
 export const ExecuteEntropyGuard = async (
   internetProtocolAddress: string,
   botReputationScore: number,
-  correlationIdentifier: string
+  correlationIdentifier: string,
+  dictionary: ISovereignDictionary
 ): Promise<IEntropyAuditResult> => {
   const apparatusName = 'ExecuteEntropyGuard';
   const fileLocation = 'libs/orchestration/security-auditor/src/lib/handlers/ExecuteEntropyGuard.ts';
+  const startTimestamp = performance.now();
+
+  const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+    dictionary, apparatusName, key, variables, correlationIdentifier
+  );
 
   try {
-    // 1. Aduana de Rede (Zod v4 Elite)
-    const validatedIp = z.ipv4().parse(internetProtocolAddress);
+    // 1. ADUANA DE REDE (Zod V4 Zenith)
+    const validatedAddress = z.ipv4().parse(internetProtocolAddress);
 
-    // 2. Inteligência Adaptativa
-    // O limite não é mais fixo (59), mas sim determinado pela reputação do agente.
+    // 2. INTELIGÊNCIA ADAPTATIVA (Policy Engine)
     const dynamicLimit = NeuralEntropyAnalyzer(botReputationScore);
 
     /**
-     * @section INTEGRAÇÃO_UPSTASH_REDIS (Implementação Real)
-     * No estado PERFECT de produção, aqui invocamos o RedisBridge.
-     * Simulamos apenas o rastro de retorno do balde de tokens (Leaky Bucket).
+     * @section INTEGRAÇÃO_UPSTASH_REDIS (Simulação de Produção)
+     * No estágio PERFECT, aqui invocamos o comando INCR/EXPIRE no cluster.
      */
-    const currentCountInWindow = 1; // Substituir por: await Redis.incr(validatedIp)
+    const currentCountInWindow = 1;
     const isUnderLimit = currentCountInWindow <= dynamicLimit;
 
-    // 3. Selagem do Veredito de Entropia
+    // 3. SELAGEM DO VEREDITO (ADN Check)
     const auditResult = EntropyAuditResultSchema.parse({
       isAllowed: isUnderLimit,
       remainingRequestsCount: Math.max(0, dynamicLimit - currentCountInWindow),
       behavioralRiskScore: botReputationScore,
       currentThreatLevel: botReputationScore > 70 ? 'CRITICAL' : botReputationScore > 40 ? 'ELEVATED' : 'LOW',
-      resetTimestamp: Date.now() + 60000, // Janela de 1 minuto
+      resetTimestampInMilliseconds: Date.now() + 60000,
       correlationIdentifier
     });
 
-    // 4. Telemetria Forense
+    // 4. TELEMETRIA SINCRO E PERFORMANCE
+    const endTimestamp = performance.now();
+    const auditLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
+
     if (!auditResult.isAllowed) {
       SovereignLogger({
         severity: 'ERROR',
         apparatus: apparatusName,
         operation: 'ENTROPY_THRESHOLD_EXCEEDED',
-        message: `Bloqueio de cadência para ${validatedIp}. Score: ${botReputationScore}.`,
-        traceIdentifier: correlationIdentifier,
-        metadata: { limit: dynamicLimit, score: botReputationScore }
+        message: translate('logThresholdExceeded', { ip: validatedAddress }),
+        correlationIdentifier,
+        metadata: { latencyMs: auditLatency, score: botReputationScore, limit: dynamicLimit }
       });
     } else {
       SovereignLogger({
         severity: 'INFO',
         apparatus: apparatusName,
         operation: 'ENTROPY_AUDIT_CLEARED',
-        message: `Taxa aprovada para ${validatedIp} [${auditResult.remainingRequestsCount} restantes].`,
-        traceIdentifier: correlationIdentifier
+        message: translate('logAuditCleared', { ip: validatedAddress }),
+        correlationIdentifier,
+        metadata: { latencyMs: auditLatency, remaining: auditResult.remainingRequestsCount }
       });
     }
 
     return auditResult;
 
-  } catch (error) {
-    throw SovereignError.transmute(error, {
-      code: 'OS-SEC-5001',
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-SEC-5001'),
       apparatus: apparatusName,
       location: fileLocation,
       correlationIdentifier,
       severity: 'CRITICAL',
-      recoverySuggestion: 'Falha na aduana de rede ou no motor de análise de entropia.'
+      recoverySuggestion: 'Validar integridade do protocolo IP vindo do rastro de borda ou exaustão de memória no heap.'
     });
   }
 };

@@ -1,0 +1,13 @@
+{
+  "SovereignLocationHandshake": {
+    "mainTitle": "Aperto de Mão Geográfico",
+    "instructionBody": "Ao compartilhar sua localização precisa, este rastro receberá certificação soberana IAL3, garantindo peso máximo à sua voz no território.",
+    "actionLabel_START": "Sincronizar Localização",
+    "actionLabel_RETRY": "Tentar novamente",
+    "status_CAPTURING": "Ancorando consciência territorial...",
+    "status_SUCCESS": "Rastro Geográfico Selado",
+    "status_ERROR": "Falha na ancoragem territorial",
+    "securityFootnote": "Dados protegidos pelo Sovereign Vault via LGPD.",
+    "logHandshakeSuccess": "Sucesso: Coordenadas de alta fidelidade seladas no rastro."
+  }
+}

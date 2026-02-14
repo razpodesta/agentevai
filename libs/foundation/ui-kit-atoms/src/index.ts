@@ -1,15 +1,21 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus UI-Kit-Atoms-Hub
- * @version 2.0.0
- * @protocol OEDP-V6.0 - High Performance Centralized Hub
- * @description Ponto único de exposição (SSOT) para as partículas visuais indivisíveis.
- * Orquestra a saída de Identidade, Segurança e Engajamento sem barris aninhados.
- * @policy ZERO-ABBREVIATIONS: Exportações nominais e autodescritivas.
- * @policy ESM-STRICT: Uso de extensões explícitas (.js) para compatibilidade nativa 2026.
+ * @version 6.5.2
+ * @protocol OEDP-V6.5 - Zenith High Performance Hub
+ * @description Ponto único de exposição para as partículas visuais soberanas.
+ * CURA TS2305: Exportação formal de Branding e Identity Pulse para os Organismos.
  */
 
-/* --- 👤 DIMENSÃO DE IDENTIDADE E PRESENÇA --- */
+/* --- 👤 DIMENSÃO 1: IDENTIDADE E ANCORAGEM --- */
+
+/** @apparatus SovereignHeaderBranding */
+export { SovereignHeaderBranding } from './lib/sovereign-header-branding/SovereignHeaderBranding.js';
+export {
+  SovereignHeaderBrandingSchema,
+  SovereignHeaderBrandingBaseSchema,
+  type ISovereignHeaderBranding
+} from './lib/sovereign-header-branding/schemas/SovereignHeaderBranding.schema.js';
 
 /** @apparatus SovereignIdentityPulse */
 export { SovereignIdentityPulse } from './lib/sovereign-identity-pulse/SovereignIdentityPulse.js';
@@ -18,40 +24,33 @@ export {
   type ISovereignIdentityPulse
 } from './lib/sovereign-identity-pulse/schemas/SovereignIdentityPulse.schema.js';
 
-/** @apparatus PulseIndicator (Sub-átomo cinético) */
+/** @apparatus PulseIndicator */
 export { PulseIndicator } from './lib/sovereign-identity-pulse/PulseIndicator.js';
 export {
   PulseIndicatorInputSchema,
   type IPulseIndicator
 } from './lib/sovereign-identity-pulse/schemas/PulseIndicator.schema.js';
 
-/** @apparatus SovereignHeaderBranding */
-export { SovereignHeaderBranding } from './lib/sovereign-header-branding/SovereignHeaderBranding.js';
 
+/* --- 🛡️ DIMENSÃO 2: SEGURANÇA E CONSENTIMENTO --- */
 
-/* --- 🛡️ DIMENSÃO DE SEGURANÇA E CONSENTIMENTO --- */
-
-/** @apparatus SovereignDiffusionGuard */
 export { SovereignDiffusionGuard } from './lib/sovereign-diffusion-guard/SovereignDiffusionGuard.js';
 export {
   SovereignDiffusionGuardInputSchema,
   type ISovereignDiffusionGuard
 } from './lib/sovereign-diffusion-guard/schemas/SovereignDiffusionGuard.schema.js';
 
+export { SovereignActionQR } from './lib/sovereign-action-qr/SovereignActionQR.js';
+export {
+  SovereignActionQRInputSchema,
+  type ISovereignActionQRInput
+} from './lib/sovereign-action-qr/schemas/SovereignActionQR.schema.js';
 
-/* --- ⚡ DIMENSÃO DE ENGAJAMENTO E AÇÃO --- */
 
-/** @apparatus SovereignEngagementTrigger */
+/* --- ⚡ DIMENSÃO 3: ENGAJAMENTO E VONTADE --- */
+
 export { SovereignEngagementTrigger } from './lib/sovereign-engagement-trigger/SovereignEngagementTrigger.js';
 export {
   SovereignEngagementTriggerSchema,
   type ISovereignEngagementTrigger
 } from './lib/sovereign-engagement-trigger/schemas/SovereignEngagementTrigger.schema.js';
-
-
-/**
- * @note Auditoria Neural: Os arquivos 'index.ts' internos dos subdiretórios foram
- * depreciados e devem ser removidos fisicamente para evitar colisões de rastro.
- * Rastro Forense: Esta centralização reduz a profundidade de busca do compilador,
- * otimizando o tempo de ignição (Cold Start) da aplicação em 0.8ms.
- */

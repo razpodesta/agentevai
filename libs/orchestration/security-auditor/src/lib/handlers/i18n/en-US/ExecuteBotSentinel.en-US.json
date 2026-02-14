@@ -1,8 +1,8 @@
 {
   "ExecuteBotSentinel": {
-    "logInspectionComplete": "Edge inspection completed: category {category} with score of {score}.",
+    "logInspectionComplete": "Edge Inspection: Category {category} with hostility score {score}.",
+    "logAgentMined": "Mined Trace: Legitimate agent {fingerprint} sealed for auditing.",
     "logSecurityFailure": "CRITICAL FAILURE: Security aduana collapsed. Activating preventive block (Default Deny).",
-    "logAgentMined": "Legitimate agent trace mined and sealed: {fingerprint}.",
-    "errorAduanaCorrupted": "DNA Violation: Network trace carries unacceptable technical radiation."
+    "errorAduanaCorrupted": "DNA Violation: The network trace carried unacceptable technical radiation."
   }
 }

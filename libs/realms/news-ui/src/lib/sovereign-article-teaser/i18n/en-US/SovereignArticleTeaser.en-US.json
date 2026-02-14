@@ -6,12 +6,7 @@
     "category_HEALTH": "PUBLIC HEALTH",
     "category_ECONOMY": "REGIONAL ECONOMY",
     "category_GOVERNANCE": "SOVEREIGN GOVERNANCE",
-    "logTeaserImpression": "Visual impression for editorial unit {identifier} successfully captured.",
+    "logTeaserImpression": "Editorial unit {identifier} sealed in the viewport with forensic integrity.",
     "accessibilityAction": "Access full news trace: {title}"
-  },
-  "TeaserMediaZone": {
-    "mediaAriaLabel": "Multimedia resource of type {type} for the editorial category {category}.",
-    "playActionLabel": "Activate kinetic actuator for visual trace playback.",
-    "logMediaRendered": "Media zone sealed for the resource persisted at: {url}."
   }
 }

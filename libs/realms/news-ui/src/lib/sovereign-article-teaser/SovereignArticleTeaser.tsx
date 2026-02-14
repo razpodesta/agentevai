@@ -1,128 +1,170 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignArticleTeaser
- * @version 3.2.0
- * @protocol OEDP-V6.0 - Master Orchestration
- * @description Unidade de destaque editorial. 
- * CURA TS2739: Implementada re-selagem de ADN para TeaserMediaZone.
- * @policy ZERO-ANY: Saneamento total via parsing de ADN nominal.
+ * @version 6.5.8
+ * @protocol OEDP-V6.5 - Zenith Implementation
+ * @description Unidade de destaque editorial que integra mérito do autor.
+ * CURADO: Erradicada radiação de fronteira e colapso de marca nominal (TS2739).
  */
 
 'use client';
 
 import React, { useMemo, useCallback, useEffect, memo } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, ArrowUpRight } from 'lucide-react';
+import { Clock, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import { 
-  SovereignTranslationEngine, 
-  type ISovereignDictionary 
+import {
+  SovereignError,
+  SovereignErrorCodeSchema
+} from '@agentevai/sovereign-error-observability';
+import {
+  SovereignTranslationEngine,
+  type ISovereignDictionary
 } from '@agentevai/internationalization-engine';
 
-/** @section Sincronia de ADN e Sub-Legos */
-import { 
-  SovereignArticleTeaserInputSchema, 
-  type ISovereignArticleTeaserInput 
-} from './schemas/SovereignArticleTeaser.schema.js';
+/** @section Reinos Federados e Sub-Legos */
+import { CitizenAuraCard, CitizenAuraCardSchema } from '@agentevai/community-ui';
 import { TeaserMediaZone } from './components/TeaserMediaZone.js';
 import { TeaserMediaZoneInputSchema } from './components/schemas/TeaserMediaZone.schema.js';
 
-/** @section Matriz de Soberania Visual */
-const CATEGORY_THEME_MAP: Readonly<Record<string, string>> = Object.freeze({
-  INFRASTRUCTURE: 'text-blue-500 bg-blue-500/10',
-  SECURITY: 'text-red-500 bg-red-500/10',
-  HEALTH: 'text-emerald-500 bg-emerald-500/10',
-  ECONOMY: 'text-amber-500 bg-amber-500/10',
-  GOVERNANCE: 'text-brand-action bg-brand-action/10'
+/** @section ADN Local */
+import {
+  SovereignArticleTeaserSchema,
+  type ISovereignArticleTeaser
+} from './schemas/SovereignArticleTeaser.schema.js';
+
+const CATEGORY_THEME_REGISTRY: Readonly<Record<string, string>> = Object.freeze({
+  INFRASTRUCTURE: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
+  SECURITY: 'text-red-500 bg-red-500/10 border-red-500/20',
+  HEALTH: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
+  ECONOMY: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
+  GOVERNANCE: 'text-brand-action bg-brand-action/10 border-brand-action/20'
 });
 
-const SovereignArticleTeaserComponent: React.FC<ISovereignArticleTeaserInput> = (properties) => {
+const SovereignArticleTeaserComponent: React.FC<ISovereignArticleTeaser> = (properties) => {
   const apparatusName = 'SovereignArticleTeaser';
+  const fileLocation = 'libs/realms/news-ui/src/lib/sovereign-article-teaser/SovereignArticleTeaser.tsx';
+  const startTimestamp = performance.now();
 
-  // 1. ADUANA DE ADN (Validando integridade e fixando rastro forense)
-  const data = useMemo(() => 
-    SovereignArticleTeaserInputSchema.parse(properties), 
-  [properties]);
+  try {
+    // 1. ADUANA DE ADN (Ingresso Seguro e Fixação de Rastro)
+    const data = SovereignArticleTeaserSchema.parse(properties);
+    const {
+      identifier, categoryIdentifier, dictionary, correlationIdentifier,
+      authorSnapshot, narrativeExcerpt, title, mediaResource,
+      readingTimeInMinutes, publishedAt
+    } = data;
 
-  // 2. RESOLUÇÃO SEMÂNTICA
-  const translate = useCallback((semanticKey: string, variables = {}) => {
-    return SovereignTranslationEngine.translate(
-      data.dictionary as unknown as ISovereignDictionary,
-      apparatusName,
-      semanticKey,
-      variables,
-      data.correlationIdentifier
-    );
-  }, [data.dictionary, data.correlationIdentifier]);
+    // 2. ORQUESTRAÇÃO DE DICIONÁRIO
+    const sovereignDictionary = useMemo(() => ({
+      metadata: { locale: 'pt-BR', version: '6.5.8' },
+      content: dictionary
+    } as unknown as ISovereignDictionary), [dictionary]);
 
-  // 3. PREPARAÇÃO VISUAL (Cura TS7053)
-  const themeClass = useMemo(() => 
-    CATEGORY_THEME_MAP[data.categoryKey as unknown as string] || CATEGORY_THEME_MAP['GOVERNANCE'],
-  [data.categoryKey]);
+    const translateLabel = useCallback((semanticKey: string, variables = {}) => {
+      return SovereignTranslationEngine.translate(
+        sovereignDictionary,
+        apparatusName,
+        semanticKey,
+        variables,
+        correlationIdentifier
+      );
+    }, [sovereignDictionary, correlationIdentifier]);
 
-  /**
-   * @section RE-SELAGEM DE ADN (Cura TS2739)
-   * Criamos o objeto de propriedades para o filho e aplicamos o Schema dele.
-   * Isso injeta o símbolo [$brand] e garante as propriedades de rastro obrigatórias.
-   */
-  const mediaZoneProperties = useMemo(() => {
-    return TeaserMediaZoneInputSchema.parse({
-      mediaType: data.media.type,
-      mediaUrl: data.media.url,
-      categoryLabel: translate(`category_${data.categoryKey}`),
-      themeClass: themeClass,
-      dictionary: data.dictionary,
-      correlationIdentifier: data.correlationIdentifier
-    });
-  }, [data, themeClass, translate]);
+    // 3. TELEMETRIA SINCRO E PERFORMANCE (Pilar VI)
+    useEffect(() => {
+      const endTimestamp = performance.now();
+      const ignitionLatency = parseFloat((endTimestamp - startTimestamp).toFixed(4));
 
-  // 4. TELEMETRIA DE IMPRESSÃO
-  useEffect(() => {
-    SovereignLogger({
-      severity: 'INFO',
-      apparatus: apparatusName,
-      operation: 'TEASER_RENDERED',
-      message: `Teaser editorial [${data.identifier.substring(0, 8)}] selado no viewport.`,
-      correlationIdentifier: data.correlationIdentifier
-    });
-  }, [data.identifier, data.correlationIdentifier]);
+      SovereignLogger({
+        severity: 'INFO',
+        apparatus: apparatusName,
+        operation: 'TEASER_STABILIZED',
+        message: translateLabel('logTeaserImpression', { identifier: identifier.substring(0, 8) }),
+        correlationIdentifier,
+        metadata: { latencyMs: ignitionLatency, category: categoryIdentifier }
+      });
+    }, [identifier, correlationIdentifier, categoryIdentifier, translateLabel, startTimestamp]);
 
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="group relative flex flex-col gap-6 p-4 rounded-xs transition-all duration-700 hover:bg-neutral-50 dark:hover:bg-white/2 border border-transparent hover:border-neutral-100 dark:hover:border-white/5"
-    >
-      {/* 🖼️ ZONA DE MÍDIA: CURA TS2739 (Uso do rastro Branded) */}
-      <TeaserMediaZone {...mediaZoneProperties} />
+    // 4. RESOLUÇÃO DETERMINÍSTICA DE TEMA (Cura TS7053)
+    const activeCategoryKey = categoryIdentifier as unknown as string;
+    const themeClass = CATEGORY_THEME_REGISTRY[activeCategoryKey] || CATEGORY_THEME_REGISTRY['GOVERNANCE'];
 
-      {/* 📝 BLOCO NARRATIVO */}
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between text-[10px] font-mono font-black uppercase tracking-widest text-neutral-400">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-brand-action">
-              <Clock size={12} strokeWidth={3} />
-              {translate('readingTimeSuffix', { minutes: data.readingTimeInMinutes })}
-            </span>
-            <span className="h-1 w-1 rounded-full bg-neutral-300 dark:bg-white/20" />
-            <span>{new Date(data.publishedAt).toLocaleDateString()}</span>
-          </div>
-          <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 text-brand-action transition-all duration-500" />
+    /**
+     * @section RE-SELAGEM DE ADN PARA FILHOS (Cura TS2739)
+     * Injetamos a marca nominal e o rastro forense nos sub-aparatos.
+     */
+    const mediaZoneProperties = useMemo(() => TeaserMediaZoneInputSchema.parse({
+      mediaType: mediaResource.resourceType,
+      mediaUrl: mediaResource.resourceUniversalResourceLocator,
+      categoryLabel: translateLabel(`category_${activeCategoryKey}`),
+      themeClass,
+      dictionary,
+      correlationIdentifier
+    }), [mediaResource, activeCategoryKey, translateLabel, themeClass, dictionary, correlationIdentifier]);
+
+    const authorProperties = useMemo(() => CitizenAuraCardSchema.parse({
+      ...authorSnapshot,
+      dictionary,
+      correlationIdentifier
+    }), [authorSnapshot, dictionary, correlationIdentifier]);
+
+    return (
+      <motion.article
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="group relative flex flex-col gap-8 p-8 rounded-xs transition-all duration-1000 bg-white dark:bg-neutral-950 border border-neutral-100 dark:border-white/5 shadow-sm hover:shadow-2xl antialiased"
+      >
+        <TeaserMediaZone {...mediaZoneProperties} />
+
+        <div className="scale-90 origin-left -mb-4 opacity-90 group-hover:opacity-100 transition-opacity duration-700">
+           <CitizenAuraCard {...authorProperties} />
         </div>
 
-        <h3 className="text-2xl font-serif font-black text-brand-primary dark:text-white leading-[1.05] tracking-tighter group-hover:text-brand-action transition-colors duration-500">
-          {data.title}
-        </h3>
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center justify-between text-[10px] font-mono font-black uppercase tracking-[0.4em] text-neutral-400">
+            <div className="flex items-center gap-5">
+              <span className="flex items-center gap-2 text-brand-action">
+                <Clock size={14} strokeWidth={3} />
+                {translateLabel('readingTimeSuffix', { minutes: readingTimeInMinutes })}
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-neutral-200 dark:bg-white/10" />
+              <span className="flex items-center gap-2">
+                 <ShieldCheck size={14} className="text-green-500" />
+                 {new Date(publishedAt).toLocaleDateString()}
+              </span>
+            </div>
+            <ArrowUpRight size={20} className="opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 text-brand-action transition-all duration-700" />
+          </div>
 
-        <p className="text-base leading-relaxed text-neutral-500 dark:text-neutral-400 line-clamp-3 font-sans opacity-90 group-hover:opacity-100 transition-opacity">
-          {data.excerpt}
-        </p>
-      </div>
+          <h3 className="text-3xl md:text-4xl font-serif font-black text-brand-primary dark:text-white leading-[1.05] tracking-tighter group-hover:text-brand-action transition-colors duration-700">
+            {title}
+          </h3>
 
-      <a href={`/noticia/${data.identifier}`} className="absolute inset-0 z-20" aria-label={data.title} />
-    </motion.article>
-  );
+          <p className="text-lg leading-relaxed text-neutral-500 dark:text-neutral-400 line-clamp-3 font-sans opacity-90 group-hover:opacity-100 transition-opacity duration-700">
+            {narrativeExcerpt}
+          </p>
+        </div>
+
+        <a
+          href={`/noticia/${identifier}`}
+          className="absolute inset-0 z-20"
+          aria-label={translateLabel('accessibilityAction', { title })}
+        />
+      </motion.article>
+    );
+
+  } catch (caughtError) {
+    throw SovereignError.transmute(caughtError, {
+      code: SovereignErrorCodeSchema.parse('OS-APP-7002'),
+      apparatus: apparatusName,
+      location: fileLocation,
+      correlationIdentifier: properties.correlationIdentifier,
+      severity: 'HIGH'
+    });
+  }
 };
 
 export const SovereignArticleTeaser = memo(SovereignArticleTeaserComponent);

@@ -1,0 +1,10 @@
+{
+  "css.customData": [],
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.experimental.classRegex": [
+    ["@apply\\s+([^;]*);", "'([^']*)'"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "css"
+  }
+}

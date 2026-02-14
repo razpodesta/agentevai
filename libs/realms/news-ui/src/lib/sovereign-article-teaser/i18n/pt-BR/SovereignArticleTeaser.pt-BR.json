@@ -6,12 +6,7 @@
     "category_HEALTH": "SAÚDE COLETIVA",
     "category_ECONOMY": "ECONOMIA REGIONAL",
     "category_GOVERNANCE": "GOVERNANÇA SOBERANA",
-    "logTeaserImpression": "Impressão visual da unidade editorial {identifier} capturada com sucesso.",
+    "logTeaserImpression": "Unidade editorial {identifier} selada no viewport com integridade forense.",
     "accessibilityAction": "Acessar rastro completo da notícia: {title}"
-  },
-  "TeaserMediaZone": {
-    "mediaAriaLabel": "Recurso multimídia do tipo {type} para a categoria editorial {category}.",
-    "playActionLabel": "Acionar atuador cinético para reprodução do rastro visual.",
-    "logMediaRendered": "Zona de mídia selada para o recurso persistido em: {url}."
   }
 }

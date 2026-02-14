@@ -1,38 +1,37 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus ExecuteBotSentinelSchema
- * @version 4.0.0
- * @protocol OEDP-V6.0 - Forensic Precision
- * @description ADN para inspeção behaviorista de borda. 
- * Implementa técnica de selagem nominal para erradicar falhas de contrato.
+ * @apparatus ExecuteBotSentinel.schema
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN de elite para inspeção behaviorista de borda.
  */
 
 import { z } from 'zod';
 
-/** 
- * @section Dimensões Nominais 
+/**
+ * @section Dimensões Nominais (Branded)
  */
 export const UserAgentFingerprintSchema = z.string()
   .length(64)
   .regex(/^[a-f0-9]+$/)
-  .describe('Assinatura SHA-256 única gerada no cofre para o rastro do agente.')
+  .describe('Assinatura digital única do agente gerada no cofre.')
   .brand<'UserAgentFingerprint'>();
 
 export type UserAgentFingerprint = z.infer<typeof UserAgentFingerprintSchema>;
 
 /**
  * @name BotDetectionResultBaseSchema
- * @description Estrutura fundamental do veredito para auditoria parcial.
+ * @description Estrutura fundamental para vereditos de segurança.
  */
 export const BotDetectionResultBaseSchema = z.object({
   isSuspicious: z.boolean()
-    .describe('Sinalizador booleano de ameaça detectada na aduana.'),
+    .describe('Sinalizador booleano de detecção de ameaça.'),
 
   botReputationScore: z.number().min(0).max(100)
-    .describe('Índice de hostilidade (0 = Cidadão, 100 = Ameaça Imediata).'),
+    .describe('Índice de hostilidade (0 = Confiável, 100 = Bloqueio Imediato).'),
 
   threatCategory: z.enum(['CLEAN_BROWSER', 'KNOWN_CRAWLER', 'MALICIOUS_AUTOMATION', 'HEADLESS_SNEAK'])
-    .describe('Classificação taxonômica da ameaça para ruteamento de defesa.'),
+    .describe('Classificação taxonômica do rastro de rede.'),
 
   userAgentFingerprint: UserAgentFingerprintSchema,
 
@@ -42,7 +41,7 @@ export const BotDetectionResultBaseSchema = z.object({
 
 /**
  * @name BotDetectionResultSchema
- * @description O contrato SELADO para despacho institucional.
+ * @section Selagem Nominal Zenith
  */
 export const BotDetectionResultSchema = BotDetectionResultBaseSchema
   .brand<'BotDetectionResult'>()

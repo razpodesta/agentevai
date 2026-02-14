@@ -1,15 +1,17 @@
-const { join } = require('path');
-
-// Note: If you use library-specific PostCSS/Tailwind configuration then you should remove the `postcssConfig` build
-// option from your application's configuration (i.e. project.json).
-//
-// See: https://nx.dev/guides/using-tailwind-css-in-react#step-4:-applying-configuration-to-libraries
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus PostCSSConfigZenith
+ * @version 6.5.0
+ * @protocol OEDP-V6.5
+ * @description Configuração de motor CSS para Tailwind v4.
+ * CURADO: Migração para o plugin CSS-first e erradicação de referências v3.
+ */
 
 module.exports = {
   plugins: {
-    tailwindcss: {
-      config: join(__dirname, 'tailwind.config.js'),
-    },
-    autoprefixer: {},
+    // Na v4, o plugin extrai a configuração diretamente do seu global.css
+    '@tailwindcss/postcss': {},
+    // Essencial para suporte a navegadores antigos em conformidade com o Manifesto 0009
+    'autoprefixer': {},
   },
 };

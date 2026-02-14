@@ -1,0 +1,13 @@
+{
+  "SovereignLocationHandshake": {
+    "mainTitle": "Geographic Handshake",
+    "instructionBody": "By sharing your precise location, this trace will receive IAL3 sovereign certification, ensuring maximum weight to your voice in the territory.",
+    "actionLabel_START": "Sync Location",
+    "actionLabel_RETRY": "Retry Capture",
+    "status_CAPTURING": "Anchoring territorial consciousness...",
+    "status_SUCCESS": "Geographic Trace Sealed",
+    "status_ERROR": "Territorial anchoring failure",
+    "securityFootnote": "Data protected by Sovereign Vault via GPDR/LGPD.",
+    "logHandshakeSuccess": "Success: High-fidelity coordinates sealed in the trace."
+  }
+}

@@ -1,10 +1,12 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ESLintSovereignRules
- * @version 3.0.0
- * @protocol OEDP-V5.5.2 - Global Stabilization
- * @description Constitución suprema de linting. Define las fronteras diplomáticas
- * entre Reinos (Realms) y garantiza la pureza del ADN técnico (Zero Abbreviations).
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Zenith Editorial Stabilization
+ * @description Constituição suprema de linting. Define as fronteiras diplomáticas
+ * entre Reinos (Realms) e garante a pureza do ADN técnico (Zero Abbreviations).
+ * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
+ * @policy BOUNDARY-SOVEREIGNTY: Policiamento estrito de dependências via Nx.
  */
 
 import nx from '@nx/eslint-plugin';
@@ -25,18 +27,18 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      /* --- 🛡️ SECCIÓN 1: SOBERANÍA DE TIPADO (ZERO ANY) --- */
+      /* --- 🛡️ SEÇÃO 1: SOBERANIA DE TIPAGEM (ZERO ANY) --- */
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { 
+        {
           argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_' 
+          varsIgnorePattern: '^_'
         },
       ],
       'prefer-const': 'error',
 
-      /* --- 🧱 SECCIÓN 2: POLICIAMIENTO DE FRONTERAS (NX BOUNDARIES) --- */
+      /* --- 🧱 SEÇÃO 2: POLICIAMENTO DE FRONTEIRAS (NX BOUNDARIES) --- */
       '@nx/enforce-module-boundaries': [
         'error',
         {
@@ -45,27 +47,27 @@ export default [
           depConstraints: [
             {
               sourceTag: 'scope:foundation',
-              onlyDependOnLibsWithTags: ['scope:foundation'],
+              onlyDependOnLibsWithTags: ['scope:foundation']
             },
             {
               sourceTag: 'scope:integrations',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations',
+                'scope:integrations'
               ],
             },
             {
               sourceTag: 'scope:geography',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations',
+                'scope:integrations'
               ],
             },
             {
               sourceTag: 'scope:identity',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations',
+                'scope:integrations'
               ],
             },
             {
@@ -73,7 +75,7 @@ export default [
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
                 'scope:integrations',
-                'scope:identity',
+                'scope:identity'
               ],
             },
             {
@@ -83,7 +85,7 @@ export default [
                 'scope:integrations',
                 'scope:geography',
                 'scope:identity',
-              ],
+                'scope:community'               ],
             },
             {
               sourceTag: 'scope:complaints',
@@ -111,25 +113,25 @@ export default [
               sourceTag: 'scope:marketing',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations',
+                'scope:integrations'
               ],
             },
             {
               sourceTag: 'scope:orchestration',
-              onlyDependOnLibsWithTags: ['*'], // Inteligencia transversal
+              onlyDependOnLibsWithTags: ['*']
             },
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['*'],
+              onlyDependOnLibsWithTags: ['*']
             },
           ],
         },
       ],
 
-      /* --- 💎 SECCIÓN 3: HIGIENE FORENSE (ZERO ABBREVIATIONS) --- */
+      /* --- 💎 SEÇÃO 3: HIGIENE FORENSE (ZERO ABBREVIATIONS) --- */
       'no-restricted-syntax': [
         'error',
-        /* Erradicación de identificadores técnicos cortos */
+        /* Erradicação de identificadores técnicos curtos (Radiação Técnica) */
         {
           selector: "VariableDeclarator[id.name='id'], Parameter[name='id'], Property[key.name='id'], AssignmentProperty[key.name='id']",
           message: "Abreviação proibida: Use 'identifier' em vez de 'id'.",
@@ -166,19 +168,23 @@ export default [
           selector: "VariableDeclarator[id.name='ctx'], Parameter[name='ctx']",
           message: "Abreviação proibida: Use 'context' em vez de 'ctx'.",
         },
-        /* Erradicación de términos UI genéricos */
+        /* Erradicação de termos UI genéricos e callbacks amorfos */
         {
           selector: "VariableDeclarator[id.name='btn'], Parameter[name='btn']",
-          message: "Abreviação proibida: Use 'button' o 'actionTrigger'.",
+          message: "Abreviação proibida: Use 'button' ou 'actionTrigger'.",
         },
         {
           selector: "VariableDeclarator[id.name='alt'], Parameter[name='alt']",
-          message: "Abreviação proibida: Use 'alternateText' para accesibilidad.",
+          message: "Abreviação proibida: Use 'alternateText' para acessibilidade soberana.",
         },
         {
           selector: "VariableDeclarator[id.name='cb'], Parameter[name='cb']",
-          message: "Abreviação proibida: Use 'callback' o 'handler'.",
+          message: "Abreviação proibida: Use 'callback' ou 'handler'.",
         },
+        {
+          selector: "VariableDeclarator[id.name='t'], Parameter[name='t']",
+          message: "Abreviação proibida: Use 'translate' ou 'translateLabel'.",
+        }
       ],
     },
   },

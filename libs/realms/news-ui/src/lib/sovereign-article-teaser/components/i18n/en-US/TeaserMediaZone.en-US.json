@@ -1,7 +1,7 @@
 {
   "TeaserMediaZone": {
-    "mediaAriaLabel": "Multimedia resource of type {type} for the editorial category {category}.",
     "playActionLabel": "Activate kinetic actuator for visual trace playback.",
-    "logMediaRendered": "Media zone sealed for the resource persisted at: {url}."
+    "logMediaRendered": "Media zone sealed for the resource persisted at: {url}.",
+    "mediaAriaLabel": "Multimedia resource of type {type} for the editorial category {category}."
   }
 }

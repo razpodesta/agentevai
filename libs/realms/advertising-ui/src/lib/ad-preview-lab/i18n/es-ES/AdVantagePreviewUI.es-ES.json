@@ -1,16 +1,10 @@
 {
   "AdVantagePreviewUI": {
-    "labTitle": "Laboratorio de Inteligencia Ad-Vantage",
-    "labSubtitle": "Simulador de Impacto Regional: {scope}",
-    "previewMode_LIVE": "Modo de Previsualización en Tiempo Real",
-    "ethicsSeal": "ANUNCIO ÉTICO CERTIFICADO: Sin rastreo invasivo.",
-    "advertiserLabel": "Patrocinado por: {brand}",
-    "format_EDITORIAL_NATIVE_BANNER": "Banner Editorial Nativo",
-    "format_SPONSORED_FORENSIC_REPORT": "Informe Forense Patrocinado",
-    "format_CITIZEN_REWARD_AD": "Anuncio de Recompensa Ciudadana",
-    "format_GOOGLE_ADSENSE_FALLBACK": "Google AdSense (Resiliencia)",
-    "format_REGIONAL_STORY_INJECTION": "Inyección de Story Regional",
-    "logFormatSwitched": "Simulador transmutado al formato {format} en el territorio {region}.",
-    "logLabIgnition": "Rastro de publicidad soberana iniciado para el sector {sector}."
+    "labTitle": "LABORATORIO AD-VANTAGE",
+    "labSubtitle": "Simulador Regional: {scope}",
+    "previewMode_LIVE": "Visualización en Tiempo Real",
+    "ethicsSeal": "PUBLICIDAD ÉTICA: Sin rastreo invasivo.",
+    "logLabIgnition": "Laboratorio iniciado para el sector {sector}.",
+    "logFormatSwitched": "Formato cambiado a {format} en {region}."
   }
 }

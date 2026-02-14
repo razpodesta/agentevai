@@ -1,32 +1,40 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus TeaserMediaZoneSchema
- * @version 1.0.0
- * @protocol OEDP-V6.0 - Visual Precision
- * @description ADN de fronteira para a zona de mídia editorial.
+ * @apparatus TeaserMediaZone.schema
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN de elite para a zona de mídia editorial. Sincronizado para Zod V4.
  */
 
 import { z } from 'zod';
 
+/**
+ * @name TeaserMediaZoneInputSchema
+ * @description Aduana de entrada estrita para a unidade visual.
+ */
 export const TeaserMediaZoneInputSchema = z.object({
-  mediaType: z.enum(['IMAGE', 'VIDEO', 'AUDIO'])
-    .describe('Taxonomia do recurso multimídia.'),
+  resourceType: z.enum(['IMAGE', 'VIDEO', 'AUDIO'])
+    .describe('Taxonomia do recurso multimídia para decisão de renderização.'),
 
-  mediaUrl: z.string().url()
-    .describe('Localização canônica do rastro visual.'),
+  resourceUniversalResourceLocator: z.string().url()
+    .describe('Localização canônica da prova visual no storage soberano.'),
 
-  categoryLabel: z.string().min(2)
-    .describe('Rótulo humanizado da editoria.'),
+  blurDataUrlSnapshot: z.string().optional()
+    .describe('Rastro binário Base64 para carregamento progressivo LCP.'),
 
-  /** @section Cura TS2322 */
+  categoryLabel: z.string()
+    .min(2)
+    .describe('Rótulo humanizado da editoria resolvido pelo orquestrador pai.'),
+
   themeClass: z.string()
-    .describe('Assinatura cromática baseada na matriz de soberania.'),
+    .describe('Assinatura cromática baseada na matriz de soberania visual.'),
 
-  dictionary: z.record(z.string(), z.unknown())
-    .describe('Silo linguístico regionalizado para o componente.'),
+  /** Silo linguístico tipado para o aparato */
+  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
+    .describe('Dicionário estruturado (Apparatus -> Key -> Value).'),
 
   correlationIdentifier: z.uuid()
-    .describe('Identificador inalterável da jornada forense.')
+    .describe('Identificador Zenith para correlação total do rastro forense.')
 })
 .brand<'TeaserMediaZoneInput'>()
 .readonly();

@@ -1,8 +1,8 @@
 {
   "ExecuteBotSentinel": {
-    "logInspectionComplete": "Inspeção de borda concluída: categoria {category} com score de {score}.",
-    "logSecurityFailure": "FALHA CRÍTICA: Aduana de segurança colapsou. Ativando bloqueio preventivo (Default Deny).",
-    "logAgentMined": "Rastro de agente legítimo minerado e selado: {fingerprint}.",
-    "errorAduanaCorrupted": "Violação de ADN: O rastro de rede porta radiação técnica inaceitável."
+    "logInspectionComplete": "Inspeção de Borda: Categoria {category} com score de hostilidade {score}.",
+    "logAgentMined": "Rastro Minerado: Agente legítimo {fingerprint} selado para auditoria.",
+    "logSecurityFailure": "FALHA CRÍTICA: Colapso na aduana de segurança. Ativando bloqueio preventivo (Default Deny).",
+    "errorAduanaCorrupted": "Violação de ADN: O rastro de rede portava radiação técnica inaceitável."
   }
 }
