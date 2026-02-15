@@ -1,0 +1,27 @@
+{
+  "name": "@agentevai/financial-bridge",
+  "version": "1.1.0",
+  "description": "Vetor Financeiro: Orquestrador de transações Pix (BACEN) e gateways auxiliares com selagem de PII.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.5"
+  },
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "TREASURY_GATEWAY"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "zod": "^4.3.6"
+  },
+  "peerDependencies": {
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "@agentevai/apparatus-metadata-registry": "workspace:*",
+    "@agentevai/types-common": "workspace:*"
+  }
+}

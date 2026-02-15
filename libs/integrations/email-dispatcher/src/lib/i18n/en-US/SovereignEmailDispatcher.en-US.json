@@ -1,0 +1,8 @@
+{
+  "SovereignEmailDispatcher": {
+    "logDespatchIgnited": "Messaging Vector: Initiating institutional dispatch for trace {identifier}.",
+    "logDespatchSuccess": "Delivery Success: Email sealed and sent via Resend ID: {id}.",
+    "errorProviderFailure": "Messaging Collapse: The external provider rejected the data payload.",
+    "statusVaultCheck": "PII Shielding: Email trace verified against the Sovereign Data Vault."
+  }
+}

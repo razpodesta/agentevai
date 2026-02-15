@@ -1,69 +1,37 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus SovereignArticleTeaser.schema
- * @version 6.5.8
- * @protocol OEDP-V6.5 - Master DNA
- * @description ADN mestre para teasers de notícias. Sincronizado para Zod V4 Zenith.
+ * @apparatus SovereignArticleTeaserSchema
+ * @version 6.6.2
+ * @protocol OEDP-V6.5 - Master DNA Zenith
+ * @description ADN mestre para teasers com suporte a acessibilidade contextual e rastro forense.
  */
 
 import { z } from 'zod';
 import { CitizenAuraCardSchema } from '@agentevai/community-ui';
 
-/**
- * @name TeaserMediaSchema
- */
 export const TeaserMediaSchema = z.object({
-  resourceType: z.enum(['IMAGE', 'VIDEO', 'AUDIO'])
-    .describe('Taxonomia do recurso visual para renderização de elite.'),
-
-  resourceUniversalResourceLocator: z.string().url()
-    .describe('Localização canônica da prova visual.'),
-
+  resourceType: z.enum(['IMAGE', 'VIDEO', 'AUDIO']),
+  resourceUniversalResourceLocator: z.string().url(),
+  /** @section SEO_AUTHORITY_DIRECTIVE */
+  contextualAccessibilityDescription: z.string()
+    .min(10).max(250)
+    .describe('Descrição detalhada do fato para indexação E-E-A-T.'),
   blurDataUrlSnapshot: z.string().optional()
-    .describe('Rastro binário Base64 para otimização de LCP (Largest Contentful Paint).')
 }).readonly();
 
-/**
- * @name SovereignArticleTeaserBaseSchema
- */
-export const SovereignArticleTeaserBaseSchema = z.object({
-  identifier: z.uuid()
-    .describe('Identificador inalterável da notícia no rastro de soberania.'),
-
-  categoryIdentifier: z.enum(['INFRASTRUCTURE', 'SECURITY', 'HEALTH', 'ECONOMY', 'GOVERNANCE'])
-    .describe('Domínio editorial validado para ruteamento cinético.'),
-
-  /** Identidade Soberana do Autor (Pilar I) */
-  authorSnapshot: CitizenAuraCardSchema
-    .describe('Rastro de identidade e prestígio de quem selou a notícia.'),
-
-  title: z.string()
-    .min(10).max(120)
-    .describe('Título de impacto visual em conformidade com o F-Pattern.'),
-
-  narrativeExcerpt: z.string()
-    .min(20).max(180)
-    .describe('Narrativa resumida para engajamento imediato no enxame regional.'),
-
+export const SovereignArticleTeaserSchema = z.object({
+  identifier: z.uuid(),
+  categoryIdentifier: z.enum(['INFRASTRUCTURE', 'SECURITY', 'HEALTH', 'ECONOMY', 'GOVERNANCE']),
+  authorSnapshot: CitizenAuraCardSchema,
+  title: z.string().min(10).max(120),
+  narrativeExcerpt: z.string().min(20).max(180),
   mediaResource: TeaserMediaSchema,
-
   readingTimeInMinutes: z.number().int().positive(),
-
   publishedAt: z.string().datetime(),
-
-  /** Silo linguístico regionalizado */
-  dictionary: z.record(z.string(), z.record(z.string(), z.string()))
-    .describe('Dicionário estruturado (Apparatus -> Key -> Value).'),
-
+  dictionary: z.record(z.string(), z.record(z.string(), z.string())),
   correlationIdentifier: z.uuid()
-    .describe('Identificador Zenith para correlação forense total.')
-});
-
-/**
- * @name SovereignArticleTeaserSchema
- */
-export const SovereignArticleTeaserSchema = SovereignArticleTeaserBaseSchema
-  .brand<'SovereignArticleTeaser'>()
-  .readonly();
+})
+.brand<'SovereignArticleTeaser'>()
+.readonly();
 
 export type ISovereignArticleTeaser = z.infer<typeof SovereignArticleTeaserSchema>;

@@ -1,0 +1,8 @@
+{
+  "useSovereignMutation": {
+    "logMutationIgnited": "Act of Will: Initiating transmutation trace for {identifier}.",
+    "logMutationSuccess": "Will Synchrony: The trace {identifier} was successfully sealed in the swarm.",
+    "errorMutationFailed": "Intent Collapse: Critical failure while sealing the citizen's will.",
+    "statusOptimisticActive": "Instant Sovereignty: Reflecting visual change before bunker confirmation."
+  }
+}

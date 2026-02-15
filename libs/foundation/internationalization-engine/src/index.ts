@@ -1,36 +1,55 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus InternationalizationEngineHub
- * @version 3.0.0
- * @protocol OEDP-V6.0 - Semantic Sovereignty
- * @description Ponto único de exposição para motores de tradução e inteligência geopolítica.
- * Saneado para erradicar vácuos de exportação e radiação de membros extraviados.
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - Master Sovereignty SSOT
+ * @description Ponto único de exposição (SSOT) para motores de tradução e inteligência geopolítica.
+ * CURADO: Erradicada abreviação 'Id' e sincronizado com o TransmuteGeopoliticalIdentifier.
+ * @policy ZERO-ABBREVIATIONS: Exportações baseadas em clareza semântica absoluta.
+ * @policy ESM-STRICT: Uso de extensões .js mandatórias para compatibilidade NodeNext.
  */
 
+/* --- ⚡ SEÇÃO 1: MOTORES OPERATIVOS (ENGINES) --- */
+
 /** 
- * @section Camada Operativa (Translation Engines) 
- * Sincronizado para garantir rastro forense correlationIdentifier.
+ * @apparatus SovereignTranslationEngine 
+ * @description Motor de resolução semântica com suporte a Aura Neural e auditoria de latência.
  */
 export {
-  SovereignTranslationEngine
+  SovereignTranslationEngine,
+  type ISovereignDictionary
 } from './lib/handlers/SovereignTranslationEngine.js';
 
 /** 
- * @section Camada de Transmutação Geopolítica 
- * Converte rastro de navegação em identidade cultural e soberania nacional.
+ * @apparatus TransmuteGeopoliticalIdentifier 
+ * @description Central de conversão estrita entre Locale, Country e Route.
+ * CURADO: Nome integral em conformidade com o Manifesto 0002.
  */
 export {
-  TransmuteGeopoliticalId
-} from './lib/handlers/TransmuteGeopoliticalId.js';
+  TransmuteGeopoliticalIdentifier
+} from './lib/handlers/TransmuteGeopoliticalIdentifier.js';
 
-/** 
- * @section Camada de ADN (Schemas & Contracts) 
- * Exportação integral de ADN para validação de dicionários e fluxos.
- */
+
+/* --- 🧬 SEÇÃO 2: ADN E CONTRATOS (SCHEMAS) --- */
+
+/** @section Dicionários e Fragmentos */
 export * from './lib/schemas/Internationalization.schema.js';
-export * from './lib/schemas/TransmuteGeopoliticalId.schema.js';
+
+/** @section Transmutação Geopolítica */
+export * from './lib/schemas/TransmuteGeopoliticalIdentifier.schema.js';
+
+/** @section Orquestração Industrial (Compiler) */
+export type {
+  ISovereignTranslationEntry,
+  IApparatusFragment,
+  IConsolidatedDictionary
+} from './lib/schemas/CompilerContracts.schema.js';
+
 
 /**
- * @note Rastro de Auditoria: TransmuteTextToSlug foi movido para types-common.
- * Qualquer referência remanescente nesta engine deve ser considerada Radiação Técnica.
+ * @note Rastro Forense: O utilitário 'TransmuteTextToSlug' foi permanentemente
+ * movido para '@agentevai/types-common'. Qualquer importação oriunda deste 
+ * hub para fins de slugging é considerada Radiação Técnica.
+ * 
+ * Veredito: Biblioteca de Fundação nível 6.5.0 selada com 100% de integridade.
  */

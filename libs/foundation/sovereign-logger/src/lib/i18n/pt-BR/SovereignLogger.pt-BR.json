@@ -1,7 +1,7 @@
 {
   "SovereignLogger": {
-    "TELEMETRY_ADN_VIOLATION": "O log enviado não respeita o contrato de integridade técnica.",
-    "ORPHAN_TRACE_ALERT": "Alerta: Pulso de telemetria sem identificador de correlação.",
-    "CRITICAL_ENGINE_SHUTDOWN": "Falha catastrófica no motor de saída de dados."
+    "errorAduanaViolation": "Violação de ADN: O log enviado não respeita o contrato de integridade técnica.",
+    "logPulseEmitted": "Pulso de telemetria emitido pelo aparato {apparatus} com latência de {latency}ms.",
+    "statusObservabilityActive": "OBSERVABILIDADE ATIVA: Rastro forense sincronizado com o Cartório Técnico."
   }
 }

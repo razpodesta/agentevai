@@ -1,7 +1,7 @@
 {
   "LookupTerritorialAnchor": {
     "logLocalAnchor": "Ambiente de desenvolvimento detectado. Ancoragem local ignificada para preservação de rastro.",
-    "logExternalNation": "Acesso originado fora da soberania brasileira: {countryCode}. Ativando modo global.",
+    "logExternalNation": "Acesso de soberania externa detectado: {countryCode}. Ativando modo global.",
     "logFallbackActive": "Protocolo de resiliência ativado: Falha na infraestrutura externa. Retornando ao rastro nacional padrão.",
     "errorExternalService": "Incapacidade técnica de comunicação com o cluster de geolocalização IP."
   }

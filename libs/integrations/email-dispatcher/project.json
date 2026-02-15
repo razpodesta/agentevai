@@ -1,0 +1,35 @@
+{
+  "name": "email-dispatcher",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/email-dispatcher/src",
+  "projectType": "library",
+  "tags": [
+    "type:infrastructure",
+    "scope:integrations",
+    "role:email-provider",
+    "tier:adapter"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/email-dispatcher",
+        "main": "libs/integrations/email-dispatcher/src/index.ts",
+        "tsConfig": "libs/integrations/email-dispatcher/tsconfig.lib.json",
+        "assets": ["libs/integrations/email-dispatcher/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/integrations/email-dispatcher/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

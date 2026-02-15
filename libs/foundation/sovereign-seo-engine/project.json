@@ -1,0 +1,29 @@
+{
+  "name": "sovereign-seo-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/sovereign-seo-engine/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:foundation", "role:seo-authority"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/sovereign-seo-engine",
+        "main": "libs/foundation/sovereign-seo-engine/src/index.ts",
+        "tsConfig": "libs/foundation/sovereign-seo-engine/tsconfig.lib.json",
+        "assets": ["libs/foundation/sovereign-seo-engine/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/foundation/sovereign-seo-engine/jest.config.cts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

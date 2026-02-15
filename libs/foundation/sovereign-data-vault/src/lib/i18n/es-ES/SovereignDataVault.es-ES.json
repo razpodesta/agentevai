@@ -1,0 +1,8 @@
+{
+  "SovereignDataVault": {
+    "logProtectionSuccess": "Blindaje Concluido: Rastro de contexto {context} cifrado y sellado en el Vault.",
+    "errorMasterKeyMissing": "Incapacidad Criptográfica: Llave maestra de soberanía no localizada en el entorno.",
+    "errorTamperingDetected": "ALERTA CRÍTICA: Intento de violación detectado. El rastro criptográfico fue adulterado.",
+    "statusVaultStable": "BÚNKER OPERATIVO: Malla de cifrado en estado perfecto."
+  }
+}

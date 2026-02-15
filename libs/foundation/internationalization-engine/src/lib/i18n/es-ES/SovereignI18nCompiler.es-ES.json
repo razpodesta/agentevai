@@ -1,0 +1,21 @@
+{
+  "SovereignI18nCompiler": {
+    "logCompilationStarted": {
+      "semanticContent": "Actuador Industrial: Iniciando compilación del rastro semántico para el territorio {locale}.",
+      "semanticVersion": "6.6.3"
+    },
+    "logAppSyncSuccess": {
+      "semanticContent": "Sincronía Física Concluida: El silo {locale} fue sellado en la aplicación {appName}.",
+      "semanticVersion": "6.6.3"
+    },
+    "errorMiningFailure": {
+      "semanticContent": "ALERTA DE ENTROPÍA: Falla catastrófica al minar rastro en la ruta {path}.",
+      "semanticVersion": "6.6.3",
+      "aura": { "severity": "CRITICAL", "vocalizeActionTrigger": true }
+    },
+    "statusZenithSealed": {
+      "semanticContent": "VEREDICTO: Diccionario global 6.6.3 sellado con 100% de integridad neural.",
+      "semanticVersion": "6.6.3"
+    }
+  }
+}

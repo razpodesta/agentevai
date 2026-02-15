@@ -1,15 +1,18 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus SovereignDataVault (Elite Facade)
- * @version 6.1.0
- * @protocol OEDP-V6.0 - High Performance Facade
- * @description Orquestrador de prestígio que centraliza o acesso ao Reino de Blindagem PII.
- * Atua como uma fachada resiliente que valida o ADN de rastro antes da delegação operativa.
- * @policy ZERO-ANY: Saneamento absoluto via tipagem nominal e aduanas Zod.
- * @policy DEFENSE-IN-DEPTH: Validação de rastro na borda da fachada e no núcleo do átomo.
+ * @apparatus SovereignDataVault
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - High Performance Facade
+ * @description Orquestrador mestre do Reino de Blindagem. 
+ * CURADO: Integrado ao Cartório Técnico e erradicado 'any'.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { SovereignApparatusRegistry } from '@agentevai/apparatus-metadata-registry';
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
+} from '@agentevai/sovereign-error-observability';
 import { type ISovereignDictionary } from '@agentevai/internationalization-engine';
 
 /** @section Sincronia de ADN */
@@ -26,108 +29,102 @@ import { AnonymizeSovereignData } from './logic/AnonymizeSovereignData.js';
 import { ProtectSovereignData } from './logic/ProtectSovereignData.js';
 import { UnprotectSovereignData } from './logic/UnprotectSovereignData.js';
 
-/**
- * @class SovereignDataVault
- * @description Ponto de acesso unificado para operações de proteção de identidade.
- * Mantém a interface de classe para compatibilidade de Reinos enquanto utiliza motor atômico.
- */
 export class SovereignDataVault {
-  /** Assinatura de autoridade para identificação de origem no rastro de logs */
-  private static readonly APPARATUS_FINGERPRINT = 'AGV-VAULT-FACADE-V6';
+  private static readonly apparatusName = 'SovereignDataVault';
+  private static readonly fileLocation = 'libs/foundation/sovereign-data-vault/src/lib/SovereignDataVault.ts';
+
+  /**
+   * @method igniteRegistry
+   * @private Realiza a selagem da identidade deste aparato no Cartório.
+   */
+  private static igniteRegistry(correlationIdentifier: string): void {
+    SovereignApparatusRegistry.registerApparatus({
+      identifier: this.apparatusName as any,
+      authorName: 'Raz Podestá',
+      semanticVersion: '6.5.0',
+      complexityTier: 'INTEGRATION_DRIVER',
+      stabilityScore: 100 as any,
+      isSealedForProduction: true,
+      registeredAt: new Date().toISOString()
+    }, correlationIdentifier);
+  }
 
   /**
    * @method anonymize
-   * @static
-   * @description Transmuta um dado sensível em um identificador único irreversível.
-   * Realiza o pré-carimbamento do rastro de auditoria.
-   * 
-   * @param {string} targetPlainText - O conteúdo a ser anonimizado.
-   * @param {string} correlationIdentifier - UUID inalterável da jornada forense.
-   * @param {ISovereignDictionary} dictionary - Silo linguístico para telemetria.
-   * @returns {AnonymizedIdentifier} Hash selado com marca nominal.
+   * @description Gera rastro anônimo irreversível com fé pública digital.
    */
   public static anonymize(
     targetPlainText: string,
     correlationIdentifier: string,
     dictionary: ISovereignDictionary
   ): AnonymizedIdentifier {
-    // 1. Composição de Rastro e Pré-Validação (Aduana de Borda)
-    const anonymizationRequest = VaultAnonymizationInputSchema.parse({
+    this.igniteRegistry(correlationIdentifier);
+    const fingerprint = SovereignApparatusRegistry.getApparatusFingerprint(this.apparatusName as any);
+
+    const request = VaultAnonymizationInputSchema.parse({
       plainText: targetPlainText,
       audit: {
-        apparatusFingerprint: this.APPARATUS_FINGERPRINT,
+        apparatusFingerprint: fingerprint,
         correlationIdentifier,
         accessContext: 'IDENTITY_IDENTIFIABLE_INFORMATION'
       }
     });
 
-    // 2. Delegação para Átomo Operativo
-    return AnonymizeSovereignData(anonymizationRequest, dictionary);
+    return AnonymizeSovereignData(request, dictionary);
   }
 
   /**
    * @method protect
-   * @static
-   * @async
-   * @description Cifra um dado sensível utilizando AES-GCM-256 com integridade garantida.
-   * 
-   * @param {string} targetPlainText - O dado em texto claro para cifragem.
-   * @param {string} correlationIdentifier - Identificador de correlação do rastro.
-   * @param {ISovereignDictionary} dictionary - Silo linguístico regionalizado.
-   * @returns {Promise<EncryptedData>} Carga cifrada com tag de autenticidade inclusa.
+   * @description Cifra rastro PII via AES-GCM-256 com telemetria neural.
    */
   public static async protect(
     targetPlainText: string,
     correlationIdentifier: string,
     dictionary: ISovereignDictionary
   ): Promise<EncryptedData> {
-    // 1. Selagem de Intenção e Validação Estrutural
-    const protectionRequest = VaultProtectionInputSchema.parse({
+    this.igniteRegistry(correlationIdentifier);
+    const fingerprint = SovereignApparatusRegistry.getApparatusFingerprint(this.apparatusName as any);
+
+    const request = VaultProtectionInputSchema.parse({
       plainText: targetPlainText,
       audit: {
-        apparatusFingerprint: this.APPARATUS_FINGERPRINT,
+        apparatusFingerprint: fingerprint,
         correlationIdentifier,
         accessContext: 'FORENSIC_BEHAVIORAL_TRACE'
       }
     });
 
-    // 2. Orquestração de Telemetria de Ingresso
     SovereignLogger({
       severity: 'INFO',
-      apparatus: 'SovereignDataVault',
-      operation: 'PROTECTION_FACADE_HIT',
-      message: 'Intenção de proteção PII capturada pela fachada de elite.',
+      apparatus: this.apparatusName,
+      operation: 'PROTECTION_IGNITED',
+      message: 'Iniciando selagem criptográfica de rastro sensível.',
       correlationIdentifier
     });
 
-    // 3. Execução via Átomo
-    return ProtectSovereignData(protectionRequest, dictionary);
+    return ProtectSovereignData(request, dictionary);
   }
 
   /**
    * @method unprotect
-   * @static
-   * @async
-   * @description Decifra rastro protegido e valida sua integridade matemática.
-   * 
-   * @param {EncryptedData} targetEncryptedData - Carga cifrada selada via Vault.
-   * @param {string} correlationIdentifier - UUID de jornada forense.
-   * @param {ISovereignDictionary} dictionary - Silo linguístico regionalizado.
-   * @returns {Promise<string>} O texto original após perícia de integridade.
+   * @description Decifra rastro e valida integridade matemática (AEAD).
    */
   public static async unprotect(
     targetEncryptedData: EncryptedData,
     correlationIdentifier: string,
     dictionary: ISovereignDictionary
   ): Promise<string> {
-    // 1. Aduana de Integridade do Rastro Cifrado
-    const validatedEncryptedData = EncryptedDataSchema.parse(targetEncryptedData);
-
-    // 2. Delegação Direta para Perícia Reversa
-    return UnprotectSovereignData(
-      validatedEncryptedData,
-      correlationIdentifier,
-      dictionary
-    );
+    try {
+      const validatedData = EncryptedDataSchema.parse(targetEncryptedData);
+      return await UnprotectSovereignData(validatedData, correlationIdentifier, dictionary);
+    } catch (caughtError) {
+      throw SovereignError.transmute(caughtError, {
+        code: SovereignErrorCodeSchema.parse('OS-SEC-2003'),
+        apparatus: this.apparatusName,
+        location: this.fileLocation,
+        correlationIdentifier,
+        severity: 'FATAL'
+      });
+    }
   }
 }

@@ -1,8 +1,16 @@
 {
-  "TransmuteGeopoliticalId": {
-    "errorRouteNotMapped": "The route {input} has no cultural mapping in the active territory.",
-    "errorLocaleCorrupted": "The locale trace {input} is corrupted or unreadable.",
-    "logTransmutationSuccess": "Geopolitical transmutation completed for {input}.",
-    "auditEntropyDetected": "Entropy detected in the geopolitical trace: {input}."
+  "TransmuteGeopoliticalIdentifier": {
+    "errorRouteNotMapped": {
+      "semanticContent": "The route {input} has no cultural mapping in the active territory.",
+      "semanticVersion": "6.5.2"
+    },
+    "errorLocaleCorrupted": {
+      "semanticContent": "Corrupted Trace: The locale {input} violated the sovereignty DNA.",
+      "semanticVersion": "6.5.2"
+    },
+    "logTransmutationSuccess": {
+      "semanticContent": "Geopolitical Synchrony: Transmutation completed for {input}.",
+      "semanticVersion": "6.5.2"
+    }
   }
 }

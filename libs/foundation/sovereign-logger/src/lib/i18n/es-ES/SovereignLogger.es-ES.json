@@ -1,7 +1,7 @@
 {
   "SovereignLogger": {
-    "TELEMETRY_ADN_VIOLATION": "El registro enviado no respeta el contrato de integridad técnica.",
-    "ORPHAN_TRACE_ALERT": "Alerta: Pulso de telemetría sin identificador de correlación.",
-    "CRITICAL_ENGINE_SHUTDOWN": "Fallo catastrófico en el motor de salida de datos."
+    "errorAduanaViolation": "Violación de ADN: El registro enviado no respeta el contrato de integridad técnica.",
+    "logPulseEmitted": "Pulso de telemetría emitido por el aparato {apparatus} con latencia de {latency}ms.",
+    "statusObservabilityActive": "OBSERVABILIDAD ACTIVA: Rastro forense sincronizado con el Registro Técnico."
   }
 }

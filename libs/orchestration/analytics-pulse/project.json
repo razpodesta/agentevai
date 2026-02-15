@@ -1,0 +1,22 @@
+{
+  "name": "analytics-pulse",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/analytics-pulse/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration", "role:intelligence"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/analytics-pulse",
+        "main": "libs/orchestration/analytics-pulse/src/index.ts",
+        "tsConfig": "libs/orchestration/analytics-pulse/tsconfig.lib.json"
+      }
+    },
+    "lint": { "executor": "@nx/eslint:lint" },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": { "jestConfig": "libs/orchestration/analytics-pulse/jest.config.ts" }
+    }
+  }
+}

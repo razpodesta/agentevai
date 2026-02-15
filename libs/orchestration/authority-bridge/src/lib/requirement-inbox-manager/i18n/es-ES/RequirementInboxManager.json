@@ -1,0 +1,9 @@
+{
+  "RequirementInboxManager": {
+    "logRequirementIgnited": "Bandeja B2B: Protocolo de requerimiento {identifier} generado y sellado para análisis institucional.",
+    "errorAduanaFailed": "Falla de ADN: Los parámetros del requerimiento violaron el contrato de soberanía institucional.",
+    "statusReceived": "REQUERIMIENTO RECIBIDO",
+    "statusUnderAnalysis": "EN ANÁLISIS TÉCNICO",
+    "logResolutionSealed": "Fe Pública B2B: Resolución sellada por la institución y enviada al enjambre del ciudadano."
+  }
+}

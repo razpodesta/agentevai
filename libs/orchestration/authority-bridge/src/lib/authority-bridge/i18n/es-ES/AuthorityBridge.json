@@ -1,0 +1,8 @@
+{
+  "AuthorityBridge": {
+    "logDespatchIgnited": "Sincronía Institucional: Proceso de despacho vía {channel} iniciado para {target}.",
+    "logDespatchSuccess": "Éxito Soberano: Documento {identifier} sellado y entregado con integridad.",
+    "errorProviderFailure": "Colapso de Entrega: El proveedor rechazó el rastro en el canal {channel}.",
+    "statusAwaitingHandshake": "Esperando respuesta del servidor de la autoridad."
+  }
+}

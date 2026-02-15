@@ -1,51 +1,42 @@
 /**
  * @author Raz Podestá - MetaShark Tech
- * @apparatus LookupTerritorialAnchorSchema
- * @version 5.0.0
- * @protocol OEDP-V6.0 - Forensic Integrity SSOT
+ * @apparatus LookupTerritorialAnchor.schema
+ * @version 6.6.0
+ * @protocol OEDP-V6.5 - Master DNA
+ * @description ADN de elite para o rastro de ancoragem via IP (IAL2).
  */
 
 import { z } from 'zod';
-import { SovereignCountrySchema, RegionSlugSchema } from '@agentevai/sovereign-context';
+import { 
+  SovereignCountrySchema, 
+  RegionSlugSchema 
+} from '@agentevai/sovereign-context';
 import { BrazilianStateCodeSchema } from './GeographicRegion.schema.js';
 
 /**
- * @name ExternalGeographicPulseSchema
- * @description Aduana para o rastro bruto vindo de provedores IP-API.
+ * @name TerritorialAnchorOutputSchema
+ * @description Contrato selado para o provedor de Nível 2 (IP).
  */
-export const ExternalGeographicPulseSchema = z.object({
-  country_code: z.string().length(2).optional(),
-  country_name: z.string().optional(),
-  region_code: z.string().optional(),
-  city: z.string().optional(),
-  latitude: z.number().optional(),
-  longitude: z.number().optional()
-}).loose().readonly();
-
-export type IExternalGeographicPulse = z.infer<typeof ExternalGeographicPulseSchema>;
-
-/**
- * @name LookupTerritorialAnchorInputSchema
- */
-export const LookupTerritorialAnchorInputSchema = z.object({
-  internetProtocolAddress: z.ipv4(),
-  correlationIdentifier: z.uuid()
-})
-.brand<'LookupTerritorialAnchorInput'>()
-.readonly();
-
-/**
- * @name TerritorialAnchorResultSchema
- * @description Contrato de saída SELADO para garantir a consciência geográfica.
- */
-export const TerritorialAnchorResultSchema = z.object({
-  name: z.string().min(2),
-  stateCode: BrazilianStateCodeSchema,
+export const TerritorialAnchorOutputSchema = z.object({
+  territoryName: z.string()
+    .min(2)
+    .describe('Nome amigável da localidade detectada.'),
+    
+  stateCode: BrazilianStateCodeSchema
+    .describe('Sigla da Unidade Federativa carimbada com marca nominal.'),
+    
   countryCode: SovereignCountrySchema,
-  slug: RegionSlugSchema.optional(),
-  city: z.string().optional()
+  
+  regionalSlug: RegionSlugSchema
+    .describe('Identificador de ruteamento para o Jornal Local.'),
+
+  internetProtocolAddress: z.string().ip()
+    .describe('Endereço IP que originou a ancoragem.'),
+
+  isExternalSovereignty: z.boolean()
+    .describe('Sinalizador de acesso fora do território brasileiro.')
 })
-.brand<'TerritorialAnchorResult'>()
+.brand<'TerritorialAnchorOutput'>()
 .readonly();
 
-export type ITerritorialAnchorResult = z.infer<typeof TerritorialAnchorResultSchema>;
+export type ITerritorialAnchorOutput = z.infer<typeof TerritorialAnchorOutputSchema>;

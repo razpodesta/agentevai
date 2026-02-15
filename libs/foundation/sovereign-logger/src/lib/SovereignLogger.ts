@@ -1,25 +1,23 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignLogger
- * @version 4.0.0
- * @protocol OEDP-V6.0 - Neural Pulse Engine
- * @description Motor de telemetria de alta performance.
- * Saneado para erradicar o tipo 'Function' e unificar o rastro forense.
+ * @version 5.0.0
+ * @protocol OEDP-V6.5 - High Performance Intelligence
+ * @description Motor de telemetria que integra o Cartório Técnico e mede latência.
+ * CURADO: Erradicado tipo 'Function' e injeção de Fingerprint automatizada.
  */
 
 import pino from 'pino';
-import {
-  SovereignLogSchema,
-  type ISovereignLog
+import { SovereignApparatusRegistry } from '@agentevai/apparatus-metadata-registry';
+import { 
+  SovereignLogInputSchema, 
+  type ISovereignLogInput 
 } from './schemas/SovereignLogger.schema.js';
 
-/**
- * @section Definição de Assinatura Funcional
- * Erradica o erro @typescript-eslint/no-unsafe-function-type.
- */
-type PinoLogMethod = (meritObject: object, semanticMessage: string) => void;
+/** @type PinoLogMethodSignature */
+type PinoLogMethodSignature = (meritObject: object, semanticMessage: string) => void;
 
-const engine = pino({
+const pinoEngine = pino({
   level: process.env['LOG_LEVEL'] || 'info',
   formatters: {
     level: (label: string) => ({ severityLevel: label.toUpperCase() })
@@ -30,44 +28,49 @@ const engine = pino({
 /**
  * @name SovereignLogger
  * @function
- * @description Orquestrador de telemetria. Valida o ADN antes da emissão.
+ * @description Orquestrador de telemetria. Valida o ADN e anexa o rastro de versão.
  */
-export const SovereignLogger = (payload: ISovereignLog): void => {
+export const SovereignLogger = (payload: ISovereignLogInput): void => {
   const apparatusName = 'SovereignLogger';
 
   try {
-    // 1. Aduana de Integridade (Zod Enforcement)
-    const validatedData = SovereignLogSchema.parse(payload);
+    // 1. ADUANA DE INTEGRIDADE (Zod Zenith)
+    const validatedData = SovereignLogInputSchema.parse(payload);
+    const { apparatus, correlationIdentifier, latencyInMilliseconds } = validatedData;
 
-    // 2. Composição do Rastro Forense (Unificação correlationIdentifier)
+    // 2. RECUPERAÇÃO DE IDENTIDADE TÉCNICA (Integração com Registry)
+    // Buscamos o rastro de versão do aparato que está emitindo o log.
+    const apparatusFingerprint = SovereignApparatusRegistry.getApparatusFingerprint(
+      apparatus as any // Casting nominal para busca no Map
+    );
+
+    // 3. COMPOSIÇÃO DO RASTRO FORENSE 360°
     const logEntry = {
-      apparatus: validatedData.apparatus,
-      operation: validatedData.operation,
-      correlationIdentifier: validatedData.correlationIdentifier || 'ORPHAN_TRACE',
+      apparatusIdentifier: apparatus,
+      versionFingerprint: apparatusFingerprint,
+      operationCode: validatedData.operation,
+      correlationIdentifier,
+      executionLatencyMs: latencyInMilliseconds || 0,
       ...validatedData.metadata
     };
 
-    // 3. Despacho Semântico Otimizado
-    const logMessage = `[${validatedData.apparatus}:${validatedData.operation}] ${validatedData.message}`;
+    // 4. DESPACHO SEMÂNTICO (Otimizado com medição de latência visível)
+    const latencyIndicator = latencyInMilliseconds ? ` [⚡ ${latencyInMilliseconds}ms]` : '';
+    const logMessage = `[${apparatusFingerprint}:${validatedData.operation}] ${validatedData.message}${latencyIndicator}`;
 
-    /**
-     * @section Mapeamento de Métodos Pino
-     * Tipagem estrita para garantir que não haja vazamento de radiação técnica.
-     */
-    const logMap: Record<ISovereignLog['severity'], PinoLogMethod> = {
-      INFO: engine.info.bind(engine),
-      WARN: engine.warn.bind(engine),
-      ERROR: engine.error.bind(engine),
-      CRITICAL: engine.fatal.bind(engine)
+    const logMap: Record<ISovereignLogInput['severity'], PinoLogMethodSignature> = {
+      INFO: pinoEngine.info.bind(pinoEngine),
+      WARN: pinoEngine.warn.bind(pinoEngine),
+      ERROR: pinoEngine.error.bind(pinoEngine),
+      CRITICAL: pinoEngine.fatal.bind(pinoEngine)
     };
 
     logMap[validatedData.severity](logEntry, logMessage);
 
-  } catch (error) {
-    // Fail-safe em caso de colapso da telemetria
-    engine.fatal({
+  } catch (caughtError) {
+    pinoEngine.fatal({
       apparatus: apparatusName,
-      error,
+      error: caughtError,
       originalPayload: payload
     }, 'TELEMETRY_ADN_VIOLATION');
   }

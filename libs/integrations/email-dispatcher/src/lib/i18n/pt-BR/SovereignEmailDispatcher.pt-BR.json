@@ -1,0 +1,8 @@
+{
+  "SovereignEmailDispatcher": {
+    "logDespatchIgnited": "Vetor de Mensageria: Iniciando despacho institucional para o rastro {identifier}.",
+    "logDespatchSuccess": "Sucesso de Entrega: E-mail selado e enviado via Resend ID: {id}.",
+    "errorProviderFailure": "Colapso de Mensageria: O provedor externo rejeitou a carga de dados.",
+    "statusVaultCheck": "Blindagem PII: Rastro de e-mail verificado contra o Sovereign Data Vault."
+  }
+}

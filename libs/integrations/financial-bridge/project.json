@@ -1,0 +1,39 @@
+{
+  "name": "financial-bridge",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/financial-bridge/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Ponte de integração financeira e fiscalização monetária regional.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:infrastructure",
+    "scope:integrations",
+    "role:financial-bridge",
+    "tier:adapter"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/financial-bridge",
+        "main": "libs/integrations/financial-bridge/src/index.ts",
+        "tsConfig": "libs/integrations/financial-bridge/tsconfig.lib.json",
+        "assets": ["libs/integrations/financial-bridge/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/integrations/financial-bridge/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+/**
+ * @author Raz Podestá - MetaShark Tech
+ * @apparatus FinancialBridge-TSConfig
+ * @protocol OEDP-V6.5 - NodeNext Sovereignty
+ */
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noPropertyAccessFromIndexSignature": true
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
+  ]
+}

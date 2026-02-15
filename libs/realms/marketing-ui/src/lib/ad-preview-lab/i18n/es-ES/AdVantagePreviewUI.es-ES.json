@@ -1,0 +1,11 @@
+{
+  "AdVantagePreviewUI": {
+    "labTitle": "LABORATORIO AD-VANTAGE",
+    "labSubtitle": "Simulador de Conversión: {scope}",
+    "previewMode_LIVE": "Visualización en Tiempo Real",
+    "simulationContentTitle": "Construyendo la soberanía digital en {region}",
+    "ethicsSeal": "PUBLICIDAD ÉTICA: Sin rastreo invasivo de rastro civil.",
+    "logLabIgnition": "Simulador iniciado para el territorio de {region}.",
+    "logFormatSwitched": "Vector de conversión cambiado a {format}."
+  }
+}

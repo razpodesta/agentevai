@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/analytics-pulse",
+  "version": "1.0.0",
+  "description": "Cérebro Preditivo: Analisa a temperatura social e entropia de rastro regional.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "BEHAVIORAL_ANALYTICS",
+    "protocol": "OEDP-V6.5"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "zod": "^4.3.6"
+  }
+}

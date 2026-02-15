@@ -1,0 +1,22 @@
+{
+  "name": "@agentevai/sovereign-seo-engine",
+  "version": "6.6.0",
+  "description": "Guardião de Autoridade Orgânica: Motor de injeção de E-E-A-T, JSON-LD e Sitemaps geográficos.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V6.5"
+  },
+  "metadata": {
+    "tier": "FOUNDATION_UTIL",
+    "role": "SEO_AUTHORITY"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*"
+  }
+}

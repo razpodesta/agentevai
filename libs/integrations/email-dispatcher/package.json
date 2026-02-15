@@ -1,0 +1,23 @@
+{
+  "name": "@agentevai/email-dispatcher",
+  "version": "1.0.0",
+  "description": "Vetor de Mensageria: Motor de despacho de e-mails transacionais com blindagem PII.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "INTEGRATION",
+    "role": "COMMUNICATION_DRIVER",
+    "provider": "RESEND"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "resend": "^4.1.2",
+    "@agentevai/sovereign-data-vault": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "zod": "^4.3.6"
+  }
+}

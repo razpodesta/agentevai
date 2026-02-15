@@ -1,13 +1,19 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignTranslationEngine
- * @version 4.0.0
- * @protocol OEDP-V6.0 - High Performance & Neural Consistency
- * @description Motor de elite para resolução semântica e auditoria de Aura.
- * CURA TS2459: Exportação explícita de ISovereignDictionary para malha de handlers.
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - Zenith High Performance
+ * @description Motor de resolução semântica regionalizada com auditoria de Aura.
+ * CURADO: Erradicados erros de dessincronização de ADN e rastro forense.
+ * @policy ZERO-ANY: Saneamento total via Tipagem Nominal (Branded).
+ * @policy ESM-STRICT: Uso de extensões .js mandatórias.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { 
+  SovereignApparatusRegistry, 
+  ApparatusIdentifierSchema 
+} from '@agentevai/apparatus-metadata-registry';
 import {
   SovereignError,
   SovereignErrorCodeSchema
@@ -15,16 +21,18 @@ import {
 
 /** @section Sincronia de ADN */
 import {
-  type Locale,
   type ISovereignDictionary,
-  LocaleSchema,
+
   SovereignDictionarySchema
 } from '../schemas/Internationalization.schema.js';
+import { 
+  SovereignLocaleSchema, 
+  type SovereignLocale 
+} from '@agentevai/types-common';
 
 /** 
  * @section RE-EXPORTAÇÃO DE SOBERANIA 
- * CURA TS2459: Permite que aparatos irmãos (TransmuteGeopoliticalId) 
- * consumam o contrato sem redundância de importação.
+ * CURA TS2459: Permite que aparatos irmãos consumam o contrato sem redundância.
  */
 export type { ISovereignDictionary };
 
@@ -35,15 +43,12 @@ const validatedDictionariesCache = new WeakSet<ISovereignDictionary>();
  * @description Orquestrador estático para processamento linguístico regionalizado.
  */
 export class SovereignTranslationEngine {
+  private static readonly apparatusName = 'SovereignTranslationEngine';
+  private static readonly fileLocation = 'libs/foundation/internationalization-engine/src/lib/handlers/SovereignTranslationEngine.ts';
+
   /**
    * @method translate
    * @description Resolve uma chave semântica, interpola variáveis e audita a Aura.
-   * 
-   * @param {ISovereignDictionary} dictionary - O silo linguístico validado.
-   * @param {string} apparatusName - Nome PascalCase do aparato emissor.
-   * @param {string} semanticKey - Chave de tradução exaustiva.
-   * @param {Record<string, string | number>} variables - Mapa de variáveis para substituição.
-   * @param {string} correlationIdentifier - Identificador inalterável da jornada forense.
    */
   public static translate(
     dictionary: ISovereignDictionary,
@@ -55,17 +60,17 @@ export class SovereignTranslationEngine {
     // 1. Validação de Integridade Otimizada
     this.ensureDictionaryIntegrity(dictionary, correlationIdentifier);
 
-    // 2. Resolução do Fragmento de Aparato
+    // 2. Resolução do Fragmento de Aparato (Lego)
     const apparatusFragment = dictionary.content[apparatusName];
     if (!apparatusFragment) {
-      this.reportSemanticEntropy('APPARATUS_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.locale, correlationIdentifier);
+      this.reportSemanticEntropy('APPARATUS_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.activeLocale, correlationIdentifier);
       return `[MISSING_APPARATUS:${apparatusName}]`;
     }
 
-    // 3. Resolução da Chave Semântica
+    // 3. Resolução da Chave Semântica (Cura TS2339: 'value' -> 'semanticContent')
     const translationEntry = apparatusFragment[semanticKey];
     if (!translationEntry) {
-      this.reportSemanticEntropy('KEY_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.locale, correlationIdentifier);
+      this.reportSemanticEntropy('KEY_NOT_FOUND', apparatusName, semanticKey, dictionary.metadata.activeLocale, correlationIdentifier);
       return `[UNDEFINED:${apparatusName}.${semanticKey}]`;
     }
 
@@ -74,7 +79,7 @@ export class SovereignTranslationEngine {
     if (severity === 'CRITICAL' || severity === 'HIGH') {
       SovereignLogger({
         severity: 'WARN',
-        apparatus: 'SovereignTranslationEngine',
+        apparatus: this.apparatusName,
         operation: 'HIGH_SEVERITY_STRING_RESOLVED',
         message: `Acesso a rastro de alta severidade: ${apparatusName}.${semanticKey}`,
         correlationIdentifier,
@@ -82,8 +87,8 @@ export class SovereignTranslationEngine {
       });
     }
 
-    // 5. Interpolação e Selagem de Saída
-    return this.interpolate(translationEntry.value, variables, correlationIdentifier);
+    // 5. Interpolação e Selagem de Saída (Cura TS2339)
+    return this.interpolate(translationEntry.semanticContent, variables, correlationIdentifier);
   }
 
   /**
@@ -99,23 +104,29 @@ export class SovereignTranslationEngine {
     const integrityCheck = SovereignDictionarySchema.safeParse(dictionary);
 
     if (!integrityCheck.success) {
+      // 6. CAPTURA FORENSE (Cura TS2741 e TS2353)
+      const fingerprint = SovereignApparatusRegistry.getApparatusFingerprint(
+        ApparatusIdentifierSchema.parse(this.apparatusName)
+      );
+
       throw new SovereignError({
         uniqueErrorCode: SovereignErrorCodeSchema.parse('OS-INTL-4001'),
         i18nMappingKey: 'DICTIONARY_STRUCTURE_CORRUPTED',
         severity: 'CRITICAL',
         apparatusMetadata: {
-          name: 'SovereignTranslationEngine',
-          version: '4.0.0',
-          fileLocation: 'libs/foundation/internationalization-engine/src/lib/handlers/SovereignTranslationEngine.ts'
+          name: this.apparatusName,
+          version: '6.5.1',
+          fileLocation: this.fileLocation,
+          fingerprint: fingerprint // Injeção de marca nominal obrigatória
         },
         runtimeSnapshot: {
-          inputPayload: { dictionaryVersion: dictionary?.metadata?.version },
+          inputPayload: { bundleVersion: dictionary?.metadata?.bundleVersion }, // Cura TS2339
           correlationIdentifier,
           validationIssues: integrityCheck.error.issues
         },
         forensicTrace: {
           timestamp: new Date().toISOString(),
-          stack: new Error().stack || 'ST_UNAVAILABLE'
+          stackTrace: new Error().stack || 'ST_UNAVAILABLE' // Cura TS2353
         }
       });
     }
@@ -151,15 +162,15 @@ export class SovereignTranslationEngine {
     });
   }
 
-  public static resolveLocale(requestedLocale: string): Locale {
-    const result = LocaleSchema.safeParse(requestedLocale);
-    return result.success ? result.data : LocaleSchema.parse('pt-BR');
+  /**
+   * @method resolveLocale
+   * @description Normaliza o Locale contra o ADN de Soberania.
+   */
+  public static resolveLocale(requestedLocale: string): SovereignLocale {
+    const result = SovereignLocaleSchema.safeParse(requestedLocale);
+    return result.success ? result.data : SovereignLocaleSchema.parse('pt-BR');
   }
 
-  /**
-   * @method reportSemanticEntropy
-   * @private
-   */
   private static reportSemanticEntropy(
     entropyType: string,
     apparatus: string,
@@ -169,7 +180,7 @@ export class SovereignTranslationEngine {
   ): void {
     SovereignLogger({
       severity: 'ERROR',
-      apparatus: 'SovereignTranslationEngine',
+      apparatus: this.apparatusName,
       operation: 'SEMANTIC_ENTROPY_DETECTED',
       message: `Dívida Semântica [${entropyType}]: ${apparatus}.${key} no território ${locale}.`,
       correlationIdentifier,

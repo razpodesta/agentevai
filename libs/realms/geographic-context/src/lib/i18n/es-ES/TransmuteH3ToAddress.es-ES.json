@@ -1,0 +1,7 @@
+{
+  "TransmuteH3ToAddress": {
+    "logHumanizationSuccess": "Sincronía Editorial: Rastro humano localizado para la célula hexagonal {identifier}.",
+    "errorProviderTimeout": "Incapacidad Técnica: El proveedor de geocodificación externa no respondió a tiempo.",
+    "statusUnknownTerritory": "Territorio soberano no identificado en el rastro geográfico."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "ExecuteProximityQuery": {
+    "logIndexGenerated": "Sincronía Espacial: Malla de {count} hexágonos H3 generada con éxito.",
+    "errorIndexFailure": "Incapacidad Criptográfica: Fallo al convertir rastro GPS en célula H3.",
+    "auditHexagonMatch": "Vínculo Territorial: El hecho periodístico fue anclado en el hexágono {identifier}."
+  }
+}

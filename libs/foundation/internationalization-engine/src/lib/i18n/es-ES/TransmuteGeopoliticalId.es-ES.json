@@ -1,8 +1,16 @@
 {
-  "TransmuteGeopoliticalId": {
-    "errorRouteNotMapped": "La ruta {input} no posee mapeo cultural en el territorio activo.",
-    "errorLocaleCorrupted": "El rastro de localidad {input} está corrompido o es ilegible.",
-    "logTransmutationSuccess": "Transmutación geopolítica concluida para {input}.",
-    "auditEntropyDetected": "Entropía detectada en el rastro geopolítico: {input}."
+  "TransmuteGeopoliticalIdentifier": {
+    "errorRouteNotMapped": {
+      "semanticContent": "La ruta {input} no posee mapeo cultural en el territorio activo.",
+      "semanticVersion": "6.5.2"
+    },
+    "errorLocaleCorrupted": {
+      "semanticContent": "Rastro Corrompido: La localidad {input} violó el ADN de soberanía.",
+      "semanticVersion": "6.5.2"
+    },
+    "logTransmutationSuccess": {
+      "semanticContent": "Sincronía Geopolítica: Transmutación concluida para {input}.",
+      "semanticVersion": "6.5.2"
+    }
   }
 }

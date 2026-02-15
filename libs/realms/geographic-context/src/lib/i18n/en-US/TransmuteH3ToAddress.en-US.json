@@ -1,0 +1,7 @@
+{
+  "TransmuteH3ToAddress": {
+    "logHumanizationSuccess": "Editorial Synchrony: Human trace located for the hexagonal cell {identifier}.",
+    "errorProviderTimeout": "Technical Inability: The external geocoding provider failed to respond in time.",
+    "statusUnknownTerritory": "Sovereign territory not identified in the geographic trace."
+  }
+}

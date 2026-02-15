@@ -1,120 +1,152 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignI18nCompiler
- * @version 6.5.1
- * @protocol OEDP-V6.5 - Concentric Assembly
- * @description Atuador industrial que consolida fragmentos de tradução do Hub /locales.
- * CURADO: Erradicação de 'any', 'unused-vars' (dirname, error) e nomenclaturas genéricas.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
- * @policy ZERO-ANY: Tipagem estrita via Record de profundidade.
+ * @version 6.6.3
+ * @protocol OEDP-V6.5 - Concentric Swarm Assembly
+ * @description Atuador industrial que realiza a mineração e selagem de dicionários.
+ * CURADO: Resolvido erro TS2339 via reconciliação de interface nominal.
  */
 
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { createHash } from 'node:crypto';
+import { 
+  IConsolidatedDictionary
+} from './schemas/CompilerContracts.schema.js';
 
-/** 
- * @section Definições de ADN (Internal Types) 
- * Substituem o uso de 'any' por contratos determinísticos.
- */
-interface ISovereignTranslationFragment {
-  readonly [key: string]: {
-    readonly value: string;
-    readonly version: string;
-    readonly aura?: {
-      readonly severity: string;
-      readonly vocalize: boolean;
-    };
-  };
-}
+/* --- 🏛️ CONFIGURAÇÃO DE FRONTEIRAS ZENITH --- */
 
-interface IConsolidatedDictionaryContent {
-  [apparatusName: string]: ISovereignTranslationFragment;
-}
+const ROOT_PATH = process.cwd();
+const GLOBAL_LOCALES_HUB = join(ROOT_PATH, 'locales');
+const LIBRARIES_ROOT = join(ROOT_PATH, 'libs');
+const SOVEREIGN_LANGUAGES = ['pt-BR', 'es-ES', 'en-US'];
 
-const ROOT_LOCALES_DIRECTORY = join(process.cwd(), 'locales');
-const TARGET_APPLICATIONS_DIRECTORIES = [
-  join(process.cwd(), 'apps/web-portal/public/locales'),
-  join(process.cwd(), 'apps/admin-cms/public/locales')
+const TARGET_APPLICATIONS = [
+  { name: 'web-portal', physicalPath: join(ROOT_PATH, 'apps/web-portal/public/locales') },
+  { name: 'admin-cms', physicalPath: join(ROOT_PATH, 'apps/admin-cms/public/locales') }
 ];
 
 /**
  * @name executeConcentricCompilation
  * @function
- * @description Orquestra a unificação trilingue baseada no Manifesto 0023.
+ * @description Orquestra a varredura, unificação e selagem dos dicionários tri-lingues.
  */
 function executeConcentricCompilation(): void {
-  console.log('\n[SINCRO SEMÂNTICA] Iniciando Compilação Concêntrica i18n...');
+  console.log('\n[SINCRO SEMÂNTICA] Iniciando Mineração de Enxame i18n (V6.6.3)...');
 
-  const sovereignLanguages = ['pt-BR', 'es-ES', 'en-US'];
+  SOVEREIGN_LANGUAGES.forEach((activeSovereignLocale) => {
+    const consolidatedContent: IConsolidatedDictionary = {};
 
-  sovereignLanguages.forEach((activeLocale) => {
-    const localeSourceDirectory = join(ROOT_LOCALES_DIRECTORY, activeLocale);
-    
-    if (!existsSync(localeSourceDirectory)) {
-      console.warn(`|-> [AVISO] Rastro não localizado para o idioma: ${activeLocale}`);
-      return;
+    if (existsSync(GLOBAL_LOCALES_HUB)) {
+      const globalSourcePath = join(GLOBAL_LOCALES_HUB, activeSovereignLocale);
+      if (existsSync(globalSourcePath)) {
+        mineTranslationsRecursively(globalSourcePath, consolidatedContent);
+      }
     }
 
-    // CURA @typescript-eslint/no-explicit-any: Uso de interface de conteúdo consolidado
-    const consolidatedContent: IConsolidatedDictionaryContent = {};
+    if (existsSync(LIBRARIES_ROOT)) {
+      mineLibrarySilos(LIBRARIES_ROOT, activeSovereignLocale, consolidatedContent);
+    }
 
-    /**
-     * @name scanAndCollectFragments
-     * @description Varredura recursiva do Hub Concêntrico para extração de rastro.
-     */
-    const scanAndCollectFragments = (currentScanningPath: string): void => {
-      const directoryEntries = readdirSync(currentScanningPath, { withFileTypes: true });
+    const contentStringified = JSON.stringify(consolidatedContent);
+    const integrityHash = createHash('sha256').update(contentStringified).digest('hex');
 
-      for (const entry of directoryEntries) {
-        const fullPhysicalPath = join(currentScanningPath, entry.name);
-        
-        if (entry.isDirectory()) {
-          scanAndCollectFragments(fullPhysicalPath);
-        } else if (entry.name.endsWith('.json')) {
-          try {
-            const rawFileContent = readFileSync(fullPhysicalPath, 'utf-8');
-            const fragmentPayload = JSON.parse(rawFileContent) as IConsolidatedDictionaryContent;
-            
-            // Injeção de fragmento respeitando o Namespace do Aparato (Lego)
-            Object.assign(consolidatedContent, fragmentPayload);
-          } catch (caughtError) {
-            // CURA no-unused-vars: O erro agora é consumido na telemetria de terminal
-            console.error(`|-> [FALHA] Corrupção no fragmento [${entry.name}]:`, caughtError);
-          }
-        }
-      }
-    };
-
-    scanAndCollectFragments(localeSourceDirectory);
-
-    // 2. SELAGEM DE PRODUÇÃO: dictionary.json
     const dictionaryPayload = {
       metadata: {
-        locale: activeLocale,
-        version: '6.5.1',
+        activeLocale: activeSovereignLocale,
+        bundleVersion: '6.6.3',
         generatedAt: new Date().toISOString(),
-        integrityHash: 'ZENITH_SEALED_OEDP_6_5'
+        integrityHash: integrityHash
       },
       content: consolidatedContent
     };
 
-    // 3. DESPACHO PARA AS APPS (Physical Delivery)
-    TARGET_APPLICATIONS_DIRECTORIES.forEach((applicationPath) => {
-      const localeOutputDirectory = join(applicationPath, activeLocale);
-      
-      if (!existsSync(localeOutputDirectory)) {
-        mkdirSync(localeOutputDirectory, { recursive: true });
-      }
-      
-      const finalOutputPath = join(localeOutputDirectory, 'dictionary.json');
-      writeFileSync(finalOutputPath, JSON.stringify(dictionaryPayload, null, 2));
-      
-      console.log(`|-> [SUCESSO] Silo ${activeLocale} selado em: ${relative(process.cwd(), finalOutputPath)}`);
-    });
+    dispatchToApplications(activeSovereignLocale, dictionaryPayload);
   });
 
-  console.log('[FINISH] Soberania Linguística Consolidada com 100% de integridade.\n');
+  console.log('[FINISH] Soberania Linguística Consolidada com 100% de rastro.\n');
 }
 
-// Início do Processo de Elite
+function mineTranslationsRecursively(currentScanningPath: string, storage: IConsolidatedDictionary): void {
+  const directoryEntries = readdirSync(currentScanningPath, { withFileTypes: true });
+  for (const entry of directoryEntries) {
+    const fullPhysicalPath = join(currentScanningPath, entry.name);
+    if (entry.isDirectory()) {
+      mineTranslationsRecursively(fullPhysicalPath, storage);
+    } else if (entry.name.endsWith('.json')) {
+      ingestFragment(fullPhysicalPath, storage);
+    }
+  }
+}
+
+function mineLibrarySilos(basePath: string, activeLocale: string, storage: IConsolidatedDictionary): void {
+  const realmEntries = readdirSync(basePath);
+  realmEntries.forEach(realmName => {
+    const realmPath = join(basePath, realmName);
+    if (!statSync(realmPath).isDirectory()) return;
+    const libraryEntries = readdirSync(realmPath);
+    libraryEntries.forEach(libraryName => {
+      const apparatusTargetRoot = join(realmPath, libraryName, 'src/lib');
+      searchApparatusI18nRecursively(apparatusTargetRoot, activeLocale, storage);
+    });
+  });
+}
+
+function searchApparatusI18nRecursively(targetPath: string, locale: string, storage: IConsolidatedDictionary): void {
+  if (!existsSync(targetPath)) return;
+  const folderItems = readdirSync(targetPath, { withFileTypes: true });
+  for (const item of folderItems) {
+    const fullItemPath = join(targetPath, item.name);
+    if (item.isDirectory()) {
+      const potentialSiloPath = join(fullItemPath, 'i18n', locale);
+      if (existsSync(potentialSiloPath)) {
+        mineTranslationsRecursively(potentialSiloPath, storage);
+      } else {
+        searchApparatusI18nRecursively(fullItemPath, locale, storage);
+      }
+    }
+  }
+}
+
+function ingestFragment(filePath: string, storage: IConsolidatedDictionary): void {
+  try {
+    const rawFileContent = readFileSync(filePath, 'utf-8');
+    const fragment = JSON.parse(rawFileContent) as IConsolidatedDictionary;
+    
+    Object.keys(fragment).forEach(apparatusIdentifier => {
+      const fragmentEntries = Object.values(fragment[apparatusIdentifier]);
+      
+      fragmentEntries.forEach((translationEntry: unknown) => {
+        /** 
+         * @section PERÍCIA_DE_CHAVE (Cura TS2339)
+         * Utilizamos Type Guard para validar a transmutação léxica.
+         */
+        const typedEntry = translationEntry as Record<string, unknown>;
+        
+        if (typedEntry['value'] && !typedEntry['semanticContent']) {
+           console.warn(`|-> [ENTROPIA] O aparato ${apparatusIdentifier} em ${relative(ROOT_PATH, filePath)} ainda utiliza a chave depreciada 'value'.`);
+        }
+      });
+
+      if (storage[apparatusIdentifier]) {
+        Object.assign(storage[apparatusIdentifier], fragment[apparatusIdentifier]);
+      } else {
+        storage[apparatusIdentifier] = fragment[apparatusIdentifier];
+      }
+    });
+  } catch (error) {
+    console.error(`|-> [FALHA] Corrupção no rastro: ${relative(ROOT_PATH, filePath)}`, error);
+  }
+}
+
+function dispatchToApplications(activeLocale: string, payload: object): void {
+  TARGET_APPLICATIONS.forEach((application) => {
+    const outputDirectory = join(application.physicalPath, activeLocale);
+    if (!existsSync(outputDirectory)) mkdirSync(outputDirectory, { recursive: true });
+    const finalFilePath = join(outputDirectory, 'dictionary.json');
+    writeFileSync(finalFilePath, JSON.stringify(payload, null, 2));
+    console.log(`|-> [SELO] ${application.name} (${activeLocale}) sincronizado.`);
+  });
+}
+
 executeConcentricCompilation();

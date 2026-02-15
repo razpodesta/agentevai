@@ -1,0 +1,22 @@
+{
+  "name": "@agentevai/semantic-search",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION",
+    "role": "SEMANTIC_DISCOVERY",
+    "protocol": "OEDP-V6.5"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/apparatus-metadata-registry": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "@agentevai/types-common": "workspace:*",
+    "zod": "^4.3.6"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "AuthorityBridge": {
+    "logDespatchIgnited": "Institutional Synchrony: Despatch process via {channel} initiated for {target}.",
+    "logDespatchSuccess": "Sovereign Success: Document {identifier} sealed and delivered with integrity.",
+    "errorProviderFailure": "Delivery Collapse: The provider rejected the trace on channel {channel}.",
+    "statusAwaitingHandshake": "Awaiting response from authority server."
+  }
+}

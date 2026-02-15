@@ -1,0 +1,8 @@
+{
+  "SovereignApparatusRegistry": {
+    "logIdentitySealed": "Cartório Técnico: Identidade do aparato {identifier} selada no rastro global com versão {version}.",
+    "errorRegistryViolation": "Incapacidade de Registro: O passaporte técnico do aparato violou o contrato de ADN estrutural.",
+    "auditInventorySync": "Sincronia de Inventário: {count} unidades Lego verificadas e catalogadas pelo Auditor Neural.",
+    "statusProductionReady": "ESTADO SOBERANO: Aparato homologado para execução em ambiente de alta fidelidade."
+  }
+}

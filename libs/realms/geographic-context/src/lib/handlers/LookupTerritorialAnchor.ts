@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus LookupTerritorialAnchor
- * @version 6.1.0
- * @protocol OEDP-V6.0 - High Precision Orchestration
- * @description Ponto de controle mestre para determinação de soberania territorial.
- * CURA TS2554: Sincronização de rastro forense com ExecuteExternalGeographicLookup.
+ * @version 6.6.0
+ * @protocol OEDP-V6.5 - High Precision IP Anchor
+ * @description Resolve a localização baseada no IP com resiliência militar.
+ * CURADO: Erradicada radiação técnica e implementado rastro IAL2 selado.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
@@ -20,119 +20,92 @@ import {
   SovereignCountrySchema, 
   RegionSlugSchema 
 } from '@agentevai/sovereign-context';
+import { TransmuteTextToSlug } from '@agentevai/types-common';
 
 /** @section Sincronia de ADN Local */
 import { BrazilianStateCodeSchema } from '../schemas/GeographicRegion.schema.js';
 import { 
-  LookupTerritorialAnchorInputSchema, 
-  TerritorialAnchorResultSchema,
-  type ITerritorialAnchorResult 
+  TerritorialAnchorOutputSchema, 
+  type ITerritorialAnchorOutput 
 } from '../schemas/LookupTerritorialAnchor.schema.js';
-
-/** @section Handlers Atômicos */
-import { ExecuteExternalGeographicLookup } from './ExecuteExternalGeographicLookup.js';
 
 /**
  * @name LookupTerritorialAnchor
  * @function
  * @async
- * @description Determina a localização baseada no IP com fallback de soberania nacional automática.
+ * @description Sonda a infraestrutura de rede para ancorar a consciência do sistema.
  */
 export const LookupTerritorialAnchor = async (
   internetProtocolAddress: string,
   correlationIdentifier: string,
   dictionary: ISovereignDictionary
-): Promise<ITerritorialAnchorResult> => {
+): Promise<ITerritorialAnchorOutput> => {
   const apparatusName = 'LookupTerritorialAnchor';
   const fileLocation = 'libs/realms/geographic-context/src/lib/handlers/LookupTerritorialAnchor.ts';
-
+  
   const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
     dictionary, apparatusName, key, variables, correlationIdentifier
   );
 
-  // 1. ADUANA DE ENTRADA (Validando rastro técnico)
-  LookupTerritorialAnchorInputSchema.parse({ 
-    internetProtocolAddress, 
-    correlationIdentifier 
-  });
-
-  // 2. PROTOCOLO LOCALHOST (Ambiente de Desenvolvimento)
-  if (internetProtocolAddress === '::1' || internetProtocolAddress === '127.0.0.1') {
-    SovereignLogger({
-      severity: 'INFO',
-      apparatus: apparatusName,
-      operation: 'LOCAL_ANCHOR_IGNITED',
-      message: translate('logLocalAnchor'),
-      correlationIdentifier
-    });
-
-    return TerritorialAnchorResultSchema.parse({
-      name: 'Nacional (Localhost)',
+  // 1. PROTOCOLO DE DESENVOLVIMENTO (Localhost Shield)
+  const isLocalHost = internetProtocolAddress === '::1' || internetProtocolAddress === '127.0.0.1';
+  if (isLocalHost) {
+    return TerritorialAnchorOutputSchema.parse({
+      territoryName: 'Brasil (Sede)',
       stateCode: BrazilianStateCodeSchema.parse('BR'),
       countryCode: SovereignCountrySchema.parse('BR'),
-      slug: RegionSlugSchema.parse('nacional')
+      regionalSlug: RegionSlugSchema.parse('nacional'),
+      internetProtocolAddress,
+      isExternalSovereignty: false
     });
   }
 
   try {
-    // 3. EXECUÇÃO DE I/O ATÔMICO (CURA TS2554: Injeção de Rastro)
-    const externalSnapshot = await ExecuteExternalGeographicLookup(
+    // 2. EXECUÇÃO COM TIMEOUT MILITAR (Resiliência de Borda)
+    const controller = new AbortController();
+    const timeoutIdentifier = setTimeout(() => controller.abort(), 2500);
+
+    const infrastructureResponse = await fetch(`https://ipapi.co/${internetProtocolAddress}/json/`, {
+      signal: controller.signal,
+      next: { revalidate: 86400 } // Cache soberano de 24h
+    });
+
+    clearTimeout(timeoutIdentifier);
+
+    if (!infrastructureResponse.ok) throw new Error('EXTERNAL_GEO_API_COLLAPSE');
+
+    const rawTrace = await infrastructureResponse.json();
+
+    // 3. TRANSMUTAÇÃO E SELAGEM
+    const isBrazil = rawTrace.country_code === 'BR';
+    const city = rawTrace.city || 'Brasil';
+    
+    return TerritorialAnchorOutputSchema.parse({
+      territoryName: isBrazil ? city : rawTrace.country_name,
+      stateCode: BrazilianStateCodeSchema.parse(isBrazil ? rawTrace.region_code : 'EX'),
+      countryCode: SovereignCountrySchema.parse(rawTrace.country_code || 'US'),
+      regionalSlug: RegionSlugSchema.parse(isBrazil ? TransmuteTextToSlug(city) : 'global'),
       internetProtocolAddress,
-      correlationIdentifier
-    );
-
-    // 4. DETECÇÃO DE SOBERANIA INTERNACIONAL (Fronteira Externa)
-    if (externalSnapshot.country_code !== 'BR') {
-      SovereignLogger({
-        severity: 'INFO',
-        apparatus: apparatusName,
-        operation: 'EXTERNAL_NATION_DETECTED',
-        message: translate('logExternalNation', { 
-          countryCode: externalSnapshot.country_code || 'EX' 
-        }),
-        correlationIdentifier
-      });
-
-      return TerritorialAnchorResultSchema.parse({
-        name: externalSnapshot.country_name || 'International',
-        stateCode: BrazilianStateCodeSchema.parse('EX'),
-        countryCode: SovereignCountrySchema.parse(externalSnapshot.country_code || 'US'),
-        slug: RegionSlugSchema.parse('global')
-      });
-    }
-
-    // 5. ANCORAGEM NACIONAL (Brasil)
-    return TerritorialAnchorResultSchema.parse({
-      name: externalSnapshot.city || 'Brasil',
-      city: externalSnapshot.city,
-      stateCode: BrazilianStateCodeSchema.parse(externalSnapshot.region_code || 'BR'),
-      countryCode: SovereignCountrySchema.parse('BR'),
+      isExternalSovereignty: !isBrazil
     });
 
   } catch (caughtError) {
-    // 6. PROTOCOLO DE RESILIÊNCIA NEURAL (Cura de Colapso)
-    const diagnostic = SovereignError.transmute(caughtError, {
-      code: SovereignErrorCodeSchema.parse('OS-GEO-5001'),
-      apparatus: apparatusName,
-      location: fileLocation,
-      correlationIdentifier,
-      severity: 'HIGH'
-    });
-
+    // 4. PROTOCOLO DE FALLBACK SOBERANO
     SovereignLogger({
       severity: 'ERROR',
       apparatus: apparatusName,
-      operation: 'GEO_LOOKUP_FALLBACK',
+      operation: 'IP_LOOKUP_FAILURE',
       message: translate('logFallbackActive'),
-      correlationIdentifier,
-      metadata: { diagnosticReport: diagnostic.getDiagnosticReport() }
+      correlationIdentifier
     });
 
-    return TerritorialAnchorResultSchema.parse({
-      name: 'Brasil',
+    return TerritorialAnchorOutputSchema.parse({
+      territoryName: 'Brasil',
       stateCode: BrazilianStateCodeSchema.parse('BR'),
       countryCode: SovereignCountrySchema.parse('BR'),
-      slug: RegionSlugSchema.parse('nacional')
+      regionalSlug: RegionSlugSchema.parse('nacional'),
+      internetProtocolAddress,
+      isExternalSovereignty: false
     });
   }
 };

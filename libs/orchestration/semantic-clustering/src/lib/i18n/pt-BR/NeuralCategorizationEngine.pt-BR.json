@@ -1,0 +1,7 @@
+{
+  "NeuralCategorizationEngine": {
+    "logClassificationSuccess": "Sincronia Semântica: Relato classificado com {confidence}% de precisão no domínio {domain}.",
+    "errorAduanaFailed": "Falha de ADN: A IA retornou um rastro taxonômico inválido.",
+    "statusLearning": "O oráculo está aprendendo com este novo rastro institucional."
+  }
+}

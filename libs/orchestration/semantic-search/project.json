@@ -1,0 +1,22 @@
+{
+  "name": "semantic-search",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/semantic-search/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:orchestration", "role:discovery"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/semantic-search",
+        "main": "libs/orchestration/semantic-search/src/index.ts",
+        "tsConfig": "libs/orchestration/semantic-search/tsconfig.lib.json",
+        "assets": ["libs/orchestration/semantic-search/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": { "jestConfig": "libs/orchestration/semantic-search/jest.config.ts" }
+    }
+  }
+}

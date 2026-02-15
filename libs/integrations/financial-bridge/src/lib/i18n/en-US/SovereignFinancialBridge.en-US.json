@@ -1,0 +1,11 @@
+{
+  "PixSovereignDriver": {
+    "logHandshakeSuccess": "Monetary Synchrony: BACEN standard Pix trace generated with integrity.",
+    "errorCrcFailure": "Mathematical Collapse: Failure to calculate the CRC16 checksum of the trace.",
+    "handshakeDescription": "Point-to-point cryptographic seal for high-fidelity payments."
+  },
+  "AsaasGatewayDriver": {
+    "logPaymentStarted": "Sovereign Treasury: Payment intent {method} initiated for citizen {identifier}.",
+    "errorGatewayOffline": "Financial Inability: The external payment bunker is currently inaccessible."
+  }
+}

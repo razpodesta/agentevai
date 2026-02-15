@@ -1,0 +1,10 @@
+{
+  "PixSovereignDriver": {
+    "logHandshakeSuccess": "Sincronia Monetária: Rastro Pix padrão BACEN gerado com integridade.",
+    "errorCrcFailure": "Colapso Matemático: Falha ao calcular o checksum CRC16 do rastro."
+  },
+  "AsaasGatewayDriver": {
+    "logPaymentStarted": "Tesouraria Soberana: Intenção de pagamento {method} iniciada para o cidadão {identifier}.",
+    "errorGatewayOffline": "Incapacidade Financeira: O búnquer de pagamentos externo está inacessível."
+  }
+}

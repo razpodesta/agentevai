@@ -1,0 +1,11 @@
+{
+  "AdVantagePreviewUI": {
+    "labTitle": "AD-VANTAGE LAB",
+    "labSubtitle": "Conversion Simulator: {scope}",
+    "previewMode_LIVE": "Live Preview Mode",
+    "simulationContentTitle": "Building digital sovereignty in {region}",
+    "ethicsSeal": "ETHICAL ADVERTISING: No invasive civil trace tracking.",
+    "logLabIgnition": "Simulator ignited for {region} territory.",
+    "logFormatSwitched": "Conversion vector switched to {format}."
+  }
+}

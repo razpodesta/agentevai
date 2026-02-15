@@ -1,0 +1,12 @@
+{
+  "SovereignSearchEngine": {
+    "logDiscoveryIgnited": "Descoberta Profunda: Iniciando perícia semântica para a intenção: {phrase}.",
+    "logNeuralEscalation": "Escalada Neural: Ativando motor de Busca Vetorial e RAG (Retrieval-Augmented Generation) para rastro de baixa confiança.",
+    "statusResultsFound": "Sincronia de Busca: {itemCount} fatos localizados com sucesso no território regional.",
+    "errorEmptyQuery": "Incapacidade de Busca: A frase de pesquisa é nula ou portava radiação técnica inaceitável.",
+    "logSearchLatency": "Performance de Descoberta: Rastro processado com latência de {latencyInMilliseconds}ms.",
+    "statusFilteringByProximity": "Refino Geoespacial: Filtrando resultados por proximidade no hexágono H3 ativo.",
+    "auditTrustInjected": "Selo de Veracidade: Bônus de autoridade injetado para resultados com prova Blockchain.",
+    "accessibilityInstruction": "Aponte a intenção da sua dor para localizar a verdade selada no enxame."
+  }
+}

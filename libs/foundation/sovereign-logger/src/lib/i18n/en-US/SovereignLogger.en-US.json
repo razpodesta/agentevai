@@ -1,7 +1,7 @@
 {
   "SovereignLogger": {
-    "TELEMETRY_ADN_VIOLATION": "The sent log does not respect the technical integrity contract.",
-    "ORPHAN_TRACE_ALERT": "Alert: Telemetry pulse without a correlation identifier.",
-    "CRITICAL_ENGINE_SHUTDOWN": "Catastrophic failure in the data output engine."
+    "errorAduanaViolation": "DNA Violation: The sent log does not respect the technical integrity contract.",
+    "logPulseEmitted": "Telemetry pulse emitted by apparatus {apparatus} with {latency}ms latency.",
+    "statusObservabilityActive": "OBSERVABILITY ACTIVE: Forensic trace synced with the Technical Registry."
   }
 }

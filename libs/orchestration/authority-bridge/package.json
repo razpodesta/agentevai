@@ -1,26 +1,22 @@
 {
   "name": "@agentevai/authority-bridge",
-  "version": "1.0.0",
-  "description": "Braço Institucional: Orquestra o envio de documentos eletrônicos e notificações para autoridades públicas.",
+  "version": "6.5.0",
+  "description": "Braço Institucional: Orquestra o despacho de documentos e requerimentos para autoridades com selagem de fé pública.",
   "private": true,
   "type": "module",
   "author": {
     "name": "Raz Podestá",
     "company": "MetaShark Tech",
-    "protocol": "OEDP-V5.5"
+    "protocol": "OEDP-V6.5"
   },
   "metadata": {
     "tier": "ORCHESTRATION",
-    "role": "LEGAL_DISPATCHER",
-    "governance": "INSTITUTIONAL_CONNECT"
+    "role": "LEGAL_DISPATCHER"
   },
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
   "dependencies": {
-    "@agentevai/sovereign-logger": "3.0.0",
-    "@agentevai/sovereign-error-observability": "2.3.0",
     "zod": "^4.3.6",
-    "@agentevai/internationalization-engine": "2.6.0"
-  },
-  "peerDependencies": {}
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*"
+  }
 }

@@ -1,39 +1,31 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignError
- * @version 3.0.0
- * @protocol OEDP-V6.0 - High Resilience & Neural Resonance
- * @description Motor operativo que transmuta entropia sistêmica em Pacotes de Dados Soberanos.
- * @policy ESM-STRICT: Uso de extensões .js para conformidade NodeNext.
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - High Performance Resonance
+ * @description Motor que transmuta exceções em Pacotes de Dados Soberanos.
+ * CURADO: Implementado o método getDiagnosticReport para análise do Auditor Neural.
  */
 
+import { SovereignApparatusRegistry } from '@agentevai/apparatus-metadata-registry';
 import {
   SovereignErrorSchema,
   SovereignErrorCodeSchema,
   type ISovereignError
 } from './schemas/SovereignError.schema.js';
 
-/**
- * @class SovereignError
- * @extends Error
- * @description Unidade fundamental de observabilidade de falhas.
- * Projetada para ser o "Lego de Dor" consumido pelo AI-Neural-Auditor.
- */
 export class SovereignError extends Error {
   /** O ADN purificado e imutável da falha */
   public readonly packet: ISovereignError;
 
   constructor(payload: ISovereignError) {
-    // 1. Aduana de Integridade (Zod Enforcement)
     const validatedPacket = SovereignErrorSchema.parse(payload);
 
-    // 2. Ignição do Constructor Nativo
-    super(`[${validatedPacket.uniqueErrorCode}] ${validatedPacket.apparatusMetadata.name}: ${validatedPacket.i18nMappingKey}`);
+    super(`[${validatedPacket.uniqueErrorCode}] ${validatedPacket.apparatusMetadata.fingerprint}: ${validatedPacket.i18nMappingKey}`);
 
     this.name = 'SovereignError';
     this.packet = validatedPacket;
 
-    // 3. Captura Forense de Pilha (V8 Engine Integration)
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, SovereignError);
     }
@@ -42,7 +34,7 @@ export class SovereignError extends Error {
   /**
    * @method transmute
    * @static
-   * @description Fábrica de elite que converte exceções genéricas em diagnósticos soberanos.
+   * @description Fábrica de elite que converte falhas genéricas em rastro técnico, injetando genealogia técnica.
    */
   public static transmute(
     nativeError: unknown,
@@ -57,20 +49,27 @@ export class SovereignError extends Error {
   ): SovereignError {
     const errorInstance = nativeError instanceof Error
       ? nativeError
-      : new Error(JSON.stringify(nativeError));
+      : new Error(typeof nativeError === 'string' ? nativeError : JSON.stringify(nativeError));
+
+    // 1. CONSULTA AO CARTÓRIO (Genealogia Automática)
+    const apparatusFingerprint = SovereignApparatusRegistry.getApparatusFingerprint(context.apparatus as any);
+    const inventory = SovereignApparatusRegistry.getTechnicalInventory();
+    const passport = inventory.find(p => p.identifier === context.apparatus);
 
     const memorySnapshot = typeof process !== 'undefined'
       ? Math.round(process.memoryUsage().heapUsed / 1024 / 1024)
       : undefined;
 
+    // 2. CONSTRUÇÃO DO PACOTE SOBERANO
     return new SovereignError({
       uniqueErrorCode: SovereignErrorCodeSchema.parse(context.code),
       i18nMappingKey: 'GENERIC_INFRASTRUCTURE_FAILURE',
       severity: context.severity || 'HIGH',
       apparatusMetadata: {
         name: context.apparatus,
-        version: '3.0.0',
-        fileLocation: context.location
+        version: passport?.semanticVersion || '0.0.0',
+        fileLocation: context.location,
+        fingerprint: apparatusFingerprint
       },
       runtimeSnapshot: {
         inputPayload: {
@@ -82,26 +81,25 @@ export class SovereignError extends Error {
       },
       forensicTrace: {
         timestamp: new Date().toISOString(),
-        stack: errorInstance.stack || 'STACK_TRACE_UNAVAILABLE'
+        stackTrace: errorInstance.stack || 'NO_STACK_AVAILABLE'
       },
-      recoverySuggestion: context.recoverySuggestion || 'Acionar Auditor Neural para análise de rastro.'
+      recoverySuggestion: context.recoverySuggestion || 'Acionar Auditor Neural para análise de rastro de versão.'
     });
   }
 
   /**
    * @method getDiagnosticReport
    * @description Gera rastro estruturado para consumo imediato por IAs de Manutenção.
+   * CURA TS2339: Método agora presente na estrutura física da classe.
    */
   public getDiagnosticReport(): string {
     return JSON.stringify({
-      fingerprint: `F-${this.packet.uniqueErrorCode}-${this.packet.runtimeSnapshot.correlationIdentifier}`,
-      neuralContext: {
-        apparatus: this.packet.apparatusMetadata.name,
-        severity: this.packet.severity,
-        location: this.packet.apparatusMetadata.fileLocation
-      },
-      rastro: this.packet.forensicTrace.stack,
-      suggestion: this.packet.recoverySuggestion
+      fingerprint: this.packet.apparatusMetadata.fingerprint,
+      errorCode: this.packet.uniqueErrorCode,
+      severity: this.packet.severity,
+      trace: this.packet.runtimeSnapshot.correlationIdentifier,
+      reconciliationSuggestion: this.packet.recoverySuggestion,
+      forensicStack: this.packet.forensicTrace.stackTrace
     });
   }
 

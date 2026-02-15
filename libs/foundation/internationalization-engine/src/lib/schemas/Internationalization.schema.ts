@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus InternationalizationSchema
- * @version 2.3.1
- * @protocol OEDP-V5.5 - Neural Integrity & Geopolitical Sovereignty
+ * @version 6.5.1
+ * @protocol OEDP-V6.5 - Zenith Master DNA
  * @description Define o ADN imutável de dicionários soberanos.
- * Sincronizado com a Bóveda de Contratos para evitar duplicidade de Locale.
+ * CURADO: Sincronização total de chaves semânticas (semanticContent) e selagem nominal.
  */
 
 import { z } from 'zod';
@@ -13,70 +13,79 @@ import {
   type SovereignLocale
 } from '@agentevai/types-common';
 
-/**
- * @section Ponte de Soberania (Manifesto 0018)
- * Re-exportamos os tipos centrais para manter a compatibilidade com o motor de tradução,
- * garantindo que a Fonte Única de Verdade (SSOT) continue sendo a types-common.
+/** 
+ * @section Dimensões Nominais (Branded Types) 
+ * Garante que hashes de integridade não sejam manipulados como strings comuns.
  */
-export const LocaleSchema = SovereignLocaleSchema;
-export type Locale = SovereignLocale;
+export const IntegrityHashSchema = z.string()
+  .length(64)
+  .regex(/^[a-f0-9]+$/)
+  .describe('Hash SHA-256 inalterável que sela a integridade do dicionário.')
+  .brand<'IntegrityHash'>();
+
+export type IntegrityHash = z.infer<typeof IntegrityHashSchema>;
 
 /**
  * @name SemanticAuraSchema
- * @description Metadados que orientam a IA sobre o peso emocional e o propósito da string.
+ * @description Metadados que orientam a IA sobre o peso emocional e o propósito da mensagem.
  */
 const SemanticAuraSchema = z.object({
   severity: z.enum(['NEUTRAL', 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL'])
     .default('NEUTRAL')
     .describe('Nível de urgência da mensagem para tratamento visual e auditivo.'),
 
-  vocalize: z.boolean()
+  vocalizeActionTrigger: z.boolean()
     .default(false)
-    .describe('Gatilho para motores de Text-to-Speech (Acessibilidade Soberana).'),
+    .describe('Gatilho para motores de síntese de voz regionalizada (Acessibilidade).'),
 
-  contextualHint: z.string()
+  contextualInstructionHint: z.string()
     .optional()
-    .describe('Instrução explícita para a IA de Autocura entender onde esta string é injetada.'),
-
-  sentimentTarget: z.enum(['POSITIVE', 'NEGATIVE', 'NEUTRAL', 'INSPIRATIONAL'])
-    .default('NEUTRAL')
-    .describe('Define a polaridade semântica esperada para validação de tom.'),
-});
+    .describe('Diretriz explícita para a IA de Autocura entender a aplicação desta string.'),
+}).readonly();
 
 /**
  * @name TranslationFragmentSchema
  * @description Unidade atômica de tradução com suporte a interpolação e rastro de versão.
  */
 export const TranslationFragmentSchema = z.record(
-  z.string().min(2).describe('Chave semântica (camelCase).'),
+  z.string().min(2).describe('Chave semântica exaustiva em camelCase.'),
   z.object({
-    value: z.string()
+    /** @section ZENITH_SYNC: 'value' foi depreciado em favor de 'semanticContent' */
+    semanticContent: z.string()
       .min(1)
       .describe('O conteúdo textual com suporte a placeholders no formato {variable}.'),
 
-    version: z.string()
+    semanticVersion: z.string()
       .default('1.0.0')
-      .describe('Versão semântica da string para controle de revisão linguística.'),
+      .describe('Versão do rastro semântico para controle de revisão linguística.'),
 
     aura: SemanticAuraSchema.optional(),
   })
-).describe('Fragmento de dicionário pertencente a um Aparato (Lego) específico.');
+).describe('Fragmento de dicionário pertencente a um aparato (Lego) específico.');
 
 /**
  * @name SovereignDictionarySchema
- * @description O Dicionário Consolidado Final (SSOT).
+ * @description O Dicionário Consolidado Final (SSOT) pronto para despacho em Vercel/Render.
  */
 export const SovereignDictionarySchema = z.object({
   metadata: z.object({
-    locale: LocaleSchema,
-    version: z.string().describe('Versão global do bundle de idiomas.'),
-    generatedAt: z.string().datetime(),
-    integrityHash: z.string().min(64).describe('Hash SHA-256 para selagem do dicionário.'),
+    activeLocale: SovereignLocaleSchema
+      .describe('Identidade cultural ativa validada pelo TransmuteGeopoliticalIdentifier.'),
+    
+    bundleVersion: z.string()
+      .describe('Versão global do pacote de idiomas.'),
+    
+    generatedAt: z.string()
+      .datetime()
+      .describe('Marca temporal da selagem industrial do dicionário.'),
+    
+    integrityHash: IntegrityHashSchema,
   }),
   content: z.record(
-    z.string().min(3).describe('Nome PascalCase do Aparato emissor.'),
+    z.string().min(3).describe('Nome PascalCase do Aparato emissor do rastro.'),
     TranslationFragmentSchema
   ),
 }).readonly();
 
 export type ISovereignDictionary = z.infer<typeof SovereignDictionarySchema>;
+export type ISovereignLocale = SovereignLocale;

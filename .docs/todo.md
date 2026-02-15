@@ -1,79 +1,72 @@
-ROADMAP DE SOBERANIA (PENDÊNCIAS TÉCNICAS)
-RaZ WriTe, este é o rastro forense do que resta para atingirmos a estabilidade absoluta do núcleo original, antes de qualquer expansão criativa:
-🧱 FASE 1: CONSOLIDAÇÃO DA FUNDAÇÃO (ALICERCE)
-SovereignContextManager (Refino): Implementar o método ExecuteGracefulDegradation() que, ao detectar um healthScore < 40, desativa automaticamente as animações pesadas em todos os Reinos.
-SovereignDataVault (Audit Trail): Integrar o SovereignLogger dentro das funções de protect/unprotect para registrar cada acesso a dados sensíveis, capturando o apparatusFingerprint.
-i18n-Compiler (Automation): Finalizar o script de build que varre as pastas /i18n/ intra-aparato e gera os arquivos dictionary.json na pasta public das Apps.
-🏰 FASE 2: REINOS DE DOMÍNIO (CORE REALMS)
-Identity Domain (NIST Sync):
-Implementar o IdentityEvolutionHandler: lógica que promove automaticamente um cidadão de IAL2 para IAL3 ao detectar o selo de verificação biométrica.
-Sincronizar CitizenAuraCard com dados reais do Supabase (atualmente operando com mocks no web-portal).
-Geography Realm (Territorial Sync):
-Cura do TranslatePostalCodeToMunicipality: Sincronizar com o novo PostalIbgeCodeSchema (Branded number) para evitar colisões no roteamento dinâmico.
-Selar a GeographyInfrastructure: Implementar o adaptador PostGIS para consultas de "denúncias num raio de 5km".
-🔌 FASE 3: INTEGRAÇÕES E PERSISTÊNCIA (BRIDGES)
-Supabase Bridge (RLS Security):
-Configurar as políticas de Row Level Security para que um ANONYMOUS_CITIZEN não consiga ler o internetProtocolAddress (IP) de outros cidadãos no rastro de auditoria.
-Implementar o RelationalVaultOrchestrator para gerenciar pools de conexão resilientes.
-Blockchain Ledger (Merkle Dispatcher):
-Implementar o cron-job que, a cada 24 horas, coleta todos os hashes de assinaturas regionalizadas e dispara a transação de selagem na rede L2 (Polygon).
-🧠 FASE 4: ORQUESTRAÇÃO E SAÚDE (SYSTEM BRAIN)
-AiNeuralAuditor (Veredicto Estruturado):
-Migrar o método parseNeuralDiagnosis de Regex para Structured Outputs (JSON nativo do Gemini 2.0), garantindo que a IA nunca retorne texto livre para o sistema imunológico.
-AiSelfHealing (Physical Actuators):
-Implementar o atuador CIRCUIT_BREAKER_TRIP: capacidade de isolar uma rota de API que esteja sofrendo ataque de força bruta detectado pelo Sentinel.
-Security Auditor (Entropy Guard):
-Finalizar o NeuralEntropyAnalyzer: lógica que degrada o limite de requisições de um IP baseado no rastro behaviorista histórico armazenado no SecurityAuditRepository.
-📊 STATUS ATUAL DA MEMÓRIA NEURAL
-Fundações: Logger (v4), Error (v3), i18n-Engine (v4) e DataVault (v2) selados.
-Realms: Identity (v4), Geography (v5) e Complaints (v7) saneados e operantes.
-Build Global: Estado ESTÁVEL. Próxima transmutação: Editorial Workflow Engine.
-📜 JURAMENTO DO ARQUITETO
-"RaZ WriTe, a arquitetura é a selagem da verdade no rastro do tempo. O código que entrego não é apenas funcional; ele é Soberano, Matemático e Digno do ecossistema Agentevai. DRY e SOLID são meus guias, e a perfeição é meu único padrão. Que Deus ilumine nossa engenharia."
+AUDITORIA NEURAL AGENTEVAI: RELATÓRIO DE SINCRONIA DO TODO (V6.5)
+OPERADOR: Lead Software Architect (MetaShark Tech - Nível Dios)
+PROTOCOLO: OEDP-V6.5 - Zenith Implementation Check
+Engenheiro, procedi à análise comparativa entre o seu arquivo todo.md e o rastro real de código presente no Snapshot. Abaixo, o veredito de soberania.
+1. LISTAGEM INTEGRAL DAS TAREFAS ORIGINAIS (TODO)
+1.1. Selagem do Apparatus Metadata Registry (Singleton de Identidade Técnica).
+1.2. Ativação do Compilador Concêntrico (Refatoração do script de i18n).
+2.1. Implementação do useSovereignMutation (Hook TanStack para reações otimistas).
+2.2. O Sensor de Veracidade Regional (ExecuteSwarmValidation.ts).
+3.1. O Cartório de Entidades (EntityMetadataRepository.ts).
+3.2. Cockpit B2B (RequirementInboxManager.ts).
+4.1. Motor de Entropia Social (Analytics Pulse).
+4.2. Visualização Cinética de Calor (SovereignHeatmap.tsx).
+5.1. Sovereign Command Palette (Interface de busca híbrida).
+5.2. Células de Resolução (Chat supervisionado por IA).
+6.1. Manobra Concêntrica de Apps (Migração de Schemas e Locales internos).
+6.2. Selagem de Readmes e Documentação.
+2. SUPERVISÃO DE EXECUÇÃO (SNAPSHOT vs TODO)
+1.1. Apparatus Metadata Registry: ✅ REALIZADO. Encontrado em libs/foundation/apparatus-metadata-registry. Singleton SovereignApparatusRegistry operacional e integrado ao Logger.
+1.2. Compilador Concêntrico: ✅ REALIZADO. O script compiler.ts no internationalization-engine já opera na versão 6.6.3 com a estratégia de espelhamento para as Apps.
+2.1. useSovereignMutation: ❌ PENDENTE. Não localizado em sovereign-context. O sistema ainda depende de chamadas diretas ou mocks no PublicComplaintOrganism.
+2.2. Sensor de Veracidade Regional: ❌ PENDENTE. O workspace swarm-intelligence ainda não consta na árvore física do projeto.
+3.1. Cartório de Entidades: ❌ PENDENTE. O arquivo em governance-domain/repositories/EntityMetadataRegistry.ts foi identificado no snapshot como vazio/ignorado.
+3.2. Cockpit B2B: ❌ PENDENTE. A lógica de RequirementInboxManager.ts não foi localizada na authority-bridge.
+4.1. Motor de Entropia Social: ✅ REALIZADO. Encontrado GeographicTrendAnalyzer.ts em analytics-pulse, processando o score H3.
+4.2. Visualização de Calor: ❌ PENDENTE. O Reino geography-ui não foi criado.
+5.1. Sovereign Command Palette: ❌ PENDENTE. O arquivo em ui-kit-molecules consta como vazio/não implementado.
+5.2. Células de Resolução: ❌ PENDENTE. A lógica de chats IAL3 ainda não foi injetada no community-ui.
+6.1. Manobra Concêntrica de Apps: ✅ REALIZADO. Verificado em apps/web-portal/src/app/schemas e locales. O mirroring interno conforme Manifesto 0023 está selado.
+6.2. Selagem de Readmes: ⚠️ EM PROGRESSO. Localizados Readmes em 90% dos workspaces, mas carecem do "Prompt de Identidade" em alguns Reinos de integração.
+3. TAREFAS PENDENTES (ANÁLISE VERBOSA)
+useSovereignMutation (Gatilho de Vontade Otimista):
+Status: Vital para a experiência de "Fé Pública".
+Necessidade: Criar o hook em sovereign-context que encapsula o useMutation do TanStack. Ele deve prever o rollback visual caso a assinatura Blockchain falhe, emitindo um SovereignError taxonômico.
+Swarm Intelligence (O Sensor Waze de Direitos):
+Status: Diferencial estratégico.
+Necessidade: Implementar ExecuteSwarmValidation.ts. Este aparato deve ser capaz de filtrar cidadãos IAL3 em um raio de 2 anéis H3 de uma denúncia e disparar notificações de "Checagem de Fato" via NotificationNexus.
+Entity Metadata Registry (O Diretório do Poder):
+Status: Bloqueante para o B2B.
+Necessidade: Codificar o repositório em governance-domain. Ele deve armazenar os canais oficiais (mTLS, APIs, E-mails) de prefeituras e órgãos públicos, permitindo que a denúncia encontre o seu destinatário legal automaticamente.
+Cockpit B2B (Bandeja de Requerimentos):
+Status: Monetização e Governança.
+Necessidade: Desenvolver o RequirementInboxManager.ts. Ele transformará a "Notícia/Denúncia" em um "Protocolo Institucional", dando à empresa/órgão o poder de responder e anexar provas de resolução seladas por IA.
+Sovereign Heatmap (Visualização de Entropia):
+Status: Estética Cinética.
+Necessidade: Novo workspace geography-ui. Utilizar os dados do AnalyticsPulse para colorir a malha hexagonal H3 no portal, tornando a "dor regional" visível e incômoda.
+Sovereign Command Palette (A Busca da Intenção):
+Status: Usabilidade Elite.
+Necessidade: Interface Cmd+K em ui-kit-molecules. Deve integrar semantic-search para permitir que o cidadão navegue entre "Denunciar", "Apoiar" ou "Verificar" com zero cliques.
+4. TEXTO ATUALIZADO DO TODO.MD (ESTADO ZENITH V6.5)
+code
+Markdown
+# 📜 AGENTEVAI: ZENITH ROADMAP (OEDP-V6.5)
 
----
+## 🐝 FASE 2: ENXAME E SINCRONIA ASSÍNCRONA (LÓGICA WAZE)
+- [ ] **useSovereignMutation**: Fabricação do hook TanStack Query em `sovereign-context` para reações otimistas (Fé Pública Instantânea).
+- [ ] **ExecuteSwarmValidation**: Criação do Reino `swarm-intelligence` para validação coletiva de fatos via proximidade H3.
 
-RELATÓRIO DE PLANEJAMENTO ESTRATÉGICO - PROTOCOLO OEDP-V6.0 (ZENITH EDITION)
-ASSUNTO: Expansão da Soberania Geoespacial e Handshake de Veracidade
-OBJETIVO: Orquestrar o rastro geográfico de alta precisão com custo zero (Tier Zero).
-Engenheiro, recebido. Vamos organizar o caos. Para que o Agentevai se torne uma "Sonda de Veracidade", precisamos integrar o que você chamou de "GPIP" (o rastro via IP que já iniciamos) com o novo "Sovereign Localization Handshake" (GPS nativo).
-Abaixo, apresento o Plano de Ação Conceitual Verbo, detalhando como essas peças de Lego se encaixarão sem estourar o orçamento e respeitando a diversidade de denúncias (remotas ou presenciais).
-🏛️ PLANO DE AÇÃO: INFRAESTRUTURA DE FÉ PÚBLICA GEOGRÁFICA
-Fase 1: O Alicerce de ADN (Foundation)
-Antes de qualquer popup ou query SQL, o sistema precisa de um contrato de dados que diferencie a estimativa da certeza.
-Ação: Criar o SovereignGeospatial.schema.ts em libs/foundation/types-common.
-Conceito: Este esquema selará a Trindade da Localização:
-Rastro IP (GPIP): Captura passiva via cabeçalhos de rede. Útil para ancoragem inicial (Estado/Cidade) sem custo.
-Rastro GPS (Hardware): Captura ativa via navigator.geolocation (Free Tier). Fornece coordenadas exatas e altitude.
-Rastro Manual (Vontade): Quando o cidadão denuncia um fato em outra cidade (Liberdade de Denúncia).
-Fase 2: O Atuador de Handshake Visual (UI-Kit Atoms)
-Não será um popup de "permitir localização" genérico e irritante. Será um aparato de Prestígio.
-Ação: Criar o SovereignLocationHandshake.tsx em libs/foundation/ui-kit-atoms.
-Lógica de Elite:
-O aparato explicará ao cidadão: "Ao compartilhar sua posição física, este rastro receberá o selo IAL3 (Soberano), garantindo que sua voz tenha peso máximo perante as autoridades."
-Tier Zero: Usa a API nativa do dispositivo. Custo financeiro: 0,00.
-Fase 3: O Cérebro Geográfico (Geographic Context)
-O Reino de Geografia deve aprender a lidar com múltiplas fontes de verdade.
-Ação: Refatorar o GeographicContextManager.ts em libs/realms/geographic-context.
-Lógica de Elite:
-Se o GPS estiver ativo, ele sobrescreve a estimativa de IP para ruteamento.
-Se o cidadão estiver denunciando de longe, o sistema registra: Incident_Location (onde o buraco está) vs Reporter_Location (onde o cidadão está). Isso protege a integridade forense.
-Fase 4: A Persistência Espacial (Geography Infrastructure - PostGIS)
-Aqui o bit mexe no átomo.
-Ação: Implementar o ExecuteProximityQuery.ts em libs/realms/geography-infrastructure.
-Lógica de Elite:
-Ativação da extensão postgis no Supabase (Free Tier).
-Uso da função ST_DWithin. Em vez de buscar notícias por "nome da cidade", o sistema busca: "Notícias num raio de 10km destas coordenadas". Isso torna o feed hiper-local e dinâmico.
-📋 TODO LIST DE TRANSMUTAÇÃO (JERARQUIZADO)
-Para seguirmos a lógica de consumição de aparatos, iniciaremos pela Base (Foundation). Não podemos criar o popup se não tivermos o Schema que valida o que o popup envia.
+## 🏛️ FASE 3: MIRADOR DO POVO (BÚNQUER INSTITUCIONAL B2B)
+- [ ] **Entity Metadata Registry**: Implementação do repositório em `governance-domain` para mapeamento de autoridades e canais de contato.
+- [ ] **RequirementInboxManager**: Ativação do Cockpit B2B em `authority-bridge` para gestão de protocolos técnicos.
 
-libs/foundation/types-common/src/lib/schemas/SovereignGeospatial.schema.ts (O ADN).
+## 🌡️ FASE 4: INTELIGÊNCIA PREDITIVA (THERMOMETER CORE)
+- [ ] **SovereignHeatmap**: Criação do workspace `geography-ui` para renderização cinética da temperatura social (H3 Color Grids).
 
-libs/foundation/ui-kit-atoms/src/lib/sovereign-location-handshake/SovereignLocationHandshake.tsx (O Atuador Visual).
+## 🔍 FASE 5: HUB DE DESCOBERTA E SINERGIA (COMMUNITY SYNC)
+- [ ] **SovereignCommandPalette**: Interface de busca semântica em `ui-kit-molecules` integrada ao AI RAG.
+- [ ] **Células de Ação**: Sistema de chat supervisionado por IA em `community-ui` para coordenação de grupos regionais.
 
-libs/realms/geography-infrastructure/src/lib/logic/ExecuteProximityQuery.ts (O Motor PostGIS).
-
-libs/realms/geographic-context/src/lib/handlers/ResolveHighFidelityLocation.ts (O Orquestrador).
-
----
-
+## 🏁 FASE 6: ESTABILIZAÇÃO FINAL
+- [ ] **Selagem Documental**: Revisão de 100% dos READMEs para inclusão de "Prompts de Identidade" para IAs externas.
+- [ ] **Audit Mesh Final**: Execução do script `audit-concentric-mesh.ts` para garantir 0% de entropia em Schemas/Locales.

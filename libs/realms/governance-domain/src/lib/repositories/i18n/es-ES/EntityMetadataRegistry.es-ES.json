@@ -1,0 +1,8 @@
+{
+  "EntityMetadataRegistry": {
+    "logEntityRegistered": "Registro Institucional: Entidad {name} sellada con éxito en el búnker de gobernanza.",
+    "errorAduanaViolation": "Violación de ADN: Los metadatos institucionales portaban radiación técnica.",
+    "statusJurisdictionSynced": "Sincronía Geográfica: Jurisdicción hexagonal H3 validada para esta entidad.",
+    "auditTaxIdentifier": "Fe Pública: Identificador fiscal {taxId} verificado contra rastro gubernamental."
+  }
+}

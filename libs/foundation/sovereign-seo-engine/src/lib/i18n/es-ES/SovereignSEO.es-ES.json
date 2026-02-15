@@ -1,0 +1,9 @@
+{
+  "SovereignSEO": {
+    "logMetadataGenerated": "Sincronía de Autoridad: Metadatos sellados con nivel {level} para el motor de búsqueda.",
+    "errorSchemaViolation": "Incapacidad de Indexación: Los parámetros de SEO violaron el contrato estructural.",
+    "statusEeatVerified": "CONFIANZA MATEMÁTICA: Este rastro porta prueba Blockchain reconocida por robots.",
+    "defaultSiteDescription": "Agentevai - La infraestructura de soberanía digital y periodismo verificado de Brasil.",
+    "jsonLdInjectionSuccess": "Autoridad Semántica: Esquema {type} inyectado con rastro forense {identifier}."
+  }
+}

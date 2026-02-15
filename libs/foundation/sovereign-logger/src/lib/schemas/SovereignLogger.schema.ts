@@ -1,38 +1,40 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignLoggerSchema
- * @version 2.0.0
- * @protocol OEDP-V6.0 - Forensic Precision
- * @description ADN imutável para telemetria estruturada.
- * Projetado para ser indexado instantaneamente por motores de busca e IAs.
+ * @version 5.0.0
+ * @protocol OEDP-V6.5 - Zenith Forensic SSOT
  */
 
 import { z } from 'zod';
 
-/**
- * @name SovereignLogSchema
- * @description Aduana de ADN para cada pulso de log no sistema.
+/** 
+ * @name SovereignLogInputSchema 
+ * @description ADN de entrada para cada pulso de telemetria.
  */
-export const SovereignLogSchema = z.object({
+export const SovereignLogInputSchema = z.object({
   severity: z.enum(['INFO', 'WARN', 'ERROR', 'CRITICAL'])
-    .describe('Nível de impacto do evento no fluxo vital do sistema.'),
+    .describe('Nível de impacto no fluxo vital.'),
 
   apparatus: z.string().min(3)
-    .describe('Nome PascalCase do componente ou função atômica emissora.'),
+    .describe('Nome PascalCase do Lego emissor (ex: SovereignMainHeader).'),
 
   operation: z.string().min(2)
-    .describe('Identificador técnico da ação (ex: DATA_FETCH, AUTH_IGNITION).'),
+    .describe('Identificador técnico da ação (ex: DATA_SEALING).'),
 
   message: z.string().min(1)
     .describe('Conteúdo textual humanizado ou código semântico.'),
 
   metadata: z.record(z.string(), z.unknown()).optional()
-    .describe('Carga útil de rastro para perícia detalhada (Zero Any).'),
+    .describe('Carga útil para perícia detalhada.'),
 
-  /** Sincronia Zod v4: Uso do construtor de elite z.uuid() */
-  correlationIdentifier: z.uuid().optional()
-    .describe('Identificador inalterável para correlação cross-platform do rastro.'),
+  latencyInMilliseconds: z.number()
+    .nonnegative()
+    .optional()
+    .describe('Tempo de execução da operação medido pelo aparato.'),
+
+  correlationIdentifier: z.uuid()
+    .describe('Identificador inalterável da jornada forense atual.'),
 
 }).readonly();
 
-export type ISovereignLog = z.infer<typeof SovereignLogSchema>;
+export type ISovereignLogInput = z.infer<typeof SovereignLogInputSchema>;

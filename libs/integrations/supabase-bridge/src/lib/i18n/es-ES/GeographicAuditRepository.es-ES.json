@@ -1,0 +1,7 @@
+{
+  "GeographicAuditRepository": {
+    "logAuditSuccess": "Sello Territorial: Rastro de ubicación {identifier} grabado con integridad en el cofre.",
+    "errorPersistViolation": "Incapacidad de Persistencia: El cofre relacional rechazó el sellado del rastro geográfico.",
+    "logHandshakeSuccess": "Handshake de Datos: Conexión geográfica con Supabase establecida."
+  }
+}
