@@ -1,0 +1,9 @@
+{
+  "SignaturePooling": {
+    "logIngestion": "Ato de Vontade: Manifestação nível {level} integrada ao lote regional do território: {region}.",
+    "logMeritCalculated": "Mérito Soberano: Acréscimo de {weight} pontos de fé pública ao rastro do bloco.",
+    "statusSealingStarted": "Protocolo de Imutabilidade: Iniciando processamento de Árvore de Merkle para selagem.",
+    "errorPoolLocked": "Incapacidade de Ingestão: O lote regional encontra-se selado e não admite novas assinaturas.",
+    "blockchainVerdict": "Fé Pública: Lote regional ancorado em Blockchain com sucesso. Root: {root}."
+  }
+}

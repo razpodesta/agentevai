@@ -1,0 +1,27 @@
+{
+  "name": "@agentevai/gamification-engine",
+  "version": "1.0.0",
+  "description": "Motor de Mérito Social: Gere as regras de IRS (Índice de Relevância Soberana), auras de prestígio e evolução de standing.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "REALM_LOGIC",
+    "role": "MERIT_ECONOMY_CORE",
+    "realm": "GAMIFICATION"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/registry-vault": "workspace:*"
+  }
+}

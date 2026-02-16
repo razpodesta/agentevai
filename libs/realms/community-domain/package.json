@@ -1,0 +1,23 @@
+{
+  "name": "@agentevai/community-domain",
+  "version": "7.0.0",
+  "description": "Reino de Lógica Social: Centraliza as regras de reputação, prestígio, influência e dinâmica de hilos da comunidade.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "REALM_DOMAIN",
+    "role": "SOCIAL_ENGINEERING_SSOT",
+    "protocol": "OEDP-V7.0"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/identity-domain": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*"
+  }
+}

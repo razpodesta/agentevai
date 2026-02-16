@@ -1,0 +1,6 @@
+{
+  "SovereignGeospatialSchema": {
+    "errorInvalidH3Index": "Trace Violation: The H3 hexagonal identifier is invalid or carried technical radiation.",
+    "errorOutOfBounds": "Sovereign Limit: The provided coordinates are outside planetary boundaries."
+  }
+}

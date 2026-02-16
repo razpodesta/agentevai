@@ -1,0 +1,25 @@
+{
+  "name": "sovereign-taxonomy",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/foundation/sovereign-taxonomy/src",
+  "projectType": "library",
+  "tags": ["type:foundation", "scope:foundation", "role:semantic-standard"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/foundation/sovereign-taxonomy",
+        "main": "libs/foundation/sovereign-taxonomy/src/index.ts",
+        "tsConfig": "libs/foundation/sovereign-taxonomy/tsconfig.lib.json",
+        "assets": ["libs/foundation/sovereign-taxonomy/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": { "jestConfig": "libs/foundation/sovereign-taxonomy/jest.config.cts" }
+    },
+    "lint": { "executor": "@nx/eslint:lint" }
+  }
+}

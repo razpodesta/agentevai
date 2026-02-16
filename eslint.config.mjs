@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ESLintSovereignRules
- * @version 6.5.0
- * @protocol OEDP-V6.5 - Zenith Editorial Stabilization
+ * @version 7.0.0
+ * @protocol OEDP-V7.0 - Zenith Strategic Stabilization
  * @description Constituição suprema de linting. Define as fronteiras diplomáticas
- * entre Reinos (Realms) e garante a pureza do ADN técnico (Zero Abbreviations).
+ * entre todos os búnqueres e garante a pureza do ADN técnico (Zero Abbreviations).
  * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
  * @policy BOUNDARY-SOVEREIGNTY: Policiamento estrito de dependências via Nx.
  */
@@ -45,10 +45,12 @@ export default [
           enforceBuildableLibDependency: true,
           allow: [],
           depConstraints: [
+            /* 🧱 ALICERCES: Só dependem de si mesmos */
             {
               sourceTag: 'scope:foundation',
               onlyDependOnLibsWithTags: ['scope:foundation']
             },
+            /* 🔌 INTEGRAÇÕES: Dependem da base e de outras integrações para drivers */
             {
               sourceTag: 'scope:integrations',
               onlyDependOnLibsWithTags: [
@@ -56,6 +58,20 @@ export default [
                 'scope:integrations'
               ],
             },
+            /* 🏰 REINOS DE DADOS E LEI (NEW BUNKERS) */
+            {
+              sourceTag: 'scope:registry',
+              onlyDependOnLibsWithTags: ['scope:foundation', 'scope:integrations']
+            },
+            {
+              sourceTag: 'scope:gamification',
+              onlyDependOnLibsWithTags: ['scope:foundation', 'scope:registry']
+            },
+            {
+              sourceTag: 'scope:auth',
+              onlyDependOnLibsWithTags: ['scope:foundation', 'scope:registry', 'scope:gamification']
+            },
+            /* 🗺️ REINO DE GEOGRAFIA */
             {
               sourceTag: 'scope:geography',
               onlyDependOnLibsWithTags: [
@@ -63,11 +79,13 @@ export default [
                 'scope:integrations'
               ],
             },
+            /* 👤 REINO DE IDENTIDADE E COMUNIDADE */
             {
               sourceTag: 'scope:identity',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations'
+                'scope:integrations',
+                'scope:registry'
               ],
             },
             {
@@ -75,9 +93,11 @@ export default [
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
                 'scope:integrations',
-                'scope:identity'
+                'scope:identity',
+                'scope:registry'
               ],
             },
+            /* 📰 REINO DE NOTÍCIAS E EDITORIAL */
             {
               sourceTag: 'scope:news',
               onlyDependOnLibsWithTags: [
@@ -85,8 +105,10 @@ export default [
                 'scope:integrations',
                 'scope:geography',
                 'scope:identity',
-                'scope:community'               ],
+                'scope:community'
+              ],
             },
+            /* 📢 REINO DE DENÚNCIAS E GOVERNANÇA */
             {
               sourceTag: 'scope:complaints',
               onlyDependOnLibsWithTags: [
@@ -95,7 +117,8 @@ export default [
                 'scope:geography',
                 'scope:community',
                 'scope:governance',
-                'scope:identity'
+                'scope:identity',
+                'scope:auth'
               ],
             },
             {
@@ -106,20 +129,25 @@ export default [
                 'scope:complaints',
                 'scope:geography',
                 'scope:identity',
-                'scope:community'
+                'scope:community',
+                'scope:auth'
               ],
             },
+            /* 🤖 MALHA DE INTELIGÊNCIA E ENXAME (SWARM) */
             {
-              sourceTag: 'scope:marketing',
+              sourceTag: 'scope:ai',
               onlyDependOnLibsWithTags: [
                 'scope:foundation',
-                'scope:integrations'
-              ],
+                'scope:integrations',
+                'scope:registry'
+              ]
             },
+            /* 🧠 ORQUESTRACAO: O SISTEMA NERVOSO (Acesso Amplo, mas Hierarquizado) */
             {
               sourceTag: 'scope:orchestration',
               onlyDependOnLibsWithTags: ['*']
             },
+            /* 🌐 APLICAÇÕES: O TOPO DA CADEIA */
             {
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: ['*']
@@ -184,6 +212,10 @@ export default [
         {
           selector: "VariableDeclarator[id.name='t'], Parameter[name='t']",
           message: "Abreviação proibida: Use 'translate' ou 'translateLabel'.",
+        },
+        {
+          selector: "VariableDeclarator[id.name='ad'], Parameter[name='ad']",
+          message: "Abreviação proibida: Use 'advertisement' ou 'promotion'.",
         }
       ],
     },

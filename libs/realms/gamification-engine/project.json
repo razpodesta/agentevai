@@ -1,0 +1,17 @@
+{
+  "name": "gamification-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/gamification-engine/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:gamification", "role:merit-rules"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/realms/gamification-engine",
+        "main": "libs/realms/gamification-engine/src/index.ts",
+        "tsConfig": "libs/realms/gamification-engine/tsconfig.lib.json"
+      }
+    }
+  }
+}

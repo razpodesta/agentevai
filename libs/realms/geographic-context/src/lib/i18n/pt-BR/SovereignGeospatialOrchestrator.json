@@ -1,0 +1,7 @@
+{
+  "SovereignGeospatialOrchestrator": {
+    "logTruthResolved": "Consciência Territorial estabelecida com sucesso no nível {level}.",
+    "statusFailoverActive": "Sinal de hardware ausente. Ativando failover para ancoragem via rastro de IP.",
+    "errorAduanaViolation": "Falha de ADN: O rastro geográfico violou o contrato de integridade Zenith."
+  }
+}

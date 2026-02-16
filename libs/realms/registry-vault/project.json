@@ -1,0 +1,17 @@
+{
+  "name": "registry-vault",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/registry-vault/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:registry", "role:data-ssot"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/realms/registry-vault",
+        "main": "libs/realms/registry-vault/src/index.ts",
+        "tsConfig": "libs/realms/registry-vault/tsconfig.lib.json"
+      }
+    }
+  }
+}

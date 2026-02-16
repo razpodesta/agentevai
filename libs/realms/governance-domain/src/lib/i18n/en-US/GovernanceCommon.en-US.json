@@ -1,9 +1,0 @@
-{
-  "GovernanceCommon": {
-    "status_OPEN": "Pool Open",
-    "status_ANCHORED": "Mathematical Proof Guaranteed",
-    "errorPoolCorrupted": "Alert: Signature batch integrity compromised.",
-    "logSignatureAdded": "IAL {level} signature integrated into regional pool {region}.",
-    "blockchainExplanation": "Your signature is part of a mathematical batch protected by Blockchain."
-  }
-}

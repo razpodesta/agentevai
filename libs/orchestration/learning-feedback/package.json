@@ -1,0 +1,27 @@
+{
+  "name": "@agentevai/learning-feedback",
+  "version": "1.0.0",
+  "description": "Ciclo de Evolução: Captura correções de IAL3 e gera datasets de treinamento para fine-tuning de modelos locais.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION_EVOLUTION",
+    "role": "TRAINING_LOOP_MANAGER"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "langsmith": "^0.5.4",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/intelligence-hub": "workspace:*"
+  }
+}

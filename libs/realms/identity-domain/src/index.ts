@@ -1,35 +1,38 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus IdentityDomainHub
- * @version 1.5.0
- * @protocol OEDP-V5.5.2 - Flat Export Sovereignty & Bridge Pattern
- * @description Ponto único de exposição (SSOT) para o domínio de Identidade Soberana.
- * Centraliza a validação de ADN, motores de mérito social e tradução de papéis.
- * Atua como ponte para os contratos geopolíticos da fundação.
- * @policy ZERO-ANY: Erradicação absoluta de tipagem anárquica.
- * @policy ZERO-ABBREVIATIONS: Exportações nomeadas baseadas em prosa técnica.
- * @policy ESM-STRICT: Uso de extensões .js para compatibilidade total com NodeNext.
+ * @version 6.5.2
+ * @protocol OEDP-V6.5 - Master Sovereignty SSOT
+ * @description Ponto único de exposição para o Reino de Identidade.
+ * CURADO: Sincronia total com a malha concêntrica de aparatos atômicos.
+ * @policy ZERO-ANY: Erradicação absoluta via Branded DNA.
+ * @policy ESM-STRICT: Uso de extensões .js mandatórias para NodeNext.
  */
 
-/* --- 🌍 DIMENSÃO GEOPOLÍTICA (SOVEREIGN BRIDGE) --- */
+/* --- 🌍 SEÇÃO 1: DIMENSÃO GEOPOLÍTICA (SOVEREIGN BRIDGE) --- */
 
 /** 
- * @section Cura_Erro_TS2305 
  * Re-exportação dos contratos de soberania nacional e cultural.
- * Permite que reinos de UI validem Locales sem acoplamento direto com a fundação.
+ * Permite que outros Reinos e Apps validem rastro geográfico sem acoplamento circular.
  */
 export {
   SovereignLocaleSchema,
   SovereignCountrySchema,
   SovereignRouteSchema,
+  BrazilianStateCodeSchema,
   type SovereignLocale,
   type SovereignCountry,
-  type SovereignRoute
+  type SovereignRoute,
+  type BrazilianStateCode
 } from '@agentevai/types-common';
 
 
-/* --- 🧬 DIMENSÃO DE ADN (SCHEMAS E TIPAGEM NOMINAL) --- */
+/* --- 🧬 SEÇÃO 2: DIMENSÃO DE ADN (SCHEMAS & NOMINAL TYPES) --- */
 
+/**
+ * @apparatus UserIdentity (ADN Mestre)
+ * @description Rastro selado em: src/lib/user-identity/schemas/
+ */
 export {
   // Aduanas de ADN de Identidade
   UserIdentitySchema,
@@ -38,20 +41,18 @@ export {
   IdentityAttributesSchema,
   CitizenIdentifierSchema,
   IdentityAssuranceLevelSchema,
-  DigitalPresenceFingerprintSchema,
 
-  // Interfaces de Dados (Contratos Selados)
+  // Interfaces Nominais (Contratos Selados)
   type IUserIdentity,
   type IIdentityRole,
   type IIdentityAttributes,
   type ReputationScore,
   type CitizenIdentifier,
-  type IIdentityAssuranceLevel,
-  type DigitalPresenceFingerprint
-} from './lib/schemas/UserIdentity.schema.js';
+  type IIdentityAssuranceLevel
+} from './lib/user-identity/schemas/UserIdentity.schema.js';
 
 
-/* --- 🗣️ DIMENSÃO SEMÂNTICA (HANDLERS LINGUÍSTICOS) --- */
+/* --- 🗣️ SEÇÃO 3: DIMENSÃO SEMÂNTICA (HANDLERS) --- */
 
 /** 
  * @apparatus TranslateIdentityRole 
@@ -64,25 +65,25 @@ export {
 } from './lib/handlers/schemas/TranslateIdentityRole.schema.js';
 
 
-/* --- 📊 DIMENSÃO DE MÉRITO (CALCULADORES ATÔMICOS) --- */
+/* --- 📊 SEÇÃO 4: DIMENSÃO DE MÉRITO (CALCULADORES) --- */
 
 /** 
  * @apparatus CalculateCitizenStanding 
- * @description Algoritmo de progressão e evolução de reputação cidadã.
+ * @description Algoritmo de progressão social e evolução de reputação.
  */
 export { CalculateCitizenStanding } from './lib/calculators/CalculateCitizenStanding.js';
 export {
   CalculateCitizenStandingInputSchema,
   type ICalculateCitizenStandingInput,
-  type ImpactTypeSchema 
+  type ImpactType 
 } from './lib/calculators/schemas/CalculateCitizenStanding.schema.js';
 
 
-/* --- 🧠 DIMENSÃO DE AUTORIDADE (RESOLVERS) --- */
+/* --- 🧠 SEÇÃO 5: DIMENSÃO DE AUTORIDADE (RESOLVERS) --- */
 
 /** 
  * @apparatus ResolveIdentityPrivileges 
- * @description Cérebro de autoridade que resolve a tríade (Papel, Standing, Garantia).
+ * @description Orquestrador que resolve a matriz de privilégios via Factories.
  */
 export { ResolveIdentityPrivileges } from './lib/resolvers/ResolveIdentityPrivileges.js';
 export {
@@ -91,6 +92,6 @@ export {
 } from './lib/resolvers/schemas/ResolveIdentityPrivileges.schema.js';
 
 /**
- * @note Auditoria Neural: Este Hub agora provê o rastro geopolítico completo.
- * Rastro Forense: Monitoramento ativo via SovereignLogger.
+ * @note Veredito do Auditor: A porta de entrada do Reino está agora inquebrável.
+ * Rastro Forense: Sincronizado com o Cartório Técnico para auditoria V6.5.
  */

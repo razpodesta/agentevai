@@ -1,0 +1,6 @@
+{
+  "SovereignGeospatialSchema": {
+    "errorInvalidH3Index": "Violação de Rastro: O identificador hexagonal H3 é inválido ou portava radiação técnica.",
+    "errorOutOfBounds": "Limite Soberano: As coordenadas informadas estão fora das fronteiras planetárias."
+  }
+}

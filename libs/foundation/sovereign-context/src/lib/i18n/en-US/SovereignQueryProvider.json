@@ -1,0 +1,7 @@
+{
+  "SovereignQueryProvider": {
+    "logPersistenceIgnited": "Offline Synchrony: Data bunker activated with key {key}.",
+    "errorPersistenceFailed": "Persistence Inability: Local cache trace could not be sealed.",
+    "statusOfflineReady": "SOVEREIGN STATE: System operating in Offline-First mode."
+  }
+}

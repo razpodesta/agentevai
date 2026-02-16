@@ -1,0 +1,25 @@
+{
+  "name": "@agentevai/sovereign-taxonomy",
+  "version": "1.0.0",
+  "description": "Dicionário Ontológico Mestre: Única Fonte de Verdade (SSOT) para classificação taxonômica de dores e jurisdições brasileiras.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "FOUNDATION_SEMANTICS",
+    "role": "TAXONOMY_AUTHORITY",
+    "stability": "STABLE"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
+  }
+}

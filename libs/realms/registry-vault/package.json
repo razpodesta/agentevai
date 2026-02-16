@@ -1,0 +1,27 @@
+{
+  "name": "@agentevai/registry-vault",
+  "version": "1.0.0",
+  "description": "Cofre de Registros: Única Fonte de Verdade para identidades, preferências de interface e avatares de todos os atores.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "REALM_DATA",
+    "role": "ACTOR_REGISTRY_SSOT",
+    "realm": "IDENTITY"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-data-vault": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*"
+  }
+}

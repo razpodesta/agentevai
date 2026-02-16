@@ -1,0 +1,29 @@
+{
+  "name": "@agentevai/synthetic-ingestion",
+  "version": "1.0.0",
+  "description": "Vetor de Visão Externa: Orquestrador de captura de tendências globais e scraping de portais para naturalização editorial.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "INTEGRATION_ADAPTER",
+    "role": "EXTERNAL_DATA_MINING",
+    "technology": "RSS_SCRAPING"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "rss-parser": "^3.13.0",
+    "cheerio": "^1.2.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/intelligence-hub": "workspace:*"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "sovereign-authorization",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/sovereign-authorization/src",
+  "projectType": "library",
+  "tags": ["type:orchestration", "scope:orchestration", "role:law-enforcement"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/sovereign-authorization",
+        "main": "libs/orchestration/sovereign-authorization/src/index.ts",
+        "tsConfig": "libs/orchestration/sovereign-authorization/tsconfig.lib.json"
+      }
+    }
+  }
+}

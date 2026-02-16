@@ -1,0 +1,17 @@
+{
+  "name": "learning-feedback",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/learning-feedback/src",
+  "projectType": "library",
+  "tags": ["type:orchestration", "scope:orchestration", "role:training-loop"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/learning-feedback",
+        "main": "libs/orchestration/learning-feedback/src/index.ts",
+        "tsConfig": "libs/orchestration/learning-feedback/tsconfig.lib.json"
+      }
+    }
+  }
+}

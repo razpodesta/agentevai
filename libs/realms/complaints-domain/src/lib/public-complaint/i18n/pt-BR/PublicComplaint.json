@@ -1,0 +1,9 @@
+{
+  "PublicComplaint": {
+    "statusLabel_CRITICAL": "URGÊNCIA CRÍTICA",
+    "statusLabel_MODERATE": "EM ANÁLISE",
+    "statusLabel_INFORMATIVE": "RELATO COMUNITÁRIO",
+    "errorAduanaFailed": "Falha de ADN: Os dados da denúncia violaram o contrato de soberania.",
+    "logComplaintSealed": "Fato Selado: Denúncia {identifier} ancorada no território regional."
+  }
+}

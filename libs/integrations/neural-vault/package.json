@@ -1,0 +1,28 @@
+{
+  "name": "@agentevai/neural-vault",
+  "version": "1.0.0",
+  "description": "Búnquer de Memória Vetorial: Implementação de persistência semântica e busca por similaridade via Upstash/Supabase Vector.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "INTEGRATION_INFRASTRUCTURE",
+    "role": "VECTORIAL_MEMORY",
+    "technology": "RAG_ENGINE"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@upstash/vector": "^1.2.2"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*"
+  }
+}

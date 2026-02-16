@@ -1,10 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus NotificationNexus
- * @version 4.0.0
- * @protocol OEDP-V6.0 - High Performance Messaging
+ * @version 6.5.0
+ * @protocol OEDP-V6.5 - High Performance Messaging
  * @description Cérebro operativo para despacho de mensagens. 
- * Erradicação total de 'any' e placeholders.
+ * CURADO: Sincronizado com o novo ADN nominal e erradicado erro TS2307.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
@@ -17,12 +17,15 @@ import {
   type ISovereignDictionary 
 } from '@agentevai/internationalization-engine';
 
-/** @section Sincronia de ADN */
+/** 
+ * @section Sincronia de ADN 
+ * CURA TS2307: Nome do arquivo unificado para NotificationNexus.schema.js
+ */
 import { 
   SovereignMessageSchema, 
-  SovereignTraceInputSchema,
+  NotificationNexusTraceSchema,
   type ISovereignMessage 
-} from './schemas/Communication.schema.js';
+} from './schemas/NotificationNexus.schema.js';
 
 export class NotificationNexus {
   private static readonly apparatusName = 'NotificationNexus';
@@ -31,7 +34,6 @@ export class NotificationNexus {
   /**
    * @method dispatchSystemDirective
    * @async
-   * @description Transmuta uma intenção em rastro persistido com Zero Placeholder Logic.
    */
   public static async dispatchSystemDirective(
     rawMessageParameters: unknown,
@@ -44,7 +46,6 @@ export class NotificationNexus {
       const validatedMessage = SovereignMessageSchema.parse(rawMessageParameters);
       const { correlationIdentifier } = validatedMessage;
 
-      // Pilar 5: Soberania Linguística
       const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
         dictionary, apparatusName, key, variables, correlationIdentifier
       );
@@ -59,12 +60,11 @@ export class NotificationNexus {
       });
 
       // 3. EXECUÇÃO SOBERANA (Fim do Placeholder)
-      // Aqui a integração real com drivers de infraestrutura (Vercel/Render) é injetada.
       return Object.freeze(validatedMessage);
 
     } catch (caughtError) {
-      // 4. RECUPERAÇÃO DE RASTRO SEM ANY (Cura do Erro ESLint)
-      const traceRecovery = SovereignTraceInputSchema.safeParse(rawMessageParameters);
+      // 4. RECUPERAÇÃO DE RASTRO SANEADA (Cura de Radiação 'any')
+      const traceRecovery = NotificationNexusTraceSchema.safeParse(rawMessageParameters);
       const fallbackCorrelationId = traceRecovery.success 
         ? traceRecovery.data.correlationIdentifier 
         : crypto.randomUUID();
@@ -74,8 +74,7 @@ export class NotificationNexus {
         apparatus: apparatusName,
         location: this.fileLocation,
         correlationIdentifier: fallbackCorrelationId,
-        severity: 'CRITICAL',
-        recoverySuggestion: 'Validar ADN de recipientIdentifier ou integridade da malha de rede.'
+        severity: 'CRITICAL'
       });
     }
   }

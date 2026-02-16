@@ -1,0 +1,8 @@
+{
+  "EntityMetadataRegistry": {
+    "logEntityRegistered": "Institutional Registry: Authority {name} has been sealed and its H3 jurisdiction indexed.",
+    "errorAduanaFailed": "DNA Violation: Institutional metadata carried technical radiation or invalid tax identifier.",
+    "statusJurisdictionSynced": "Geospatial Synchrony: {count} hexagons linked to this institution.",
+    "auditTaxIdentifier": "Public Trust: Tax identifier verified against governmental trace."
+  }
+}

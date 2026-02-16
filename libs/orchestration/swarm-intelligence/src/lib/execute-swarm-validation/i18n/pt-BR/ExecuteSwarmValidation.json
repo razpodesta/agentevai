@@ -1,0 +1,8 @@
+{
+  "ExecuteSwarmValidation": {
+    "logSwarmSuccess": "Enxame Regional: {count} cidadãos IAL3 notificados para validação da denúncia {complaint}.",
+    "swarmNotificationBody": "🚨 ALERTA DE VIZINHANÇA: Uma nova denúncia foi selada no seu hexágono. Você pode confirmar se o fato é verídico?",
+    "errorAduanaFailed": "Falha de ADN: O sinal de ignição do enxame portava radiação técnica.",
+    "statusVerificationActive": "VERIFICAÇÃO ATIVA: Aguardando pulso de veracidade do território."
+  }
+}

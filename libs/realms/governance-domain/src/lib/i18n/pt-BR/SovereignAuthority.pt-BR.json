@@ -1,9 +1,0 @@
-{
-  "SovereignAuthority": {
-    "logAuthoritySealed": "Fé Pública: Identidade institucional de {role} selada no rastro global.",
-    "errorValidation": "Violação de ADN: Os metadados da autoridade portavam radiação técnica.",
-    "statusActive": "EM EXERCÍCIO SOBERANO",
-    "statusInactive": "MANDATO ENCERRADO",
-    "trustLabel": "Índice de Confiança Pública"
-  }
-}

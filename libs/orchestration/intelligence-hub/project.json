@@ -1,0 +1,17 @@
+{
+  "name": "intelligence-hub",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/intelligence-hub/src",
+  "projectType": "library",
+  "tags": ["type:orchestration", "scope:orchestration", "role:cognitive-negotiator"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/intelligence-hub",
+        "main": "libs/orchestration/intelligence-hub/src/index.ts",
+        "tsConfig": "libs/orchestration/intelligence-hub/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@agentevai/data-refinery",
+  "version": "1.0.0",
+  "description": "Refinaria de Dados: Limpeza de rastro emocional, remoção de ruído e extração de entidades técnicas de relatos brutos.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION_PURIFICATION",
+    "role": "SEMANTIC_SCRUBBER",
+    "capability": "NLP_LOCAL"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "natural": "^8.1.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/intelligence-hub": "workspace:*",
+    "@agentevai/sovereign-taxonomy": "workspace:*"
+  }
+}

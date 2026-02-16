@@ -1,0 +1,27 @@
+{
+  "name": "@agentevai/sovereign-authorization",
+  "version": "1.0.0",
+  "description": "Tribunal de Autorização: Centraliza as regras de permissão, hierarquia de papéis e aplicação de sanções operativas.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION_LAW",
+    "role": "ACCESS_POLICY_ENFORCER",
+    "security_level": "MAXIMUM"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/registry-vault": "workspace:*",
+    "@agentevai/gamification-engine": "workspace:*"
+  }
+}

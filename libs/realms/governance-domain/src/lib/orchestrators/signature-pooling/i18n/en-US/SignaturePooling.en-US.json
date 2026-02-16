@@ -1,8 +1,0 @@
-{
-  "SignaturePoolingOrchestrator": {
-    "logIngestion": "Act of will level {level} integrated into the regional batch.",
-    "logSealingStarted": "Initiating pool closure for mathematical sealing.",
-    "errorPoolLocked": "The regional batch is already sealed and does not allow new signatures.",
-    "statusImpact": "Accumulated impact in territory: {weight} public trust points."
-  }
-}

@@ -1,0 +1,20 @@
+{
+  "name": "neural-vault",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/integrations/neural-vault/src",
+  "projectType": "library",
+  "tags": ["type:infrastructure", "scope:integrations", "role:vector-memory"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/integrations/neural-vault",
+        "main": "libs/integrations/neural-vault/src/index.ts",
+        "tsConfig": "libs/integrations/neural-vault/tsconfig.lib.json"
+      }
+    },
+    "test": { "executor": "@nx/jest:jest" },
+    "lint": { "executor": "@nx/eslint:lint" }
+  }
+}

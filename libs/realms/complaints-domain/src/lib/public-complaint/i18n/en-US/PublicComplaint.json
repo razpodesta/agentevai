@@ -1,0 +1,9 @@
+{
+  "PublicComplaint": {
+    "statusLabel_CRITICAL": "CRITICAL URGENCY",
+    "statusLabel_MODERATE": "UNDER ANALYSIS",
+    "statusLabel_INFORMATIVE": "COMMUNITY REPORT",
+    "errorAduanaFailed": "DNA Failure: The complaint data violated the sovereignty contract.",
+    "logComplaintSealed": "Sealed Fact: Complaint {identifier} anchored in the regional territory."
+  }
+}

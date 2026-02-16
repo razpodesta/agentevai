@@ -1,0 +1,17 @@
+{
+  "name": "editorial-bunker",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/editorial-bunker/src",
+  "projectType": "library",
+  "tags": ["type:domain", "scope:news", "role:cms-standard"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/realms/editorial-bunker",
+        "main": "libs/realms/editorial-bunker/src/index.ts",
+        "tsConfig": "libs/realms/editorial-bunker/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "EntityMetadataRegistry": {
-    "logEntityRegistered": "Institutional Registry: Entity {name} successfully sealed in the governance bunker.",
-    "errorAduanaViolation": "DNA Violation: The institutional metadata carried technical radiation.",
-    "statusJurisdictionSynced": "Geographic Synchrony: H3 hexagonal jurisdiction validated for this entity.",
-    "auditTaxIdentifier": "Public Trust: Tax identifier {taxId} verified against governmental trace."
-  }
-}

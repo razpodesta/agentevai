@@ -1,0 +1,6 @@
+{
+  "CalculateSocialInfluence": {
+    "logSuccess": "Cálculo de influência social concluído com base no mérito territorial.",
+    "errorAduana": "Falha de ADN: Os parâmetros de standing violaram o contrato estrutural."
+  }
+}

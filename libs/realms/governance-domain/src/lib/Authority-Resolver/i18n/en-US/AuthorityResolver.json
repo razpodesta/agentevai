@@ -1,0 +1,8 @@
+{
+  "AuthorityResolver": {
+    "logAuthoritySealed": "Public Trust: Institutional identity of {role} successfully sealed in the governance trace.",
+    "errorAduanaViolation": "DNA Violation: The authority metadata carried technical radiation and was rejected.",
+    "statusActive": "AUTHORITY IN OFFICE",
+    "trustLabel": "Mathematical Confidence Index"
+  }
+}

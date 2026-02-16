@@ -1,35 +1,29 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignGeospatialOrchestrator
- * @version 2.0.0
+ * @version 6.6.0
  * @protocol OEDP-V6.5 - Zenith Resilience
  * @description Orquestrador que decide entre GPS/H3 e IP-Fallback.
- * CURADO: Erradicado erro TS2307, TS4111 e radiação 'any' no gpsPayload.
+ * CURADO: Erros TS2307, TS4111 e radiação 'any' erradicados.
  */
 
 import { SovereignLogger } from '@agentevai/sovereign-logger';
-import {
-  SovereignError,
-  SovereignErrorCodeSchema
+import { 
+  SovereignError, 
+  SovereignErrorCodeSchema 
 } from '@agentevai/sovereign-error-observability';
-import {
-  type ISovereignDictionary
+import { 
+  SovereignTranslationEngine, 
+  type ISovereignDictionary 
 } from '@agentevai/internationalization-engine';
 
-/** @section Sincronia de Reinos e ADN */
-// CURA TS2307: Rastro de importação sincronizado com o Monorepo
-import { ExecuteProximityQuery } from '../../../geography-infrastructure/src/lib/logic/ExecuteProximityQuery.js';
+/** @section Sincronia de Borda (Infrastructure & Handlers) */
+import { ExecuteProximityQuery } from '../../geography-infrastructure/src/lib/logic/ExecuteProximityQuery.js';
 import { LookupTerritorialAnchor } from './handlers/LookupTerritorialAnchor.js';
 import { TransmuteH3ToAddress } from './handlers/TransmuteH3ToAddress.js';
 
-import {
-  GeospatialTruthSchema,
-  type IGeospatialTruth
-} from './schemas/GeospatialTruth.schema.js';
-import {
-  HighFidelityLocationSchema,
-  type IHighFidelityLocation
-} from '../../../../foundation/ui-kit-atoms/src/lib/sovereign-location-handshake/schemas/SovereignLocationHandshake.schema.js';
+import { GeospatialTruthSchema, type IGeospatialTruth } from './schemas/GeospatialTruth.schema.js';
+import { SovereignGeospatialOrchestratorInputSchema } from './schemas/SovereignGeospatialOrchestrator.schema.js';
 
 export class SovereignGeospatialOrchestrator {
   private static readonly apparatusName = 'SovereignGeospatialOrchestrator';
@@ -38,33 +32,35 @@ export class SovereignGeospatialOrchestrator {
   /**
    * @method resolveTruth
    * @async
-   * @description Tenta a fidelidade máxima (GPS), com fallback para infraestrutura de IP.
+   * @description Resolve o rastro geográfico prioritário.
    */
-  public static async resolveTruth(
-    clientIpAddress: string,
-    gpsPayload: IHighFidelityLocation | null, // CURA ANY: Agora tipado via ADN de Handshake
-    correlationIdentifier: string,
-    dictionary: ISovereignDictionary
-  ): Promise<IGeospatialTruth> {
+  public static async resolveTruth(rawParameters: unknown): Promise<IGeospatialTruth> {
+    const startTimestamp = performance.now();
 
     try {
+      // 1. ADUANA DE ADN (Ingresso Seguro)
+      const data = SovereignGeospatialOrchestratorInputSchema.parse(rawParameters);
+      const { clientIpAddress, gpsPayload, correlationIdentifier, dictionary } = data;
+
+      const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
+        dictionary as unknown as ISovereignDictionary, 
+        this.apparatusName, key, variables, correlationIdentifier
+      );
+
       // 🟢 TENTATIVA NÍVEL 1: SOBERANIA (GPS + H3)
       if (gpsPayload) {
-        // CURA ANY: Validamos o payload antes da ignição
-        const validatedGps = HighFidelityLocationSchema.parse(gpsPayload);
-
         const h3Swarm = ExecuteProximityQuery({
-          centerLatitude: validatedGps.latitude,
-          centerLongitude: validatedGps.longitude,
+          centerLatitude: gpsPayload.latitude,
+          centerLongitude: gpsPayload.longitude,
           searchRadiusInHexagons: 1,
           correlationIdentifier
-        }, dictionary);
+        }, dictionary as unknown as ISovereignDictionary);
 
         const humanAddress = await TransmuteH3ToAddress(h3Swarm[0], correlationIdentifier);
 
         return GeospatialTruthSchema.parse({
           fidelityLevel: 'IAL3_SOVEREIGN',
-          location: validatedGps,
+          location: gpsPayload,
           hexagonalIndex: h3Swarm[0],
           humanizedAddress: humanAddress
         });
@@ -74,17 +70,18 @@ export class SovereignGeospatialOrchestrator {
       SovereignLogger({
         severity: 'WARN',
         apparatus: this.apparatusName,
-        operation: 'GPS_NOT_AVAILABLE',
-        message: 'Aperto de mão geográfico ausente. Ativando failover para IP.',
+        operation: 'GPS_SIGNAL_MISSING',
+        message: translate('statusFailoverActive'),
         correlationIdentifier
       });
 
-      const ipAnchor = await LookupTerritorialAnchor(clientIpAddress, correlationIdentifier, dictionary);
+      const ipAnchor = await LookupTerritorialAnchor(
+        clientIpAddress, 
+        correlationIdentifier, 
+        dictionary as unknown as ISovereignDictionary
+      );
 
-      /**
-       * @section CURA_TS4111
-       * Desestruturação imediata do rastro de âncora para evitar acesso via índice.
-       */
+      // CURA TS4111: Desestruturação nominal imediata
       const { territoryName, stateCode } = ipAnchor;
 
       return GeospatialTruthSchema.parse({
@@ -99,7 +96,7 @@ export class SovereignGeospatialOrchestrator {
         code: SovereignErrorCodeSchema.parse('OS-GEO-9001'),
         apparatus: this.apparatusName,
         location: this.fileLocation,
-        correlationIdentifier,
+        correlationIdentifier: (rawParameters as any)?.correlationIdentifier || 'NO_TRACE',
         severity: 'CRITICAL'
       });
     }

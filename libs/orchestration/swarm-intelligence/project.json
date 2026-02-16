@@ -1,0 +1,17 @@
+{
+  "name": "swarm-intelligence",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/swarm-intelligence/src",
+  "projectType": "library",
+  "tags": ["type:orchestration", "scope:orchestration", "role:swarm-logic"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/swarm-intelligence",
+        "main": "libs/orchestration/swarm-intelligence/src/index.ts",
+        "tsConfig": "libs/orchestration/swarm-intelligence/tsconfig.lib.json"
+      }
+    }
+  }
+}

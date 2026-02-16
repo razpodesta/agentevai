@@ -1,8 +1,0 @@
-{
-  "EntityMetadataRegistry": {
-    "logEntityRegistered": "Cartório Institucional: Entidade {name} selada com sucesso no búnquer de governança.",
-    "errorAduanaViolation": "Violação de ADN: Os metadados institucionais portavam radiação técnica.",
-    "statusJurisdictionSynced": "Sincronia Geográfica: Jurisdição hexagonal H3 validada para esta entidade.",
-    "auditTaxIdentifier": "Fé Pública: Identificador fiscal {taxId} verificado contra rastro governamental."
-  }
-}

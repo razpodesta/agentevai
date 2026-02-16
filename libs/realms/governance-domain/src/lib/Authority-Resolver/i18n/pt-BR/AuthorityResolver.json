@@ -1,0 +1,8 @@
+{
+  "AuthorityResolver": {
+    "logAuthoritySealed": "Fé Pública: Identidade institucional de {role} selada com sucesso no rastro de governança.",
+    "errorAduanaViolation": "Violação de ADN: Os metadados da autoridade portavam radiação técnica e foram rejeitados.",
+    "statusActive": "AUTORIDADE EM EXERCÍCIO",
+    "trustLabel": "Índice de Confiança Matemática"
+  }
+}

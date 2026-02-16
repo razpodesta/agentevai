@@ -1,6 +1,6 @@
 {
   "ExecuteProximityQuery": {
-    "logIndexGenerated": "Spatial Synchrony: Grid of {count} H3 hexagons successfully generated.",
+    "logIndexGenerated": "Spatial Synchrony: Grid of {count} H3 hexagons successfully generated for the territory.",
     "errorIndexFailure": "Cryptographic Inability: Failure while converting GPS trace to H3 cell.",
     "auditHexagonMatch": "Territorial Bond: The journalistic fact was anchored in hexagon {identifier}."
   }

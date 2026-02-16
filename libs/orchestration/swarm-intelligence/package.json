@@ -1,0 +1,24 @@
+{
+  "name": "@agentevai/swarm-intelligence",
+  "version": "7.0.0",
+  "description": "Cérebro de Validação Coletiva: Orquestra o enxame de cidadãos IAL3 para selagem de veracidade geolocalizada via malha H3.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_SWARM",
+    "role": "VERACITY_SENSOR",
+    "protocol": "OEDP-V7.0"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/geography-infrastructure": "workspace:*",
+    "@agentevai/notification-nexus": "workspace:*"
+  }
+}

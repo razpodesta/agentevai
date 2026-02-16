@@ -1,14 +1,19 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus ExecuteProximityQuery
- * @version 6.6.1
+ * @version 6.6.2
  * @protocol OEDP-V6.5 - High Performance Spatial Engine
  * @description Motor de busca regional baseado no rastro hexagonal H3.
- * CURADO: Erro TS4111 resolvido via Desestruturação Nominal Imediata.
+ * CURADO: Handshake com Cartório Técnico e erradicação de radiação de índice.
  */
 
 import { latLngToCell, gridDisk } from 'h3-js';
 import { SovereignLogger } from '@agentevai/sovereign-logger';
+import { 
+  SovereignApparatusRegistry, 
+  ApparatusIdentifierSchema, 
+  StabilityScoreSchema 
+} from '@agentevai/apparatus-metadata-registry';
 import {
   SovereignError,
   SovereignErrorCodeSchema
@@ -43,11 +48,7 @@ export const ExecuteProximityQuery = (
     // 1. ADUANA DE ADN (Ingresso Seguro)
     const validatedData = ProximityQueryInputSchema.parse(rawParameters);
 
-    /**
-     * @section CURA_TS4111
-     * Extraímos os valores para constantes locais. Isso remove a assinatura de índice
-     * do Zod e permite acesso direto às propriedades.
-     */
+    /** @section CURA_TS4111: Desestruturação Nominal */
     const {
       centerLatitude,
       centerLongitude,
@@ -55,33 +56,46 @@ export const ExecuteProximityQuery = (
       correlationIdentifier
     } = validatedData;
 
+    // 2. REGISTRO TÉCNICO (Manifesto 0027)
+    SovereignApparatusRegistry.registerApparatus({
+      identifier: ApparatusIdentifierSchema.parse(apparatusName),
+      authorName: 'Raz Podestá',
+      semanticVersion: '6.6.2',
+      complexityTier: 'INTEGRATION_DRIVER',
+      stabilityScore: StabilityScoreSchema.parse(100),
+      isSealedForProduction: true,
+      registeredAt: new Date().toISOString()
+    }, correlationIdentifier);
+
     const translate = (key: string, variables = {}) => SovereignTranslationEngine.translate(
       dictionary, apparatusName, key, variables, correlationIdentifier
     );
 
-    // 2. TRANSMUTAÇÃO PARA ESPAÇO H3 (Uber Engine)
-    // Resolução 9: Células de ~0.1km² (Precisão "Mira o Dor")
+    // 3. TRANSMUTAÇÃO PARA ESPAÇO H3 (Uber Engine)
+    // Resolução 9: Precisão "Mira o Dor" (~0.1km²)
     const centerHexagon = latLngToCell(
       centerLatitude as unknown as number,
       centerLongitude as unknown as number,
       9
     );
 
-    // 3. GERAÇÃO DO ENXAME DE BUSCA (k-ring)
+    // 4. GERAÇÃO DO ENXAME DE BUSCA (k-ring)
     const hexagonSwarm = gridDisk(centerHexagon, searchRadiusInHexagons);
 
-    // 4. SELAGEM NOMINAL E PERFORMANCE
+    // 5. SELAGEM NOMINAL DO RESULTADO
     const validatedSwarm = hexagonSwarm.map(hex => H3IndexSchema.parse(hex));
 
     const executionLatency = parseFloat((performance.now() - startTimestamp).toFixed(4));
 
+    // 6. TELEMETRIA ZENITH
     SovereignLogger({
       severity: 'INFO',
       apparatus: apparatusName,
       operation: 'SPATIAL_INDEX_GENERATED',
       message: translate('logIndexGenerated', { count: validatedSwarm.length }),
       correlationIdentifier,
-      metadata: { latencyMs: executionLatency, radius: searchRadiusInHexagons }
+      latencyInMilliseconds: executionLatency,
+      metadata: { resolution: 9, radius: searchRadiusInHexagons }
     });
 
     return validatedSwarm;

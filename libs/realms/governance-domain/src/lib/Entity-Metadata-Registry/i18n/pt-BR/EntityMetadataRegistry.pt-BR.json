@@ -1,0 +1,8 @@
+{
+  "EntityMetadataRegistry": {
+    "logEntityRegistered": "Cartório Institucional: A autoridade {name} foi selada e sua jurisdição H3 indexada.",
+    "errorAduanaFailed": "Violação de ADN: Os metadados institucionais portavam radiação técnica ou CNPJ inválido.",
+    "statusJurisdictionSynced": "Sincronia Geoespacial: {count} hexágonos vinculados a esta instituição.",
+    "auditTaxIdentifier": "Fé Pública: Identificador fiscal verificado contra rastro governamental."
+  }
+}

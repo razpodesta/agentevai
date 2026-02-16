@@ -1,0 +1,17 @@
+{
+  "name": "data-refinery",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/data-refinery/src",
+  "projectType": "library",
+  "tags": ["type:orchestration", "scope:orchestration", "role:data-purification"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "options": {
+        "outputPath": "dist/libs/orchestration/data-refinery",
+        "main": "libs/orchestration/data-refinery/src/index.ts",
+        "tsConfig": "libs/orchestration/data-refinery/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "GovernanceCommon": {
-    "status_OPEN": "Pool Abierto",
-    "status_ANCHORED": "Fe Pública Garantizada",
-    "errorPoolCorrupted": "Atención: Integridad del lote de firmas comprometida.",
-    "logSignatureAdded": "Firma de IAL {level} integrada al pool regional {region}.",
-    "blockchainExplanation": "Su firma forma parte de un lote matemático protegido por Blockchain."
-  }
-}

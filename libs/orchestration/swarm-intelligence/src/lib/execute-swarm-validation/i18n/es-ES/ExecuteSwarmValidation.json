@@ -1,0 +1,8 @@
+{
+  "ExecuteSwarmValidation": {
+    "logSwarmSuccess": "Enjambre Regional: {count} ciudadanos IAL3 notificados para la validación del reporte {complaint}.",
+    "swarmNotificationBody": "🚨 ALERTA DE VECINDARIO: Se ha sellado un nuevo reporte en su hexágono. ¿Puede confirmar se el hecho es verídico?",
+    "errorAduanaFailed": "Falla de ADN: La señal de ignición del enjambre portaba radiación técnica.",
+    "statusVerificationActive": "VERIFICACIÓN ACTIVA: Esperando pulso de veracidad del territorio."
+  }
+}

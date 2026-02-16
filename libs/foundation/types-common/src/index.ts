@@ -1,12 +1,10 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus TypesCommonHub
- * @version 2.1.0
+ * @version 2.2.0
  * @protocol OEDP-V6.5 - Master Sovereignty SSOT
- * @description Ponto único de exposição para contratos nominais e utilitários atômicos.
- * CURADO: Adicionada exportação de ADN de busca e taxonomia semântica.
- * @policy ZERO-ABBREVIATIONS: Nomenclatura integral em prosa técnica militar.
- * @policy ESM-STRICT: Uso de extensões .js mandatórias.
+ * @description Ponto único de exposição (SSOT) para contratos nominais.
+ * CURADO: Erradicado erro TS2305 via inclusão da Dimensão Geoespacial.
  */
 
 /* --- 🌍 SEÇÃO 1: DIMENSÃO GEOPOLÍTICA (Manifesto 0018) --- */
@@ -27,11 +25,19 @@ export {
   type IPostalLocation
 } from './lib/PostalCode.schema.js';
 
-/* --- 🔍 SEÇÃO 3: DIMENSÃO DE DESCOBERTA E BUSCA (NEW ZENITH SYNC) --- */
+/* --- 🗺️ SEÇÃO 3: DIMENSÃO GEOESPACIAL (NEW ZENITH H3) --- */
 /** 
  * @section CURA_TS2305 
- * Selagem das portas de ADN exigidas pelo Reino de Busca Semântica.
+ * Selagem da malha H3 necessária para o SovereignHeatmap e Proximity Queries.
  */
+export {
+  H3IndexSchema,
+  GeographicCoordinatesSchema,
+  type H3Index,
+  type IGeographicCoordinates
+} from './lib/schemas/SovereignGeospatial.schema.js';
+
+/* --- 🔍 SEÇÃO 4: DIMENSÃO DE DESCOBERTA E BUSCA --- */
 export {
   SearchQueryInputSchema,
   SearchResultEntrySchema,
@@ -46,12 +52,7 @@ export {
   type TaxonomyDomain
 } from './lib/schemas/SovereignTaxonomy.schema.js';
 
-/* --- ⚡ SEÇÃO 4: UTILITÁRIOS DE FORMATAÇÃO --- */
+/* --- ⚡ SEÇÃO 5: UTILITÁRIOS DE FORMATAÇÃO --- */
 export {
   TransmuteTextToSlug
 } from './lib/formatters/TransmuteTextToSlug.js';
-
-/**
- * @note Veredito do Auditor: A malha de tipos está agora 100% selada. 
- * O erro TS2305 foi extinto por re-estabelecimento de rastro de exportação.
- */

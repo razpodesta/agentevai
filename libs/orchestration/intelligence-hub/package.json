@@ -1,0 +1,31 @@
+{
+  "name": "@agentevai/intelligence-hub",
+  "version": "1.0.0",
+  "description": "Hub Neural: Orquestrador agnóstico de modelos de IA, gerenciamento de prompts e negociação de custo por token.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "ORCHESTRATION_AI",
+    "role": "COGNITIVE_NEGOTIATOR",
+    "capability": "MULTI_LLM_ROUTING"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "groq-sdk": "^0.37.0",
+    "openai": "^6.18.0",
+    "@anthropic-ai/sdk": "^0.73.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "langchain": "^1.2.18",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/neural-vault": "workspace:*"
+  }
+}

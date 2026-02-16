@@ -1,0 +1,8 @@
+{
+  "ExecuteSwarmValidation": {
+    "logSwarmSuccess": "Regional Swarm: {count} IAL3 citizens notified for validation of complaint {complaint}.",
+    "swarmNotificationBody": "🚨 NEIGHBORHOOD ALERT: A new complaint has been sealed in your hexagon. Can you confirm if the fact is true?",
+    "errorAduanaFailed": "DNA Failure: The swarm ignition signal carried technical radiation.",
+    "statusVerificationActive": "VERIFICATION ACTIVE: Awaiting veracity pulse from the territory."
+  }
+}
