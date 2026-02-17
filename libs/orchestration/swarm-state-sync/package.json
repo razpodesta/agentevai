@@ -1,0 +1,22 @@
+{
+  "name": "@agentevai/swarm-state-sync",
+  "version": "7.0.0",
+  "description": "Sincronizador de Estado: Gerencia hidratação TanStack Query e presença em tempo real do enxame.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_CLIENT",
+    "protocol": "OEDP-V7.0",
+    "role": "CLIENT_STATE_MANAGER"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@tanstack/react-query": "^5.90.20",
+    "@tanstack/query-sync-storage-persister": "^5.90.22"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "zod": "^4.3.6"
+  }
+}

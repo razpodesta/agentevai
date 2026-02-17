@@ -1,0 +1,33 @@
+{
+  "name": "b2b-institutional-cockpit",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/b2b-institutional-cockpit/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Cockpit Institucional B2B: Orquestra a bandeja de requerimentos soberanos e o fluxo de resolução para autoridades e empresas.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:feature",
+    "scope:orchestration",
+    "role:saas-management",
+    "domain:institutional"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/b2b-institutional-cockpit",
+        "main": "libs/orchestration/b2b-institutional-cockpit/src/index.ts",
+        "tsConfig": "libs/orchestration/b2b-institutional-cockpit/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/b2b-institutional-cockpit/jest.config.ts"
+      }
+    }
+  }
+}

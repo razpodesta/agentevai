@@ -1,0 +1,12 @@
+{
+  "DegradationActuator": {
+    "logDegradedActive": {
+      "semanticContent": "Alerta de Homeostasis: Salud al {health}%. Amputación cinética activada para preservación del rastro.",
+      "semanticVersion": "7.0.0"
+    },
+    "statusStable": {
+      "semanticContent": "Estado Nominal: Integridad física dentro de los estándares de élite.",
+      "semanticVersion": "7.0.0"
+    }
+  }
+}

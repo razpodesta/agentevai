@@ -1,0 +1,39 @@
+{
+  "name": "preference-bunker",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/realms/preference-bunker/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Búnquer de Estética e Gosto: Gerencia as escolhas de interface e ruteamento salvos de forma desacoplada da identidade civil.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:domain",
+    "scope:registry",
+    "role:ui-preferences",
+    "tier:presentation-logic"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/realms/preference-bunker",
+        "main": "libs/realms/preference-bunker/src/index.ts",
+        "tsConfig": "libs/realms/preference-bunker/tsconfig.lib.json",
+        "assets": ["libs/realms/preference-bunker/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/realms/preference-bunker/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@agentevai/geography-ui",
+  "version": "7.0.0",
+  "description": "Interface Cartográfica Cinética: Renderiza a malha hexagonal H3 e mapas de calor de entropia social.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "REALM_UI",
+    "protocol": "OEDP-V7.0",
+    "role": "H3_VISUALIZATION"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "h3-js": "^4.4.0",
+    "framer-motion": "^12.31.3"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "zod": "^4.3.6",
+    "@agentevai/ui-kit-atoms": "workspace:*"
+  }
+}

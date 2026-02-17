@@ -1,8 +1,0 @@
-{
-  "useSovereignMutation": {
-    "logMutationIgnited": "Ato de Vontade: Iniciando rastro de transmutação para {identifier}.",
-    "logMutationSuccess": "Sincronia de Vontade: O rastro {identifier} foi selado no enxame.",
-    "errorMutationFailed": "Colapso de Intenção: Falha crítica ao selar a vontade do cidadão.",
-    "statusOptimisticActive": "Soberania Instantânea: Refletindo mudança visual antes da confirmação."
-  }
-}

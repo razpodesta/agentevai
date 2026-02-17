@@ -1,9 +1,0 @@
-{
-  "VisitorIdentity": {
-    "device_MOBILE": "Mobile Device",
-    "device_TABLET": "Tablet",
-    "device_DESKTOP": "Workstation",
-    "device_BOT": "Automated Agent",
-    "statusHighPerformance": "High-fidelity device detected."
-  }
-}

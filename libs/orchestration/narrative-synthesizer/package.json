@@ -1,0 +1,20 @@
+{
+  "name": "@agentevai/narrative-synthesizer",
+  "version": "7.0.0",
+  "description": "Sintetizador de Narrativa: Atua como linter de estilo e tom para garantir a pureza e o prestígio da voz editorial da IA.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_AI",
+    "protocol": "OEDP-V7.0",
+    "role": "AI_TONE_ENFORCER"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/intelligence-hub": "workspace:*"
+  }
+}

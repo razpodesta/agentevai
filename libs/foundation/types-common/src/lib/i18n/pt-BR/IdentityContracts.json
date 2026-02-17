@@ -1,0 +1,7 @@
+{
+  "IdentityContractsSchema": {
+    "errorInvalidTaxId": "Violação de Cadastro: O CNPJ fornecido não respeita o formato institucional brasileiro.",
+    "errorInvalidIdentifier": "Violação de Rastro: O identificador de cidadão está corrompido ou é inválido.",
+    "statusVerifiedIAL3": "IDENTIDADE SOBERANA ATIVA"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@agentevai/actor-registry",
+  "version": "7.3.2",
+  "description": "Cartório de Identidade Bruta: Repositório mestre para dados PII e certidões de nascimento digital.",
+  "private": true,
+  "type": "module",
+  "author": {
+    "name": "Raz Podestá",
+    "company": "MetaShark Tech",
+    "protocol": "OEDP-V7.0"
+  },
+  "metadata": {
+    "tier": "REALM_DATA",
+    "role": "ACTOR_IDENTITY_SSOT"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "zod": "^4.3.6",
+    "@agentevai/types-common": "workspace:*",
+    "@agentevai/sovereign-data-vault": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*",
+    "@agentevai/sovereign-error-observability": "workspace:*",
+    "@agentevai/internationalization-engine": "workspace:*",
+    "@agentevai/apparatus-metadata-registry": "workspace:*"
+  }
+}

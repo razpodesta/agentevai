@@ -1,0 +1,33 @@
+{
+  "name": "media-frame-factory",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/media-frame-factory/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Fábrica de Ativos Visuais: Renderiza frames, vídeos curtos e imagens seladas com o Merkle Root para difusão social.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:media-rendering",
+    "runtime:gpu-capable"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/media-frame-factory",
+        "main": "libs/orchestration/media-frame-factory/src/index.ts",
+        "tsConfig": "libs/orchestration/media-frame-factory/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/media-frame-factory/jest.config.ts"
+      }
+    }
+  }
+}

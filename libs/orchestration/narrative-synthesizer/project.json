@@ -1,0 +1,27 @@
+{
+  "name": "narrative-synthesizer",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/narrative-synthesizer/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Sintetizador de Narrativa: Gerencia guias de estilo, tom de voz e regionalismos para a IA editorial.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:ai-tone-control",
+    "capability:nlp-logic"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/narrative-synthesizer",
+        "main": "libs/orchestration/narrative-synthesizer/src/index.ts",
+        "tsConfig": "libs/orchestration/narrative-synthesizer/tsconfig.lib.json"
+      }
+    }
+  }
+}

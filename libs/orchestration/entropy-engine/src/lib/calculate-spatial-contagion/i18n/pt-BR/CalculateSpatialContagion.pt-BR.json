@@ -1,0 +1,8 @@
+{
+  "CalculateSpatialContagion": {
+    "errorAduanaFailed": {
+      "semanticContent": "Falha de ADN: O rastro de vizinhança portava identificadores H3 inválidos.",
+      "semanticVersion": "7.4.2"
+    }
+  }
+}

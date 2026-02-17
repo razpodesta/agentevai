@@ -1,83 +1,38 @@
 /**
  * @author Raz Podestá - MetaShark Tech
  * @apparatus SovereignContextHub
- * @version 6.0.0
- * @protocol OEDP-V6.0 - High Performance & Master Sovereignty
- * @description Ponto único de exposição (SSOT) para a Consciência Sistêmica.
- * Orquestra a saída de ADN, Atuadores e Handlers de Identidade Técnica.
- * @policy ESM-STRICT: Uso de extensões explícitas (.js) para compatibilidade nativa.
- * @policy ZERO-ANY: Saneamento total de tipos nominais.
+ * @version 7.0.2
+ * @protocol OEDP-V7.0 - Zenith Master Hub (Facade)
+ * @description Ponto único de exposição para a Realidade Sistêmica.
+ * CURADO: Erradicados erros TS2305 e TS2724.
  */
 
-/* --- 🌍 SEÇÃO 1: CAMADA DE PONTE (SOVEREIGNTY BRIDGE) --- */
-
-/** 
- * Re-exportação dos esquemas centrais para reduzir a profundidade de importação.
- */
+/* --- 🧱 SEÇÃO 1: BRIDGE PARA CONSCIÊNCIA --- */
 export {
-  SovereignLocaleSchema,
-  SovereignCountrySchema,
-  SovereignRouteSchema,
-  type SovereignLocale,
-  type SovereignCountry,
-  type SovereignRoute
-} from '@agentevai/types-common';
+  SovereignConsciousnessSchema,
+  type ISovereignConsciousnessPacket
+} from '@agentevai/sovereign-consciousness';
 
-
-/* --- ⚙️ SEÇÃO 2: CAMADA DE GESTÃO (CONTEXT ENGINE) --- */
+/* --- ⚙️ SEÇÃO 2: FACHADA DE RECONCILIAÇÃO --- */
+export {
+  ReconcileSovereignContext
+} from './lib/facade/sovereign-context/SovereignContextFacade.js';
 
 export {
-  CreateSovereignContext,
-  type ISovereignConsciousnessPacket,
-} from './lib/SovereignContextManager.js';
+  SovereignContextFacadeSchema,
+  type ISovereignContext
+} from './lib/facade/sovereign-context/schemas/SovereignContextFacade.schema.js';
 
+/* --- 🌡️ SEÇÃO 3: HOMEOSTASE --- */
 export {
   ExecuteGracefulDegradation
-} from './lib/actuators/DegradationActuator.js';
-
-
-/* --- 👤 SEÇÃO 3: CAMADA DE DETECÇÃO (IDENTITY HANDLERS) --- */
+} from './lib/degradation-actuator/DegradationActuator.js';
 
 export {
-  ResolveVisitorIdentity
-} from './lib/handlers/ResolveVisitorIdentity.js';
+  DegradationActuatorInputSchema,
+  type IDegradationActuatorInput
+} from './lib/degradation-actuator/schemas/DegradationActuator.schema.js';
 
-
-/* --- 🧬 SEÇÃO 4: CAMADA DE ADN (SCHEMAS & BRANDED TYPES) --- */
-
-/**
- * CURA TS2305: Membros agora exportados formalmente após a transmutação do ADN Base.
- */
-export {
-  // ADN de Realidade Operativa
-  SovereignContextSchema,
-  SovereignContextBaseSchema,
-  type ISovereignContext,
-  
-  // Tipos Nominais (Branded)
-  RegionSlugSchema,
-  type RegionSlug,
-  HealthScoreSchema,
-  type HealthScore,
-} from './lib/schemas/SovereignContext.schema.js';
-
-export {
-  // ADN de Identidade Técnica
-  VisitorIdentitySchema,
-  VisitorIdentityBaseSchema,
-  type IVisitorIdentity,
-  
-  // Taxonomia de Hardware
-  VisitorDeviceTypeSchema,
-  BrowserEngineSchema,
-  
-  // Aduanas de Entrada
-  ResolveVisitorIdentityInputSchema,
-  type IResolveVisitorIdentityInput
-} from './lib/schemas/VisitorIdentity.schema.js';
-
-/**
- * @note Auditoria Neural: Sincronização de Handshake concluída.
- * Rastro Forense: Este Hub está agora em estado PERFECT, servindo de alicerce
- * inquebrável para os Reinos de News, Complaints e Community.
- */
+/* --- 🌊 SEÇÃO 4: BRIDGE PARA ENXAME --- */
+/** CURA TS2305: Exportação validada via SwarmStateSyncHub */
+export { SovereignQueryProvider } from '@agentevai/swarm-state-sync';

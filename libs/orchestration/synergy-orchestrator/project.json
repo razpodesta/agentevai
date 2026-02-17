@@ -1,0 +1,37 @@
+{
+  "name": "synergy-orchestrator",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/synergy-orchestrator/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Comandante do Enxame: Orquestra a formação de Células de Ação e missões coordenadas entre cidadãos IAL3.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:feature",
+    "scope:orchestration",
+    "role:swarm-coordination",
+    "interaction:real-time"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/synergy-orchestrator",
+        "main": "libs/orchestration/synergy-orchestrator/src/index.ts",
+        "tsConfig": "libs/orchestration/synergy-orchestrator/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/orchestration/synergy-orchestrator/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

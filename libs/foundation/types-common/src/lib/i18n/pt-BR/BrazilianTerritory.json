@@ -1,0 +1,7 @@
+{
+  "BrazilianTerritorySchema": {
+    "errorInvalidState": "Violação de Fronteira: A sigla de estado fornecida não pertence à federação brasileira.",
+    "errorIbgeFormat": "Falha de ADN: O código IBGE deve ser um identificador numérico positivo.",
+    "statusJurisdictionVerified": "JURISDIÇÃO VERIFICADA: rastro territorial selado."
+  }
+}

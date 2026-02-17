@@ -1,0 +1,8 @@
+{
+  "CalculateEventImpact": {
+    "errorAduanaFailed": {
+      "semanticContent": "Falha de ADN: O rastro de impacto portava parâmetros matemáticos inválidos.",
+      "semanticVersion": "7.4.1"
+    }
+  }
+}

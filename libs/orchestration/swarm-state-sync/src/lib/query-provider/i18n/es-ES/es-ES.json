@@ -1,0 +1,7 @@
+{
+  "SovereignQueryProvider": {
+    "logPersistenceIgnited": "Sincronía Offline: Búnker de datos activado con éxito.",
+    "errorPersistenceFailed": "Incapacidad de Persistencia: El rastro de caché local falló al ser sellado.",
+    "statusOfflineReady": "ESTADO ZENITH: Enjambre operando en modo de resiliencia offline."
+  }
+}

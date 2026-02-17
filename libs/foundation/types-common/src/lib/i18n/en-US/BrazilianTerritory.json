@@ -1,0 +1,7 @@
+{
+  "BrazilianTerritorySchema": {
+    "errorInvalidState": "Boundary Violation: The provided state abbreviation does not belong to the Brazilian federation.",
+    "errorIbgeFormat": "DNA Failure: The IBGE code must be a positive numerical identifier.",
+    "statusJurisdictionVerified": "JURISDICTION VERIFIED: territorial trace sealed."
+  }
+}

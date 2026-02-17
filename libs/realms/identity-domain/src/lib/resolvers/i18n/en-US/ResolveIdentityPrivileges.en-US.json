@@ -1,7 +1,0 @@
-{
-  "ResolveIdentityPrivileges": {
-    "logAuthorityConsolidated": "Privilege matrix sealed for the technical role: {role}.",
-    "logEntropySanction": "ALERT: Privileges degraded due to negative standing for trace {role}.",
-    "errorResolutionFailure": "Critical failure in regional authority orchestration."
-  }
-}

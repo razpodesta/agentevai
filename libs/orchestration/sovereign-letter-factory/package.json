@@ -1,0 +1,20 @@
+{
+  "name": "@agentevai/sovereign-letter-factory",
+  "version": "7.0.0",
+  "description": "A Forja de Documentos: Transmuta fatos e assinaturas em documentos institucionais e PDFs forenses.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_DOCS",
+    "protocol": "OEDP-V7.0",
+    "role": "INSTITUTIONAL_DOCUMENT_GEN"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/blockchain-ledger": "workspace:*"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "ActorPassport": {
+    "logPassportSealed": {
+      "semanticContent": "Technical certificate sealed for actor {identifier}. Category: {category}.",
+      "semanticVersion": "7.3.1"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Registry Failure: Actor data violated the civil integrity contract.",
+      "semanticVersion": "7.3.1"
+    }
+  }
+}

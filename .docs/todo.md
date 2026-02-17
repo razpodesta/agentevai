@@ -123,3 +123,57 @@ FASE 5: ESTABILIZAÇÃO INDUSTRIAL
 [Nivelamento de Config]: Executar a atualização dos 3 tsconfig de cada nova lib para o padrão NodeNext.
 
 [Audit Mesh]: Rodar o script audit-concentric-mesh.ts para garantir 100% de sincronia entre código, ADN e i18n.
+
+
+---
+
+Engenheiro, para que o enxame de IAs opere com precisão cirúrgica, dividi o Roadmap em 6 Células de Transmutação. Cada célula agrupa workspaces que possuem dependências lógicas entre si e que precisam ser "operados" em conjunto para garantir Zero Regressão.
+Abaixo, os workspaces selecionados para a grande refatoração V7.0:
+🧬 CÉLULA 1: NÚCLEO BIO-DIGITAL (IDENTIDADE E LEI)
+Onde o "Ser" (Dados) se separa do "Poder" (Autorização) e do "Mérito" (Gamificação).
+libs/realms/identity-domain: Perderá a lógica de armazenamento e permissões puras para se tornar o orquestrador de projeção da identidade.
+libs/realms/actor-registry: Receberá o rastro civil (PII) e biometria vindo do antigo identity.
+libs/orchestration/sovereign-authorization: Receberá o tribunal de permissões (ABAC) e sanções.
+libs/realms/gamification-engine: Receberá o motor de cálculo de Standing e IRS (Índice de Relevância Soberana).
+🌀 CÉLULA 2: CONSCIÊNCIA SISTÊMICA (ESTADO E REALIDADE)
+Onde a "Consciência Estática" (Borda) se separa da "Sincronia Volátil" (TanStack).
+libs/foundation/sovereign-context: Tornar-se-á uma fachada magra que apenas unifica os novos búnqueres de realidade.
+libs/foundation/sovereign-consciousness: Receberá o rastro geográfico imutável e resolução de ruteamento de borda.
+libs/orchestration/swarm-state-sync: Receberá toda a orquestração do TanStack Query e persistência offline.
+🛡️ CÉLULA 3: DEFESA TÁTICA (SEGURANÇA E VAZÃO)
+Onde a "Análise" (Sentinela) se separa da "Execução" (Governador).
+libs/orchestration/security-auditor: Deixará de atuar fisicamente para ser o emissor de vereditos de ameaça.
+libs/orchestration/behavioral-sentinel: Receberá a lógica de fingerprinting e análise de intenção behaviorista.
+libs/orchestration/cadence-governor: Receberá a execução física do Rate-Limit adaptativo e quarentena de rede.
+🌡️ CÉLULA 4: INTELIGÊNCIA TERRITORIAL (MIRA O DOR)
+Onde a "Estatística" (Analytics) se separa da "Matemática" (H3 Engine).
+libs/orchestration/analytics-pulse: Tornar-se-á um consumidor de telemetria, deixando de calcular entropia internamente.
+libs/orchestration/entropy-engine: Receberá o algoritmo puro de cálculo de temperatura social em malha hexagonal.
+libs/realms/geography-infrastructure: Será otimizado para prover buscas H3 em tempo constante 
+O
+(
+1
+)
+O(1)
+.
+📰 CÉLULA 5: FÁBRICA DA VERDADE (EDITORIAL E GOVERNANÇA)
+Onde o "Fato" (Conteúdo) se separa do "Documento" (Forja) e da "Lei" (Jurisdição).
+libs/realms/news-domain: Será purificado para focar apenas em ranking e estados editoriais.
+libs/realms/editorial-bunker: Receberá o master-schema que unifica fontes manuais e sintéticas.
+libs/orchestration/sovereign-letter-factory: Receberá a lógica de geração de PDFs e Merkle Proofs vinda da authority-bridge.
+libs/orchestration/jurisdiction-resolver: Receberá o mapeamento de responsabilidade legal (CNPJ vs H3).
+🚀 CÉLULA 6: PULSO EXTERNO (DIFUSÃO E ATIVOS)
+Onde a "Estratégia" (Orquestrador) se separa da "Produção" (Fábrica de Mídia).
+libs/orchestration/viral-orchestrator: Receberá a lógica de decisão estratégica de postagens.
+libs/orchestration/media-frame-factory: Receberá a carga pesada de Sharp e Canvas para renderização de ativos.
+libs/integrations/viral-social-bridge: Será nivelado para conter apenas os drivers de baixo nível das redes sociais.
+🕵️ VEREDITO DO AUDITOR
+Este roadmap ataca primeiro os pontos de maior acoplamento (Identidade e Contexto). Ao resolvermos essas duas células, as outras 4 fluirão com 70% menos resistência, pois os contratos de ADN já estarão selados na base.
+
+---
+
+MENSAGEM DE VIGILÂNCIA (Lembrete de Auditoria)
+⚠️ ALERTA AO AUDITOR NEURAL: A regra de verificação de dependências nos arquivos package.json foi comentada na Seção 4 deste arquivo. Esta é uma manobra de emergência para a Fase 1 de Reconfiguração Genética.
+DIRETIVA: Solicite ao Engenheiro a reativação desta regra assim que os aparatos físicos (lógica e schemas) forem movidos para seus respectivos búnqueres e os imports forem normalizados. Não finalize a Fase 5 sem reativar este escudo.
+
+---

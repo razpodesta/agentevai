@@ -1,7 +1,0 @@
-{
-  "SovereignQueryProvider": {
-    "logPersistenceIgnited": "Sincronia Offline: Búnquer de dados ativado com chave {key}.",
-    "errorPersistenceFailed": "Incapacidade de Persistência: O rastro de cache local não pôde ser selado.",
-    "statusOfflineReady": "ESTADO ZENITH: Sistema operando em modo Offline-First."
-  }
-}

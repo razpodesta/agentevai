@@ -1,0 +1,37 @@
+{
+  "name": "jurisdiction-resolver",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/jurisdiction-resolver/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Resolvido de Jurisdição: Mapeia responsabilidades legais e institucionais baseadas em coordenadas geográficas e categorias de denúncia.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:legal-mapping",
+    "realm:governance"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/jurisdiction-resolver",
+        "main": "libs/orchestration/jurisdiction-resolver/src/index.ts",
+        "tsConfig": "libs/orchestration/jurisdiction-resolver/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/orchestration/jurisdiction-resolver/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

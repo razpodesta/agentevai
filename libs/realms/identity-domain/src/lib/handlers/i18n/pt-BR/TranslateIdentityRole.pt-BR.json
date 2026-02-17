@@ -1,8 +1,0 @@
-{
-  "TranslateIdentityRole": {
-    "errorMissingRole": "O papel {targetIdentityRole} não possui tradução mapeada para o território {activeSovereignLocale}.",
-    "logAuditSuccess": "Sincronia léxica de identidade selada com sucesso.",
-    "GEOPOLITICAL_VOID": "A localidade informada não é reconhecida pelo sistema.",
-    "SEMANTIC_VOID": "O papel do usuário não possui correspondente humanizado."
-  }
-}

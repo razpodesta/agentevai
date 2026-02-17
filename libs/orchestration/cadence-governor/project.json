@@ -1,0 +1,38 @@
+{
+  "name": "cadence-governor",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/cadence-governor/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Controlador de Vazão: Implementa políticas de rate-limiting adaptativo baseadas na reputação técnica do rastro.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:rate-limiting",
+    "integration:upstash-redis"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/cadence-governor",
+        "main": "libs/orchestration/cadence-governor/src/index.ts",
+        "tsConfig": "libs/orchestration/cadence-governor/tsconfig.lib.json",
+        "assets": ["libs/orchestration/cadence-governor/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/orchestration/cadence-governor/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

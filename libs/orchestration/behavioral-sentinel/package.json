@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/behavioral-sentinel",
+  "version": "7.0.0",
+  "description": "Analista de Intenção: Gera fingerprints e identifica padrões de automação hostil via heurística.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_SECURITY",
+    "protocol": "OEDP-V7.0",
+    "role": "THREAT_PROFILER"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/sovereign-data-vault": "workspace:*",
+    "@agentevai/sovereign-logger": "workspace:*"
+  }
+}

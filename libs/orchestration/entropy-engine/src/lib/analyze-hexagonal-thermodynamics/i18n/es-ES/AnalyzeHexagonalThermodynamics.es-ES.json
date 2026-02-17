@@ -1,0 +1,36 @@
+{
+  "AnalyzeHexagonalThermodynamics": {
+    "logThermalSuccess": {
+      "semanticContent": "Pulso Térmico: Célula {hex} sellada con puntaje de entropía {score}.",
+      "semanticVersion": "7.0.0"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Falla de ADN: El enjambre de eventos portaba radiación técnica o vacío temporal.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_ABSOLUTE_ZERO": {
+      "semanticContent": "Cero Absoluto: Sin rastro de dolor detectado.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_NOMINAL_COLD": {
+      "semanticContent": "Estabilidad Bajo Vigilancia.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_ACTIVE_WARM": {
+      "semanticContent": "Inicio de Movilización Regional.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_VIBRANT_ORANGE": {
+      "semanticContent": "Alerta de Tendencia: Riesgo de Crisis.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_CRITICAL_INFRA": {
+      "semanticContent": "Colapso Inmunológico: Intervención Inmediata Requerida.",
+      "semanticVersion": "7.0.0"
+    },
+    "thermalState_ZENITH_ALERTA": {
+      "semanticContent": "ESTADO DE EXCEPCIÓN: Fe Pública en Riesgo.",
+      "semanticVersion": "7.0.0"
+    }
+  }
+}

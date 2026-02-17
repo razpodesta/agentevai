@@ -1,0 +1,16 @@
+{
+  "CalculateCitizenStanding": {
+    "logStandingEvolved": {
+      "semanticContent": "Merit Evolution: Standing transmuted from {current} to {final} via social trace.",
+      "semanticVersion": "7.0.0"
+    },
+    "logStandingDegraded": {
+      "semanticContent": "Entropy Sanction: Standing degraded to {final} due to hostile behavior.",
+      "semanticVersion": "7.0.0"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "DNA Failure: The social merit trace carried unacceptable technical radiation.",
+      "semanticVersion": "7.0.0"
+    }
+  }
+}

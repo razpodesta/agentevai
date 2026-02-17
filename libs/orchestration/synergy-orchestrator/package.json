@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/synergy-orchestrator",
+  "version": "7.0.0",
+  "description": "Comandante do Enxame: Orquestra a formação de Células de Ação e missões coordenadas entre cidadãos verificados IAL3.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_SWARM",
+    "protocol": "OEDP-V7.0",
+    "role": "SWARM_MISSION_CONTROL"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/swarm-intelligence": "workspace:*",
+    "@agentevai/notification-nexus": "workspace:*"
+  }
+}

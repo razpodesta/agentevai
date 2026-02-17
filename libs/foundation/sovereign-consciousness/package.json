@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/sovereign-consciousness",
+  "version": "7.0.0",
+  "description": "Célula de Consciência Estática: Isola o rastro territorial e cultural imutável para execução em Edge Runtime.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_CORE",
+    "protocol": "OEDP-V7.0",
+    "role": "EDGE_CONTEXT_SSOT",
+    "runtime": "EDGE_COMPATIBLE"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/types-common": "workspace:*"
+  }
+}

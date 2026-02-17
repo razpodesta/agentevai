@@ -1,0 +1,22 @@
+{
+  "name": "@agentevai/media-frame-factory",
+  "version": "7.0.0",
+  "description": "Forja de Ativos Visuais: Motor de renderização de imagens e vídeos selados para prova forense em redes sociais.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_ASSETS",
+    "protocol": "OEDP-V7.0",
+    "role": "MEDIA_RENDER_ENGINE"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "sharp": "^0.34.5",
+    "canvas": "^3.1.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/blockchain-ledger": "workspace:*"
+  }
+}

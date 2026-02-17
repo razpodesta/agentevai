@@ -1,0 +1,20 @@
+{
+  "name": "@agentevai/sovereign-attestation",
+  "version": "7.0.0",
+  "description": "Provedor de Fé Pública Física: Valida a integridade de hardware para certificação de rastro IAL3.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "FOUNDATION_SECURITY",
+    "protocol": "OEDP-V7.0",
+    "role": "HARDWARE_ATTESTATION"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@noble/hashes": "^2.0.1"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
+  }
+}

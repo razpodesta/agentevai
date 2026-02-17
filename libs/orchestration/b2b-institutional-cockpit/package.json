@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/b2b-institutional-cockpit",
+  "version": "7.0.0",
+  "description": "Cockpit B2B: Interface de gestão para autoridades e empresas processarem requerimentos e emitirem selos de resolução.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_FEATURE",
+    "protocol": "OEDP-V7.0",
+    "role": "INSTITUTIONAL_SaaS_CORE"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "zod": "^4.3.6",
+    "@agentevai/authority-bridge": "workspace:*"
+  }
+}

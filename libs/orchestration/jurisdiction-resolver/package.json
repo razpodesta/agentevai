@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/jurisdiction-resolver",
+  "version": "7.0.0",
+  "description": "Resolvido de Jurisdição: Mapeia responsabilidades institucionais brasileiras através de polígonos geoespaciais e hexágonos H3.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_LOGIC",
+    "protocol": "OEDP-V7.0",
+    "role": "LEGAL_TERRITORY_MAPPING"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/geography-infrastructure": "workspace:*",
+    "@agentevai/registry-vault": "workspace:*"
+  }
+}

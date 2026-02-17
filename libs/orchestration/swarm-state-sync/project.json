@@ -1,0 +1,30 @@
+{
+  "name": "swarm-state-sync",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/swarm-state-sync/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Sincronizador de Estado Volátil: Gerencia a hidratação e sincronia de borda via TanStack Query e presença em tempo real.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:feature",
+    "scope:orchestration",
+    "role:state-synchronization",
+    "standard:tanstack-query-v5"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/swarm-state-sync",
+        "main": "libs/orchestration/swarm-state-sync/src/index.ts",
+        "tsConfig": "libs/orchestration/swarm-state-sync/tsconfig.lib.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

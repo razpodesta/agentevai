@@ -1,0 +1,16 @@
+{
+  "CalculateCitizenStanding": {
+    "logStandingEvolved": {
+      "semanticContent": "Evolução de Mérito: Standing transmutado de {current} para {final} via rastro social.",
+      "semanticVersion": "7.0.0"
+    },
+    "logStandingDegraded": {
+      "semanticContent": "Sanção de Entropia: Standing degradado para {final} devido a comportamento hostil.",
+      "semanticVersion": "7.0.0"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Falha de ADN: O rastro de mérito social portava radiação técnica inaceitável.",
+      "semanticVersion": "7.0.0"
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-  "ResolveIdentityPrivileges": {
-    "logAuthorityConsolidated": "Matriz de privilegios sellada para el rol técnico: {role}.",
-    "logEntropySanction": "ALERTA: Privilegios degradados por standing negativo para el rastro {role}.",
-    "errorResolutionFailure": "Falla crítica en la orquestación de autoridad regional."
-  }
-}

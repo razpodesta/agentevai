@@ -1,9 +1,0 @@
-{
-  "UserIdentity": {
-    "reputationStandingLabel": "Mérito Social (Standing)",
-    "assuranceLevelLabel": "Nivel de Garantía Criptográfica",
-    "role_PLATFORM_ENGINEER": "Ingeniero de Soberanía",
-    "status_IAL3": "IDENTIDAD SOBERANA CERTIFICADA",
-    "errorAduanaFailed": "Falla de ADN: El rastro de identidad portaba radiación técnica."
-  }
-}

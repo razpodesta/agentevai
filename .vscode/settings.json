@@ -1,10 +1,51 @@
 {
+  /* --- 🧱 FUNDAÇÃO CSS & TAILWIND V4 --- */
   "css.customData": [],
   "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
   "tailwindCSS.experimental.classRegex": [
-    ["@apply\\s+([^;]*);", "'([^']*)'"]
+    ["@apply\\s+([^;]*);", "'([^']*)'"],
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["twMerge\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
   "tailwindCSS.includeLanguages": {
-    "plaintext": "css"
-  }
+    "plaintext": "css",
+    "typescriptreact": "tailwindcss"
+  },
+  "tailwindCSS.emmetCompletions": true,
+
+  /* --- 🚀 OTIMIZAÇÃO DE PERFORMANCE (NX MONOREPO) --- */
+  // Impede que o VS Code tente indexar lixo de build e cache, reduzindo o CPU em até 30%
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.nx/**": true,
+    "**/dist/**": true,
+    "**/tmp/**": true,
+    "**/.next/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/tmp": true,
+    "**/.nx": true,
+    "**/.next": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true
+  },
+
+  /* --- 🧬 INTELIGÊNCIA DE TIPOS (TS SERVER) --- */
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  
+  /* --- 🛡️ HIGIENE FORENSE (AUTO-FIX) --- */
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.run": "onSave"
 }

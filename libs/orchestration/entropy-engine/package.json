@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/entropy-engine",
+  "version": "7.0.0",
+  "description": "Motor de Termodinâmica Social: Algoritmo puro de cálculo de densidade de dor em células H3.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_LOGIC",
+    "protocol": "OEDP-V7.0",
+    "role": "SOCIAL_MATH_CALCULATOR"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "h3-js": "^4.4.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/types-common": "workspace:*"
+  }
+}

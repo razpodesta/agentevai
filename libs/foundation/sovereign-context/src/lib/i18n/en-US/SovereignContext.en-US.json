@@ -1,7 +1,0 @@
-{
-  "SovereignContextManager": {
-    "logIgnitionSuccess": "Consciousness anchored via route {routeSlug} in {latency}ms.",
-    "degradedAlert": "SECURITY ALERT: System health below 40%. Activating Degradation Mode (Kinetic Amputation).",
-    "CONSCIOUSNESS_COLLAPSE": "Consciousness Collapse: Infrastructure DNA has been violated."
-  }
-}

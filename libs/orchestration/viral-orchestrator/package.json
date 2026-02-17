@@ -1,0 +1,20 @@
+{
+  "name": "@agentevai/viral-orchestrator",
+  "version": "7.0.0",
+  "description": "Estrategista de Difusão: Decide cronogramas e canais de postagem massiva baseados no Índice de Relevância Soberana.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_COMMUNICATION",
+    "protocol": "OEDP-V7.0",
+    "role": "DIFFUSION_STRATEGIST"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/viral-engine": "workspace:*"
+  }
+}

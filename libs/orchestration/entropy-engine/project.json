@@ -1,0 +1,37 @@
+{
+  "name": "entropy-engine",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/entropy-engine/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Motor de Termodinâmica Social: Algoritmo puro que calcula a densidade de dor e o índice de entropia em células H3.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:social-mathematics",
+    "standard:uber-h3"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/entropy-engine",
+        "main": "libs/orchestration/entropy-engine/src/index.ts",
+        "tsConfig": "libs/orchestration/entropy-engine/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/orchestration/entropy-engine/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@agentevai/preference-bunker",
+  "version": "7.0.0",
+  "description": "Búnquer de Estética: Gerencia as escolhas de interface e ruteamento de forma desacoplada da identidade.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "REALM_DATA",
+    "protocol": "OEDP-V7.0",
+    "role": "UI_PREFERENCE_AUTHORITY"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6",
+    "@agentevai/types-common": "workspace:*"
+  }
+}

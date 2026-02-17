@@ -1,0 +1,16 @@
+{
+  "AnalyzeHexagonalThermodynamics": {
+    "logThermalSuccess": {
+      "semanticContent": "Pulso Térmico: Célula {hex} selada com score de entropia {score}. Contágio espacial processado.",
+      "semanticVersion": "7.3.3"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Falha de ADN: O enxame de eventos portava radiação técnica ou vácuo temporal.",
+      "semanticVersion": "7.3.3"
+    },
+    "thermalState_ZENITH_ALERTA": {
+      "semanticContent": "ZÊNITE DE ALERTA: Colapso de Fé Pública Detectado no Hexágono.",
+      "semanticVersion": "7.3.3"
+    }
+  }
+}

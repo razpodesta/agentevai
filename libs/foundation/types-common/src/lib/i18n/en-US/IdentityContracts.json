@@ -1,0 +1,7 @@
+{
+  "IdentityContractsSchema": {
+    "errorInvalidTaxId": "Registry Violation: The provided tax identifier does not respect the institutional format.",
+    "errorInvalidIdentifier": "Trace Violation: The citizen identifier is corrupted or invalid.",
+    "statusVerifiedIAL3": "SOVEREIGN IDENTITY ACTIVE"
+  }
+}

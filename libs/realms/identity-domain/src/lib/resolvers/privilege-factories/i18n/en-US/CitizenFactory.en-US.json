@@ -1,8 +1,0 @@
-{
-  "CitizenFactory": {
-    "logAuthorityResolved": "Citizenship authority successfully sealed. Voting Multiplier: {weight}x.",
-    "logHostileStatus": "SOVEREIGN ALERT: Citizen under restriction due to hostile behavior (Standing: {standing}).",
-    "errorAduanaFailed": "DNA Failure: Privilege birth parameters are corrupted.",
-    "statusDegradedActive": "DEGRADED PRIVILEGE MODE ACTIVE"
-  }
-}

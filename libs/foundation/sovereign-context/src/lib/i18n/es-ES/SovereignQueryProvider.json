@@ -1,7 +1,0 @@
-{
-  "SovereignQueryProvider": {
-    "logPersistenceIgnited": "Sincronía Offline: Búnker de datos activado con llave {key}.",
-    "errorPersistenceFailed": "Incapacidad de Persistencia: El rastro de caché local no pudo ser sellado.",
-    "statusOfflineReady": "ESTADO ZENITH: Sistema operando en modo Offline-First."
-  }
-}

@@ -21,76 +21,199 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "paths": {
-      /* --- 🌀 ESTRATÉGIA CONCÊNTRICA (Manifesto 0023) --- */
       "@agv/schemas/*": ["schemas/*"],
       "@agv/locales/*": ["locales/*"],
-
-      /* --- 🧱 FOUNDATION (Alicerces) --- */
-      "@agentevai/apparatus-metadata-registry": ["libs/foundation/apparatus-metadata-registry/src/index.ts"],
-      "@agentevai/design-tokens": ["libs/foundation/design-tokens/src/index.ts"],
-      "@agentevai/internationalization-engine": ["libs/foundation/internationalization-engine/src/index.ts"],
-      "@agentevai/sovereign-context": ["libs/foundation/sovereign-context/src/index.ts"],
-      "@agentevai/sovereign-data-vault": ["libs/foundation/sovereign-data-vault/src/index.ts"],
-      "@agentevai/sovereign-error-observability": ["libs/foundation/sovereign-error-observability/src/index.ts"],
-      "@agentevai/sovereign-logger": ["libs/foundation/sovereign-logger/src/index.ts"],
-      "@agentevai/sovereign-seo-engine": ["libs/foundation/sovereign-seo-engine/src/index.ts"],
-      "@agentevai/sovereign-taxonomy": ["libs/foundation/sovereign-taxonomy/src/index.ts"],
+      "@agentevai/apparatus-metadata-registry": [
+        "libs/foundation/apparatus-metadata-registry/src/index.ts"
+      ],
+      "@agentevai/design-tokens": [
+        "libs/foundation/design-tokens/src/index.ts"
+      ],
+      "@agentevai/internationalization-engine": [
+        "libs/foundation/internationalization-engine/src/index.ts"
+      ],
+      "@agentevai/sovereign-context": [
+        "libs/foundation/sovereign-context/src/index.ts"
+      ],
+      "@agentevai/sovereign-data-vault": [
+        "libs/foundation/sovereign-data-vault/src/index.ts"
+      ],
+      "@agentevai/sovereign-error-observability": [
+        "libs/foundation/sovereign-error-observability/src/index.ts"
+      ],
+      "@agentevai/sovereign-logger": [
+        "libs/foundation/sovereign-logger/src/index.ts"
+      ],
+      "@agentevai/sovereign-seo-engine": [
+        "libs/foundation/sovereign-seo-engine/src/index.ts"
+      ],
+      "@agentevai/sovereign-taxonomy": [
+        "libs/foundation/sovereign-taxonomy/src/index.ts"
+      ],
       "@agentevai/types-common": ["libs/foundation/types-common/src/index.ts"],
       "@agentevai/ui-kit-atoms": ["libs/foundation/ui-kit-atoms/src/index.ts"],
-      "@agentevai/ui-kit-molecules": ["libs/foundation/ui-kit-molecules/src/index.ts"],
-      "@agentevai/ui-kit-organisms": ["libs/foundation/ui-kit-organisms/src/index.ts"],
-
-      /* --- 🏰 REALMS (Domínios de Negócio) --- */
+      "@agentevai/ui-kit-molecules": [
+        "libs/foundation/ui-kit-molecules/src/index.ts"
+      ],
+      "@agentevai/ui-kit-organisms": [
+        "libs/foundation/ui-kit-organisms/src/index.ts"
+      ],
       "@agentevai/advertising-ui": ["libs/realms/advertising-ui/src/index.ts"],
-      "@agentevai/community-domain": ["libs/realms/community-domain/src/index.ts"],
+      "@agentevai/community-domain": [
+        "libs/realms/community-domain/src/index.ts"
+      ],
       "@agentevai/community-ui": ["libs/realms/community-ui/src/index.ts"],
-      "@agentevai/complaints-domain": ["libs/realms/complaints-domain/src/index.ts"],
+      "@agentevai/complaints-domain": [
+        "libs/realms/complaints-domain/src/index.ts"
+      ],
       "@agentevai/complaints-ui": ["libs/realms/complaints-ui/src/index.ts"],
-      "@agentevai/editorial-bunker": ["libs/realms/editorial-bunker/src/index.ts"],
-      "@agentevai/gamification-engine": ["libs/realms/gamification-engine/src/index.ts"],
-      "@agentevai/geographic-context": ["libs/realms/geographic-context/src/index.ts"],
-      "@agentevai/geography-infrastructure": ["libs/realms/geography-infrastructure/src/index.ts"],
-      "@agentevai/governance-domain": ["libs/realms/governance-domain/src/index.ts"],
+      "@agentevai/editorial-bunker": [
+        "libs/realms/editorial-bunker/src/index.ts"
+      ],
+      "@agentevai/gamification-engine": [
+        "libs/realms/gamification-engine/src/index.ts"
+      ],
+      "@agentevai/geographic-context": [
+        "libs/realms/geographic-context/src/index.ts"
+      ],
+      "@agentevai/geography-infrastructure": [
+        "libs/realms/geography-infrastructure/src/index.ts"
+      ],
+      "@agentevai/governance-domain": [
+        "libs/realms/governance-domain/src/index.ts"
+      ],
       "@agentevai/governance-ui": ["libs/realms/governance-ui/src/index.ts"],
-      "@agentevai/identity-domain": ["libs/realms/identity-domain/src/index.ts"],
+      "@agentevai/identity-domain": [
+        "libs/realms/identity-domain/src/index.ts"
+      ],
       "@agentevai/marketing-ui": ["libs/realms/marketing-ui/src/index.ts"],
       "@agentevai/news-domain": ["libs/realms/news-domain/src/index.ts"],
       "@agentevai/news-ui": ["libs/realms/news-ui/src/index.ts"],
       "@agentevai/registry-vault": ["libs/realms/registry-vault/src/index.ts"],
-
-      /* --- 🔌 INTEGRATIONS (Adaptadores) --- */
-      "@agentevai/ai-model-orchestrator": ["libs/integrations/ai-model-orchestrator/src/index.ts"],
+      "@agentevai/ai-model-orchestrator": [
+        "libs/integrations/ai-model-orchestrator/src/index.ts"
+      ],
       "@agentevai/ai-oracle": ["libs/integrations/ai-oracle/src/index.ts"],
-      "@agentevai/blockchain-ledger": ["libs/integrations/blockchain-ledger/src/index.ts"],
-      "@agentevai/email-dispatcher": ["libs/integrations/email-dispatcher/src/index.ts"],
-      "@agentevai/financial-bridge": ["libs/integrations/financial-bridge/src/index.ts"],
-      "@agentevai/neural-vault": ["libs/integrations/neural-vault/src/index.ts"],
-      "@agentevai/search-engine": ["libs/integrations/search-engine/src/index.ts"],
-      "@agentevai/supabase-bridge": ["libs/integrations/supabase-bridge/src/index.ts"],
-      "@agentevai/syndication-engine": ["libs/integrations/syndication-engine/src/index.ts"],
-      "@agentevai/synthetic-ingestion": ["libs/integrations/synthetic-ingestion/src/index.ts"],
-      "@agentevai/viral-social-bridge": ["libs/integrations/viral-social-bridge/src/index.ts"],
-      "@agentevai/whatsapp-gateway": ["libs/integrations/whatsapp-gateway/src/index.ts"],
-
-      /* --- 🧠 ORCHESTRATION (Sistema Nervoso) --- */
-      "@agentevai/ai-neural-auditor": ["libs/orchestration/ai-neural-auditor/src/index.ts"],
-      "@agentevai/ai-self-healing": ["libs/orchestration/ai-self-healing/src/index.ts"],
-      "@agentevai/analytics-pulse": ["libs/orchestration/analytics-pulse/src/index.ts"],
-      "@agentevai/authority-bridge": ["libs/orchestration/authority-bridge/src/index.ts"],
-      "@agentevai/data-refinery": ["libs/orchestration/data-refinery/src/index.ts"],
-      "@agentevai/intelligence-hub": ["libs/orchestration/intelligence-hub/src/index.ts"],
-      "@agentevai/learning-feedback": ["libs/orchestration/learning-feedback/src/index.ts"],
-      "@agentevai/notification-nexus": ["libs/orchestration/notification-nexus/src/index.ts"],
-      "@agentevai/security-auditor": ["libs/orchestration/security-auditor/src/index.ts"],
-      "@agentevai/semantic-clustering": ["libs/orchestration/semantic-clustering/src/index.ts"],
-      "@agentevai/semantic-search": ["libs/orchestration/semantic-search/src/index.ts"],
-      "@agentevai/sovereign-authorization": ["libs/orchestration/sovereign-authorization/src/index.ts"],
-      "@agentevai/swarm-intelligence": ["libs/orchestration/swarm-intelligence/src/index.ts"],
-      "@agentevai/viral-engine": ["libs/orchestration/viral-engine/src/index.ts"],
-
-      /* --- 🛠️ TOOLS & QA --- */
-      "@agentevai/apparatus-factory": ["libs/tools/apparatus-factory/src/index.ts"],
-      "@agentevai/tests-hub": ["tests/src/index.ts"]
+      "@agentevai/blockchain-ledger": [
+        "libs/integrations/blockchain-ledger/src/index.ts"
+      ],
+      "@agentevai/email-dispatcher": [
+        "libs/integrations/email-dispatcher/src/index.ts"
+      ],
+      "@agentevai/financial-bridge": [
+        "libs/integrations/financial-bridge/src/index.ts"
+      ],
+      "@agentevai/neural-vault": [
+        "libs/integrations/neural-vault/src/index.ts"
+      ],
+      "@agentevai/search-engine": [
+        "libs/integrations/search-engine/src/index.ts"
+      ],
+      "@agentevai/supabase-bridge": [
+        "libs/integrations/supabase-bridge/src/index.ts"
+      ],
+      "@agentevai/syndication-engine": [
+        "libs/integrations/syndication-engine/src/index.ts"
+      ],
+      "@agentevai/synthetic-ingestion": [
+        "libs/integrations/synthetic-ingestion/src/index.ts"
+      ],
+      "@agentevai/viral-social-bridge": [
+        "libs/integrations/viral-social-bridge/src/index.ts"
+      ],
+      "@agentevai/whatsapp-gateway": [
+        "libs/integrations/whatsapp-gateway/src/index.ts"
+      ],
+      "@agentevai/ai-neural-auditor": [
+        "libs/orchestration/ai-neural-auditor/src/index.ts"
+      ],
+      "@agentevai/ai-self-healing": [
+        "libs/orchestration/ai-self-healing/src/index.ts"
+      ],
+      "@agentevai/analytics-pulse": [
+        "libs/orchestration/analytics-pulse/src/index.ts"
+      ],
+      "@agentevai/authority-bridge": [
+        "libs/orchestration/authority-bridge/src/index.ts"
+      ],
+      "@agentevai/data-refinery": [
+        "libs/orchestration/data-refinery/src/index.ts"
+      ],
+      "@agentevai/intelligence-hub": [
+        "libs/orchestration/intelligence-hub/src/index.ts"
+      ],
+      "@agentevai/learning-feedback": [
+        "libs/orchestration/learning-feedback/src/index.ts"
+      ],
+      "@agentevai/notification-nexus": [
+        "libs/orchestration/notification-nexus/src/index.ts"
+      ],
+      "@agentevai/security-auditor": [
+        "libs/orchestration/security-auditor/src/index.ts"
+      ],
+      "@agentevai/semantic-clustering": [
+        "libs/orchestration/semantic-clustering/src/index.ts"
+      ],
+      "@agentevai/semantic-search": [
+        "libs/orchestration/semantic-search/src/index.ts"
+      ],
+      "@agentevai/sovereign-authorization": [
+        "libs/orchestration/sovereign-authorization/src/index.ts"
+      ],
+      "@agentevai/swarm-intelligence": [
+        "libs/orchestration/swarm-intelligence/src/index.ts"
+      ],
+      "@agentevai/viral-engine": [
+        "libs/orchestration/viral-engine/src/index.ts"
+      ],
+      "@agentevai/apparatus-factory": [
+        "libs/tools/apparatus-factory/src/index.ts"
+      ],
+      "@agentevai/tests-hub": ["tests/src/index.ts"],
+      "@agentevai/sovereign-consciousness": [
+        "libs/foundation/sovereign-consciousness/src/index.ts"
+      ],
+      "@agentevai/sovereign-attestation": [
+        "libs/foundation/sovereign-attestation/src/index.ts"
+      ],
+      "@agentevai/actor-registry": ["libs/realms/actor-registry/src/index.ts"],
+      "@agentevai/preference-bunker": [
+        "libs/realms/preference-bunker/src/index.ts"
+      ],
+      "@agentevai/geography-ui": ["libs/realms/geography-ui/src/index.ts"],
+      "@agentevai/swarm-state-sync": [
+        "libs/orchestration/swarm-state-sync/src/index.ts"
+      ],
+      "@agentevai/behavioral-sentinel": [
+        "libs/orchestration/behavioral-sentinel/src/index.ts"
+      ],
+      "@agentevai/cadence-governor": [
+        "libs/orchestration/cadence-governor/src/index.ts"
+      ],
+      "@agentevai/entropy-engine": [
+        "libs/orchestration/entropy-engine/src/index.ts"
+      ],
+      "@agentevai/jurisdiction-resolver": [
+        "libs/orchestration/jurisdiction-resolver/src/index.ts"
+      ],
+      "@agentevai/synergy-orchestrator": [
+        "libs/orchestration/synergy-orchestrator/src/index.ts"
+      ],
+      "@agentevai/narrative-synthesizer": [
+        "libs/orchestration/narrative-synthesizer/src/index.ts"
+      ],
+      "@agentevai/sovereign-letter-factory": [
+        "libs/orchestration/sovereign-letter-factory/src/index.ts"
+      ],
+      "@agentevai/b2b-institutional-cockpit": [
+        "libs/orchestration/b2b-institutional-cockpit/src/index.ts"
+      ],
+      "@agentevai/viral-orchestrator": [
+        "libs/orchestration/viral-orchestrator/src/index.ts"
+      ],
+      "@agentevai/media-frame-factory": [
+        "libs/orchestration/media-frame-factory/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp", "dist"]

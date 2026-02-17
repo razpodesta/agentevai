@@ -1,0 +1,12 @@
+{
+  "ActorPassport": {
+    "logPassportSealed": {
+      "semanticContent": "Cartório do Ser: Certidão técnica selada para o ator {identifier}. Categoria: {category}.",
+      "semanticVersion": "7.3.1"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Falha de Registro: Os dados do ator violaram o contrato de integridade civil.",
+      "semanticVersion": "7.3.1"
+    }
+  }
+}

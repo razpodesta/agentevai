@@ -1,0 +1,7 @@
+{
+  "IdentityContractsSchema": {
+    "errorInvalidTaxId": "Violación de Registro: El identificador fiscal no respeta el formato institucional.",
+    "errorInvalidIdentifier": "Violación de Rastro: El identificador de ciudadano está corrompido o es inválido.",
+    "statusVerifiedIAL3": "IDENTIDAD SOBERANA ACTIVA"
+  }
+}

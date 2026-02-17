@@ -1,0 +1,16 @@
+{
+  "PermissionAduana": {
+    "logVerdictIssued": {
+      "semanticContent": "Tribunal de la Ley: Veredicto de autoridad sellado para el rastro {identifier}.",
+      "semanticVersion": "7.1.1"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "Falla de ADN: El rastro de permiso violó el contrato de soberanía legislativa.",
+      "semanticVersion": "7.1.1"
+    },
+    "statusDegradedActive": {
+      "semanticContent": "ALERTA SOBERANA: Actor operando en modo de privilegios degradados por mérito negativo.",
+      "semanticVersion": "7.1.1"
+    }
+  }
+}

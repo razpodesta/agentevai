@@ -2,6 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
+    /**
+     * @section Sincronia de Borda (Cura do Erro de Severidade 8)
+     * Força o rastro de saída para o padrão NodeNext, permitindo Tree-Shaking
+     * agressivo e conformidade com o rastro do Monorepo.
+     */
+    "module": "NodeNext",
     "declaration": true,
     "types": ["node"]
   },

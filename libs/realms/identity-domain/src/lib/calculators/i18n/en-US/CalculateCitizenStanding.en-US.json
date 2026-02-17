@@ -1,7 +1,0 @@
-{
-  "CalculateCitizenStanding": {
-    "logStandingEvolved": "Citizen standing evolved from {current} to {final} via {type}.",
-    "logStandingDegraded": "ALERT: Standing degraded due to detected entropy. New score: {final}.",
-    "errorCalculationFailure": "Critical failure in the social merit transmutation algorithm."
-  }
-}

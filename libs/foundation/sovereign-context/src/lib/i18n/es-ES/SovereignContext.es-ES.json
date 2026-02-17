@@ -1,7 +1,0 @@
-{
-  "SovereignContextManager": {
-    "logIgnitionSuccess": "Conciencia anclada vía ruta {routeSlug} en {latency}ms.",
-    "degradedAlert": "ALERTA DE SEGURIDAD: Salud sistémica por debajo del 40%. Activando Modo de Degradación (Amputación Cinética).",
-    "CONSCIOUSNESS_COLLAPSE": "Colapso de Conciencia: El ADN de infraestructura fue violado."
-  }
-}

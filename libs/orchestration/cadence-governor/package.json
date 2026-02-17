@@ -1,0 +1,21 @@
+{
+  "name": "@agentevai/cadence-governor",
+  "version": "7.0.0",
+  "description": "Controlador de Vazão: Implementa rate-limiting adaptativo baseado em reputação técnica.",
+  "private": true,
+  "type": "module",
+  "author": "Raz Podestá - MetaShark Tech",
+  "metadata": {
+    "tier": "ORCHESTRATION_FLOW",
+    "protocol": "OEDP-V7.0",
+    "role": "TRAFFIC_GOVERNANCE"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.2"
+  },
+  "peerDependencies": {
+    "zod": "^4.3.6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "PermissionAduana": {
+    "logVerdictIssued": {
+      "semanticContent": "Tribunal of Law: Authority verdict sealed for trace {identifier}.",
+      "semanticVersion": "7.1.1"
+    },
+    "errorAduanaFailed": {
+      "semanticContent": "DNA Failure: The permission trace violated the legislative sovereignty contract.",
+      "semanticVersion": "7.1.1"
+    },
+    "statusDegradedActive": {
+      "semanticContent": "SOVEREIGN ALERT: Actor operating in degraded privilege mode due to negative merit.",
+      "semanticVersion": "7.1.1"
+    }
+  }
+}

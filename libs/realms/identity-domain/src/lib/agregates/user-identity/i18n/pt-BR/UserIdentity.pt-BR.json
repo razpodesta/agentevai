@@ -1,0 +1,12 @@
+{
+  "UserIdentity": {
+    "logIdentityAggregated": {
+      "semanticContent": "Sincronia Bio-Digital: Identidade do cidadão unificada e selada no território.",
+      "semanticVersion": "7.3.1"
+    },
+    "errorAggregationFailed": {
+      "semanticContent": "Colapso de Identidade: O rastro de composição violou as leis de autorização ou registro.",
+      "semanticVersion": "7.3.1"
+    }
+  }
+}

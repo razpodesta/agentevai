@@ -1,0 +1,10 @@
+{
+  "ActorPassport": {
+    "logPassportSealed": "Certidão técnica selada para o ator {identifier}. Categoria: {category}.",
+    "errorAduanaFailed": "Falha de Registro: Os dados do ator violaram o contrato de integridade civil.",
+    "statusVerifiedIAL3": "IDENTIDADE BIOMÉTRICA SELADA",
+    "category_NATURAL_PERSON": "Pessoa Física",
+    "category_GOVERNMENTAL_ENTITY": "Autoridade Governamental",
+    "category_CORPORATE_ENTITY": "Entidade Corporativa"
+  }
+}

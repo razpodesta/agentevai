@@ -1,0 +1,8 @@
+{
+  "CalculateSpatialContagion": {
+    "errorAduanaFailed": {
+      "semanticContent": "DNA Failure: The neighbor trace carried invalid H3 identifiers.",
+      "semanticVersion": "7.4.2"
+    }
+  }
+}

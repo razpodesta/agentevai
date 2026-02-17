@@ -1,0 +1,32 @@
+{
+  "name": "viral-orchestrator",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/orchestration/viral-orchestrator/src",
+  "projectType": "library",
+  "metadata": {
+    "description": "Estrategista de Difusão: Decide o cronograma, canais e ruteamento de postagens massivas em redes sociais.",
+    "author": "Raz Podestá - MetaShark Tech"
+  },
+  "tags": [
+    "type:util",
+    "scope:orchestration",
+    "role:viral-strategy"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/orchestration/viral-orchestrator",
+        "main": "libs/orchestration/viral-orchestrator/src/index.ts",
+        "tsConfig": "libs/orchestration/viral-orchestrator/tsconfig.lib.json"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/orchestration/viral-orchestrator/jest.config.ts"
+      }
+    }
+  }
+}

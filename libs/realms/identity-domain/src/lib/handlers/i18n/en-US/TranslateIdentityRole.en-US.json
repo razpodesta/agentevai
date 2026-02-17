@@ -1,8 +1,0 @@
-{
-  "TranslateIdentityRole": {
-    "errorMissingRole": "The role {targetIdentityRole} has no translation for the territory {activeSovereignLocale}.",
-    "logAuditSuccess": "Lexical identity synchrony successfully sealed.",
-    "GEOPOLITICAL_VOID": "The provided locale is not recognized by the system.",
-    "SEMANTIC_VOID": "The user identity role has no humanized equivalent."
-  }
-}
